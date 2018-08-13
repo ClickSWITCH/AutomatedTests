@@ -328,9 +328,9 @@
             "method": "PUT",
             "header": [
               {
+                "description": "api key",
                 "key": "api-key",
-                "value": "{{api_key}}",
-                "description": "api key"
+                "value": "{{api_key}}"
               },
               {
                 "key": "Accept",
@@ -352,9 +352,9 @@
               ],
               "query": [
                 {
+                  "equals": true,
                   "key": "context",
                   "value": "",
-                  "equals": true,
                   "disabled": true
                 }
               ]
