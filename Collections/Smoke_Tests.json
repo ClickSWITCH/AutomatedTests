@@ -379,7 +379,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "71b6e776-20cf-412e-b77d-6eb939f3d6e6",
+                "id": "f9f36b28-0291-4478-ba88-6dc3f6513b21",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -407,9 +407,7 @@
                   "    pm.expect(jsonData.data.item).to.have.property('accounts');",
                   "    pm.expect(jsonData.data.item).to.have.property('addresses');",
                   "    pm.expect(jsonData.data.item).to.have.property('metadata');",
-                  "});",
-                  "",
-                  ""
+                  "});"
                 ]
               }
             }
