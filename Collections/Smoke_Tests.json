@@ -490,9 +490,15 @@
           "name": "Get Switch",
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "Api Key"
+              }
+            ],
             "body": {},
-            "url": ""
+            "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
           },
           "response": []
         }
