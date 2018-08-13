@@ -458,13 +458,6 @@
       "description": "",
       "item": [
         {
-          "_postman_id": "12ebd864-4524-4b41-963b-308d0b5b3d9e",
-          "name": "Switches",
-          "description": "",
-          "item": [],
-          "_postman_isSubFolder": true
-        },
-        {
           "_postman_id": "588b2234-0a99-4a39-913f-6a27bb126649",
           "name": "Targets",
           "event": [
@@ -569,6 +562,12 @@
           "response": []
         }
       ]
+    },
+    {
+      "_postman_id": "12ebd864-4524-4b41-963b-308d0b5b3d9e",
+      "name": "Switches",
+      "description": "",
+      "item": []
     }
   ],
   "event": [
