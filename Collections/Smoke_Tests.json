@@ -623,6 +623,17 @@
             }
           },
           "response": []
+        },
+        {
+          "_postman_id": "30170c0f-9286-4bfe-8a48-51babb7d4a02",
+          "name": "Locations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": ""
+          },
+          "response": []
         }
       ]
     }
