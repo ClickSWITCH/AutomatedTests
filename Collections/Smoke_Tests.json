@@ -460,11 +460,70 @@
         {
           "_postman_id": "588b2234-0a99-4a39-913f-6a27bb126649",
           "name": "Get Targets",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "26b966a1-4339-4ae5-9f3e-b9b674607cf4",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct 3 items', function() {",
+                  "   pm.expect(jsonData.data.currentItemCount).to.eql(1);",
+                  "   pm.expect(jsonData.data.items).to.have.length(1);",
+                  "});",
+                  "",
+                  "pm.environment.set(\"target_id\", jsonData.data.items[0].targetId);"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "Api Key"
+              }
+            ],
             "body": {},
-            "url": ""
+            "url": {
+              "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name=Saturn&customer=1533929995718",
+              "host": [
+                "{{base_url}}{{targets_postfix2}}"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "deposit",
+                  "equals": true
+                },
+                {
+                  "key": "name",
+                  "value": "Saturn",
+                  "equals": true
+                },
+                {
+                  "key": "customer",
+                  "value": "1533929995718",
+                  "equals": true
+                }
+              ]
+            }
           },
           "response": []
         }
