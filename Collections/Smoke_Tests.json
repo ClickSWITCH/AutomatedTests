@@ -67,7 +67,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "ba49fcd1-f1c8-4929-9fe3-3dcc277a2006",
+                "id": "805f0eb8-4318-42d7-985e-6c3828ecc740",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -103,7 +103,6 @@
                   "        \"help\": \"The switch is missing information required for processing.\"",
                   "    };",
                   "    pm.expect(jsonData.data.items).to.deep.include(incomplete);",
-                  "    ",
                   "",
                   "    var canceled =  {",
                   "        \"id\": \"canceled\",",
@@ -146,8 +145,6 @@
                   "        \"help\": \"The company or govt. agency has acknowledged that the change has been completed.\"",
                   "    };",
                   "    pm.expect(jsonData.data.items).to.deep.include(complete);",
-                  "    ",
-                  "    ",
                   "});"
                 ]
               }
