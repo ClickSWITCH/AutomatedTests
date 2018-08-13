@@ -456,7 +456,19 @@
       "_postman_id": "4119ad4a-7080-402f-8fba-4f6dfae1ebd1",
       "name": "Targets",
       "description": "",
-      "item": []
+      "item": [
+        {
+          "_postman_id": "588b2234-0a99-4a39-913f-6a27bb126649",
+          "name": "Get Targets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": ""
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "event": [
