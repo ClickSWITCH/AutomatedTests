@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "ff029c68-54ac-461b-b2b0-b15d78d4934e",
-    "name": "Test Collection",
+    "name": "Smoke Tests",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
