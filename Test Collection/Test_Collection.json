@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "ff029c68-54ac-461b-b2b0-b15d78d4934e",
-    "name": "Smoke Tests",
+    "name": "Test Collection",
     "description": "A collection of tests that hit all the QA endpoints with some tests that ensure the API is up and working. These tests don't test complicated business logic but rather ensure that the correct response types and lengths are being returned.",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
