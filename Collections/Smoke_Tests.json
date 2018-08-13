@@ -453,6 +453,12 @@
       ]
     },
     {
+      "_postman_id": "12ebd864-4524-4b41-963b-308d0b5b3d9e",
+      "name": "Switches",
+      "description": "",
+      "item": []
+    },
+    {
       "_postman_id": "4119ad4a-7080-402f-8fba-4f6dfae1ebd1",
       "name": "Targets",
       "description": "",
@@ -562,12 +568,6 @@
           "response": []
         }
       ]
-    },
-    {
-      "_postman_id": "12ebd864-4524-4b41-963b-308d0b5b3d9e",
-      "name": "Switches",
-      "description": "",
-      "item": []
     }
   ],
   "event": [
