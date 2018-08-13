@@ -458,8 +458,8 @@
       "description": "",
       "item": [
         {
-          "_postman_id": "f42085c0-7a8f-4606-9156-f955f5d02aed",
-          "name": "Customer Switches",
+          "_postman_id": "c1084652-f999-430c-9a40-8b0ffa883ca0",
+          "name": "Create Switch",
           "request": {
             "method": "GET",
             "header": [],
@@ -469,8 +469,8 @@
           "response": []
         },
         {
-          "_postman_id": "c1084652-f999-430c-9a40-8b0ffa883ca0",
-          "name": "Create Switch",
+          "_postman_id": "f42085c0-7a8f-4606-9156-f955f5d02aed",
+          "name": "Customer Switches",
           "request": {
             "method": "GET",
             "header": [],
