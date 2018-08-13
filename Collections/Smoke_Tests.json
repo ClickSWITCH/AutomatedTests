@@ -495,7 +495,7 @@
         },
         {
           "_postman_id": "dc333169-49f3-46a9-be85-b7b92a5d8b29",
-          "name": "Create Customer Copy Copy",
+          "name": "Get Customer",
           "event": [
             {
               "listen": "test",
