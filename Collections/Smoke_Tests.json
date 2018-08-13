@@ -367,14 +367,10 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "6cc2ad18-e0c9-42ac-96e8-4be5245e9ea5",
+                "id": "f26fb37e-dcef-459b-86fd-af57f2194452",
                 "type": "text/javascript",
                 "exec": [
-                  "var timestamp = Date.now();",
-                  "",
-                  "// Set the timestamp to environment vars to create an unique",
-                  "// customer on each test run.",
-                  "pm.environment.set(\"customer_key\", timestamp);"
+                  ""
                 ]
               }
             }
