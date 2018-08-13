@@ -1,0 +1,457 @@
+{
+  "info": {
+    "_postman_id": "ff029c68-54ac-461b-b2b0-b15d78d4934e",
+    "name": "Test Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "_postman_id": "7366c0c0-cf5a-43c2-b521-ad794dfae791",
+      "name": "Types",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "17d88382-cd84-451d-b451-46a89037f70c",
+          "name": "Targets",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "dec5c8c4-00b0-49dd-8414-4c734dbcc905",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct 3 items', function() {",
+                  "   pm.expect(jsonData.data.currentItemCount).to.eql(3);",
+                  "   pm.expect(jsonData.data.items).to.have.length(3);",
+                  "});",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "Api Key"
+              }
+            ],
+            "body": {},
+            "url": "{{base_url}}{{targets_postfix}}",
+            "description": "Tests out the GET /types/targets method"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "53016025-8de5-4bbf-8d3a-23b823689802",
+          "name": "Statuses",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "fd8ad196-211c-4f46-b15c-31c52c0c2683",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct 8 items', function() {",
+                  "   pm.expect(jsonData.data.currentItemCount).to.eql(8);",
+                  "   pm.expect(jsonData.data.items).to.have.length(8);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "Api Key"
+              }
+            ],
+            "body": {},
+            "url": "{{base_url}}{{statuses_postfix}}",
+            "description": "Testing the GET /types/switch/statuses route"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "4b17df3a-98e2-4358-ab2a-5250206ce1ca",
+          "name": "Actions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0d1efb8d-cd6c-4c5c-ba88-c927f018be43",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct 6 items', function() {",
+                  "   pm.expect(jsonData.data.currentItemCount).to.eql(6);",
+                  "   pm.expect(jsonData.data.items).to.have.length(6);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "body": {},
+            "url": "{{base_url}}{{actions_postfix}}",
+            "description": "Tests for the GET /types/switches/actions route."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "dd53a9e8-4f1f-42b8-80f8-3580cc933abc",
+      "name": "Customers",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "bdd2949e-5731-4fe7-9e32-cdb8f06db10c",
+          "name": "Create Customer",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "599c1d68-13db-41fc-a6bc-fe61a2d37c86",
+                "type": "text/javascript",
+                "exec": [
+                  "var timestamp = Date.now();",
+                  "pm.environment.set(\"customer_key\", timestamp);",
+                  "pm.environment.set(\"customer_email\", timestamp);",
+                  "",
+                  "var request_body = ",
+                  "{",
+                  "    \"email\": \"{{customer_email}}@clickswitch.com\",",
+                  "    \"phoneNumber\": \"2183309148\",",
+                  "    \"accountHolders\" : [",
+                  "        {",
+                  "        \"firstName\": \"John\",",
+                  "        \"middleInitial\": \"J\",",
+                  "        \"lastName\": \"Doe\"",
+                  "        },",
+                  "        {",
+                  "        \"firstName\": \"Jane\",",
+                  "        \"middleInitial\": \"M\",",
+                  "        \"lastName\": \"Doe\"",
+                  "        }",
+                  "    ],",
+                  "    \"accounts\": [",
+                  "        {",
+                  "        \"number\": \"212345678900\",",
+                  "        \"type\": \"{{checking}}\",",
+                  "        \"name\": \"{{checking}}\",",
+                  "        \"routingNumber\": \"{{routing_number}}\"",
+                  "        }",
+                  "    ],",
+                  "    \"addresses\": [",
+                  "        {",
+                  "            \"line1\": \"600 Canal Park Dr.\",",
+                  "            \"city\": \"Duluth\",",
+                  "            \"zip\": \"55802\",",
+                  "            \"state\": \"MN\",",
+                  "            \"country\": \"US\"",
+                  "        }",
+                  "    ]",
+                  "};",
+                  "",
+                  "pm.environment.set(\"request_body\", JSON.stringify(request_body));",
+                  "",
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "25fb3e80-5adb-4b32-8b1e-c0eb411ad5cd",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 500\", function () {",
+                  "    pm.response.to.have.status(500);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "api key"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{{request_body}}\n \n"
+            },
+            "url": {
+              "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
+              "host": [
+                "{{base_url}}{{customers_postfix}}{{customer_key}}"
+              ],
+              "query": [
+                {
+                  "key": "context",
+                  "value": "",
+                  "equals": true,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "837805d1-37a1-41b3-a162-9dc84b55bf24",
+          "name": "Create Customer Copy",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "ec257296-6c1d-4c72-9790-2632324427bb",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "1a901b24-2046-404b-b95d-f5a0e4d18305",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required 1st level elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "});",
+                  "",
+                  "pm.test('Has required 2nd level elements', function() {",
+                  "    pm.expect(jsonData.data).to.have.property('item');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has required 3rd level elements', function() {",
+                  "    pm.expect(jsonData.data.item).to.have.property('email');",
+                  "    pm.expect(jsonData.data.item).to.have.property('phoneNumber');",
+                  "    pm.expect(jsonData.data.item).to.have.property('accountHolders');",
+                  "    pm.expect(jsonData.data.item).to.have.property('accounts');",
+                  "    pm.expect(jsonData.data.item).to.have.property('addresses');",
+                  "    pm.expect(jsonData.data.item).to.have.property('metadata');",
+                  "});",
+                  "",
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "api key"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{{request_body}}"
+            },
+            "url": {
+              "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
+              "host": [
+                "{{base_url}}{{customers_postfix}}{{customer_key}}"
+              ],
+              "query": [
+                {
+                  "key": "context",
+                  "value": "",
+                  "equals": true,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "4fe2c849-20e1-478e-9621-f982eb43faf7",
+          "name": "Get Created Customer",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "ec257296-6c1d-4c72-9790-2632324427bb",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "71b6e776-20cf-412e-b77d-6eb939f3d6e6",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required 1st level elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "});",
+                  "",
+                  "pm.test('Has required 2nd level elements', function() {",
+                  "    pm.expect(jsonData.data).to.have.property('item');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has required 3rd level elements', function() {",
+                  "    pm.expect(jsonData.data.item).to.have.property('email');",
+                  "    pm.expect(jsonData.data.item).to.have.property('phoneNumber');",
+                  "    pm.expect(jsonData.data.item).to.have.property('accountHolders');",
+                  "    pm.expect(jsonData.data.item).to.have.property('accounts');",
+                  "    pm.expect(jsonData.data.item).to.have.property('addresses');",
+                  "    pm.expect(jsonData.data.item).to.have.property('metadata');",
+                  "});",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "api key"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "  {\n    \"email\": \"{{customer_email}}@clickswitch.com\",\n    \"phoneNumber\": \"2183309148\",\n    \"metadata\": {\n      \"employee_id\": \"jsmith\",\n      \"branch\": \"21\"\n    },\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"John\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Doe\"\n        },\n        {\n        \"firstName\": \"Jane\",\n        \"middleInitial\": \"M\",\n        \"lastName\": \"Doe\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"212345678900\",\n        \"type\": \"{{checking}}\",\n        \"name\": \"{{checking}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n        \"line1\": \"129 Main St.\",\n        \"city\": \"Metropolis\",\n        \"zip\": \"37484\",\n        \"state\": \"DE\",\n        \"country\": \"US\"\n        }\n    ]\n  } \n \n"
+            },
+            "url": {
+              "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
+              "host": [
+                "{{base_url}}{{customers_postfix}}{{customer_key}}"
+              ],
+              "query": [
+                {
+                  "key": "context",
+                  "value": "",
+                  "equals": true,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
