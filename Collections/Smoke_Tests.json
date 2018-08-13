@@ -529,7 +529,7 @@
         },
         {
           "_postman_id": "edaf8018-1518-41d6-a626-d379bac9eab6",
-          "name": "Target By Id",
+          "name": "Get Target By Id",
           "request": {
             "method": "GET",
             "header": [],
