@@ -541,7 +541,7 @@
             ],
             "body": {},
             "url": {
-              "raw": "{{base_url}}{{targets_postfix2}}?targetId={{target_id}}",
+              "raw": "{{base_url}}{{targets_postfix2}}?targetId={{target_id}}&customer={{customer_key}}",
               "host": [
                 "{{base_url}}{{targets_postfix2}}"
               ],
@@ -549,6 +549,11 @@
                 {
                   "key": "targetId",
                   "value": "{{target_id}}",
+                  "equals": true
+                },
+                {
+                  "key": "customer",
+                  "value": "{{customer_key}}",
                   "equals": true
                 }
               ]
