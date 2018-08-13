@@ -481,7 +481,7 @@
               "mode": "raw",
               "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": {{target_id}},\r\n  \"accountholderIndex\": 0,\r\n  \"metadata\": {\r\n    \"employee_id\": \"jsmith\",\r\n    \"branch\": \"21\"\r\n  }\r\n}"
             },
-            "url": "{{base_url}}{{customers_postfix}}1534179671727{{switches_postfix}}"
+            "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
           },
           "response": []
         },
