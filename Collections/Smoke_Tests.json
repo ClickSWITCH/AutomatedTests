@@ -456,7 +456,19 @@
       "_postman_id": "12ebd864-4524-4b41-963b-308d0b5b3d9e",
       "name": "Switches",
       "description": "",
-      "item": []
+      "item": [
+        {
+          "_postman_id": "f42085c0-7a8f-4606-9156-f955f5d02aed",
+          "name": "Customer Switches",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": ""
+          },
+          "response": []
+        }
+      ]
     },
     {
       "_postman_id": "4119ad4a-7080-402f-8fba-4f6dfae1ebd1",
