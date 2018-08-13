@@ -284,6 +284,12 @@
           "response": []
         }
       ]
+    },
+    {
+      "_postman_id": "88a8ea84-f281-4d04-9392-c1dd7d27cc61",
+      "name": "Customers",
+      "description": "",
+      "item": []
     }
   ],
   "event": [
