@@ -459,7 +459,7 @@
       "item": [
         {
           "_postman_id": "588b2234-0a99-4a39-913f-6a27bb126649",
-          "name": "Get Targets",
+          "name": "Targets",
           "event": [
             {
               "listen": "test",
@@ -529,7 +529,7 @@
         },
         {
           "_postman_id": "edaf8018-1518-41d6-a626-d379bac9eab6",
-          "name": "Get Target By Id",
+          "name": "Target By Id",
           "request": {
             "method": "GET",
             "header": [],
