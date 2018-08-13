@@ -467,6 +467,17 @@
             "url": ""
           },
           "response": []
+        },
+        {
+          "_postman_id": "c1084652-f999-430c-9a40-8b0ffa883ca0",
+          "name": "Create Switch",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": ""
+          },
+          "response": []
         }
       ]
     },
