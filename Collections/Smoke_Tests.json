@@ -502,7 +502,7 @@
             ],
             "body": {},
             "url": {
-              "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name=Saturn&customer=1533929995718",
+              "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name=Saturn&customer={{customer_key}}",
               "host": [
                 "{{base_url}}{{targets_postfix2}}"
               ],
@@ -519,7 +519,7 @@
                 },
                 {
                   "key": "customer",
-                  "value": "1533929995718",
+                  "value": "{{customer_key}}",
                   "equals": true
                 }
               ]
