@@ -620,10 +620,26 @@
           "_postman_id": "f418df38-dcc7-4360-9eb1-799e803e3997",
           "name": "Switch Action",
           "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": ""
+            "method": "POST",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"index\": 2,\r\n  \"action\": \"Complete\"\r\n}"
+            },
+            "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
           },
           "response": []
         },
