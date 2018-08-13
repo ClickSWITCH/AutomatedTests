@@ -323,9 +323,10 @@
             {
               "listen": "test",
               "script": {
-                "id": "25fb3e80-5adb-4b32-8b1e-c0eb411ad5cd",
+                "id": "f339f465-d476-48cc-8168-273d95dbc13b",
                 "type": "text/javascript",
                 "exec": [
+                  "// Note this is just a workaround for an existing bug and should be removed ASAP.",
                   "pm.test(\"Status code is 500\", function () {",
                   "    pm.response.to.have.status(500);",
                   "});"
@@ -337,9 +338,9 @@
             "method": "PUT",
             "header": [
               {
-                "description": "api key",
                 "key": "api-key",
-                "value": "{{api_key}}"
+                "value": "{{api_key}}",
+                "description": "api key"
               },
               {
                 "key": "Accept",
@@ -361,9 +362,9 @@
               ],
               "query": [
                 {
-                  "equals": true,
                   "key": "context",
                   "value": "",
+                  "equals": true,
                   "disabled": true
                 }
               ]
