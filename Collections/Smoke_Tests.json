@@ -732,9 +732,31 @@
           "name": "Locations",
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}"
+              }
+            ],
             "body": {},
-            "url": ""
+            "url": {
+              "raw": "{{base_url}}{{locations_postfix}}?customer={{customer_key}}&name=Saturn",
+              "host": [
+                "{{base_url}}{{locations_postfix}}"
+              ],
+              "query": [
+                {
+                  "key": "customer",
+                  "value": "{{customer_key}}",
+                  "equals": true
+                },
+                {
+                  "key": "name",
+                  "value": "Saturn",
+                  "equals": true
+                }
+              ]
+            }
           },
           "response": []
         }
