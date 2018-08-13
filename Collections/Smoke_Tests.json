@@ -674,7 +674,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "26b966a1-4339-4ae5-9f3e-b9b674607cf4",
+                "id": "cefae12e-8e5f-41d4-ad8e-eda1e2e9204f",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -692,11 +692,11 @@
                   "});",
                   "",
                   "pm.test('Has the correct 3 items', function() {",
-                  "   pm.expect(jsonData.data.currentItemCount).to.eql(1);",
-                  "   pm.expect(jsonData.data.items).to.have.length(1);",
+                  "   pm.expect(jsonData.data.currentItemCount).to.eql(5);",
+                  "   pm.expect(jsonData.data.items).to.have.length(5);",
                   "});",
                   "",
-                  "pm.environment.set(\"target_id\", jsonData.data.items[0].targetId);"
+                  "pm.environment.set(\"target_id\", jsonData.data.items[1].targetId);"
                 ]
               }
             }
@@ -712,7 +712,7 @@
             ],
             "body": {},
             "url": {
-              "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name=Saturn&customer={{customer_key}}",
+              "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name=Acme&customer={{customer_key}}",
               "host": [
                 "{{base_url}}{{targets_postfix2}}"
               ],
@@ -724,7 +724,7 @@
                 },
                 {
                   "key": "name",
-                  "value": "Saturn",
+                  "value": "Acme",
                   "equals": true
                 },
                 {
