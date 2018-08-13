@@ -486,6 +486,17 @@
           "response": []
         },
         {
+          "_postman_id": "f418df38-dcc7-4360-9eb1-799e803e3997",
+          "name": "Switch Action",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": ""
+          },
+          "response": []
+        },
+        {
           "_postman_id": "c1084652-f999-430c-9a40-8b0ffa883ca0",
           "name": "Get Switch",
           "request": {
@@ -499,17 +510,6 @@
             ],
             "body": {},
             "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "f418df38-dcc7-4360-9eb1-799e803e3997",
-          "name": "Switch Action",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": ""
           },
           "response": []
         }
