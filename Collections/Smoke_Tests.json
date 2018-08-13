@@ -501,6 +501,17 @@
             "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
           },
           "response": []
+        },
+        {
+          "_postman_id": "f418df38-dcc7-4360-9eb1-799e803e3997",
+          "name": "Switch Action",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": ""
+          },
+          "response": []
         }
       ]
     },
