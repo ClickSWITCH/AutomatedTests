@@ -784,6 +784,39 @@
             "url": "{{base_url}}{{targets_postfix3}}{{target_id}}"
           },
           "response": []
+        },
+        {
+          "_postman_id": "5a4e72d0-fb09-4524-ac8a-904c615e1c5d",
+          "name": "Locations Copy",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{base_url}}{{locations_postfix}}?customer={{customer_key}}&name=Saturn",
+              "host": [
+                "{{base_url}}{{locations_postfix}}"
+              ],
+              "query": [
+                {
+                  "key": "customer",
+                  "value": "{{customer_key}}",
+                  "equals": true
+                },
+                {
+                  "key": "name",
+                  "value": "Saturn",
+                  "equals": true
+                }
+              ]
+            }
+          },
+          "response": []
         }
       ]
     }
