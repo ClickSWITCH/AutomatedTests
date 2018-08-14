@@ -787,7 +787,7 @@
         },
         {
           "_postman_id": "5a4e72d0-fb09-4524-ac8a-904c615e1c5d",
-          "name": "Locations Copy",
+          "name": "Locations",
           "request": {
             "method": "GET",
             "header": [
