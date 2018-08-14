@@ -788,6 +788,41 @@
         {
           "_postman_id": "5a4e72d0-fb09-4524-ac8a-904c615e1c5d",
           "name": "Locations",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "8f9a2504-4652-4551-84d0-b9ddab0adff8",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct 3 items', function() {",
+                  "   pm.expect(jsonData.data.currentItemCount).to.eql(1);",
+                  "   pm.expect(jsonData.data.items).to.have.length(1);",
+                  "});",
+                  "",
+                  "pm.test('Has required inner elements', function() {",
+                  "   pm.expect(jsonData.data.items[0]).to.have.property('placeId');",
+                  "   pm.expect(jsonData.data.items[0]).to.have.property('name');",
+                  "   pm.expect(jsonData.data.items[0]).to.have.property('address');",
+                  "});"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "GET",
             "header": [
