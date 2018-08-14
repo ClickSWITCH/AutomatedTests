@@ -660,7 +660,7 @@
       "item": [
         {
           "_postman_id": "46bdd111-c7a5-4a23-bab7-47e6eaccf1b6",
-          "name": "Targets Copy",
+          "name": "Targets",
           "event": [
             {
               "listen": "test",
