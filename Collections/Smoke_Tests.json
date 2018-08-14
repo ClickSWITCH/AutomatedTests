@@ -657,7 +657,85 @@
       "_postman_id": "7c23a72e-0d67-4663-8e95-e523237efff1",
       "name": "Targets",
       "description": "",
-      "item": []
+      "item": [
+        {
+          "_postman_id": "46bdd111-c7a5-4a23-bab7-47e6eaccf1b6",
+          "name": "Targets Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "012b78fc-b66b-43fb-b787-d78b182fe80c",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct 3 items', function() {",
+                  "   pm.expect(jsonData.data.currentItemCount).to.eql(5);",
+                  "   pm.expect(jsonData.data.items).to.have.length(5);",
+                  "});",
+                  "",
+                  "pm.test('Has required inner elements', function() {",
+                  "   pm.expect(jsonData.data.items[0]).to.have.property('targetId');",
+                  "   pm.expect(jsonData.data.items[0]).to.have.property('name');",
+                  "   pm.expect(jsonData.data.items[0]).to.have.property('type');",
+                  "});",
+                  "",
+                  "// Set an environment variable to test get target by id next.",
+                  "pm.environment.set(\"target_id\", jsonData.data.items[1].targetId);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "Api Key"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name=Acme&customer={{customer_key}}",
+              "host": [
+                "{{base_url}}{{targets_postfix2}}"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "deposit",
+                  "equals": true
+                },
+                {
+                  "key": "name",
+                  "value": "Acme",
+                  "equals": true
+                },
+                {
+                  "key": "customer",
+                  "value": "{{customer_key}}",
+                  "equals": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "event": [
