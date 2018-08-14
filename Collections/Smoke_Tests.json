@@ -199,7 +199,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "7d5b53bc-a0f8-481f-bf80-641a9bd7db0f",
+                "id": "5e312a47-c0ce-448d-9ae8-f1ea8e48b3c9",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -219,6 +219,10 @@
                   "pm.test('Has the correct 6 items', function() {",
                   "   pm.expect(jsonData.data.currentItemCount).to.eql(6);",
                   "   pm.expect(jsonData.data.items).to.have.length(6);",
+                  "});",
+                  "",
+                  "pm.test('Has the correct kind attribute', function() {",
+                  "   pm.expect(jsonData.data.kind).to.equal('types#switch#actions'); ",
                   "});",
                   "",
                   "pm.test('Has the correct items', function() {",
