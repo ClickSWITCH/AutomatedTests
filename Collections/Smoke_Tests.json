@@ -734,6 +734,56 @@
             }
           },
           "response": []
+        },
+        {
+          "_postman_id": "fc86dad7-32c2-4d4a-bfca-6058efdf59a6",
+          "name": "Target By Id Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "1516a07b-af4d-4cf6-8b9f-ceca3b8ecf13",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "    pm.expect(jsonData.data).to.have.property('item');",
+                  "});",
+                  "",
+                  "pm.test('Has required inner elements', function() {",
+                  "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                  "    pm.expect(jsonData.data.item).to.have.property('name');",
+                  "    pm.expect(jsonData.data.item).to.have.property('type');",
+                  "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
+                  "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "Api Key"
+              }
+            ],
+            "body": {},
+            "url": "{{base_url}}{{targets_postfix3}}{{target_id}}"
+          },
+          "response": []
         }
       ]
     }
