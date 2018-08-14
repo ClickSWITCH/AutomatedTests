@@ -652,6 +652,12 @@
           "response": []
         }
       ]
+    },
+    {
+      "_postman_id": "7c23a72e-0d67-4663-8e95-e523237efff1",
+      "name": "Targets",
+      "description": "",
+      "item": []
     }
   ],
   "event": [
