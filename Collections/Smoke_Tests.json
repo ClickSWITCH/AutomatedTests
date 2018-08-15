@@ -507,7 +507,7 @@
         },
         {
           "_postman_id": "32d734f4-856f-4dc2-8ed9-9e38d53678c6",
-          "name": "Update Customer Copy",
+          "name": "Update Customer",
           "event": [
             {
               "listen": "prerequest",
