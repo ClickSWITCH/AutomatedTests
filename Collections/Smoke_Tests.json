@@ -366,7 +366,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "d8db03d3-622e-4c5c-8673-0e61314b8c53",
+                "id": "0a2c53f0-7cee-4c2f-b2b4-680ce4d9c3bf",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -432,7 +432,7 @@
                   "pm.test('Has the correct accounts', function() {",
                   "   var accounts = jsonData.data.item.accounts;",
                   "   ",
-                  "   pm.expect(accounts).to.have.length(1);",
+                  "   pm.expect(accounts).to.have.length(2);",
                   "   ",
                   "   var account = {",
                   "        \"number\": \"\",",
@@ -449,6 +449,23 @@
                   "    account.routingNumber = pm.environment.get(\"routing_number\");",
                   "    ",
                   "    pm.expect(accounts).to.deep.include(account);",
+                  "    ",
+                  "    var account2 = {",
+                  "        \"number\": \"\",",
+                  "        \"type\": \"\",",
+                  "        \"name\": \"\",",
+                  "        \"routingNumber\": \"\",",
+                  "        \"index\": 0",
+                  "    };",
+                  "    ",
+                  "    // Set the account vars to the values passed in the request body.",
+                  "    account2.number = pm.environment.get(\"customer_key\").toString()+\"0\";",
+                  "    account2.type = pm.environment.get(\"savings\");",
+                  "    account2.name = pm.environment.get(\"savings\");",
+                  "    account2.routingNumber = pm.environment.get(\"routing_number\");",
+                  "    ",
+                  "    pm.expect(accounts).to.deep.include(account2);",
+                  "    ",
                   "});",
                   "",
                   "pm.test('Has the correct addresses', function() {",
@@ -465,7 +482,8 @@
                   "    };",
                   "                ",
                   "    pm.expect(addresses).to.deep.include(address);",
-                  "});"
+                  "});",
+                  ""
                 ]
               }
             },
