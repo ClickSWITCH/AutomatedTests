@@ -98,7 +98,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "721437c9-4cd3-47dd-be5d-2ae82b1aa9bf",
+                "id": "02c993c9-7624-4c1f-88c6-e92f05c9c063",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -116,8 +116,8 @@
                   "});",
                   "",
                   "pm.test('Has 8 items', function() {",
-                  "   pm.expect(jsonData.data.currentItemCount).to.eql(8);",
-                  "   pm.expect(jsonData.data.items).to.have.length(8);",
+                  "   pm.expect(jsonData.data.currentItemCount).to.eql(9);",
+                  "   pm.expect(jsonData.data.items).to.have.length(9);",
                   "});",
                   "",
                   "pm.test('Has the correct kind attribute', function() {",
@@ -161,7 +161,7 @@
                   "    pm.expect(jsonData.data.items).to.deep.include(printed);",
                   "    ",
                   "    var inprocess =  {",
-                  "        \"id\": \"inprocess\",",
+                  "        \"id\": \"processing\",",
                   "        \"label\": \"In Process\",",
                   "        \"help\": \"The switch is currently being processed by our fulfillment team.\"",
                   "    };",
@@ -180,6 +180,13 @@
                   "        \"help\": \"The company or govt. agency has acknowledged that the change has been completed.\"",
                   "    };",
                   "    pm.expect(jsonData.data.items).to.deep.include(complete);",
+                  "    ",
+                  "    var unableToProcess =  {",
+                  "        \"id\": \"unabletoprocess\",",
+                  "        \"label\": \"Unable To Process\",",
+                  "        \"help\": \"The switch is unable to be processed.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(unableToProcess);",
                   "});"
                 ]
               }
