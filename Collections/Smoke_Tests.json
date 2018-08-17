@@ -99,7 +99,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "02c993c9-7624-4c1f-88c6-e92f05c9c063",
+                "id": "977194f2-8a9f-4e99-9616-5f305042c142",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -116,7 +116,7 @@
                   "    pm.expect(jsonData.data).to.have.property('lang');",
                   "});",
                   "",
-                  "pm.test('Has 8 items', function() {",
+                  "pm.test('Has 9 items', function() {",
                   "   pm.expect(jsonData.data.currentItemCount).to.eql(9);",
                   "   pm.expect(jsonData.data.items).to.have.length(9);",
                   "});",
