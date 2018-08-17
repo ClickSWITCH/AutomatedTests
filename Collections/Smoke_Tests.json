@@ -18,7 +18,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "46b22eb2-7d2f-4bd8-a024-f64c338c01ad",
+                "id": "d2478884-53d6-4128-8fa3-0fe8b94b25f1",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -35,7 +35,7 @@
                   "    pm.expect(jsonData.data).to.have.property('lang');",
                   "});",
                   "",
-                  "pm.test('Has 3 items', function() {",
+                  "pm.test('Has 2 items', function() {",
                   "    pm.expect(jsonData.data.currentItemCount).to.eql(2);",
                   "    pm.expect(jsonData.data.items).to.have.length(2);",
                   "});",
