@@ -1085,6 +1085,12 @@
           "response": []
         }
       ]
+    },
+    {
+      "_postman_id": "884db0d4-092e-4678-9cbf-27fccf115000",
+      "name": "Switches",
+      "description": "",
+      "item": []
     }
   ],
   "event": [
