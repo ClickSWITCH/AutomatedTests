@@ -1093,7 +1093,7 @@
       "item": [
         {
           "_postman_id": "4e3e9133-ff23-4fee-a4c5-41e1eb7d012e",
-          "name": "Get Switch Copy",
+          "name": "Get Switch",
           "event": [
             {
               "listen": "test",
