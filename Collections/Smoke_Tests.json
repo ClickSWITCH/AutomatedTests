@@ -983,7 +983,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "1516a07b-af4d-4cf6-8b9f-ceca3b8ecf13",
+                "id": "daebec6d-2b80-427a-b5ed-6db22a3a224c",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -1007,6 +1007,10 @@
                   "    pm.expect(jsonData.data.item).to.have.property('type');",
                   "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
                   "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct kind attribute', function() {",
+                  "   pm.expect(jsonData.data.kind).to.equal('target'); ",
                   "});"
                 ]
               }
