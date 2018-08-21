@@ -1037,7 +1037,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "20a42650-272f-42e4-b500-44b036561c6c",
+                "id": "7860f7dc-4129-4ed0-892a-2d4508c32c1b",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -1054,7 +1054,7 @@
                   "    pm.expect(jsonData.data).to.have.property('lang');",
                   "});",
                   "",
-                  "pm.test('Has the correct item', function() {",
+                  "pm.test('Has the correct 3 items', function() {",
                   "   pm.expect(jsonData.data.currentItemCount).to.eql(1);",
                   "   pm.expect(jsonData.data.items).to.have.length(1);",
                   "});",
@@ -1063,6 +1063,10 @@
                   "   pm.expect(jsonData.data.items[0]).to.have.property('placeId');",
                   "   pm.expect(jsonData.data.items[0]).to.have.property('name');",
                   "   pm.expect(jsonData.data.items[0]).to.have.property('address');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct kind attribute', function() {",
+                  "   pm.expect(jsonData.data.kind).to.equal('location'); ",
                   "});"
                 ]
               }
