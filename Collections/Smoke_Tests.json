@@ -215,7 +215,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "766ecc99-0598-403e-b6fb-80fe12f9d36f",
+                "id": "b1222fd5-574a-49f2-8e41-28ba860c57a2",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -235,6 +235,10 @@
                   "pm.test('Has the correct 8 items', function() {",
                   "   pm.expect(jsonData.data.currentItemCount).to.eql(8);",
                   "   pm.expect(jsonData.data.items).to.have.length(8);",
+                  "});",
+                  "",
+                  "pm.test('Has the correct kind attribute', function() {",
+                  "   pm.expect(jsonData.data.kind).to.equal('types#switch#actions'); ",
                   "});",
                   "",
                   "pm.test('Has the correct items', function() {",
@@ -896,7 +900,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "012b78fc-b66b-43fb-b787-d78b182fe80c",
+                "id": "dd69e0b3-96eb-431b-9824-42a6503dd21a",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -913,9 +917,9 @@
                   "    pm.expect(jsonData.data).to.have.property('lang');",
                   "});",
                   "",
-                  "pm.test('Has the correct 3 items', function() {",
-                  "   pm.expect(jsonData.data.currentItemCount).to.eql(5);",
-                  "   pm.expect(jsonData.data.items).to.have.length(5);",
+                  "pm.test('Has some items', function() {",
+                  "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
+                  "   pm.expect(jsonData.data.items.length).to.be.above(0);",
                   "});",
                   "",
                   "pm.test('Has required inner elements', function() {",
@@ -924,8 +928,14 @@
                   "   pm.expect(jsonData.data.items[0]).to.have.property('type');",
                   "});",
                   "",
+                  "pm.test('Has the correct kind attribute', function() {",
+                  "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
+                  "});",
+                  "",
                   "// Set an environment variable to test get target by id next.",
-                  "pm.environment.set(\"target_id\", jsonData.data.items[1].targetId);"
+                  "pm.environment.set(\"target_id\", jsonData.data.items[3].targetId);",
+                  "",
+                  "pm.environment.get(\"variable_key\");"
                 ]
               }
             }
@@ -941,19 +951,19 @@
             ],
             "body": {},
             "url": {
-              "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name=Acme&customer={{customer_key}}",
+              "raw": "{{base_url}}{{targets_postfix2}}?type=payment&name=Duluth&customer={{customer_key}}",
               "host": [
                 "{{base_url}}{{targets_postfix2}}"
               ],
               "query": [
                 {
                   "key": "type",
-                  "value": "deposit",
+                  "value": "payment",
                   "equals": true
                 },
                 {
                   "key": "name",
-                  "value": "Acme",
+                  "value": "Duluth",
                   "equals": true
                 },
                 {
