@@ -18,7 +18,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "d2478884-53d6-4128-8fa3-0fe8b94b25f1",
+                "id": "8a4cfeaf-9bbf-487b-8c62-5a5bf68afc00",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
