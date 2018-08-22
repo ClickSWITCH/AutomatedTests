@@ -2410,7 +2410,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "f9432ec7-a722-4d6b-a825-7f8659e5fddc",
+                    "id": "a1c2a515-b458-4619-9f71-02e1dab8e504",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -2427,7 +2427,7 @@
                       "    pm.expect(jsonData.data).to.have.property('lang');",
                       "});",
                       "",
-                      "pm.test('Has the correct 3 items', function() {",
+                      "pm.test('Has at least one item', function() {",
                       "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
                       "   pm.expect(jsonData.data.items.length).to.be.above(0);",
                       "});",
