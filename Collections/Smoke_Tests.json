@@ -2096,276 +2096,6 @@
       ]
     },
     {
-      "_postman_id": "7c23a72e-0d67-4663-8e95-e523237efff1",
-      "name": "Targets",
-      "description": "",
-      "item": [
-        {
-          "_postman_id": "46bdd111-c7a5-4a23-bab7-47e6eaccf1b6",
-          "name": "Targets",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "dd69e0b3-96eb-431b-9824-42a6503dd21a",
-                "type": "text/javascript",
-                "exec": [
-                  "const jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"Status code is 200\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Has required elements', function() {",
-                  "    pm.expect(jsonData).to.have.property('data');",
-                  "    pm.expect(jsonData).to.have.property('apiVersion');",
-                  "    pm.expect(jsonData).to.have.property('id');",
-                  "    pm.expect(jsonData.data).to.have.property('kind');",
-                  "    pm.expect(jsonData.data).to.have.property('lang');",
-                  "});",
-                  "",
-                  "pm.test('Has some items', function() {",
-                  "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
-                  "   pm.expect(jsonData.data.items.length).to.be.above(0);",
-                  "});",
-                  "",
-                  "pm.test('Has required inner elements', function() {",
-                  "   pm.expect(jsonData.data.items[0]).to.have.property('targetId');",
-                  "   pm.expect(jsonData.data.items[0]).to.have.property('name');",
-                  "   pm.expect(jsonData.data.items[0]).to.have.property('type');",
-                  "});",
-                  "",
-                  "pm.test('Has the correct kind attribute', function() {",
-                  "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
-                  "});",
-                  "",
-                  "// Set an environment variable to test get target by id next.",
-                  "pm.environment.set(\"target_id\", jsonData.data.items[3].targetId);",
-                  "",
-                  "pm.environment.get(\"variable_key\");"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "api-key",
-                "value": "{{api_key}}",
-                "description": "Api Key"
-              }
-            ],
-            "body": {},
-            "url": {
-              "raw": "{{base_url}}{{targets_postfix2}}?type=payment&name=Duluth&customer={{customer_key}}",
-              "host": [
-                "{{base_url}}{{targets_postfix2}}"
-              ],
-              "query": [
-                {
-                  "key": "type",
-                  "value": "payment",
-                  "equals": true
-                },
-                {
-                  "key": "name",
-                  "value": "Duluth",
-                  "equals": true
-                },
-                {
-                  "key": "customer",
-                  "value": "{{customer_key}}",
-                  "equals": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "fc86dad7-32c2-4d4a-bfca-6058efdf59a6",
-          "name": "Target By Id",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "daebec6d-2b80-427a-b5ed-6db22a3a224c",
-                "type": "text/javascript",
-                "exec": [
-                  "const jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"Status code is 200\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Has required elements', function() {",
-                  "    pm.expect(jsonData).to.have.property('data');",
-                  "    pm.expect(jsonData).to.have.property('apiVersion');",
-                  "    pm.expect(jsonData).to.have.property('id');",
-                  "    pm.expect(jsonData.data).to.have.property('kind');",
-                  "    pm.expect(jsonData.data).to.have.property('lang');",
-                  "    pm.expect(jsonData.data).to.have.property('item');",
-                  "});",
-                  "",
-                  "pm.test('Has required inner elements', function() {",
-                  "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                  "    pm.expect(jsonData.data.item).to.have.property('name');",
-                  "    pm.expect(jsonData.data.item).to.have.property('type');",
-                  "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
-                  "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                  "});",
-                  "",
-                  "pm.test('Has the correct kind attribute', function() {",
-                  "   pm.expect(jsonData.data.kind).to.equal('target'); ",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "api-key",
-                "value": "{{api_key}}",
-                "description": "Api Key"
-              }
-            ],
-            "body": {},
-            "url": "{{base_url}}{{targets_postfix3}}{{target_id}}"
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "5a4e72d0-fb09-4524-ac8a-904c615e1c5d",
-          "name": "Locations",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "7860f7dc-4129-4ed0-892a-2d4508c32c1b",
-                "type": "text/javascript",
-                "exec": [
-                  "const jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"Status code is 200\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Has required elements', function() {",
-                  "    pm.expect(jsonData).to.have.property('data');",
-                  "    pm.expect(jsonData).to.have.property('apiVersion');",
-                  "    pm.expect(jsonData).to.have.property('id');",
-                  "    pm.expect(jsonData.data).to.have.property('kind');",
-                  "    pm.expect(jsonData.data).to.have.property('lang');",
-                  "});",
-                  "",
-                  "pm.test('Has the correct 3 items', function() {",
-                  "   pm.expect(jsonData.data.currentItemCount).to.eql(1);",
-                  "   pm.expect(jsonData.data.items).to.have.length(1);",
-                  "});",
-                  "",
-                  "pm.test('Has required inner elements', function() {",
-                  "   pm.expect(jsonData.data.items[0]).to.have.property('placeId');",
-                  "   pm.expect(jsonData.data.items[0]).to.have.property('name');",
-                  "   pm.expect(jsonData.data.items[0]).to.have.property('address');",
-                  "});",
-                  "",
-                  "pm.test('Has the correct kind attribute', function() {",
-                  "   pm.expect(jsonData.data.kind).to.equal('location'); ",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "api-key",
-                "value": "{{api_key}}"
-              }
-            ],
-            "body": {},
-            "url": {
-              "raw": "{{base_url}}{{locations_postfix}}?customer={{customer_key}}&name=Saturn",
-              "host": [
-                "{{base_url}}{{locations_postfix}}"
-              ],
-              "query": [
-                {
-                  "key": "customer",
-                  "value": "{{customer_key}}",
-                  "equals": true
-                },
-                {
-                  "key": "name",
-                  "value": "Saturn",
-                  "equals": true
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "_postman_id": "884db0d4-092e-4678-9cbf-27fccf115000",
-      "name": "Switches",
-      "description": "",
-      "item": [
-        {
-          "_postman_id": "4e3e9133-ff23-4fee-a4c5-41e1eb7d012e",
-          "name": "Get Switch",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "d2978f6e-492e-4ec0-97b3-a4c1dab6b703",
-                "type": "text/javascript",
-                "exec": [
-                  "const jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"Status code is 200\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Has required elements', function() {",
-                  "    pm.expect(jsonData).to.have.property('data');",
-                  "    pm.expect(jsonData).to.have.property('apiVersion');",
-                  "    pm.expect(jsonData).to.have.property('id');",
-                  "    pm.expect(jsonData.data).to.have.property('kind');",
-                  "    pm.expect(jsonData.data).to.have.property('lang');",
-                  "});",
-                  "",
-                  "pm.test('Has empty array of switches', function() {",
-                  "   pm.expect(jsonData.data.currentItemCount).to.equal(0);",
-                  "   pm.expect(jsonData.data.items).to.be.empty;",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "api-key",
-                "value": "{{api_key}}",
-                "description": "Api Key"
-              }
-            ],
-            "body": {},
-            "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}",
-            "description": "Should return empty list since no switches have been created yet."
-          },
-          "response": []
-        }
-      ]
-    },
-    {
       "_postman_id": "bb2509da-d514-4cca-b090-4785519a6a30",
       "name": "Targets Copy",
       "description": "",
@@ -2749,6 +2479,276 @@
             }
           ],
           "_postman_isSubFolder": true
+        }
+      ]
+    },
+    {
+      "_postman_id": "7c23a72e-0d67-4663-8e95-e523237efff1",
+      "name": "Targets",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "46bdd111-c7a5-4a23-bab7-47e6eaccf1b6",
+          "name": "Targets",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "dd69e0b3-96eb-431b-9824-42a6503dd21a",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has some items', function() {",
+                  "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
+                  "   pm.expect(jsonData.data.items.length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test('Has required inner elements', function() {",
+                  "   pm.expect(jsonData.data.items[0]).to.have.property('targetId');",
+                  "   pm.expect(jsonData.data.items[0]).to.have.property('name');",
+                  "   pm.expect(jsonData.data.items[0]).to.have.property('type');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct kind attribute', function() {",
+                  "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
+                  "});",
+                  "",
+                  "// Set an environment variable to test get target by id next.",
+                  "pm.environment.set(\"target_id\", jsonData.data.items[3].targetId);",
+                  "",
+                  "pm.environment.get(\"variable_key\");"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "Api Key"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{base_url}}{{targets_postfix2}}?type=payment&name=Duluth&customer={{customer_key}}",
+              "host": [
+                "{{base_url}}{{targets_postfix2}}"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "payment",
+                  "equals": true
+                },
+                {
+                  "key": "name",
+                  "value": "Duluth",
+                  "equals": true
+                },
+                {
+                  "key": "customer",
+                  "value": "{{customer_key}}",
+                  "equals": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "fc86dad7-32c2-4d4a-bfca-6058efdf59a6",
+          "name": "Target By Id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "daebec6d-2b80-427a-b5ed-6db22a3a224c",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "    pm.expect(jsonData.data).to.have.property('item');",
+                  "});",
+                  "",
+                  "pm.test('Has required inner elements', function() {",
+                  "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                  "    pm.expect(jsonData.data.item).to.have.property('name');",
+                  "    pm.expect(jsonData.data.item).to.have.property('type');",
+                  "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
+                  "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct kind attribute', function() {",
+                  "   pm.expect(jsonData.data.kind).to.equal('target'); ",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "Api Key"
+              }
+            ],
+            "body": {},
+            "url": "{{base_url}}{{targets_postfix3}}{{target_id}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5a4e72d0-fb09-4524-ac8a-904c615e1c5d",
+          "name": "Locations",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7860f7dc-4129-4ed0-892a-2d4508c32c1b",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct 3 items', function() {",
+                  "   pm.expect(jsonData.data.currentItemCount).to.eql(1);",
+                  "   pm.expect(jsonData.data.items).to.have.length(1);",
+                  "});",
+                  "",
+                  "pm.test('Has required inner elements', function() {",
+                  "   pm.expect(jsonData.data.items[0]).to.have.property('placeId');",
+                  "   pm.expect(jsonData.data.items[0]).to.have.property('name');",
+                  "   pm.expect(jsonData.data.items[0]).to.have.property('address');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct kind attribute', function() {",
+                  "   pm.expect(jsonData.data.kind).to.equal('location'); ",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{base_url}}{{locations_postfix}}?customer={{customer_key}}&name=Saturn",
+              "host": [
+                "{{base_url}}{{locations_postfix}}"
+              ],
+              "query": [
+                {
+                  "key": "customer",
+                  "value": "{{customer_key}}",
+                  "equals": true
+                },
+                {
+                  "key": "name",
+                  "value": "Saturn",
+                  "equals": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "884db0d4-092e-4678-9cbf-27fccf115000",
+      "name": "Switches",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "4e3e9133-ff23-4fee-a4c5-41e1eb7d012e",
+          "name": "Get Switch",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d2978f6e-492e-4ec0-97b3-a4c1dab6b703",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has empty array of switches', function() {",
+                  "   pm.expect(jsonData.data.currentItemCount).to.equal(0);",
+                  "   pm.expect(jsonData.data.items).to.be.empty;",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "Api Key"
+              }
+            ],
+            "body": {},
+            "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}",
+            "description": "Should return empty list since no switches have been created yet."
+          },
+          "response": []
         }
       ]
     }
