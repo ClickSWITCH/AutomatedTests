@@ -422,9 +422,29 @@
                 {
                   "listen": "prerequest",
                   "script": {
-                    "id": "ec257296-6c1d-4c72-9790-2632324427bb",
+                    "id": "2d440c21-d96f-4f1b-abd7-9a5531d7f22f",
                     "type": "text/javascript",
                     "exec": [
+                      "var timestamp = Date.now();",
+                      "",
+                      "var randomString = makeRandomString();",
+                      "",
+                      "// Set the timestamp to environment vars to create an unique",
+                      "// customer on each test run.",
+                      "pm.environment.set(\"customer_key\", timestamp);",
+                      "",
+                      "pm.environment.set(\"customer_name\", randomString);",
+                      "",
+                      "// Creates a random string of length 10.",
+                      "function makeRandomString() {",
+                      "  var text = \"\";",
+                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                      "",
+                      "  for (var i = 0; i < 10; i++)",
+                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+                      "",
+                      "  return text;",
+                      "}",
                       ""
                     ]
                   }
