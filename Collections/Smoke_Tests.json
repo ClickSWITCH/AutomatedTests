@@ -2214,60 +2214,6 @@
       ]
     },
     {
-      "_postman_id": "884db0d4-092e-4678-9cbf-27fccf115000",
-      "name": "Switches",
-      "description": "",
-      "item": [
-        {
-          "_postman_id": "4e3e9133-ff23-4fee-a4c5-41e1eb7d012e",
-          "name": "Get Switch",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "d2978f6e-492e-4ec0-97b3-a4c1dab6b703",
-                "type": "text/javascript",
-                "exec": [
-                  "const jsonData = pm.response.json();",
-                  "",
-                  "pm.test(\"Status code is 200\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Has required elements', function() {",
-                  "    pm.expect(jsonData).to.have.property('data');",
-                  "    pm.expect(jsonData).to.have.property('apiVersion');",
-                  "    pm.expect(jsonData).to.have.property('id');",
-                  "    pm.expect(jsonData.data).to.have.property('kind');",
-                  "    pm.expect(jsonData.data).to.have.property('lang');",
-                  "});",
-                  "",
-                  "pm.test('Has empty array of switches', function() {",
-                  "   pm.expect(jsonData.data.currentItemCount).to.equal(0);",
-                  "   pm.expect(jsonData.data.items).to.be.empty;",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "api-key",
-                "value": "{{api_key}}",
-                "description": "Api Key"
-              }
-            ],
-            "body": {},
-            "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}",
-            "description": "Should return empty list since no switches have been created yet."
-          },
-          "response": []
-        }
-      ]
-    },
-    {
       "_postman_id": "8f620b49-846e-47a6-bec8-c139de3d54ef",
       "name": "Switches Copy",
       "description": "",
