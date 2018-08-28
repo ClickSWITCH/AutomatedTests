@@ -1029,6 +1029,172 @@
           "_postman_isSubFolder": true
         },
         {
+          "_postman_id": "0c138cc9-17db-4df1-b23d-f863efce247c",
+          "name": "Get Customer",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "8752aab8-5a55-46ea-b1e8-410d5f40a7cf",
+              "name": "Get Created Customer",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "ec257296-6c1d-4c72-9790-2632324427bb",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "78f56a8b-0a79-4406-b0ac-f9131815b367",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required 1st level elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "});",
+                      "",
+                      "pm.test('Has required 2nd level elements', function() {",
+                      "    pm.expect(jsonData.data).to.have.property('item');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has required 3rd level elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('email');",
+                      "    pm.expect(jsonData.data.item).to.have.property('phoneNumber');",
+                      "    pm.expect(jsonData.data.item).to.have.property('accountHolders');",
+                      "    pm.expect(jsonData.data.item).to.have.property('accounts');",
+                      "    pm.expect(jsonData.data.item).to.have.property('addresses');",
+                      "    pm.expect(jsonData.data.item).to.have.property('metadata');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('Customer'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct email', function() {",
+                      "   var email = jsonData.data.item.email;",
+                      "   var customerEmail = pm.environment.get(\"customer_key\");",
+                      "   pm.expect(email).to.equal(customerEmail + \"123\" + \"@clickswitch.com\")",
+                      "});",
+                      "",
+                      "pm.test('Has the correct phoneNumber', function() {",
+                      "   var phone = jsonData.data.item.phoneNumber;",
+                      "   pm.expect(phone).to.equal(\"2185555123\")",
+                      "});",
+                      "",
+                      "pm.test('Has the correct account holders', function() {",
+                      "   var accountHolders = jsonData.data.item.accountHolders;",
+                      "   ",
+                      "   pm.expect(accountHolders).to.have.length(2);",
+                      "   ",
+                      "   var john = {",
+                      "        \"firstName\": \"Johnn\",",
+                      "        \"middleInitial\": \"j\",",
+                      "        \"lastName\": \"Doee\"",
+                      "    };",
+                      "                ",
+                      "    pm.expect(accountHolders).to.deep.include(john);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accounts', function() {",
+                      "   var accounts = jsonData.data.item.accounts;",
+                      "   ",
+                      "   pm.expect(accounts).to.have.length(1);",
+                      "   ",
+                      "   var account = {",
+                      "        \"number\": \"\",",
+                      "        \"type\": \"\",",
+                      "        \"name\": \"\",",
+                      "        \"routingNumber\": \"\",",
+                      "        \"index\": 0",
+                      "    };",
+                      "    ",
+                      "    // Set the account vars to the values passed in the request body.",
+                      "    account.number = pm.environment.get(\"customer_key\").toString() + \"00\";",
+                      "    account.type = pm.environment.get(\"checking\");",
+                      "    account.name = pm.environment.get(\"checking\");",
+                      "    account.routingNumber = pm.environment.get(\"routing_number\");",
+                      "    ",
+                      "    pm.expect(accounts).to.deep.include(account);",
+                      "    ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct addresses', function() {",
+                      "   var addresses = jsonData.data.item.addresses;",
+                      "   ",
+                      "   pm.expect(addresses).to.have.length(1);",
+                      "   ",
+                      "  // Todo: Removed the spaces from the address.",
+                      "   var address = {",
+                      "        \"line1\": \"600 Canal Park Dr..\",",
+                      "        \"city\": \"Duluthh\",",
+                      "        \"zip\": \"55833     \",",
+                      "        \"state\": \"WI\",",
+                      "        \"country\": \"CA\"",
+                      "    };",
+                      "                ",
+                      "    pm.expect(addresses).to.deep.include(address);",
+                      "});",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "api key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "  {\n    \"email\": \"{{customer_email}}@clickswitch.com\",\n    \"phoneNumber\": \"2183309148\",\n    \"metadata\": {\n      \"employee_id\": \"jsmith\",\n      \"branch\": \"21\"\n    },\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"John\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Doe\"\n        },\n        {\n        \"firstName\": \"Jane\",\n        \"middleInitial\": \"M\",\n        \"lastName\": \"Doe\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"212345678900\",\n        \"type\": \"{{checking}}\",\n        \"name\": \"{{checking}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n        \"line1\": \"129 Main St.\",\n        \"city\": \"Metropolis\",\n        \"zip\": \"37484\",\n        \"state\": \"DE\",\n        \"country\": \"US\"\n        }\n    ]\n  } \n \n"
+                },
+                "url": {
+                  "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
+                  "host": [
+                    "{{base_url}}{{customers_postfix}}{{customer_key}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "",
+                      "equals": true,
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
           "_postman_id": "aa56b49e-f01a-4455-861d-99ad13051374",
           "name": "Single Customer Two Accounts",
           "description": "",
@@ -1657,172 +1823,6 @@
             }
           ],
           "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "0c138cc9-17db-4df1-b23d-f863efce247c",
-          "name": "Get Customer",
-          "description": "",
-          "item": [
-            {
-              "_postman_id": "8752aab8-5a55-46ea-b1e8-410d5f40a7cf",
-              "name": "Get Created Customer",
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "ec257296-6c1d-4c72-9790-2632324427bb",
-                    "type": "text/javascript",
-                    "exec": [
-                      ""
-                    ]
-                  }
-                },
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "78f56a8b-0a79-4406-b0ac-f9131815b367",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required 1st level elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "});",
-                      "",
-                      "pm.test('Has required 2nd level elements', function() {",
-                      "    pm.expect(jsonData.data).to.have.property('item');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has required 3rd level elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('email');",
-                      "    pm.expect(jsonData.data.item).to.have.property('phoneNumber');",
-                      "    pm.expect(jsonData.data.item).to.have.property('accountHolders');",
-                      "    pm.expect(jsonData.data.item).to.have.property('accounts');",
-                      "    pm.expect(jsonData.data.item).to.have.property('addresses');",
-                      "    pm.expect(jsonData.data.item).to.have.property('metadata');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('Customer'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct email', function() {",
-                      "   var email = jsonData.data.item.email;",
-                      "   var customerEmail = pm.environment.get(\"customer_key\");",
-                      "   pm.expect(email).to.equal(customerEmail + \"123\" + \"@clickswitch.com\")",
-                      "});",
-                      "",
-                      "pm.test('Has the correct phoneNumber', function() {",
-                      "   var phone = jsonData.data.item.phoneNumber;",
-                      "   pm.expect(phone).to.equal(\"2185555123\")",
-                      "});",
-                      "",
-                      "pm.test('Has the correct account holders', function() {",
-                      "   var accountHolders = jsonData.data.item.accountHolders;",
-                      "   ",
-                      "   pm.expect(accountHolders).to.have.length(2);",
-                      "   ",
-                      "   var john = {",
-                      "        \"firstName\": \"Johnn\",",
-                      "        \"middleInitial\": \"j\",",
-                      "        \"lastName\": \"Doee\"",
-                      "    };",
-                      "                ",
-                      "    pm.expect(accountHolders).to.deep.include(john);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct accounts', function() {",
-                      "   var accounts = jsonData.data.item.accounts;",
-                      "   ",
-                      "   pm.expect(accounts).to.have.length(1);",
-                      "   ",
-                      "   var account = {",
-                      "        \"number\": \"\",",
-                      "        \"type\": \"\",",
-                      "        \"name\": \"\",",
-                      "        \"routingNumber\": \"\",",
-                      "        \"index\": 0",
-                      "    };",
-                      "    ",
-                      "    // Set the account vars to the values passed in the request body.",
-                      "    account.number = pm.environment.get(\"customer_key\").toString() + \"00\";",
-                      "    account.type = pm.environment.get(\"checking\");",
-                      "    account.name = pm.environment.get(\"checking\");",
-                      "    account.routingNumber = pm.environment.get(\"routing_number\");",
-                      "    ",
-                      "    pm.expect(accounts).to.deep.include(account);",
-                      "    ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct addresses', function() {",
-                      "   var addresses = jsonData.data.item.addresses;",
-                      "   ",
-                      "   pm.expect(addresses).to.have.length(1);",
-                      "   ",
-                      "  // Todo: Removed the spaces from the address.",
-                      "   var address = {",
-                      "        \"line1\": \"600 Canal Park Dr..\",",
-                      "        \"city\": \"Duluthh\",",
-                      "        \"zip\": \"55833     \",",
-                      "        \"state\": \"WI\",",
-                      "        \"country\": \"CA\"",
-                      "    };",
-                      "                ",
-                      "    pm.expect(addresses).to.deep.include(address);",
-                      "});",
-                      ""
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "api key"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "  {\n    \"email\": \"{{customer_email}}@clickswitch.com\",\n    \"phoneNumber\": \"2183309148\",\n    \"metadata\": {\n      \"employee_id\": \"jsmith\",\n      \"branch\": \"21\"\n    },\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"John\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Doe\"\n        },\n        {\n        \"firstName\": \"Jane\",\n        \"middleInitial\": \"M\",\n        \"lastName\": \"Doe\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"212345678900\",\n        \"type\": \"{{checking}}\",\n        \"name\": \"{{checking}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n        \"line1\": \"129 Main St.\",\n        \"city\": \"Metropolis\",\n        \"zip\": \"37484\",\n        \"state\": \"DE\",\n        \"country\": \"US\"\n        }\n    ]\n  } \n \n"
-                },
-                "url": {
-                  "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
-                  "host": [
-                    "{{base_url}}{{customers_postfix}}{{customer_key}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "context",
-                      "value": "",
-                      "equals": true,
-                      "disabled": true
-                    }
-                  ]
-                }
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
         }
       ]
     },
@@ -1927,7 +1927,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "7fa9a0d6-2691-4525-a534-82f15d347450",
+                    "id": "b9807898-5c8d-4219-a21d-f28b84e65a1e",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1970,7 +1970,7 @@
                       "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
                       "});",
                       "",
-                      "pm.test('Has the correct type element', function() {",
+                      "pm.test('Has the correct ux element', function() {",
                       "    var ux = {",
                       "        \"accounts\": {",
                       "            \"limit\": 0,",
