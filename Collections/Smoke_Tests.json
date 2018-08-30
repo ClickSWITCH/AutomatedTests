@@ -3196,17 +3196,17 @@
       ]
     },
     {
-      "_postman_id": "28b955e1-8f74-47ef-8bf8-a875c33492a4",
-      "name": "Switches",
+      "_postman_id": "c3314b94-bea8-42fb-992b-f8b5807a277d",
+      "name": "Switches Copy",
       "description": "",
       "item": [
         {
-          "_postman_id": "9dd63b75-4b33-457e-b54d-e9c37688d2b4",
+          "_postman_id": "4da611ff-6ff5-4d02-bd4d-ec34d4c36f6c",
           "name": "Deposits Using TargetId",
           "description": "",
           "item": [
             {
-              "_postman_id": "b13d4ce1-f214-49fd-b443-60f894361009",
+              "_postman_id": "c151dafd-3e76-4e5e-a9e5-dcede376c6d7",
               "name": "Get Switches",
               "event": [
                 {
@@ -3253,7 +3253,7 @@
               "response": []
             },
             {
-              "_postman_id": "e36cfdbb-fab0-463f-a469-5bad96935344",
+              "_postman_id": "70206cd9-186f-4547-86d9-fcce5a8d682b",
               "name": "Create Switch",
               "event": [
                 {
@@ -3438,7 +3438,7 @@
               "response": []
             },
             {
-              "_postman_id": "82d12cd8-d258-4c56-8cf4-d4f94638be00",
+              "_postman_id": "465c8adc-e1bd-42e1-bf55-2d7cb747ef40",
               "name": "Get Switch By Id",
               "event": [
                 {
@@ -3616,7 +3616,7 @@
               "response": []
             },
             {
-              "_postman_id": "c8594513-535b-4093-b72e-8293c587b7a9",
+              "_postman_id": "e8ee96b6-c5c6-46d7-b28e-b7ea4a51c6ad",
               "name": "Update Switch",
               "event": [
                 {
@@ -3800,7 +3800,7 @@
               "response": []
             },
             {
-              "_postman_id": "0de9b5a3-d30b-42ad-9d4d-76cf9ce8c8f8",
+              "_postman_id": "eac740ea-5127-4afe-963d-881b35bf86df",
               "name": "Switch Action",
               "event": [
                 {
@@ -3842,21 +3842,170 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "0e2da2e5-1759-4a1d-be44-7910c4ad80f2",
+          "_postman_id": "319e05de-d9c0-4361-9334-db6a83dce28b",
           "name": "Deposits using LocationId",
           "description": "",
           "item": [
             {
-              "_postman_id": "d3f63e5e-9e90-460e-9e3e-9a22126b3441",
+              "_postman_id": "4f8dce67-bbb0-4298-ac65-41faadedc4db",
               "name": "Create Switch",
               "event": [
                 {
                   "listen": "test",
                   "script": {
-                    "id": "379749fe-0440-4cff-bbe6-3aeb7efdd088",
+                    "id": "d5d00613-3ce3-4bd7-9ed1-a381414a6571",
                     "type": "text/javascript",
                     "exec": [
-                      ""
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has required 2nd level elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('index');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
+                      "    pm.expect(jsonData.data.item).to.have.property('values');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "    pm.expect(jsonData.data.item).to.have.property('state');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct index', function() {",
+                      "   pm.expect(jsonData.data.item.index).to.equal(2);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "});",
+                      "",
+                      "pm.test('Has the correct targetId and locationId', function() {",
+                      "   pm.expect(jsonData.data.item.targetId).to.equal(0);",
+                      "   pm.expect(jsonData.data.item.locationId).to.equal(pm.environment.get('location_id'));",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accountHolderIndex', function() {",
+                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state = {",
+                      "        \"status\": \"Incomplete\",",
+                      "        \"actions\": [",
+                      "            \"HTTP-PUT\",",
+                      "            \"Cancel\"",
+                      "        ],",
+                      "        \"validation\": {",
+                      "            \"accounts\": [],",
+                      "            \"fields\": {",
+                      "                \"Custom_Last 4 of SSN\": \"The last 4 digits of the SSN are required.\"",
+                      "            },",
+                      "            \"overall\": [",
+                      "                \"A signature is required.\",",
+                      "                \"Esign consent is required.\"",
+                      "            ]",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux element', function() {",
+                      "   var ux = {",
+                      "        \"accounts\": {",
+                      "            \"limit\": 0,",
+                      "            \"maxChecking\": 1,",
+                      "            \"maxSavings\": 1,",
+                      "            \"choices\": [",
+                      "                {",
+                      "                    \"key\": 0,",
+                      "                    \"label\": \"*3607\"",
+                      "                },",
+                      "                {",
+                      "                    \"key\": 1,",
+                      "                    \"label\": \"*6070\"",
+                      "                }",
+                      "            ],",
+                      "            \"fields\": []",
+                      "        },",
+                      "        \"fields\": [",
+                      "            {",
+                      "                \"key\": \"Custom_Amount (in dollars)\",",
+                      "                \"label\": \"Amount (in dollars)\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_or Percentage of Pay (1 - 100)\",",
+                      "                \"label\": \"or Percentage of Pay (1 - 100)\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Work Location\",",
+                      "                \"label\": \"Work Location\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": true",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Employee ID\",",
+                      "                \"label\": \"Employee ID\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Last 4 of SSN\",",
+                      "                \"label\": \"Last 4 of SSN\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": true,",
+                      "                \"regex\": \"^(?!0000)\\\\d{4}$\"",
+                      "            }",
+                      "        ]",
+                      "    };",
+                      "            ",
+                      "    var customer_key = pm.environment.get('customer_key').toString();",
+                      "    ",
+                      "    var accountName1 = '*' + customer_key.substring(customer_key.length-4,customer_key.length);",
+                      "    ",
+                      "    var accountName2 = '*' + customer_key.substring(customer_key.length-3,customer_key.length) + '0';",
+                      "    ",
+                      "    ux.accounts.choices[0].label = accountName1;",
+                      "    ux.accounts.choices[1].label = accountName2;",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct values element', function() {",
+                      "   var values = {",
+                      "        \"accounts\": [",
+                      "            {",
+                      "                \"key\": 0,",
+                      "                \"fields\": {",
+                      "                    \"fields\": {}",
+                      "                }",
+                      "            }",
+                      "        ],",
+                      "        \"fields\": {",
+                      "            \"Custom_Amount (in dollars)\": null,",
+                      "            \"Custom_or Percentage of Pay (1 - 100)\": null,",
+                      "            \"Custom_Work Location\": null,",
+                      "            \"Custom_Employee ID\": null,",
+                      "            \"Custom_Last 4 of SSN\": null",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
+                      "});"
                     ]
                   }
                 }
@@ -3885,17 +4034,247 @@
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
               "response": []
+            },
+            {
+              "_postman_id": "511ab744-d30c-4baf-8e6b-e73a95adfcbb",
+              "name": "Get Switch By Id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c21883bc-3670-441e-b4b7-4e99330b0962",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has required 2nd level elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('index');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
+                      "    pm.expect(jsonData.data.item).to.have.property('values');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "    pm.expect(jsonData.data.item).to.have.property('state');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct index', function() {",
+                      "   pm.expect(jsonData.data.item.index).to.equal(2);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "});",
+                      "",
+                      "pm.test('Has the correct targetId and locationId', function() {",
+                      "   pm.expect(jsonData.data.item.targetId).to.equal(0);",
+                      "   pm.expect(jsonData.data.item.locationId).to.equal(pm.environment.get('location_id'));",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accountHolderIndex', function() {",
+                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state = {",
+                      "        \"status\": \"Incomplete\",",
+                      "        \"actions\": [",
+                      "            \"HTTP-PUT\",",
+                      "            \"Cancel\"",
+                      "        ],",
+                      "        \"validation\": {",
+                      "            \"accounts\": [],",
+                      "            \"fields\": {",
+                      "                \"Custom_Last 4 of SSN\": \"The last 4 digits of the SSN are required.\"",
+                      "            },",
+                      "            \"overall\": [",
+                      "                \"A signature is required.\",",
+                      "                \"Esign consent is required.\"",
+                      "            ]",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux element', function() {",
+                      "   var ux = {",
+                      "        \"accounts\": {",
+                      "            \"limit\": 0,",
+                      "            \"maxChecking\": 1,",
+                      "            \"maxSavings\": 1,",
+                      "            \"choices\": [",
+                      "                {",
+                      "                    \"key\": 0,",
+                      "                    \"label\": \"*3607\"",
+                      "                },",
+                      "                {",
+                      "                    \"key\": 1,",
+                      "                    \"label\": \"*6070\"",
+                      "                }",
+                      "            ],",
+                      "            \"fields\": []",
+                      "        },",
+                      "        \"fields\": [",
+                      "            {",
+                      "                \"key\": \"Custom_Amount (in dollars)\",",
+                      "                \"label\": \"Amount (in dollars)\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_or Percentage of Pay (1 - 100)\",",
+                      "                \"label\": \"or Percentage of Pay (1 - 100)\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Work Location\",",
+                      "                \"label\": \"Work Location\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": true",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Employee ID\",",
+                      "                \"label\": \"Employee ID\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Last 4 of SSN\",",
+                      "                \"label\": \"Last 4 of SSN\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": true,",
+                      "                \"regex\": \"^(?!0000)\\\\d{4}$\"",
+                      "            }",
+                      "        ]",
+                      "    };",
+                      "            ",
+                      "    var customer_key = pm.environment.get('customer_key').toString();",
+                      "    ",
+                      "    var accountName1 = '*' + customer_key.substring(customer_key.length-4,customer_key.length);",
+                      "    ",
+                      "    var accountName2 = '*' + customer_key.substring(customer_key.length-3,customer_key.length) + '0';",
+                      "    ",
+                      "    ux.accounts.choices[0].label = accountName1;",
+                      "    ux.accounts.choices[1].label = accountName2;",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct values element', function() {",
+                      "   var values = {",
+                      "        \"accounts\": [",
+                      "            {",
+                      "                \"key\": 0,",
+                      "                \"fields\": {",
+                      "                    \"fields\": {}",
+                      "                }",
+                      "            }",
+                      "        ],",
+                      "        \"fields\": {",
+                      "            \"Custom_Amount (in dollars)\": null,",
+                      "            \"Custom_or Percentage of Pay (1 - 100)\": null,",
+                      "            \"Custom_Work Location\": null,",
+                      "            \"Custom_Employee ID\": null,",
+                      "            \"Custom_Last 4 of SSN\": null",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/2"
+              },
+              "response": []
             }
           ],
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "c2f7c4db-00e3-413f-aa3b-7fda6deffa1a",
+          "_postman_id": "9a86cd63-aafc-4ddd-8a63-404070924387",
+          "name": "Deposit using neither",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "fb8664f7-ddb4-4dbe-8d45-dee54e2305a3",
+              "name": "Create Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "625441a3-f75e-490c-b279-418941ac452a",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api-Key"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0,\r\n        \"SplitAmount\": \"100\",\r\n        \"SplitType\": \"percentage\"\r\n      }\r\n    ],\r\n    \"fields\": {\r\n    }\r\n  }\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "57001286-a5a8-4a6f-a806-3f4d879a5db0",
           "name": "Payments using TargetId",
           "description": "",
           "item": [
             {
-              "_postman_id": "4c8467f3-332d-4f0d-a913-5e8843fd9851",
+              "_postman_id": "5b9bc6f7-4a94-428c-a44e-9729fca27489",
               "name": "Create Switch",
               "request": {
                 "method": "POST",
@@ -3926,12 +4305,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "5cead2b9-7321-47fe-86da-404de2fe761e",
+          "_postman_id": "86d2b12d-b6dd-468d-b00b-1da072371df5",
           "name": "Payments using LocationId",
           "description": "",
           "item": [
             {
-              "_postman_id": "d6da40c7-38b5-4da8-bba6-c4763356e31e",
+              "_postman_id": "b804de6d-7886-4397-90d2-84720701f99b",
               "name": "Create Switch",
               "request": {
                 "method": "POST",
@@ -3962,12 +4341,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "c5a747cc-d887-485e-936b-771768c70e8c",
+          "_postman_id": "1d0b8eb8-f69b-466f-a483-62c04fec5be6",
           "name": "Payments using neither",
           "description": "",
           "item": [
             {
-              "_postman_id": "4442e752-17b1-4355-ac3a-2ed382a2ff6b",
+              "_postman_id": "0d063a60-74d1-4868-a98a-8f95803bae0e",
               "name": "Create Switch",
               "request": {
                 "method": "POST",
@@ -3989,42 +4368,6 @@
                 "body": {
                   "mode": "raw",
                   "raw": "{\r\n  \"type\": \"payment\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0,\r\n        \"SplitAmount\": \"100\",\r\n        \"SplitType\": \"percentage\"\r\n      }\r\n    ],\r\n    \"fields\": {\r\n    }\r\n  }\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "c30721fa-40a1-492f-b134-19a3a084c266",
-          "name": "Deposit using neither",
-          "description": "",
-          "item": [
-            {
-              "_postman_id": "1f346d20-dc0a-4103-adc5-22f55c14f62d",
-              "name": "Create Switch",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api-Key"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0,\r\n        \"SplitAmount\": \"100\",\r\n        \"SplitType\": \"percentage\"\r\n      }\r\n    ],\r\n    \"fields\": {\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
