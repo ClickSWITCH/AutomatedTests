@@ -1234,7 +1234,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "f94c65fd-554a-4e3b-aa5c-c457e7032615",
+                    "id": "2e9038f0-ede9-4c6e-99e7-34c816b970c8",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1316,14 +1316,12 @@
                       "    ",
                       "    pm.expect(accounts).to.deep.include(account);",
                       "    ",
-                      "    ",
-                      "    // Todo: This should have an index of 1. Bug reported.",
                       "    var account2 = {",
                       "        \"number\": \"\",",
                       "        \"type\": \"\",",
                       "        \"name\": \"\",",
                       "        \"routingNumber\": \"\",",
-                      "        \"index\": 0",
+                      "        \"index\": 1",
                       "    };",
                       "    ",
                       "    // Set the account vars to the values passed in the request body.",
