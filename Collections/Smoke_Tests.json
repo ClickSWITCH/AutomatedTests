@@ -3431,7 +3431,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "a684fc1b-0aea-47f0-a871-5fdc6231256d",
+                    "id": "ae0b6c2d-901b-44e6-aa27-2c2d596e7ebc",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3498,7 +3498,7 @@
                       "pm.test('Has the correct ux element', function() {",
                       "   var ux = {",
                       "        \"accounts\": {",
-                      "            \"limit\": 0,",
+                      "            \"limit\": 1,",
                       "            \"maxChecking\": 1,",
                       "            \"maxSavings\": 1,",
                       "            \"choices\": [",
@@ -3563,7 +3563,7 @@
                       "   var values ={",
                       "        \"accounts\": [",
                       "            {",
-                      "                \"key\": 0,",
+                      "                \"index\": 0,",
                       "                \"fields\": {",
                       "                    \"fields\": {}",
                       "                }",
@@ -3780,7 +3780,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0,\r\n        \"SplitAmount\": \"100\",\r\n        \"SplitType\": \"percentage\"\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Net or Amount (in dollars)\": 500,\r\n      \"Custom_or Percentage of Pay (1 - 100)\": 50,\r\n      \"Custom_Last 4 of SSN\": 1234,\r\n      \"Custom_Employee ID\": 123,\r\n      \"Custom_Depositor's Full Mailing Address\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0,\r\n        \"SplitAmount\": \"100\",\r\n        \"SplitType\": \"percentage\"\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Net or Amount (in dollars)\": 500,\r\n      \"Custom_or Percentage of Pay (1 - 100)\": 50,\r\n      \"Custom_Last 4 of SSN\": 1234,\r\n      \"Custom_Employee ID\": 123,\r\n      \"Custom_Depositor's Full Mailing Address\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
