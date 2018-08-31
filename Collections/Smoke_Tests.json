@@ -534,7 +534,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "4c28389b-1ebe-4f10-97f6-988dcee17e0e",
+                    "id": "c8102012-8b72-4f83-9a5d-21a2cba1418e",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -622,13 +622,12 @@
                       "    ",
                       "    pm.expect(accounts).to.deep.include(account);",
                       "    ",
-                      "    // Todo: This should have an index of 1. Bug reported.",
                       "    var account2 = {",
                       "        \"number\": \"\",",
                       "        \"type\": \"\",",
                       "        \"name\": \"\",",
                       "        \"routingNumber\": \"\",",
-                      "        \"index\": 0",
+                      "        \"index\": 1",
                       "    };",
                       "    ",
                       "    // Set the account vars to the values passed in the request body.",
@@ -650,7 +649,7 @@
                       "   var address = {",
                       "        \"line1\": \"600 Canal Park Dr..\",",
                       "        \"city\": \"Duluthh\",",
-                      "        \"zip\": \"55833     \",",
+                      "        \"zip\": \"55833\",",
                       "        \"state\": \"WI\",",
                       "        \"country\": \"CA\"",
                       "    };",
@@ -717,7 +716,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "129376dd-0225-4685-93ac-ed476acd6b3d",
+                    "id": "f221d382-2df9-44fd-be8b-a21561a6d4a8",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -816,7 +815,7 @@
                       "   var address = {",
                       "        \"line1\": \"600 Canal Park Dr..\",",
                       "        \"city\": \"Duluthh\",",
-                      "        \"zip\": \"55833     \",",
+                      "        \"zip\": \"55833\",",
                       "        \"state\": \"WI\",",
                       "        \"country\": \"CA\"",
                       "    };",
