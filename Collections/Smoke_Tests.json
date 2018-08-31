@@ -4016,7 +4016,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"type\": \"deposit\",\n  \"locationId\": \"{{location_id}}\",\n  \"accountholderIndex\": 0,\n  \"values\": {\n    \"accounts\": [\n      {\n        \"key\": 0,\n        \"SplitAmount\": \"100\",\n        \"SplitType\": \"percentage\"\n      }\n    ],\n    \"fields\": {\n    }\n  }\n}"
+                  "raw": "{\n  \"type\": \"deposit\",\n  \"locationId\": \"{{location_id}}\",\n  \"accountholderIndex\": 0\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
