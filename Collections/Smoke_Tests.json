@@ -1641,7 +1641,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "876988b2-f97a-41b4-aa21-20f2ccd04104",
+                    "id": "3ecadc77-fe87-418b-afbf-19bc4b3d5f04",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1739,7 +1739,7 @@
                       "        \"type\": \"\",",
                       "        \"name\": \"\",",
                       "        \"routingNumber\": \"\",",
-                      "        \"index\": 0",
+                      "        \"index\": 1",
                       "    };",
                       "    ",
                       "    // Set the account vars to the values passed in the request body.",
@@ -1761,7 +1761,7 @@
                       "   var address = {",
                       "        \"line1\": \"600 Canal Park Dr.\",",
                       "        \"city\": \"Duluth\",",
-                      "        \"zip\": \"55802     \",",
+                      "        \"zip\": \"55802\",",
                       "        \"state\": \"MN\",",
                       "        \"country\": \"US\"",
                       "    };",
@@ -1922,7 +1922,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "b9807898-5c8d-4219-a21d-f28b84e65a1e",
+                    "id": "c33ce017-b405-44ec-b93a-a14b6ac1a062",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1959,8 +1959,7 @@
                       "pm.test('Has the correct categories', function() {",
                       "    var categories = {",
                       "        \"key\": \"1\",",
-                      "        \"label\": \"Payroll\",",
-                      "        \"required\": false",
+                      "        \"label\": \"Payroll\"",
                       "    };  ",
                       "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
                       "});",
@@ -1968,7 +1967,7 @@
                       "pm.test('Has the correct ux element', function() {",
                       "    var ux = {",
                       "        \"accounts\": {",
-                      "            \"limit\": 0,",
+                      "            \"limit\": 1,",
                       "            \"maxChecking\": 1,",
                       "            \"maxSavings\": 1,",
                       "            \"choices\": [],",
@@ -2134,7 +2133,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "065d474c-70c9-4840-970f-6a92ed455a61",
+                    "id": "22bc35a7-dcc5-4588-a688-b3508d48835b",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -2171,8 +2170,7 @@
                       "pm.test('Has the correct categories', function() {",
                       "    var categories = {",
                       "        \"key\": \"1\",",
-                      "        \"label\": \"Payroll\",",
-                      "        \"required\": false",
+                      "        \"label\": \"Payroll\"",
                       "    };  ",
                       "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
                       "});",
@@ -2180,7 +2178,7 @@
                       "pm.test('Has the correct type element', function() {",
                       "    var ux = {",
                       "        \"accounts\": {",
-                      "            \"limit\": 0,",
+                      "            \"limit\": 1,",
                       "            \"maxChecking\": 1,",
                       "            \"maxSavings\": 1,",
                       "            \"choices\": [],",
@@ -2346,7 +2344,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "f7905d81-f254-473c-8360-cb28580cd160",
+                    "id": "d5b905ea-437e-4b74-b222-56195e89a5f0",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -2383,8 +2381,7 @@
                       "pm.test('Has the correct categories', function() {",
                       "    var categories = {",
                       "        \"key\": \"1\",",
-                      "        \"label\": \"Payroll\",",
-                      "        \"required\": false",
+                      "        \"label\": \"Payroll\"",
                       "    };  ",
                       "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
                       "});",
@@ -2396,7 +2393,6 @@
                       "                \"key\": \"instructions\",",
                       "                \"label\": \"Instructions\",",
                       "                \"type\": \"html\",",
-                      "                \"required\": false,",
                       "                \"body\": \"This is a Test biller. These are Online only instructions.\"",
                       "            }",
                       "        ]",
