@@ -3246,7 +3246,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "d788e662-47c3-4bca-93f3-c9967c69b0e3",
+                    "id": "46d14bf9-5c21-49da-93cb-c517510a2453",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3378,7 +3378,7 @@
                       "   var values ={",
                       "        \"accounts\": [",
                       "            {",
-                      "                \"key\": 0,",
+                      "                \"index\": 0,",
                       "                \"fields\": {",
                       "                    \"fields\": {}",
                       "                }",
