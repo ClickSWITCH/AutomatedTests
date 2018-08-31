@@ -366,7 +366,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "55709a1c-6bb1-4ee6-8f21-a7bd3dfad053",
+                    "id": "69d9063b-01df-4f7b-a35b-18a30e3b3002",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -414,8 +414,7 @@
                       "pm.test('Has the correct account holders', function() {",
                       "   var accountHolders = jsonData.data.item.accountHolders;",
                       "   ",
-                      "   // TODO: This should be length one. Bug has been reported",
-                      "   pm.expect(accountHolders).to.have.length(2);",
+                      "   pm.expect(accountHolders).to.have.length(1);",
                       "   ",
                       "   var john = {",
                       "        \"firstName\": \"\",",
@@ -3197,7 +3196,7 @@
     },
     {
       "_postman_id": "c3314b94-bea8-42fb-992b-f8b5807a277d",
-      "name": "Switches Copy",
+      "name": "Switches",
       "description": "",
       "item": [
         {
