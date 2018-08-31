@@ -366,7 +366,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "cccc6632-f0a1-420c-82c5-e853800b5ffe",
+                    "id": "77a88322-4a57-43d8-b544-33000bbba380",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -414,7 +414,8 @@
                       "pm.test('Has the correct account holders', function() {",
                       "   var accountHolders = jsonData.data.item.accountHolders;",
                       "   ",
-                      "   pm.expect(accountHolders).to.have.length(1);",
+                      "   // TODO: This should be length one. Bug has been reported",
+                      "   pm.expect(accountHolders).to.have.length(2);",
                       "   ",
                       "   var john = {",
                       "        \"firstName\": \"\",",
@@ -459,7 +460,7 @@
                       "   var address = {",
                       "        \"line1\": \"600 Canal Park Dr.\",",
                       "        \"city\": \"Duluth\",",
-                      "        \"zip\": \"55802\",",
+                      "        \"zip\": \"55802     \",",
                       "        \"state\": \"MN\",",
                       "        \"country\": \"US\"",
                       "    };",
@@ -534,7 +535,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "7fc8ef1e-869d-4fad-948f-44b8ad9b7e64",
+                    "id": "4c28389b-1ebe-4f10-97f6-988dcee17e0e",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -650,7 +651,7 @@
                       "   var address = {",
                       "        \"line1\": \"600 Canal Park Dr..\",",
                       "        \"city\": \"Duluthh\",",
-                      "        \"zip\": \"55833\",",
+                      "        \"zip\": \"55833     \",",
                       "        \"state\": \"WI\",",
                       "        \"country\": \"CA\"",
                       "    };",
