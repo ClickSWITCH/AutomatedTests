@@ -882,7 +882,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "158f6f66-e356-4769-982d-4a5a9e24d2d6",
+                    "id": "dc0c55fd-3a78-4d74-a313-062e6eddb424",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -930,7 +930,7 @@
                       "pm.test('Has the correct account holders', function() {",
                       "   var accountHolders = jsonData.data.item.accountHolders;",
                       "   ",
-                      "   pm.expect(accountHolders).to.have.length(2);",
+                      "   pm.expect(accountHolders).to.have.length(1);",
                       "   ",
                       "   var john = {",
                       "        \"firstName\": \"Johnn\",",
@@ -973,7 +973,7 @@
                       "   var address = {",
                       "        \"line1\": \"600 Canal Park Dr..\",",
                       "        \"city\": \"Duluthh\",",
-                      "        \"zip\": \"55833     \",",
+                      "        \"zip\": \"55833\",",
                       "        \"state\": \"WI\",",
                       "        \"country\": \"CA\"",
                       "    };",
@@ -1048,7 +1048,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "78f56a8b-0a79-4406-b0ac-f9131815b367",
+                    "id": "b55e641f-a1a0-487d-ac00-3e39bc97d5c3",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1096,7 +1096,7 @@
                       "pm.test('Has the correct account holders', function() {",
                       "   var accountHolders = jsonData.data.item.accountHolders;",
                       "   ",
-                      "   pm.expect(accountHolders).to.have.length(2);",
+                      "   pm.expect(accountHolders).to.have.length(1);",
                       "   ",
                       "   var john = {",
                       "        \"firstName\": \"Johnn\",",
@@ -1139,7 +1139,7 @@
                       "   var address = {",
                       "        \"line1\": \"600 Canal Park Dr..\",",
                       "        \"city\": \"Duluthh\",",
-                      "        \"zip\": \"55833     \",",
+                      "        \"zip\": \"55833\",",
                       "        \"state\": \"WI\",",
                       "        \"country\": \"CA\"",
                       "    };",
@@ -1234,7 +1234,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "74edfd6e-6d07-405d-bef7-25dec2b9573b",
+                    "id": "f94c65fd-554a-4e3b-aa5c-c457e7032615",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1282,8 +1282,7 @@
                       "pm.test('Has the correct account holders', function() {",
                       "   var accountHolders = jsonData.data.item.accountHolders;",
                       "   ",
-                      "   // TODO: This should be length one. Bug has been reported",
-                      "   pm.expect(accountHolders).to.have.length(2);",
+                      "   pm.expect(accountHolders).to.have.length(1);",
                       "   ",
                       "   var john = {",
                       "        \"firstName\": \"\",",
