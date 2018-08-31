@@ -3012,7 +3012,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "9501e92f-41ef-4f65-a6b1-dede68b43145",
+                    "id": "76f0cfa0-2c33-4ebf-a49b-349cd95ff332",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3049,8 +3049,7 @@
                       "pm.test('Has the correct categories', function() {",
                       "    var categories = {",
                       "        \"key\": \"15\",",
-                      "        \"label\": \"Utility\",",
-                      "        \"required\": false",
+                      "        \"label\": \"Utility\"",
                       "    };  ",
                       "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
                       "});",
@@ -3062,7 +3061,6 @@
                       "                \"key\": \"instructions\",",
                       "                \"label\": \"Instructions\",",
                       "                \"type\": \"html\",",
-                      "                \"required\": false,",
                       "                \"body\": \"This is a test Biller. These are Online Only instructions.\"",
                       "            }",
                       "        ]",
