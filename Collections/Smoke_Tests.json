@@ -366,7 +366,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "77a88322-4a57-43d8-b544-33000bbba380",
+                    "id": "4264d9a2-9a23-4d9e-97e1-611fdc55ef97",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -414,8 +414,7 @@
                       "pm.test('Has the correct account holders', function() {",
                       "   var accountHolders = jsonData.data.item.accountHolders;",
                       "   ",
-                      "   // TODO: This should be length one. Bug has been reported",
-                      "   pm.expect(accountHolders).to.have.length(2);",
+                      "   pm.expect(accountHolders).to.have.length(1);",
                       "   ",
                       "   var john = {",
                       "        \"firstName\": \"\",",
