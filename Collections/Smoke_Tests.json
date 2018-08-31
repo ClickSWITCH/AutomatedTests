@@ -4270,7 +4270,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0,\r\n        \"SplitAmount\": \"100\",\r\n        \"SplitType\": \"percentage\"\r\n      }\r\n    ],\r\n    \"fields\": {\r\n    }\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
