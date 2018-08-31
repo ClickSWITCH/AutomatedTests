@@ -3609,7 +3609,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "726a11b0-bc59-4efe-bb5f-78d9adad1868",
+                    "id": "3eecd7a2-6215-4973-bf2f-bc27a15bc349",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3676,7 +3676,7 @@
                       "pm.test('Has the correct ux element', function() {",
                       "   var ux = {",
                       "        \"accounts\": {",
-                      "            \"limit\": 0,",
+                      "            \"limit\": 1,",
                       "            \"maxChecking\": 1,",
                       "            \"maxSavings\": 1,",
                       "            \"choices\": [",
@@ -3741,7 +3741,7 @@
                       "   var values ={",
                       "        \"accounts\": [",
                       "            {",
-                      "                \"key\": 0,",
+                      "                \"index\": 0,",
                       "                \"fields\": {",
                       "                    \"fields\": {}",
                       "                }",
