@@ -1234,7 +1234,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "2e9038f0-ede9-4c6e-99e7-34c816b970c8",
+                    "id": "657e2997-ae13-4808-b92c-6883f9ca8b53",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1343,7 +1343,7 @@
                       "   var address = {",
                       "        \"line1\": \"600 Canal Park Dr.\",",
                       "        \"city\": \"Duluth\",",
-                      "        \"zip\": \"55802     \",",
+                      "        \"zip\": \"55802\",",
                       "        \"state\": \"MN\",",
                       "        \"country\": \"US\"",
                       "    };",
