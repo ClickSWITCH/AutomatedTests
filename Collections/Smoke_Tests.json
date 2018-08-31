@@ -366,7 +366,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "69d9063b-01df-4f7b-a35b-18a30e3b3002",
+                    "id": "cccc6632-f0a1-420c-82c5-e853800b5ffe",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -459,7 +459,7 @@
                       "   var address = {",
                       "        \"line1\": \"600 Canal Park Dr.\",",
                       "        \"city\": \"Duluth\",",
-                      "        \"zip\": \"55802     \",",
+                      "        \"zip\": \"55802\",",
                       "        \"state\": \"MN\",",
                       "        \"country\": \"US\"",
                       "    };",
@@ -534,7 +534,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "7b21b4ba-2d2d-4618-b6ae-75c7a1c91209",
+                    "id": "7fc8ef1e-869d-4fad-948f-44b8ad9b7e64",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -650,7 +650,7 @@
                       "   var address = {",
                       "        \"line1\": \"600 Canal Park Dr..\",",
                       "        \"city\": \"Duluthh\",",
-                      "        \"zip\": \"55833     \",",
+                      "        \"zip\": \"55833\",",
                       "        \"state\": \"WI\",",
                       "        \"country\": \"CA\"",
                       "    };",
