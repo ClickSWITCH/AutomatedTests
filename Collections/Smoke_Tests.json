@@ -3245,7 +3245,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "d04aa27b-fde1-4055-9af1-177607e2cb75",
+                    "id": "6553fbe9-1464-4de2-8230-d472416de627",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3317,11 +3317,11 @@
                       "            \"maxSavings\": 1,",
                       "            \"choices\": [",
                       "                {",
-                      "                    \"key\": 0,",
+                      "                    \"index\": 0,",
                       "                    \"label\": \"*8501\"",
                       "                },",
                       "                {",
-                      "                    \"key\": 1,",
+                      "                    \"index\": 1,",
                       "                    \"label\": \"*5010\"",
                       "                }",
                       "            ],",
@@ -3377,14 +3377,10 @@
                       "   var values ={",
                       "        \"accounts\": [",
                       "            {",
-                      "                \"index\": 0,",
-                      "                \"fields\": {",
-                      "                    \"fields\": {}",
-                      "                }",
+                      "                \"index\": 0",
                       "            }",
                       "        ],",
-                      "        \"fields\": {",
-                      "        }",
+                      "        \"fields\": {}",
                       "    };",
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
@@ -3812,18 +3808,6 @@
                   "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "7186bc81-26aa-456d-b26b-3b6bf6341f02",
-              "name": "Delete Switch",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "body": {},
-                "url": "",
-                "description": "\t"
               },
               "response": []
             }
