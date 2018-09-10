@@ -666,10 +666,6 @@
                     "description": "api key"
                   },
                   {
-                    "key": "Accept",
-                    "value": "application/json"
-                  },
-                  {
                     "key": "Content-Type",
                     "value": "application/json"
                   }
@@ -832,10 +828,6 @@
                     "description": "api key"
                   },
                   {
-                    "key": "Accept",
-                    "value": "application/json"
-                  },
-                  {
                     "key": "Content-Type",
                     "value": "application/json"
                   }
@@ -988,10 +980,6 @@
                     "key": "api-key",
                     "value": "{{api_key}}",
                     "description": "api key"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   },
                   {
                     "key": "Content-Type",
@@ -1352,10 +1340,6 @@
                     "description": "api key"
                   },
                   {
-                    "key": "Accept",
-                    "value": "application/json"
-                  },
-                  {
                     "key": "Content-Type",
                     "value": "application/json"
                   }
@@ -1550,17 +1534,8 @@
                     "description": "api key"
                   },
                   {
-                    "key": "Accept",
-                    "value": "application/json"
-                  },
-                  {
                     "key": "Content-Type",
                     "value": "application/json"
-                  },
-                  {
-                    "key": "Accept-Language",
-                    "value": "es-es",
-                    "disabled": true
                   }
                 ],
                 "body": {
