@@ -3245,7 +3245,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "6553fbe9-1464-4de2-8230-d472416de627",
+                    "id": "7717430a-1759-496b-b529-55d489d278a9",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3300,8 +3300,7 @@
                       "            \"accounts\": [],",
                       "            \"fields\": {},",
                       "            \"overall\": [",
-                      "                \"A signature is required.\",",
-                      "                \"Esign consent is required.\"",
+                      "                \"A signature is required.\"",
                       "            ]",
                       "        }",
                       "    };",
@@ -3591,7 +3590,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "8d7dab8b-7d01-4197-b9be-5cb28a8b701c",
+                    "id": "d9e00168-fd14-400b-8102-2e039edb489b",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3663,11 +3662,11 @@
                       "            \"maxSavings\": 1,",
                       "            \"choices\": [",
                       "                {",
-                      "                    \"key\": 0,",
+                      "                    \"index\": 0,",
                       "                    \"label\": \"*8501\"",
                       "                },",
                       "                {",
-                      "                    \"key\": 1,",
+                      "                    \"index\": 1,",
                       "                    \"label\": \"*5010\"",
                       "                }",
                       "            ],",
@@ -3723,10 +3722,7 @@
                       "   var values ={",
                       "        \"accounts\": [",
                       "            {",
-                      "                \"index\": 0,",
-                      "                \"fields\": {",
-                      "                    \"fields\": {}",
-                      "                }",
+                      "                \"index\": 0",
                       "            }",
                       "        ],",
                       "        \"fields\": {",
