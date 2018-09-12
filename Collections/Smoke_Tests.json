@@ -3785,7 +3785,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "af48fdad-ca96-4d15-848c-8855cccb75da",
+                    "id": "22a1336c-bbe0-451d-b86b-e7d31e389e22",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3841,7 +3841,6 @@
                       "            \"accounts\": [],",
                       "            \"fields\": {},",
                       "            \"overall\": [",
-                      "                \"A signature is required.\",",
                       "                \"Notes is a required field.\"",
                       "            ]",
                       "        }",
