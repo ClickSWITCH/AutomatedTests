@@ -3982,7 +3982,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "8fb54a4c-5c12-432e-a8be-6f1f3ad5b1ad",
+                    "id": "d473001e-c452-4c91-8686-a09c03a145a5",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4039,7 +4039,6 @@
                       "            \"fields\": {},",
                       "            \"overall\": [",
                       "                \"At least one account must be selected\",",
-                      "                \"A signature is required.\",",
                       "                \"Address field Line 1 is a required field.\",",
                       "                \"Address field City is a required field.\",",
                       "                \"Address field State is a required field.\",",
