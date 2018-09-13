@@ -870,7 +870,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "d60407d5-79ab-4a79-b344-89b329854db9",
+                    "id": "d2e07abc-4410-4a56-9ec5-a9df3bdda4f7",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -921,9 +921,9 @@
                       "   pm.expect(accountHolders).to.have.length(1);",
                       "   ",
                       "   var john = {",
-                      "        \"firstName\": \"Johnn\",",
+                      "        \"firstName\": \"Test\",",
                       "        \"middleInitial\": \"j\",",
-                      "        \"lastName\": \"Doee\"",
+                      "        \"lastName\": \"Test\"",
                       "    };",
                       "                ",
                       "    pm.expect(accountHolders).to.deep.include(john);",
