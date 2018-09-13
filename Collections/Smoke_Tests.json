@@ -708,7 +708,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "49b6b0a9-d1b4-41f9-bc2a-d3769d038f42",
+                    "id": "d87b9ae4-62bc-4dfd-89bc-a02b211386aa",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -759,17 +759,17 @@
                       "   pm.expect(accountHolders).to.have.length(2);",
                       "   ",
                       "   var john = {",
-                      "        \"firstName\": \"Johnn\",",
+                      "        \"firstName\": \"Test\",",
                       "        \"middleInitial\": \"j\",",
-                      "        \"lastName\": \"Doee\"",
+                      "        \"lastName\": \"Test\"",
                       "    };",
                       "                ",
                       "    pm.expect(accountHolders).to.deep.include(john);",
                       "    ",
                       "   var jane = {",
-                      "        \"firstName\": \"Janee\",",
+                      "        \"firstName\": \"Test\",",
                       "        \"middleInitial\": \"m\",",
-                      "        \"lastName\": \"Doee\"",
+                      "        \"lastName\": \"Test\"",
                       "    };",
                       "                ",
                       "    pm.expect(accountHolders).to.deep.include(jane);",
@@ -834,7 +834,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Johnn\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Doee\"\n        },\n        {\n        \"firstName\": \"Janee\",\n        \"middleInitial\": \"m\",\n        \"lastName\": \"Doee\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"55833\",\n            \"state\": \"WI\",\n            \"country\": \"CA\"\n        }\n    ]\n}"
+                  "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"m\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"55833\",\n            \"state\": \"WI\",\n            \"country\": \"CA\"\n        }\n    ]\n}"
                 },
                 "url": {
                   "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
@@ -988,7 +988,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Johnn\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Doee\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"55833\",\n            \"state\": \"WI\",\n            \"country\": \"CA\"\n        }\n    ]\n}"
+                  "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"55833\",\n            \"state\": \"WI\",\n            \"country\": \"CA\"\n        }\n    ]\n}"
                 },
                 "url": {
                   "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
