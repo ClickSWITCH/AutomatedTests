@@ -3951,7 +3951,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "1ab4a664-a18d-490d-9cc9-83dd47d8863f",
+                    "id": "bf8f5fcc-47ac-41eb-9f1d-e54e0f8f9366",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4047,6 +4047,10 @@
                       "    accounts.choices[1].label = accountName2;",
                       "    ",
                       "    pm.expect(jsonData.data.item.ux.acounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux.fields element', function() {",
+                      "    pm.expect(jsonData.data.item.ux.fields.length).to.be.at.least(1);",
                       "});",
                       "",
                       "pm.test('Has the correct values element', function() {",
