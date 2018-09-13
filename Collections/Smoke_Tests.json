@@ -366,7 +366,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "e24fb2ce-6e19-4459-a50c-5650e871ca2e",
+                    "id": "450b1bb2-71b7-4f22-b9ca-522bdf8a92de",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -419,7 +419,7 @@
                       "   var john = {",
                       "        \"firstName\": \"\",",
                       "        \"middleInitial\": \"J\",",
-                      "        \"lastName\": \"Doe\"",
+                      "        \"lastName\": \"Test\"",
                       "    };",
                       "    ",
                       "    john.firstName = pm.environment.get(\"customer_name\");",
@@ -530,7 +530,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "9a038138-eb6f-4b14-b2e5-179c9eee29f8",
+                    "id": "ee8587de-dbc6-49a5-9023-13ba0fd2206f",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -581,17 +581,17 @@
                       "   pm.expect(accountHolders).to.have.length(2);",
                       "   ",
                       "   var john = {",
-                      "        \"firstName\": \"Johnn\",",
+                      "        \"firstName\": \"Test\",",
                       "        \"middleInitial\": \"j\",",
-                      "        \"lastName\": \"Doee\"",
+                      "        \"lastName\": \"Test\"",
                       "    };",
                       "                ",
                       "    pm.expect(accountHolders).to.deep.include(john);",
                       "    ",
                       "   var jane = {",
-                      "        \"firstName\": \"Janee\",",
+                      "        \"firstName\": \"Test\",",
                       "        \"middleInitial\": \"m\",",
-                      "        \"lastName\": \"Doee\"",
+                      "        \"lastName\": \"Test\"",
                       "    };",
                       "                ",
                       "    pm.expect(accountHolders).to.deep.include(jane);",
