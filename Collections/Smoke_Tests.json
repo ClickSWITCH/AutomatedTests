@@ -1210,7 +1210,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "ebf80c62-47a6-4bc2-8410-28596183eefe",
+                    "id": "6ceb1603-4444-41c0-ab78-b23b4ca6ad33",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1263,7 +1263,7 @@
                       "   var john = {",
                       "        \"firstName\": \"\",",
                       "        \"middleInitial\": \"J\",",
-                      "        \"lastName\": \"Doe\"",
+                      "        \"lastName\": \"Test\"",
                       "    };",
                       "    ",
                       "    john.firstName = pm.environment.get(\"customer_name\");",
