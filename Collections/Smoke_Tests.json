@@ -3785,7 +3785,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "2dddb7e7-0484-453d-9098-cb9aed1eb0e4",
+                    "id": "48cbabd6-1a3f-427d-8680-960b87a6da86",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3822,7 +3822,6 @@
                       "});",
                       "",
                       "pm.test('Has the correct targetId and locationId', function() {",
-                      "   pm.expect(jsonData.data.item.targetId).to.equal(0);",
                       "   pm.expect(jsonData.data.item.locationId).to.equal(pm.environment.get('location_id'));",
                       "});",
                       "",
