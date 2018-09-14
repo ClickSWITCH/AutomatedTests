@@ -3395,58 +3395,6 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "8eea8170-5727-4d83-88b5-be5d9b3fa0f6",
-          "name": "Payments using TargetId",
-          "description": "",
-          "item": [
-            {
-              "_postman_id": "3caef0a3-e717-4569-8d32-bc54fae07779",
-              "name": "Create Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "8d3f7f74-77f2-4a52-8dbb-9d92d2b74e65",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api-Key"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0,\r\n        \"SplitAmount\": \"100\",\r\n        \"SplitType\": \"percentage\"\r\n      }\r\n    ]\r\n  }\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
           "_postman_id": "58fdb71c-d3e8-40ba-818e-a0e93588fb41",
           "name": "Payments using LocationId",
           "description": "",
