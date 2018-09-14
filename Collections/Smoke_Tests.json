@@ -3772,7 +3772,7 @@
             },
             {
               "_postman_id": "69223bbd-c247-4ab4-894b-7a9aa7540cd4",
-              "name": "Delete Switch Copy",
+              "name": "Delete Switch",
               "event": [
                 {
                   "listen": "test",
