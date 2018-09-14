@@ -99,7 +99,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "f8e44a28-5fe4-4ea6-930c-4c04cc4ec17b",
+                "id": "c875b01f-cf37-4a14-bf80-6b6f47de368a",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -188,6 +188,13 @@
                   "        \"help\": \"The switch is unable to be processed.\"",
                   "    };",
                   "    pm.expect(jsonData.data.items).to.deep.include(unableToProcess);",
+                  "    ",
+                  "    var deleted =  {",
+                  "        \"id\": \"deleted\",",
+                  "        \"label\": \"Deleted\",",
+                  "        \"help\": \"The switch is deleted\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(deleted);",
                   "});"
                 ]
               }
