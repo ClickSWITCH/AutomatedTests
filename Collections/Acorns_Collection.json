@@ -3395,58 +3395,6 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "58fdb71c-d3e8-40ba-818e-a0e93588fb41",
-          "name": "Payments using LocationId",
-          "description": "",
-          "item": [
-            {
-              "_postman_id": "7cbc098c-4d3d-4798-9645-91521c4a33ff",
-              "name": "Create Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "d84295fe-de36-415b-a7b3-ea6835ca3b4c",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api-Key"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"locationId\": \"{{location_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0,\r\n        \"SplitAmount\": \"100\",\r\n        \"SplitType\": \"percentage\"\r\n      }\r\n    ]\r\n  }\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
           "_postman_id": "1cf103b9-673e-4154-aae1-509ee0779fef",
           "name": "Payments using neither",
           "description": "",
