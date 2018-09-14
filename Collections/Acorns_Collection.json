@@ -3393,58 +3393,6 @@
             }
           ],
           "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "1cf103b9-673e-4154-aae1-509ee0779fef",
-          "name": "Payments using neither",
-          "description": "",
-          "item": [
-            {
-              "_postman_id": "e8f63c28-e9dc-4f4f-9c57-66273c4b05ef",
-              "name": "Create Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "849f704a-a699-43aa-8f00-9b84ee85c880",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api-Key"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"accountholderIndex\": 0\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
         }
       ]
     }
