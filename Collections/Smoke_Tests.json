@@ -746,7 +746,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "d87b9ae4-62bc-4dfd-89bc-a02b211386aa",
+                    "id": "992025da-dba6-4a58-bb10-38a80e9a8724",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -823,7 +823,8 @@
                       "        \"type\": \"\",",
                       "        \"name\": \"\",",
                       "        \"routingNumber\": \"\",",
-                      "        \"index\": 0",
+                      "        \"index\": 0,",
+                      "        \"metadata\": {}",
                       "    };",
                       "    ",
                       "    // Set the account vars to the values passed in the request body.",
@@ -908,7 +909,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "d2e07abc-4410-4a56-9ec5-a9df3bdda4f7",
+                    "id": "2b1ed99f-d52e-45ca-8e52-96456a95c43f",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -977,7 +978,8 @@
                       "        \"type\": \"\",",
                       "        \"name\": \"\",",
                       "        \"routingNumber\": \"\",",
-                      "        \"index\": 0",
+                      "        \"index\": 0,",
+                      "        \"metadata\": {}",
                       "    };",
                       "    ",
                       "    // Set the account vars to the values passed in the request body.",
@@ -1070,7 +1072,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "59fc42a9-f7f9-4462-8e96-98dba14f8b77",
+                    "id": "7d0287dd-3363-4563-a7eb-51e9634da12d",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1139,7 +1141,8 @@
                       "        \"type\": \"\",",
                       "        \"name\": \"\",",
                       "        \"routingNumber\": \"\",",
-                      "        \"index\": 0",
+                      "        \"index\": 0,",
+                      "        \"metadata\": {}",
                       "    };",
                       "    ",
                       "    // Set the account vars to the values passed in the request body.",
@@ -1248,7 +1251,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "6ceb1603-4444-41c0-ab78-b23b4ca6ad33",
+                    "id": "744d30ab-5c71-47e4-a9de-62f86d6ba104",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1319,7 +1322,8 @@
                       "        \"type\": \"\",",
                       "        \"name\": \"\",",
                       "        \"routingNumber\": \"\",",
-                      "        \"index\": 0",
+                      "        \"index\": 0,",
+                      "        \"metadata\": {}",
                       "    };",
                       "    ",
                       "    // Set the account vars to the values passed in the request body.",
@@ -1335,7 +1339,8 @@
                       "        \"type\": \"\",",
                       "        \"name\": \"\",",
                       "        \"routingNumber\": \"\",",
-                      "        \"index\": 1",
+                      "        \"index\": 1,",
+                      "        \"metadata\": {}",
                       "    };",
                       "    ",
                       "    // Set the account vars to the values passed in the request body.",
