@@ -3056,7 +3056,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "630ea39b-6b72-4ab0-ad19-9e8c68f90aa3",
+                    "id": "67d8c801-ae3f-4c62-aa70-66e377ea80c5",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3090,7 +3090,7 @@
                       "   pm.expect(jsonData.data.kind).to.equal('location'); ",
                       "});",
                       "",
-                      "pm.environment.set(\"location_id\", jsonData.data.items[0].placeId);"
+                      "pm.environment.set(\"location_id\", jsonData.data.items[0].locationId);"
                     ]
                   }
                 }
@@ -3858,7 +3858,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"type\": \"deposit\",\n  \"locationId\": \"{{location_id}}\",\n  \"accountholderIndex\": 0\n}"
+                  "raw": "{\n  \"type\": \"deposit\",\n  \"locationId\": \"{{location_id}}\",\n  \"accountholderIndex\": 0,\n  \"values\": {\n    \"accounts\": [\n      {\n        \"index\": 0,\n        \"SplitAmount\": \"100\",\n        \"SplitType\": \"percentage\"\n      }\n    ]\n  }\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
