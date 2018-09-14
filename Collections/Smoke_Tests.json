@@ -1648,7 +1648,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "c9af4760-53c8-4f75-8eb3-02e896aa3a4f",
+                    "id": "6d5da495-3091-4a5f-81f5-9191f441d2ef",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1729,7 +1729,8 @@
                       "        \"type\": \"\",",
                       "        \"name\": \"\",",
                       "        \"routingNumber\": \"\",",
-                      "        \"index\": 0",
+                      "        \"index\": 0,",
+                      "        \"metadata\": {}",
                       "    };",
                       "    ",
                       "    // Set the account vars to the values passed in the request body.",
@@ -1746,7 +1747,8 @@
                       "        \"type\": \"\",",
                       "        \"name\": \"\",",
                       "        \"routingNumber\": \"\",",
-                      "        \"index\": 1",
+                      "        \"index\": 1,",
+                      "        \"metadata\": {}",
                       "    };",
                       "    ",
                       "    // Set the account vars to the values passed in the request body.",
@@ -3100,7 +3102,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "67d8c801-ae3f-4c62-aa70-66e377ea80c5",
+                    "id": "e307f46d-3641-4098-8537-155ae6a1d450",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3124,7 +3126,7 @@
                       "",
                       "pm.test('Has required inner elements', function() {",
                       "    jsonData.data.items.forEach(i => {",
-                      "       pm.expect(i).to.have.property('placeId');",
+                      "       pm.expect(i).to.have.property('locationId');",
                       "       pm.expect(i).to.have.property('name');",
                       "       pm.expect(i).to.have.property('address');",
                       "    });",
@@ -4228,6 +4230,1383 @@
             }
           ],
           "_postman_isSubFolder": true
+        }
+      ]
+    },
+    {
+      "_postman_id": "effb097d-5e8a-4faa-b9a1-0db8bc8cabdf",
+      "name": "Targets Copy",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "0b9893a5-6ffe-45e5-8d30-41c4f03efe1b",
+          "name": "Deposits",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "0a1adedf-9e88-481e-8c77-e5b0299dca8a",
+              "name": "Targets",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "8cd56822-e0af-4fe0-ab14-37c92f907bcd",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has some items', function() {",
+                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
+                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    jsonData.data.items.forEach(i => {",
+                      "        pm.expect(i).to.have.property('targetId');",
+                      "        pm.expect(i).to.have.property('name');",
+                      "        pm.expect(i).to.have.property('type');",
+                      "        pm.expect(i.type).to.eql('deposit');",
+                      "    });",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
+                      "});",
+                      "",
+                      "// Set an environment variable to test get target by id next.",
+                      "pm.environment.set(\"deposit_target_id\", jsonData.data.items[0].targetId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {},
+                "url": {
+                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{deposit_target_name}}&customer={{customer_key}}",
+                  "host": [
+                    "{{base_url}}{{targets_postfix2}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "deposit",
+                      "equals": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "{{deposit_target_name}}",
+                      "equals": true
+                    },
+                    {
+                      "key": "customer",
+                      "value": "{{customer_key}}",
+                      "equals": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "814b4744-001d-45cf-9072-7abdd9880a68",
+              "name": "Target By Id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c33ce017-b405-44ec-b93a-a14b6ac1a062",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "    pm.expect(jsonData.data).to.have.property('item');",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type element', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal('deposit'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct categories', function() {",
+                      "    var categories = {",
+                      "        \"key\": \"1\",",
+                      "        \"label\": \"Payroll\"",
+                      "    };  ",
+                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux element', function() {",
+                      "    var ux = {",
+                      "        \"accounts\": {",
+                      "            \"limit\": 1,",
+                      "            \"maxChecking\": 1,",
+                      "            \"maxSavings\": 1,",
+                      "            \"choices\": [],",
+                      "            \"fields\": []",
+                      "        },",
+                      "        \"fields\": [",
+                      "            {",
+                      "                \"key\": \"Custom_Net or Amount (in dollars)\",",
+                      "                \"label\": \"Net or Amount (in dollars)\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_or Percentage of Pay (1 - 100)\",",
+                      "                \"label\": \"or Percentage of Pay (1 - 100)\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Depositor's Full Mailing Address\",",
+                      "                \"label\": \"Depositor's Full Mailing Address\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": true",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Employee ID\",",
+                      "                \"label\": \"Employee ID\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Last 4 of SSN\",",
+                      "                \"label\": \"Last 4 of SSN\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": true",
+                      "            }",
+                      "        ]",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct final action', function() {",
+                      "   pm.expect(jsonData.data.item.finalAction).to.equal('submit'); ",
+                      "});",
+                      "",
+                      "",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{targets_postfix3}}{{deposit_target_id}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "7d9962c5-8908-4ab5-a962-f7fce5f141d4",
+          "name": "Deposits Print Only",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "2280f839-d55e-409e-a4e0-f4e5eba73b5b",
+              "name": "Targets",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "0a026d7c-53d9-417c-a1a9-0cc5e523c9f0",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has some items', function() {",
+                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
+                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    jsonData.data.items.forEach(i => {",
+                      "        pm.expect(i).to.have.property('targetId');",
+                      "        pm.expect(i).to.have.property('name');",
+                      "        pm.expect(i).to.have.property('type');",
+                      "        pm.expect(i.type).to.equal('deposit');",
+                      "    });",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
+                      "});",
+                      "",
+                      "// Set an environment variable to test get target by id next.",
+                      "pm.environment.set(\"deposit_print_target_id\", jsonData.data.items[0].targetId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {},
+                "url": {
+                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{deposit_print_only_name}}&customer={{customer_key}}",
+                  "host": [
+                    "{{base_url}}{{targets_postfix2}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "deposit",
+                      "equals": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "{{deposit_print_only_name}}",
+                      "equals": true
+                    },
+                    {
+                      "key": "customer",
+                      "value": "{{customer_key}}",
+                      "equals": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "1f892f98-1e42-4f76-aa5c-c10415c9ae02",
+              "name": "Target By Id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "22bc35a7-dcc5-4588-a688-b3508d48835b",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "    pm.expect(jsonData.data).to.have.property('item');",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type element', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal('deposit'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct categories', function() {",
+                      "    var categories = {",
+                      "        \"key\": \"1\",",
+                      "        \"label\": \"Payroll\"",
+                      "    };  ",
+                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type element', function() {",
+                      "    var ux = {",
+                      "        \"accounts\": {",
+                      "            \"limit\": 1,",
+                      "            \"maxChecking\": 1,",
+                      "            \"maxSavings\": 1,",
+                      "            \"choices\": [],",
+                      "            \"fields\": []",
+                      "        },",
+                      "        \"fields\": [",
+                      "            {",
+                      "                \"key\": \"Custom_Net or Amount (in dollars)\",",
+                      "                \"label\": \"Net or Amount (in dollars)\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_or Percentage of Pay (1 - 100)\",",
+                      "                \"label\": \"or Percentage of Pay (1 - 100)\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Depositor's Full Mailing Address\",",
+                      "                \"label\": \"Depositor's Full Mailing Address\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": true",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Employee ID\",",
+                      "                \"label\": \"Employee ID\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Last 4 of SSN\",",
+                      "                \"label\": \"Last 4 of SSN\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": true",
+                      "            }",
+                      "        ]",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct final action', function() {",
+                      "   pm.expect(jsonData.data.item.finalAction).to.equal('print'); ",
+                      "});",
+                      "",
+                      "",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{targets_postfix3}}{{deposit_print_target_id}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "90b1ce44-8e97-43d7-9d66-bea259556989",
+          "name": "Deposits Online Only",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "b941945a-c236-4cee-a4a1-9cee6ee331b6",
+              "name": "Targets",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "96f36281-d983-4cd3-b650-56aef5c60e0c",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has some items', function() {",
+                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
+                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    jsonData.data.items.forEach(i => {",
+                      "        pm.expect(i).to.have.property('targetId');",
+                      "        pm.expect(i).to.have.property('name');",
+                      "        pm.expect(i).to.have.property('type');",
+                      "        pm.expect(i.type).to.equal('deposit');",
+                      "    });",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
+                      "});",
+                      "",
+                      "// Set an environment variable to test get target by id next.",
+                      "pm.environment.set(\"deposit_online_target_id\", jsonData.data.items[0].targetId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {},
+                "url": {
+                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{deposit_online_only_name}}&customer={{customer_key}}",
+                  "host": [
+                    "{{base_url}}{{targets_postfix2}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "deposit",
+                      "equals": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "{{deposit_online_only_name}}",
+                      "equals": true
+                    },
+                    {
+                      "key": "customer",
+                      "value": "{{customer_key}}",
+                      "equals": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "97cb5198-c35c-43fd-a082-44ee4216db44",
+              "name": "Target By Id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d5b905ea-437e-4b74-b222-56195e89a5f0",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "    pm.expect(jsonData.data).to.have.property('item');",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type element', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal('deposit'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct categories', function() {",
+                      "    var categories = {",
+                      "        \"key\": \"1\",",
+                      "        \"label\": \"Payroll\"",
+                      "    };  ",
+                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type element', function() {",
+                      "    var ux = {",
+                      "        \"fields\": [",
+                      "            {",
+                      "                \"key\": \"instructions\",",
+                      "                \"label\": \"Instructions\",",
+                      "                \"type\": \"html\",",
+                      "                \"body\": \"This is a Test biller. These are Online only instructions.\"",
+                      "            }",
+                      "        ]",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct final action', function() {",
+                      "   pm.expect(jsonData.data.item.finalAction).to.equal('complete'); ",
+                      "});",
+                      "",
+                      "",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{targets_postfix3}}{{deposit_online_target_id}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "d5ccab7b-68fe-4ce5-a525-275c63b2e0e3",
+          "name": "Payments",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "73f8b988-2e65-4029-88f5-a2c96df68322",
+              "name": "Targets",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "47bd635b-41c3-4c34-9f84-4510d828b3c0",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has some items', function() {",
+                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
+                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    jsonData.data.items.forEach(i => {",
+                      "        pm.expect(i).to.have.property('targetId');",
+                      "        pm.expect(i).to.have.property('name');",
+                      "        pm.expect(i).to.have.property('type');",
+                      "        pm.expect(i.type).to.equal('payment');",
+                      "    });",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
+                      "});",
+                      "",
+                      "// Set an environment variable to test get target by id next.",
+                      "pm.environment.set(\"payment_target_id\", jsonData.data.items[0].targetId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {},
+                "url": {
+                  "raw": "{{base_url}}{{targets_postfix2}}?type=payment&name={{payment_target_name}}&customer={{customer_key}}",
+                  "host": [
+                    "{{base_url}}{{targets_postfix2}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "payment",
+                      "equals": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "{{payment_target_name}}",
+                      "equals": true
+                    },
+                    {
+                      "key": "customer",
+                      "value": "{{customer_key}}",
+                      "equals": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "189afe96-da8f-437f-80fe-c32380b2d01b",
+              "name": "Target By Id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d39ce6d2-62bb-489c-886f-84ac43e4a171",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "    pm.expect(jsonData.data).to.have.property('item');",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type element', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal('payment'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct categories', function() {",
+                      "    var categories = {",
+                      "        \"key\": \"15\",",
+                      "        \"label\": \"Utility\"",
+                      "    };  ",
+                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type element', function() {",
+                      "    var ux = {",
+                      "        \"accounts\": {",
+                      "            \"limit\": 1,",
+                      "            \"maxChecking\": 1,",
+                      "            \"maxSavings\": 1,",
+                      "            \"choices\": [],",
+                      "            \"fields\": []",
+                      "        },",
+                      "        \"fields\": [",
+                      "            {",
+                      "                \"key\": \"Custom_Date to Withdraw funds\",",
+                      "                \"label\": \"Date to Withdraw funds\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Switch_ContactServiceAddress\",",
+                      "                \"label\": \"Service Address\",",
+                      "                \"type\": \"composite\",",
+                      "                \"required\": true,",
+                      "                \"fields\": [",
+                      "                    {",
+                      "                        \"key\": \"line1\",",
+                      "                        \"label\": \"Line1\",",
+                      "                        \"type\": \"textbox\",",
+                      "                        \"required\": true",
+                      "                    },",
+                      "                    {",
+                      "                        \"key\": \"line2\",",
+                      "                        \"label\": \"Line2\",",
+                      "                        \"type\": \"textbox\",",
+                      "                        \"required\": false",
+                      "                    },",
+                      "                    {",
+                      "                        \"key\": \"line3\",",
+                      "                        \"label\": \"Line3\",",
+                      "                        \"type\": \"textbox\",",
+                      "                        \"required\": false",
+                      "                    },",
+                      "                    {",
+                      "                        \"key\": \"city\",",
+                      "                        \"label\": \"city\",",
+                      "                        \"type\": \"textbox\",",
+                      "                        \"required\": true",
+                      "                    },",
+                      "                    {",
+                      "                        \"key\": \"state\",",
+                      "                        \"label\": \"stateProvince\",",
+                      "                        \"type\": \"textbox\",",
+                      "                        \"required\": true,",
+                      "                        \"regex\": \"^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$\",",
+                      "                        \"validationMessage\": \"Must be a valid 2 character state code\"",
+                      "                    },",
+                      "                    {",
+                      "                        \"key\": \"zip\",",
+                      "                        \"label\": \"zip\",",
+                      "                        \"type\": \"textbox\",",
+                      "                        \"required\": true,",
+                      "                        \"regex\": \"^[0-9]{3,5}(?:-[0-9]{4})?$\",",
+                      "                        \"validationMessage\": \"Must be in the format 000-000, 00000 or 00000-0000\"",
+                      "                    }",
+                      "                ]",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Switch_BillingAccountNumber\",",
+                      "                \"label\": \"Company Account Number\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": true",
+                      "            }",
+                      "        ]",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct final action', function() {",
+                      "   pm.expect(jsonData.data.item.finalAction).to.equal('submit'); ",
+                      "});",
+                      "",
+                      "",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{targets_postfix3}}{{payment_target_id}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "f8842738-4dbb-4c99-b904-77712b922d08",
+          "name": "Payments Print Only",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "4fe2c866-b2f3-46b5-b3e0-a18f11fd1ac9",
+              "name": "Targets",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "bda6b21d-4ac8-4bf0-84ca-5a5b57d7905b",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has some items', function() {",
+                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
+                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    jsonData.data.items.forEach(i => {",
+                      "        pm.expect(i).to.have.property('targetId');",
+                      "        pm.expect(i).to.have.property('name');",
+                      "        pm.expect(i).to.have.property('type');",
+                      "        pm.expect(i.type).to.equal('payment');",
+                      "    });",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
+                      "});",
+                      "",
+                      "// Set an environment variable to test get target by id next.",
+                      "pm.environment.set(\"payment_print_target_id\", jsonData.data.items[0].targetId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {},
+                "url": {
+                  "raw": "{{base_url}}{{targets_postfix2}}?type=payment&name={{payment_print_only}}&customer={{customer_key}}",
+                  "host": [
+                    "{{base_url}}{{targets_postfix2}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "payment",
+                      "equals": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "{{payment_print_only}}",
+                      "equals": true
+                    },
+                    {
+                      "key": "customer",
+                      "value": "{{customer_key}}",
+                      "equals": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "7cfaea8f-3d46-40b1-bb28-d3dfbd5a3b1b",
+              "name": "Target By Id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "07506d96-e05e-45ee-8898-a97617d7aa36",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "    pm.expect(jsonData.data).to.have.property('item');",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type element', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal('payment'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct categories', function() {",
+                      "    var categories = {",
+                      "        \"key\": \"15\",",
+                      "        \"label\": \"Utility\"",
+                      "    };  ",
+                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type element', function() {",
+                      "    var ux = {",
+                      "        \"accounts\": {",
+                      "            \"limit\": 1,",
+                      "            \"maxChecking\": 1,",
+                      "            \"maxSavings\": 1,",
+                      "            \"choices\": [],",
+                      "            \"fields\": []",
+                      "        },",
+                      "        \"fields\": [",
+                      "            {",
+                      "                \"key\": \"Custom_Date to Withdraw funds\",",
+                      "                \"label\": \"Date to Withdraw funds\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Switch_ContactServiceAddress\",",
+                      "                \"label\": \"Service Address\",",
+                      "                \"type\": \"composite\",",
+                      "                \"required\": true,",
+                      "                \"fields\": [",
+                      "                    {",
+                      "                        \"key\": \"line1\",",
+                      "                        \"label\": \"Line1\",",
+                      "                        \"type\": \"textbox\",",
+                      "                        \"required\": true",
+                      "                    },",
+                      "                    {",
+                      "                        \"key\": \"line2\",",
+                      "                        \"label\": \"Line2\",",
+                      "                        \"type\": \"textbox\",",
+                      "                        \"required\": false",
+                      "                    },",
+                      "                    {",
+                      "                        \"key\": \"line3\",",
+                      "                        \"label\": \"Line3\",",
+                      "                        \"type\": \"textbox\",",
+                      "                        \"required\": false",
+                      "                    },",
+                      "                    {",
+                      "                        \"key\": \"city\",",
+                      "                        \"label\": \"city\",",
+                      "                        \"type\": \"textbox\",",
+                      "                        \"required\": true",
+                      "                    },",
+                      "                    {",
+                      "                        \"key\": \"state\",",
+                      "                        \"label\": \"stateProvince\",",
+                      "                        \"type\": \"textbox\",",
+                      "                        \"required\": true,",
+                      "                        \"regex\": \"^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$\",",
+                      "                        \"validationMessage\": \"Must be a valid 2 character state code\"",
+                      "                    },",
+                      "                    {",
+                      "                        \"key\": \"zip\",",
+                      "                        \"label\": \"zip\",",
+                      "                        \"type\": \"textbox\",",
+                      "                        \"required\": true,",
+                      "                        \"regex\": \"^[0-9]{3,5}(?:-[0-9]{4})?$\",",
+                      "                        \"validationMessage\": \"Must be in the format 000-000, 00000 or 00000-0000\"",
+                      "                    }",
+                      "                ]",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Switch_BillingAccountNumber\",",
+                      "                \"label\": \"Company Account Number\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": true",
+                      "            }",
+                      "        ]",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct final action', function() {",
+                      "   pm.expect(jsonData.data.item.finalAction).to.equal('print'); ",
+                      "});",
+                      "",
+                      "",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{targets_postfix3}}{{payment_print_target_id}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "737757a3-ad38-4058-aaa7-27c21cb6ac1c",
+          "name": "Payments Online Only",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "c2c4b73e-4f1d-401c-8bc6-d54cd6831ca1",
+              "name": "Targets",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "2e64aea4-1175-4ff1-ad86-1a0886f45ec0",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has some items', function() {",
+                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
+                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    jsonData.data.items.forEach(i => {",
+                      "        pm.expect(i).to.have.property('targetId');",
+                      "        pm.expect(i).to.have.property('name');",
+                      "        pm.expect(i).to.have.property('type');",
+                      "        pm.expect(i.type).to.equal('payment');",
+                      "    });",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
+                      "});",
+                      "",
+                      "// Set an environment variable to test get target by id next.",
+                      "pm.environment.set(\"payments_online_target_id\", jsonData.data.items[0].targetId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {},
+                "url": {
+                  "raw": "{{base_url}}{{targets_postfix2}}?type=payment&name={{payment_online_only}}&customer={{customer_key}}",
+                  "host": [
+                    "{{base_url}}{{targets_postfix2}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "payment",
+                      "equals": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "{{payment_online_only}}",
+                      "equals": true
+                    },
+                    {
+                      "key": "customer",
+                      "value": "{{customer_key}}",
+                      "equals": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "c5823fb8-1365-4f5a-a766-27946af87b45",
+              "name": "Target By Id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "76f0cfa0-2c33-4ebf-a49b-349cd95ff332",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "    pm.expect(jsonData.data).to.have.property('item');",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type element', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal('payment'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct categories', function() {",
+                      "    var categories = {",
+                      "        \"key\": \"15\",",
+                      "        \"label\": \"Utility\"",
+                      "    };  ",
+                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type element', function() {",
+                      "    var ux = {",
+                      "        \"fields\": [",
+                      "            {",
+                      "                \"key\": \"instructions\",",
+                      "                \"label\": \"Instructions\",",
+                      "                \"type\": \"html\",",
+                      "                \"body\": \"This is a test Biller. These are Online Only instructions.\"",
+                      "            }",
+                      "        ]",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct final action', function() {",
+                      "   pm.expect(jsonData.data.item.finalAction).to.equal('complete'); ",
+                      "});",
+                      "",
+                      "",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{targets_postfix3}}{{payments_online_target_id}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "889d7fb3-9739-4419-8c54-40b01b585ef1",
+          "name": "Locations",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "5c8b8ddd-f860-4b06-a073-8e40c7d8389f",
+              "name": "Locations",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "e307f46d-3641-4098-8537-155ae6a1d450",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has at least one item', function() {",
+                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
+                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    jsonData.data.items.forEach(i => {",
+                      "       pm.expect(i).to.have.property('locationId');",
+                      "       pm.expect(i).to.have.property('name');",
+                      "       pm.expect(i).to.have.property('address');",
+                      "    });",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('location'); ",
+                      "});",
+                      "",
+                      "pm.environment.set(\"location_id\", jsonData.data.items[0].locationId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "body": {},
+                "url": {
+                  "raw": "{{base_url}}{{locations_postfix}}?customer={{customer_key}}&name={{location_name}}",
+                  "host": [
+                    "{{base_url}}{{locations_postfix}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer",
+                      "value": "{{customer_key}}",
+                      "equals": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "{{location_name}}",
+                      "equals": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "63dc3038-b599-4e56-b35f-52d562974cbb",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "bcf30ce0-ca6c-424f-86a7-f109d862422e",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
         }
       ]
     }
