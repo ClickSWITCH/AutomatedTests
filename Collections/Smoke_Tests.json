@@ -1453,7 +1453,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "2ec5628e-c3c6-4c85-94c6-06dfe0b127e2",
+                    "id": "972411c0-ac98-44b5-b5d9-e6a5a15c609f",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1534,7 +1534,8 @@
                       "        \"type\": \"\",",
                       "        \"name\": \"\",",
                       "        \"routingNumber\": \"\",",
-                      "        \"index\": 0",
+                      "        \"index\": 0,",
+                      "        \"metadata\": {}",
                       "    };",
                       "    ",
                       "    // Set the account vars to the values passed in the request body.",
