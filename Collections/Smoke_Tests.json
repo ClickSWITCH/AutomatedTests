@@ -3816,7 +3816,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "48cbabd6-1a3f-427d-8680-960b87a6da86",
+                    "id": "e5049387-8177-4a89-9162-a4b9199947a0",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3845,7 +3845,7 @@
                       "});",
                       "",
                       "pm.test('Has the correct index', function() {",
-                      "   pm.expect(jsonData.data.item.index).to.equal(2);",
+                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
                       "});",
                       "",
                       "pm.test('Has the correct type', function() {",
