@@ -2996,7 +2996,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "6b226579-1f06-4b80-b522-87efe792c2ec",
+                    "id": "767b5318-159d-458b-b928-e0d08820fd15",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3027,7 +3027,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
