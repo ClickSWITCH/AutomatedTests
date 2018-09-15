@@ -2991,7 +2991,7 @@
             },
             {
               "_postman_id": "72319bf1-420c-4a01-b1cb-2ee56fa9d4ea",
-              "name": "Switch Action",
+              "name": "Submit Switch",
               "event": [
                 {
                   "listen": "test",
@@ -3035,7 +3035,7 @@
             },
             {
               "_postman_id": "819c92b3-27ae-4b19-ac44-f497a3a5ef69",
-              "name": "Switch Action Copy",
+              "name": "Cancel Switch",
               "event": [
                 {
                   "listen": "test",
