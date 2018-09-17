@@ -3671,6 +3671,50 @@
               "response": []
             },
             {
+              "_postman_id": "c8690843-2f65-4c9e-adbc-8f57405a6e2b",
+              "name": "Submit Switch Copy",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "767b5318-159d-458b-b928-e0d08820fd15",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+              },
+              "response": []
+            },
+            {
               "_postman_id": "4778658b-0f09-479f-8d1c-18440e40ee55",
               "name": "Switch Action",
               "event": [
@@ -3742,50 +3786,6 @@
                 "body": {},
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
                 "description": "\t"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "c8690843-2f65-4c9e-adbc-8f57405a6e2b",
-              "name": "Submit Switch Copy",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "767b5318-159d-458b-b928-e0d08820fd15",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      ""
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             }
