@@ -3389,7 +3389,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0,\r\n        \"SplitAmount\": \"100\",\r\n        \"SplitType\": \"percentage\"\r\n      }\r\n    ]\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
@@ -3664,7 +3664,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0,\r\n        \"SplitAmount\": \"100\",\r\n        \"SplitType\": \"percentage\"\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Net or Amount (in dollars)\": 500,\r\n      \"Custom_or Percentage of Pay (1 - 100)\": 50,\r\n      \"Custom_Last 4 of SSN\": 1234,\r\n      \"Custom_Employee ID\": 123,\r\n      \"Custom_Depositor's Full Mailing Address\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Net or Amount (in dollars)\": 500,\r\n      \"Custom_or Percentage of Pay (1 - 100)\": 50,\r\n      \"Custom_Last 4 of SSN\": 3455,\r\n      \"Custom_Employee ID\": 123,\r\n      \"Custom_Depositor's Full Mailing Address\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
@@ -3904,7 +3904,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"type\": \"deposit\",\n  \"locationId\": \"{{location_id}}\",\n  \"accountholderIndex\": 0,\n  \"values\": {\n    \"accounts\": [\n      {\n        \"index\": 0,\n        \"SplitAmount\": \"100\",\n        \"SplitType\": \"percentage\"\n      }\n    ]\n  }\n}"
+                  "raw": "{\n  \"type\": \"deposit\",\n  \"locationId\": \"{{location_id}}\",\n  \"accountholderIndex\": 0,\n  \"values\": {\n    \"accounts\": [\n      {\n        \"index\": 0\n      }\n    ]\n  }\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
@@ -4118,7 +4118,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0,\r\n        \"SplitAmount\": \"100\",\r\n        \"SplitType\": \"percentage\"\r\n      }\r\n    ]\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
@@ -4170,7 +4170,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"locationId\": \"{{location_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0,\r\n        \"SplitAmount\": \"100\",\r\n        \"SplitType\": \"percentage\"\r\n      }\r\n    ]\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"locationId\": \"{{location_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
