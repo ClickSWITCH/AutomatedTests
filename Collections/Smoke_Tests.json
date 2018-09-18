@@ -3677,29 +3677,13 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "aaa31000-6848-41b7-9b45-728a356d2a50",
+                    "id": "be91061e-ea2f-4e46-9d91-ce129b700d12",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "",
                       "pm.test(\"Status code is 200\", function () {",
                       "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state = {",
-                      "        \"status\": \"Submitted\",",
-                      "        \"actions\": [",
-                      "            \"Cancel\"",
-                      "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {},",
-                      "            \"overall\": []",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.data.state).to.deep.include(state);",
                       "});",
                       ""
                     ]
