@@ -3270,7 +3270,7 @@
                   }
                 ],
                 "body": {},
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}",
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}",
                 "description": "Should return empty list since no switches have been created yet."
               },
               "response": []
