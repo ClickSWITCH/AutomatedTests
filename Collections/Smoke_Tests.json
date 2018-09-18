@@ -413,7 +413,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "5ac2a91f-5ea0-41ba-a596-d4e04725ddf2",
+                    "id": "9ba53927-00b4-48e3-87e4-54f07b91ec84",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -427,6 +427,10 @@
                       "    pm.expect(jsonData).to.have.property('apiVersion');",
                       "    pm.expect(jsonData).to.have.property('id');",
                       "});",
+                      "",
+                      "pm.test('Has the correct context', function() {",
+                      "    pm.expect(jsonData.context).to.equal('testing_context');",
+                      "})",
                       "",
                       "pm.test('Has required 2nd level elements', function() {",
                       "    pm.expect(jsonData.data).to.have.property('item');",
@@ -537,9 +541,9 @@
                   "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"55802\",\n            \"state\": \"MN\",\n            \"country\": \"US\"\n        }\n    ]\n}"
                 },
                 "url": {
-                  "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
+                  "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
                   "host": [
-                    "{{base_url}}{{customers_postfix}}{{customer_key}}"
+                    "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}"
                   ],
                   "query": [
                     {
