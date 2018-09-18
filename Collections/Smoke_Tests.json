@@ -3713,7 +3713,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "be91061e-ea2f-4e46-9d91-ce129b700d12",
+                    "id": "7a85fe3f-442c-42b7-95b2-7669c98a4e79",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3721,6 +3721,10 @@
                       "pm.test(\"Status code is 200\", function () {",
                       "    pm.response.to.have.status(200);",
                       "});",
+                      "",
+                      "pm.test('Has the correct context', function() {",
+                      "    pm.expect(jsonData.context).to.equal('testing_context');",
+                      "})",
                       ""
                     ]
                   }
@@ -3746,7 +3750,7 @@
                   "mode": "raw",
                   "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action{{context_param}}"
               },
               "response": []
             },
