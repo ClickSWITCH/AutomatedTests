@@ -230,7 +230,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "3a18151a-5a19-404a-8b90-22d7c3e9546c",
+                "id": "74d90fde-2509-4451-a886-18647421cd78",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -246,6 +246,10 @@
                   "    pm.expect(jsonData.data).to.have.property('kind');",
                   "    pm.expect(jsonData.data).to.have.property('lang');",
                   "});",
+                  "",
+                  "pm.test('Has the correct context', function() {",
+                  "    pm.expect(jsonData.context).to.equal('testing_context');",
+                  "})",
                   "",
                   "pm.test('Has the correct 8 items', function() {",
                   "   pm.expect(jsonData.data.currentItemCount).to.eql(12);",
@@ -355,7 +359,7 @@
               }
             ],
             "body": {},
-            "url": "{{base_url}}{{actions_postfix}}",
+            "url": "{{base_url}}{{actions_postfix}}{{context_param}}",
             "description": "Tests for the GET /types/switches/actions route."
           },
           "response": []
