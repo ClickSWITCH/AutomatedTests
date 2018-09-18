@@ -99,7 +99,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "d71bc0d8-e5c6-47ea-b6ed-884174b6d901",
+                "id": "9c63fdee-f7cb-40c1-aefb-7a3c2bb161fc",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -120,6 +120,10 @@
                   "   pm.expect(jsonData.data.currentItemCount).to.eql(10);",
                   "   pm.expect(jsonData.data.items).to.have.length(10);",
                   "});",
+                  "",
+                  "pm.test('Has the correct context', function() {",
+                  "    pm.expect(jsonData.context).to.equal('testing_context');",
+                  "})",
                   "",
                   "pm.test('Has the correct kind attribute', function() {",
                   "   pm.expect(jsonData.data.kind).to.equal('types#switch#statuses'); ",
@@ -210,7 +214,7 @@
               }
             ],
             "body": {},
-            "url": "{{base_url}}{{statuses_postfix}}",
+            "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
             "description": "Testing the GET /types/switch/statuses route"
           },
           "response": []
