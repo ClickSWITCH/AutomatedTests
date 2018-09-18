@@ -1938,7 +1938,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "c33ce017-b405-44ec-b93a-a14b6ac1a062",
+                    "id": "95385dad-0e49-4d91-99f0-52b75fe91ffd",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -1955,6 +1955,10 @@
                       "    pm.expect(jsonData.data).to.have.property('lang');",
                       "    pm.expect(jsonData.data).to.have.property('item');",
                       "});",
+                      "",
+                      "pm.test('Has the correct context', function() {",
+                      "    pm.expect(jsonData.context).to.equal('testing_context');",
+                      "})",
                       "",
                       "pm.test('Has required inner elements', function() {",
                       "    pm.expect(jsonData.data.item).to.have.property('targetId');",
@@ -2046,7 +2050,7 @@
                   }
                 ],
                 "body": {},
-                "url": "{{base_url}}{{targets_postfix3}}{{deposit_target_id}}"
+                "url": "{{base_url}}{{targets_postfix3}}{{deposit_target_id}}{{context_param}}"
               },
               "response": []
             }
