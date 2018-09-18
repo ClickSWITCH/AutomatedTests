@@ -413,7 +413,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "9ba53927-00b4-48e3-87e4-54f07b91ec84",
+                    "id": "ad00a602-7669-447f-a36c-31c78c84e66d",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -427,10 +427,6 @@
                       "    pm.expect(jsonData).to.have.property('apiVersion');",
                       "    pm.expect(jsonData).to.have.property('id');",
                       "});",
-                      "",
-                      "pm.test('Has the correct context', function() {",
-                      "    pm.expect(jsonData.context).to.equal('testing_context');",
-                      "})",
                       "",
                       "pm.test('Has required 2nd level elements', function() {",
                       "    pm.expect(jsonData.data).to.have.property('item');",
