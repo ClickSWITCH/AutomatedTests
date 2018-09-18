@@ -18,7 +18,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "8a4cfeaf-9bbf-487b-8c62-5a5bf68afc00",
+                "id": "6c17675a-3cdc-45a7-b036-880579f8e420",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -39,6 +39,10 @@
                   "    pm.expect(jsonData.data.currentItemCount).to.eql(2);",
                   "    pm.expect(jsonData.data.items).to.have.length(2);",
                   "});",
+                  "",
+                  "pm.test('Has the correct context', function() {",
+                  "    pm.expect(jsonData.context).to.equal('testing_context');",
+                  "})",
                   "",
                   "pm.test('Has the correct kind attribute', function() {",
                   "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
@@ -87,7 +91,7 @@
               }
             ],
             "body": {},
-            "url": "{{base_url}}{{targets_postfix}}",
+            "url": "{{base_url}}{{targets_postfix}}{{context_param}}",
             "description": "Tests out the GET /types/targets method"
           },
           "response": []
