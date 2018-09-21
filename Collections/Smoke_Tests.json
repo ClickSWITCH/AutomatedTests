@@ -4166,7 +4166,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "0dd0e934-4049-4102-98ab-80765fc85087",
+                    "id": "437c9c5a-58a8-424b-b802-ad882ebaa80a",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4219,9 +4219,11 @@
                       "        ],",
                       "        \"validation\": {",
                       "            \"accounts\": [],",
-                      "            \"fields\": {},",
+                      "            \"fields\": {",
+                      "                \"Custom_Work Location\": \"Custom_Work Location is required.\",",
+                      "                \"Custom_Last 4 of SSN\": \"Custom_Last 4 of SSN is required.\"",
+                      "            },",
                       "            \"overall\": [",
-                      "                \"At least one account must be selected\",",
                       "                \"Address field Line 1 is a required field.\",",
                       "                \"Address field City is a required field.\",",
                       "                \"Address field State is a required field.\",",
@@ -4270,14 +4272,23 @@
                       "",
                       "pm.test('Has the correct values element', function() {",
                       "   var values = {",
-                      "        \"accounts\": [],",
+                      "        \"accounts\": [",
+                      "            {",
+                      "                \"index\": 0",
+                      "            }",
+                      "        ],",
                       "        \"fields\": {",
                       "            \"category\": null,",
                       "            \"name\": \"\",",
                       "            \"mailingAddress\": {},",
                       "            \"notes\": null,",
                       "            \"phoneNumber\": null,",
-                      "            \"website\": null",
+                      "            \"website\": null,",
+                      "            \"Custom_Amount (in dollars)\": null,",
+                      "            \"Custom_or Percentage of Pay (1 - 100)\": null,",
+                      "            \"Custom_Work Location\": null,",
+                      "            \"Custom_Employee ID\": null,",
+                      "            \"Custom_Last 4 of SSN\": null",
                       "        }",
                       "    };",
                       "    //Null out name to ensure canadian tests pass.",
@@ -4304,7 +4315,7 @@
                   "mode": "raw",
                   "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n    \t\"name\": \"Test\"\r\n    }\r\n  }\r\n}"
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/2"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/4"
               },
               "response": []
             }
