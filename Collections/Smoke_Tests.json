@@ -2531,7 +2531,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "1249cd4e-4997-4d55-8319-a34f7e000d32",
+                    "id": "9910dd13-cb20-4756-a13c-284eeef3fa5e",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -2575,13 +2575,11 @@
                       "",
                       "pm.test('Has the correct ux element', function() {",
                       "    var uxAccounts = {",
-                      "        \"accounts\": {",
-                      "            \"limit\": 1,",
-                      "            \"maxChecking\": 1,",
-                      "            \"maxSavings\": 1,",
-                      "            \"choices\": [],",
-                      "            \"fields\": []",
-                      "        }",
+                      "        \"limit\": 1,",
+                      "        \"maxChecking\": 1,",
+                      "        \"maxSavings\": 1,",
+                      "        \"choices\": [],",
+                      "        \"fields\": []",
                       "    };",
                       "    ",
                       "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(uxAccounts); ",
