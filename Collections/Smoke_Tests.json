@@ -3736,7 +3736,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "4e7cda00-5063-4f22-be24-c20a0571c037",
+                    "id": "95e1d04e-78d8-4779-8bdf-925b0d554f86",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3789,10 +3789,11 @@
                       "        ],",
                       "        \"validation\": {",
                       "            \"accounts\": [],",
-                      "            \"fields\": {},",
-                      "            \"overall\": [",
-                      "                \"Notes is a required field.\"",
-                      "            ]",
+                      "            \"fields\": {",
+                      "                \"Custom_Work Location\": \"Custom_Work Location is required.\",",
+                      "                \"Custom_Last 4 of SSN\": \"Custom_Last 4 of SSN is required.\"",
+                      "            },",
+                      "            \"overall\": []",
                       "        }",
                       "    };",
                       "    ",
