@@ -4060,7 +4060,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "5c137111-72bd-403b-92b4-a07a689dbb70",
+                    "id": "6796d423-ac40-4473-9a25-973ffba17bd4",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4228,9 +4228,7 @@
                       "            }",
                       "        };",
                       "    }",
-                      "  ",
-                      "    //Null out name to ensure canadian tests pass.",
-                      "    jsonData.data.item.values.fields.name = \"\";",
+                      "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});"
                     ]
