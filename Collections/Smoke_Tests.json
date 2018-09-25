@@ -3903,7 +3903,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "789686a2-85af-4295-86e4-73b9e90cd1ed",
+                    "id": "a7a9dcfc-489b-4fe2-afa6-7b80f177684d",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4011,7 +4011,7 @@
                       "   var values = {",
                       "        \"accounts\": [],",
                       "        \"fields\": {",
-                      "            \"name\": \"Undefined\",",
+                      "            \"name\": \"\",",
                       "            \"mailingAddress\": {},",
                       "            \"Custom_Amount (in dollars)\": null,",
                       "            \"Custom_or Percentage of Pay (1 - 100)\": null,",
