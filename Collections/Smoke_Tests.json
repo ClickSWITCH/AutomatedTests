@@ -4060,7 +4060,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "6796d423-ac40-4473-9a25-973ffba17bd4",
+                    "id": "3a2d50d7-89b4-48e4-8842-49b6e34a6152",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4123,8 +4123,7 @@
                       "                    \"Address field Line 1 is a required field.\",",
                       "                    \"Address field City is a required field.\",",
                       "                    \"Address field State is a required field.\",",
-                      "                    \"Address field Zip is a required field.\",",
-                      "                    \"Notes is a required field.\"",
+                      "                    \"Address field Zip is a required field.\"",
                       "                ]",
                       "            }",
                       "        };",
