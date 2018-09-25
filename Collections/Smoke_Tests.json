@@ -4060,7 +4060,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "11484faf-25b4-429f-b1b5-22e620007b59",
+                    "id": "5c137111-72bd-403b-92b4-a07a689dbb70",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4199,12 +4199,8 @@
                       "                }",
                       "            ],",
                       "            \"fields\": {",
-                      "                \"category\": null,",
-                      "                \"name\": \"\",",
+                      "                \"name\": \"Test\",",
                       "                \"mailingAddress\": {},",
-                      "                \"notes\": null,",
-                      "                \"phoneNumber\": null,",
-                      "                \"website\": null,",
                       "                \"Custom_Amount (in dollars)\": null,",
                       "                \"Custom_or Percentage of Pay (1 - 100)\": null,",
                       "                \"Custom_Work Location\": null,",
