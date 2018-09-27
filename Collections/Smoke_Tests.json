@@ -3631,54 +3631,6 @@
               "response": []
             },
             {
-              "_postman_id": "295deddd-26c2-4fa3-a66e-d089ed296709",
-              "name": "Submit Switch Copy",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "7a85fe3f-442c-42b7-95b2-7669c98a4e79",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct context', function() {",
-                      "    pm.expect(jsonData.context).to.equal('testing_context');",
-                      "})",
-                      ""
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action{{context_param}}"
-              },
-              "response": []
-            },
-            {
               "_postman_id": "4778658b-0f09-479f-8d1c-18440e40ee55",
               "name": "Cancel Switch",
               "event": [
@@ -4367,6 +4319,54 @@
                   "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n      \"name\": \"Test\",\r\n      \"MailingAddress\": {\r\n      \t\"Line1\": \"123 Main Street\",\r\n      \t\"City\": \"Duluth\",\r\n      \t\"State\": \"MN\",\r\n      \t\"Zip\": 55803\r\n      },\r\n      \"Custom_Net or Amount (in dollars)\": \"500\",\r\n      \"Custom_or Percentage of Pay (1 - 100)\": \"50\",\r\n      \"Custom_Last 4 of SSN\": \"1234\",\r\n      \"Custom_Employee ID\": \"123\",\r\n      \"Custom_Work Location\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/2"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "295deddd-26c2-4fa3-a66e-d089ed296709",
+              "name": "Submit Switch Copy",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "7a85fe3f-442c-42b7-95b2-7669c98a4e79",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct context', function() {",
+                      "    pm.expect(jsonData.context).to.equal('testing_context');",
+                      "})",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action{{context_param}}"
               },
               "response": []
             }
