@@ -4517,62 +4517,6 @@
               "response": []
             },
             {
-              "_postman_id": "25a985d0-0436-4f15-bc6c-9c2516a00c0c",
-              "name": "Cancel Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state = {",
-                      "        \"status\": \"Canceled\",",
-                      "        \"actions\": [",
-                      "            \"Uncancel\",",
-                      "            \"HTTP-DELETE\"",
-                      "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {},",
-                      "            \"overall\": []",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 2,\r\n  \"action\": \"Cancel\"\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/2/action"
-              },
-              "response": []
-            },
-            {
               "_postman_id": "892b174d-aa2d-4c05-9cee-2690e79ab990",
               "name": "Delete Switch",
               "event": [
