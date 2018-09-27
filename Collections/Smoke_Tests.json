@@ -3932,7 +3932,7 @@
             },
             {
               "_postman_id": "2e23b02a-8082-4df4-b627-73d3f0da1231",
-              "name": "Update Switch Copy",
+              "name": "Update Switch",
               "event": [
                 {
                   "listen": "test",
