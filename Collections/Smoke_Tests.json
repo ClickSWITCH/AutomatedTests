@@ -3945,7 +3945,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "02848f11-5d2a-4b42-a0de-4c670a2dd8fd",
+                    "id": "d1c0940f-14ad-4db9-b6b2-1a839e8f5281",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3966,7 +3966,6 @@
                       "    pm.expect(jsonData.data.item).to.have.property('index');",
                       "    pm.expect(jsonData.data.item).to.have.property('type');",
                       "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
                       "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
                       "    pm.expect(jsonData.data.item).to.have.property('values');",
                       "    pm.expect(jsonData.data.item).to.have.property('ux');",
@@ -3979,10 +3978,6 @@
                       "",
                       "pm.test('Has the correct type', function() {",
                       "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
-                      "});",
-                      "",
-                      "pm.test('Has the correct targetId and locationId', function() {",
-                      "   pm.expect(jsonData.data.item.name).to.have.string(\"Undefined\");",
                       "});",
                       "",
                       "pm.test('Has the correct accountHolderIndex', function() {",
