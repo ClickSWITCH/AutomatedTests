@@ -3937,7 +3937,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "265f67c4-35c2-440d-aa21-3d100325e944",
+                    "id": "d546bba4-7a3a-4a2b-bea9-cfb6111074fb",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4062,13 +4062,6 @@
                       "                }",
                       "            ],",
                       "            \"fields\": {",
-                      "                \"name\": \"Test\",",
-                      "                \"mailingAddress\": {",
-                      "                    \"line1\": \"123 Main Street\",",
-                      "                    \"city\": \"Duluth\",",
-                      "                    \"state\": \"MN\",",
-                      "                    \"zip\": \"55803\"",
-                      "                },",
                       "                \"Custom_Amount (in dollars)\": null,",
                       "                \"Custom_or Percentage of Pay (1 - 100)\": \"50\",",
                       "                \"Custom_Work Location\": \"123 Main Street\",",
