@@ -3937,7 +3937,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "4c3ac374-5fea-44e9-9741-906d6d5b8f0d",
+                    "id": "f127f6ef-31f7-450e-b66d-e696867b96a3",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3977,8 +3977,8 @@
                       "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
                       "});",
                       "",
-                      "pm.test('Has the correct targetId', function() {",
-                      "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get(\"deposit_target_id\"));",
+                      "pm.test('Has the correct targetId and locationId', function() {",
+                      "   pm.expect(jsonData.data.item.locationId).to.equal(pm.environment.get('location_id'));",
                       "});",
                       "",
                       "pm.test('Has the correct accountHolderIndex', function() {",
