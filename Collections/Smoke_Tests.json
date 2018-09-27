@@ -4134,7 +4134,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "3ded7cc1-ed27-4d43-9f67-01c2beacaa6c",
+                    "id": "d7bb520c-32e9-4f63-9484-b4d46d9322bb",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4290,7 +4290,7 @@
                       "                    \"zip\": \"55803\"",
                       "                },",
                       "                \"Custom_WorkLocationDepartment\": null,",
-                      "                \"Custom_Employee ID\": null,",
+                      "                \"Custom_Employee ID\": \"123\",",
                       "                \"Custom_Last 3 of SIN\": null",
                       "            }",
                       "        };",
