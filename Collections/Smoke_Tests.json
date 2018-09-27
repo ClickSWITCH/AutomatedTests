@@ -4324,7 +4324,7 @@
             },
             {
               "_postman_id": "295deddd-26c2-4fa3-a66e-d089ed296709",
-              "name": "Submit Switch Copy",
+              "name": "Submit Switch",
               "event": [
                 {
                   "listen": "test",
