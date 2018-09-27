@@ -2581,7 +2581,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                    "id": "f7f0dc73-47c8-4642-8246-e0dc0ddd57b6",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -2597,10 +2597,6 @@
                       "    pm.expect(jsonData.data).to.have.property('kind');",
                       "    pm.expect(jsonData.data).to.have.property('lang');",
                       "});",
-                      "",
-                      "pm.test('Has the correct context', function() {",
-                      "    pm.expect(jsonData.context).to.equal('testing_context');",
-                      "})",
                       "",
                       "pm.test('Has required 2nd level elements', function() {",
                       "    pm.expect(jsonData.data.item).to.have.property('index');",
@@ -2722,7 +2718,7 @@
                   "mode": "raw",
                   "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
               "response": []
             },
@@ -2733,7 +2729,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "0c8ad97b-fa49-42f4-a004-c4e2e9b39682",
+                    "id": "d0f76763-2cc6-4609-90ec-1fa617ff2705",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -2749,10 +2745,6 @@
                       "    pm.expect(jsonData.data).to.have.property('kind');",
                       "    pm.expect(jsonData.data).to.have.property('lang');",
                       "});",
-                      "",
-                      "pm.test('Has the correct context', function() {",
-                      "    pm.expect(jsonData.context).to.equal('testing_context');",
-                      "})",
                       "",
                       "pm.test('Has required 2nd level elements', function() {",
                       "    pm.expect(jsonData.data.item).to.have.property('index');",
@@ -2867,7 +2859,7 @@
                   }
                 ],
                 "body": {},
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
               "response": []
             },
