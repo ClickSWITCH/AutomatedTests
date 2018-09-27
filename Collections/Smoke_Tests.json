@@ -3945,7 +3945,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "318ed958-d610-4ce3-a79d-423fb4c59972",
+                    "id": "8feb0d21-7214-409d-bbbc-ff26ec1d75df",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4089,7 +4089,6 @@
                       "        values = {",
                       "            \"accounts\": [],",
                       "            \"fields\": {",
-                      "                \"name\": \"Undefined Canadian\",",
                       "                \"mailingAddress\": {},",
                       "                \"Custom_WorkLocationDepartment\": null,",
                       "                \"Custom_Employee ID\": null,",
@@ -4318,7 +4317,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n    \t\"name\": \"Test\"\r\n    }\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n      \"name\": \"Test\",\r\n      \"MailingAddress\": {\r\n      \t\"Line1\": \"123 Main Street\",\r\n      \t\"City\": \"Duluth\",\r\n      \t\"State\": \"MN\",\r\n      \t\"Zip\": 55803\r\n      },\r\n      \"Custom_Net or Amount (in dollars)\": \"500\",\r\n      \"Custom_or Percentage of Pay (1 - 100)\": \"50\",\r\n      \"Custom_Last 4 of SSN\": \"1234\",\r\n      \"Custom_Employee ID\": \"123\",\r\n      \"Custom_Work Location\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/2"
               },
