@@ -3937,7 +3937,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "d546bba4-7a3a-4a2b-bea9-cfb6111074fb",
+                    "id": "bc7f1db2-c77c-413f-8943-a2821b7897fe",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4062,7 +4062,7 @@
                       "                }",
                       "            ],",
                       "            \"fields\": {",
-                      "                \"Custom_Amount (in dollars)\": null,",
+                      "                \"Custom_Amount (in dollars)\": \"500\",",
                       "                \"Custom_or Percentage of Pay (1 - 100)\": \"50\",",
                       "                \"Custom_Work Location\": \"123 Main Street\",",
                       "                \"Custom_Employee ID\": \"123\",",
@@ -4077,13 +4077,6 @@
                       "                }",
                       "            ],",
                       "            \"fields\": {",
-                      "                \"name\": \"Test\",",
-                      "                \"mailingAddress\": {",
-                      "                    \"line1\": \"123 Main Street\",",
-                      "                    \"city\": \"Duluth\",",
-                      "                    \"state\": \"MN\",",
-                      "                    \"zip\": \"55803\"",
-                      "                },",
                       "                \"Custom_WorkLocationDepartment\": null,",
                       "                \"Custom_Employee ID\": \"123\",",
                       "                \"Custom_Last 3 of SIN\": null",
