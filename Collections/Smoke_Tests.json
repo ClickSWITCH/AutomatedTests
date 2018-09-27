@@ -4426,7 +4426,7 @@
                   "mode": "raw",
                   "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/2/action"
               },
               "response": []
             }
