@@ -4416,10 +4416,6 @@
                   {
                     "key": "Content-Type",
                     "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
                 "body": {
@@ -4456,7 +4452,7 @@
                   }
                 ],
                 "body": {},
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/2",
                 "description": "\t"
               },
               "response": []
