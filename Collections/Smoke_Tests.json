@@ -4372,7 +4372,7 @@
             },
             {
               "_postman_id": "25a985d0-0436-4f15-bc6c-9c2516a00c0c",
-              "name": "Cancel Switch Copy",
+              "name": "Cancel Switch",
               "event": [
                 {
                   "listen": "test",
