@@ -4139,7 +4139,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "8feb0d21-7214-409d-bbbc-ff26ec1d75df",
+                    "id": "c069b7d9-fb3c-4658-81cb-952fd7db6c70",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4272,11 +4272,11 @@
                       "            \"accounts\": [],",
                       "            \"fields\": {",
                       "                \"mailingAddress\": {},",
-                      "                \"Custom_Amount (in dollars)\": null,",
-                      "                \"Custom_or Percentage of Pay (1 - 100)\": null,",
                       "                \"Custom_Work Location\": null,",
                       "                \"Custom_Employee ID\": null,",
-                      "                \"Custom_Last 4 of SSN\": null",
+                      "                \"Custom_Last 4 of SSN\": null,",
+                      "                \"Custom_Amount or Net Pay\": null,",
+                      "                \"Custom_or Percentage\": null",
                       "            }",
                       "        };",
                       "    } else {",
