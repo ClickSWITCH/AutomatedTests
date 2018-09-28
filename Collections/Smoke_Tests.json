@@ -3937,7 +3937,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "6581edf3-22e7-4921-bc72-ca0657910b83",
+                    "id": "da8087da-f3b1-4bd4-98ce-93c7d3c44473",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4069,11 +4069,11 @@
                       "                    \"state\": \"MN\",",
                       "                    \"zip\": \"55802\"",
                       "                },",
-                      "                \"Custom_Amount (in dollars)\": \"500\",",
-                      "                \"Custom_or Percentage of Pay (1 - 100)\": \"50\",",
-                      "                \"Custom_Work Location\": \"123 Main Street\",",
+                      "                \"Custom_Amount or Net Pay\": \"Net\",",
+                      "                \"Custom_or Percentage\": \"100\",",
+                      "                \"Custom_Last 4 of SSN\": \"1234\",",
                       "                \"Custom_Employee ID\": \"123\",",
-                      "                \"Custom_Last 4 of SSN\": \"1234\"",
+                      "\"Custom_Work Location\": \"123 Main Street\"",
                       "            }",
                       "        };",
                       "    } else {",
@@ -4118,7 +4118,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"locationId\": \"{{location_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Amount (in dollars)\": \"500\",\r\n      \"Custom_or Percentage of Pay (1 - 100)\": \"50\",\r\n      \"Custom_Last 4 of SSN\": \"1234\",\r\n      \"Custom_Employee ID\": \"123\",\r\n      \"Custom_Work Location\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"locationId\": \"{{location_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Amount or Net Pay\": \"Net\",\r\n      \"Custom_or Percentage\": \"100\",\r\n      \"Custom_Last 4 of SSN\": \"1234\",\r\n      \"Custom_Employee ID\": \"123\",\r\n      \"Custom_Work Location\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
               },
