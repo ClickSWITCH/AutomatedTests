@@ -4326,7 +4326,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "1f3c3945-d04b-44e8-9821-e3d27aef85fb",
+                    "id": "e6bb7a11-3e65-4dc8-9648-596fbcd09904",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4453,12 +4453,15 @@
                       "            ],",
                       "            \"fields\": {",
                       "                \"name\": \"Test\",",
+                      "                \"phoneNumber\": null,",
+                      "                \"website\": null,",
                       "                \"mailingAddress\": {",
                       "                    \"line1\": \"123 Main Street\",",
                       "                    \"city\": \"Duluth\",",
                       "                    \"state\": \"MN\",",
                       "                    \"zip\": \"55803\"",
                       "                },",
+                      "                \"category\": 0,",
                       "               \t\"Custom_Amount or Net Pay\": \"Net\",",
                       "        \t\t\"Custom_or Percentage\": \"100\",",
                       "        \t\t\"Custom_Last 4 of SSN\": \"1234\",",
@@ -4483,6 +4486,7 @@
                       "                    \"state\": \"MN\",",
                       "                    \"zip\": \"55803\"",
                       "                },",
+                      "                \"category\": 0,",
                       "                \"Custom_WorkLocationDepartment\": null,",
                       "                \"Custom_Employee ID\": \"123\",",
                       "                \"Custom_Last 3 of SIN\": null",
