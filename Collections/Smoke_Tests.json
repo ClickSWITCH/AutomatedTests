@@ -4520,7 +4520,7 @@
                   "mode": "raw",
                   "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n      \"name\": \"Test\",\r\n      \"MailingAddress\": {\r\n      \t\"Line1\": \"123 Main Street\",\r\n      \t\"City\": \"Duluth\",\r\n      \t\"State\": \"MN\",\r\n      \t\"Zip\": 55803\r\n      },\r\n\t\t\"Custom_Amount or Net Pay\": \"Net\",\r\n\t\t\"Custom_or Percentage\": \"100\",\r\n\t\t\"Custom_Last 4 of SSN\": \"1234\",\r\n\t\t\"Custom_Employee ID\": \"123\",\r\n\t\t\"Custom_Work Location\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/5"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/2"
               },
               "response": []
             }
