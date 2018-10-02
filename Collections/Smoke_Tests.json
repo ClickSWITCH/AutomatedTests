@@ -9,7 +9,7 @@
     {
       "_postman_id": "3ffc5fb9-1f91-417f-b5ba-73263c35d599",
       "name": "Types",
-      "description": "",
+      "description": "Folder containing the tests for the \"/types/targets\", \"/types/switch/statuses\", and \"/types/switch/actions\" routes.",
       "item": [
         {
           "_postman_id": "c920930d-49bf-4aa4-8be4-faf7f1bb5ba9",
@@ -363,6 +363,28 @@
             "description": "Tests for the GET /types/switches/actions route."
           },
           "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "d6e4a28e-b3d1-4b2c-915b-c7876f1f1438",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "49f14a4d-1572-41a3-89aa-f9d17e5f8be7",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
         }
       ]
     },
@@ -4326,7 +4348,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "e6bb7a11-3e65-4dc8-9648-596fbcd09904",
+                    "id": "8622eeec-15b5-4f85-b822-247d174aecda",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4457,6 +4479,8 @@
                       "                \"website\": null,",
                       "                \"mailingAddress\": {",
                       "                    \"line1\": \"123 Main Street\",",
+                      "                    \"line2\": null,",
+                      "                    \"line3\": null,",
                       "                    \"city\": \"Duluth\",",
                       "                    \"state\": \"MN\",",
                       "                    \"zip\": \"55803\"",
@@ -4482,6 +4506,8 @@
                       "                \"website\": null,",
                       "                \"mailingAddress\": {",
                       "                    \"line1\": \"123 Main Street\",",
+                      "                    \"line2\": null,",
+                      "                    \"line3\": null,",
                       "                    \"city\": \"Duluth\",",
                       "                    \"state\": \"MN\",",
                       "                    \"zip\": \"55803\"",
