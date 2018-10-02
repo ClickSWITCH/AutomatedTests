@@ -92,7 +92,7 @@
             ],
             "body": {},
             "url": "{{base_url}}{{targets_postfix}}{{context_param}}",
-            "description": "Tests out the GET /types/targets method"
+            "description": "Asserts that the GET `/types/targets` endpoint is returning the correct values."
           },
           "response": []
         },
