@@ -2,18 +2,18 @@
   "info": {
     "_postman_id": "1dcea77f-1205-444a-8316-1e06856a07e4",
     "name": "Smoke Tests",
-    "description": "A collection of tests that hit all the QA endpoints with some tests that ensure the API is up and working. These tests don't test complicated business logic but rather ensure that the correct response types and lengths are being returned.",
+    "description": "A collection of tests that hit all the API endpoints to ensure the API is functioning properly. ",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
       "_postman_id": "3ffc5fb9-1f91-417f-b5ba-73263c35d599",
       "name": "Types",
-      "description": "Folder containing the tests for the \"/types/targets\", \"/types/switch/statuses\", and \"/types/switch/actions\" routes.",
+      "description": "Folder containing the tests for the `/types/targets`, `/types/switch/statuses`, and `/types/switch/actions` routes.",
       "item": [
         {
           "_postman_id": "c920930d-49bf-4aa4-8be4-faf7f1bb5ba9",
-          "name": "Targets",
+          "name": "Types Targets",
           "event": [
             {
               "listen": "test",
