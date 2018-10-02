@@ -18,7 +18,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "6c17675a-3cdc-45a7-b036-880579f8e420",
+                "id": "0e1295ee-9045-4151-acee-6d05bf191f08",
                 "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
@@ -42,7 +42,7 @@
                   "",
                   "pm.test('Has the correct context', function() {",
                   "    pm.expect(jsonData.context).to.equal('testing_context');",
-                  "})",
+                  "});",
                   "",
                   "pm.test('Has the correct kind attribute', function() {",
                   "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
