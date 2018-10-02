@@ -4326,7 +4326,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "e6bb7a11-3e65-4dc8-9648-596fbcd09904",
+                    "id": "8622eeec-15b5-4f85-b822-247d174aecda",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4457,6 +4457,8 @@
                       "                \"website\": null,",
                       "                \"mailingAddress\": {",
                       "                    \"line1\": \"123 Main Street\",",
+                      "                    \"line2\": null,",
+                      "                    \"line3\": null,",
                       "                    \"city\": \"Duluth\",",
                       "                    \"state\": \"MN\",",
                       "                    \"zip\": \"55803\"",
@@ -4482,6 +4484,8 @@
                       "                \"website\": null,",
                       "                \"mailingAddress\": {",
                       "                    \"line1\": \"123 Main Street\",",
+                      "                    \"line2\": null,",
+                      "                    \"line3\": null,",
                       "                    \"city\": \"Duluth\",",
                       "                    \"state\": \"MN\",",
                       "                    \"zip\": \"55803\"",
@@ -4516,7 +4520,7 @@
                   "mode": "raw",
                   "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n      \"name\": \"Test\",\r\n      \"MailingAddress\": {\r\n      \t\"Line1\": \"123 Main Street\",\r\n      \t\"City\": \"Duluth\",\r\n      \t\"State\": \"MN\",\r\n      \t\"Zip\": 55803\r\n      },\r\n\t\t\"Custom_Amount or Net Pay\": \"Net\",\r\n\t\t\"Custom_or Percentage\": \"100\",\r\n\t\t\"Custom_Last 4 of SSN\": \"1234\",\r\n\t\t\"Custom_Employee ID\": \"123\",\r\n\t\t\"Custom_Work Location\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/2"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/5"
               },
               "response": []
             }
