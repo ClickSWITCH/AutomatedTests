@@ -4326,7 +4326,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "3a4c3e44-a57b-4ce3-b373-9a468df7dc80",
+                    "id": "1f3c3945-d04b-44e8-9821-e3d27aef85fb",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4475,6 +4475,8 @@
                       "            ],",
                       "            \"fields\": {",
                       "                \"name\": \"Test\",",
+                      "                \"phoneNumber\": null,",
+                      "                \"website\": null,",
                       "                \"mailingAddress\": {",
                       "                    \"line1\": \"123 Main Street\",",
                       "                    \"city\": \"Duluth\",",
