@@ -3748,7 +3748,7 @@
         },
         {
           "_postman_id": "9fd88b31-077d-413e-9464-ee2116e418d0",
-          "name": "Deposits using LocationId",
+          "name": "Deposit using LocationId",
           "description": "",
           "item": [
             {
@@ -5559,7 +5559,7 @@
         },
         {
           "_postman_id": "d7721cc1-f91c-4323-a65f-bb8d43c25e97",
-          "name": "Payments using LocationId",
+          "name": "Payment using LocationId",
           "description": "",
           "item": [
             {
