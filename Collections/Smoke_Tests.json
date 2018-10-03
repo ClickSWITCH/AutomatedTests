@@ -5143,7 +5143,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                    "id": "5c45b999-5a3e-4c60-a0eb-60c2e1a18d6e",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -5159,10 +5159,6 @@
                       "    pm.expect(jsonData.data).to.have.property('kind');",
                       "    pm.expect(jsonData.data).to.have.property('lang');",
                       "});",
-                      "",
-                      "pm.test('Has the correct context', function() {",
-                      "    pm.expect(jsonData.context).to.equal('testing_context');",
-                      "})",
                       "",
                       "pm.test('Has required 2nd level elements', function() {",
                       "    pm.expect(jsonData.data.item).to.have.property('index');",
@@ -5180,11 +5176,11 @@
                       "});",
                       "",
                       "pm.test('Has the correct type', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Payment\");",
                       "});",
                       "",
                       "pm.test('Has the correct targetId', function() {",
-                      "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get(\"deposit_target_id\"));",
+                      "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get(\"payment_target_id\"));",
                       "});",
                       "",
                       "pm.test('Has the correct accountHolderIndex', function() {",
@@ -5284,7 +5280,7 @@
                   "mode": "raw",
                   "raw": "{\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
               "response": []
             },
