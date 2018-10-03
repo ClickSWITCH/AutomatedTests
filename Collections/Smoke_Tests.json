@@ -5942,7 +5942,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "13d58bcb-55fd-4d89-b1a2-38fe6707ed05",
+                    "id": "bfae54b8-5560-446f-ac38-87ef082cfa3c",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -5993,8 +5993,7 @@
                       "            \"validation\": {",
                       "                \"accounts\": [],",
                       "                \"fields\": {",
-                      "                    \"Custom_Work Location\": \"Custom_Work Location is required.\",",
-                      "                    \"Custom_Last 4 of SSN\": \"Custom_Last 4 of SSN is required.\"",
+                      "                    \"Switch_BillingAccountNumber\": \"Switch_BillingAccountNumber is required.\"",
                       "                },",
                       "                \"overall\": [",
                       "                    \"At least one account must be selected\",",
@@ -6088,11 +6087,9 @@
                       "                    \"zip\": null",
                       "                },",
                       "                \"category\": 0,",
-                      "                \"Custom_Work Location\": null,",
-                      "                \"Custom_Employee ID\": null,",
-                      "                \"Custom_Last 4 of SSN\": null,",
-                      "                \"Custom_Amount or Net Pay\": null,",
-                      "                \"Custom_or Percentage\": null",
+                      "                \"Custom_Withdrawal Date\": null,",
+                      "                \"Custom_Amount\": null,",
+                      "                \"Switch_BillingAccountNumber\": null",
                       "            }",
                       "        };",
                       "    } else {",
