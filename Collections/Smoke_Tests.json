@@ -4403,7 +4403,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "354d9b0a-7aa9-405a-8088-a31e6856b3c3",
+                    "id": "76791e23-4c57-48ed-82bc-e99a2a280add",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4459,6 +4459,7 @@
                       "                },",
                       "                \"overall\": [",
                       "                    \"At least one account must be selected\",",
+                      "                    \"Category is required.\",",
                       "                    \"Name is a required field.\",",
                       "                    \"Address field Line 1 is a required field.\",",
                       "                    \"Address field City is a required field.\",",
@@ -4482,6 +4483,7 @@
                       "                },",
                       "                \"overall\": [",
                       "                    \"At least one account must be selected\",",
+                      "                    \"Category is required.\",",
                       "                    \"Name is a required field.\",",
                       "                    \"Address field Line 1 is a required field.\",",
                       "                    \"Address field City is a required field.\",",
