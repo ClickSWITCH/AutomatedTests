@@ -4616,7 +4616,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "68244bef-a42e-4566-9f44-317706001983",
+                    "id": "49bfc1c3-c2bc-4bc9-b268-8869b4be182b",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4753,12 +4753,12 @@
                       "                    \"state\": \"MN\",",
                       "                    \"zip\": \"55803\"",
                       "                },",
-                      "                \"category\": 0,",
-                      "               \t\"Custom_Amount or Net Pay\": \"Net\",",
-                      "        \t\t\"Custom_or Percentage\": \"100\",",
-                      "        \t\t\"Custom_Last 4 of SSN\": \"1234\",",
-                      "        \t\t\"Custom_Employee ID\": \"123\",",
-                      "        \t\t\"Custom_Work Location\": \"123 Main Street\"",
+                      "                \"category\": 1,",
+                      "                \"Custom_Work Location\": \"123 Main Street\",",
+                      "                \"Custom_Employee ID\": \"123\",",
+                      "                \"Custom_Last 4 of SSN\": \"1234\",",
+                      "                \"Custom_Amount or Net Pay\": \"Net\",",
+                      "                \"Custom_or Percentage\": \"100\"",
                       "            }",
                       "        };",
                       "    } else {",
@@ -4780,7 +4780,7 @@
                       "                    \"state\": \"MN\",",
                       "                    \"zip\": \"55803\"",
                       "                },",
-                      "                \"category\": 0,",
+                      "                \"category\": 1,",
                       "                \"Custom_WorkLocationDepartment\": null,",
                       "                \"Custom_Employee ID\": \"123\",",
                       "                \"Custom_Last 3 of SIN\": null",
@@ -4808,9 +4808,9 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n      \"name\": \"Test\",\r\n      \"MailingAddress\": {\r\n      \t\"Line1\": \"123 Main Street\",\r\n      \t\"City\": \"Duluth\",\r\n      \t\"State\": \"MN\",\r\n      \t\"Zip\": 55803\r\n      },\r\n\t\t\"Custom_Amount or Net Pay\": \"Net\",\r\n\t\t\"Custom_or Percentage\": \"100\",\r\n\t\t\"Custom_Last 4 of SSN\": \"1234\",\r\n\t\t\"Custom_Employee ID\": \"123\",\r\n\t\t\"Custom_Work Location\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n\t\t\"name\": \"Test\",\r\n\t\t\"MailingAddress\": {\r\n\t\t  \"Line1\": \"123 Main Street\",\r\n\t\t  \"City\": \"Duluth\",\r\n\t\t  \"State\": \"MN\",\r\n\t\t  \"Zip\": 55803\r\n\t\t},\r\n\t\t\"category\": 1,\r\n\t\t\"Custom_Amount or Net Pay\": \"Net\",\r\n\t\t\"Custom_or Percentage\": \"100\",\r\n\t\t\"Custom_Last 4 of SSN\": \"1234\",\r\n\t\t\"Custom_Employee ID\": \"123\",\r\n\t\t\"Custom_Work Location\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/2"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/3"
               },
               "response": []
             }
