@@ -4275,7 +4275,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "b199ce39-8a0f-448c-8d5e-ce6389e90f6f",
+                    "id": "bd144dbd-9698-49f4-9216-b876b393e95e",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4304,7 +4304,7 @@
                       "});",
                       "",
                       "pm.test('Has the correct index', function() {",
-                      "   pm.expect(jsonData.data.item.index).to.equal(3);",
+                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
                       "});",
                       "",
                       "pm.test('Has the correct type', function() {",
@@ -4429,7 +4429,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "bfa8128d-905f-4068-8d61-5b63021a5715",
+                    "id": "9fe6e487-c16d-4bfe-833a-db4effd09deb",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -4458,7 +4458,7 @@
                       "});",
                       "",
                       "pm.test('Has the correct index', function() {",
-                      "   pm.expect(jsonData.data.item.index).to.equal(3);",
+                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
                       "});",
                       "",
                       "pm.test('Has the correct type', function() {",
@@ -4570,50 +4570,7 @@
                   "mode": "raw",
                   "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_print_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Net or Amount (in dollars)\": \"500\",\r\n      \"Custom_or Percentage of Pay (1 - 100)\": \"50\",\r\n      \"Custom_Last 4 of SSN\": \"1234\",\r\n      \"Custom_Employee ID\": \"123\",\r\n      \"Custom_Depositor's Full Mailing Address\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/3"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "2d07a9f7-bdc5-4f14-992e-2f56797fb42f",
-              "name": "Submit Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "86d626ce-9124-41a5-bc7b-32c9d3bfa1e1",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
               "response": []
             },
@@ -4674,6 +4631,37 @@
                   "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "d07b28a5-5eb0-4520-a266-c294faf372c7",
+              "name": "Delete Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
+                "description": "\t"
               },
               "response": []
             }
@@ -5100,6 +5088,49 @@
                   "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n\t\t\"name\": \"Test\",\r\n\t\t\"MailingAddress\": {\r\n\t\t  \"Line1\": \"123 Main Street\",\r\n\t\t  \"City\": \"Duluth\",\r\n\t\t  \"State\": \"MN\",\r\n\t\t  \"Zip\": 55803\r\n\t\t},\r\n\t\t\"category\": 1,\r\n\t\t\"Custom_Amount or Net Pay\": \"Net\",\r\n\t\t\"Custom_or Percentage\": \"100\",\r\n\t\t\"Custom_Last 4 of SSN\": \"1234\",\r\n\t\t\"Custom_Employee ID\": \"123\",\r\n\t\t\"Custom_Work Location\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/4"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "2d07a9f7-bdc5-4f14-992e-2f56797fb42f",
+              "name": "Submit Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "86d626ce-9124-41a5-bc7b-32c9d3bfa1e1",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             }
@@ -6582,37 +6613,6 @@
                   "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_online_target_id}}\",\r\n  \"accountholderIndex\": 0\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "d07b28a5-5eb0-4520-a266-c294faf372c7",
-              "name": "Delete Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "DELETE",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  }
-                ],
-                "body": {},
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
-                "description": "\t"
               },
               "response": []
             }
