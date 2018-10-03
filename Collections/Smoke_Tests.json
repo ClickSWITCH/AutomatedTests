@@ -6824,7 +6824,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "bd144dbd-9698-49f4-9216-b876b393e95e",
+                    "id": "2b5d15ce-fb1c-44ac-acc9-8842792538e0",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -6857,7 +6857,7 @@
                       "});",
                       "",
                       "pm.test('Has the correct type', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Payment\");",
                       "});",
                       "",
                       "pm.test('Has the correct targetId and locationId', function() {",
