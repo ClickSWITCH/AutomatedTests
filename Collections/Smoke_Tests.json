@@ -5569,7 +5569,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "4ff06d21-8df2-402c-a51f-53f6bf971cbe",
+                    "id": "c31206a7-265c-447f-9af2-ee34a3c921d5",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -5625,8 +5625,7 @@
                       "            \"validation\": {",
                       "                \"accounts\": [],",
                       "                \"fields\": {",
-                      "                    \"Custom_Work Location\": \"Custom_Work Location is required.\",",
-                      "                    \"Custom_Last 4 of SSN\": \"Custom_Last 4 of SSN is required.\"",
+                      "                    \"Switch_BillingAccountNumber\": \"Switch_BillingAccountNumber is required.\"",
                       "                },",
                       "                \"overall\": [",
                       "                    \"Category is required.\"",
