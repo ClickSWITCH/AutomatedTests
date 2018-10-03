@@ -3653,6 +3653,54 @@
               "response": []
             },
             {
+              "_postman_id": "5da91877-33d4-4be3-ada1-0f9c27951f95",
+              "name": "Submit Switch Copy",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "7a85fe3f-442c-42b7-95b2-7669c98a4e79",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct context', function() {",
+                      "    pm.expect(jsonData.context).to.equal('testing_context');",
+                      "})",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action{{context_param}}"
+              },
+              "response": []
+            },
+            {
               "_postman_id": "4778658b-0f09-479f-8d1c-18440e40ee55",
               "name": "Cancel Switch",
               "event": [
@@ -6152,7 +6200,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "5be98ecf-5861-4c14-a604-dbcfdf99c836",
+                    "id": "b63ea40d-3889-45c2-8429-144967d884d3",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -6181,11 +6229,11 @@
                       "});",
                       "",
                       "pm.test('Has the correct index', function() {",
-                      "   pm.expect(jsonData.data.item.index).to.equal(4);",
+                      "   pm.expect(jsonData.data.item.index).to.equal(6);",
                       "});",
                       "",
                       "pm.test('Has the correct type', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Payment\");",
                       "});",
                       "",
                       "pm.test('Has the correct targetId and locationId', function() {",
@@ -6290,11 +6338,9 @@
                       "                    \"zip\": \"55803\"",
                       "                },",
                       "                \"category\": 1,",
-                      "                \"Custom_Work Location\": \"123 Main Street\",",
-                      "                \"Custom_Employee ID\": \"123\",",
-                      "                \"Custom_Last 4 of SSN\": \"1234\",",
-                      "                \"Custom_Amount or Net Pay\": \"Net\",",
-                      "                \"Custom_or Percentage\": \"100\"",
+                      "                \"Custom_Withdrawal Date\": \"12-12-18\",",
+                      "                \"Custom_Amount\": \"100\",",
+                      "                \"Switch_BillingAccountNumber\": \"1234\"",
                       "            }",
                       "        };",
                       "    } else {",
@@ -6344,9 +6390,9 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n\t\t\"name\": \"Test\",\r\n\t\t\"MailingAddress\": {\r\n\t\t  \"Line1\": \"123 Main Street\",\r\n\t\t  \"City\": \"Duluth\",\r\n\t\t  \"State\": \"MN\",\r\n\t\t  \"Zip\": 55803\r\n\t\t},\r\n\t\t\"category\": 1,\r\n\t\t\"Custom_Amount or Net Pay\": \"Net\",\r\n\t\t\"Custom_or Percentage\": \"100\",\r\n\t\t\"Custom_Last 4 of SSN\": \"1234\",\r\n\t\t\"Custom_Employee ID\": \"123\",\r\n\t\t\"Custom_Work Location\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n\t\t\"name\": \"Test\",\r\n\t\t\"MailingAddress\": {\r\n\t\t  \"Line1\": \"123 Main Street\",\r\n\t\t  \"City\": \"Duluth\",\r\n\t\t  \"State\": \"MN\",\r\n\t\t  \"Zip\": 55803\r\n\t\t},\r\n\t\t\"category\": 1,\r\n\t\t\"Custom_Withdrawal Date\": \"12-12-18\",\r\n        \"Custom_Amount\": \"100\",\r\n        \"Switch_BillingAccountNumber\": \"1234\"\r\n    }\r\n  }\r\n}"
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/4"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/6"
               },
               "response": []
             }
