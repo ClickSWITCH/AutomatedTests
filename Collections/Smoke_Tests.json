@@ -5132,16 +5132,17 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "5a56f6d5-681b-4214-a591-d5a8d3c77bc1",
+                    "id": "29197893-057f-4f6d-882a-6049e8512b65",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
                       "",
-                      "pm.test(\"Status code is 200\", function () {",
+                      "(isCanada ? pm.test.skip : pm.test)(\"Status code is 200\", function () {",
                       "    pm.response.to.have.status(200);",
                       "});",
                       "",
-                      "pm.test('Has the correct state', function() {",
+                      "(isCanada ? pm.test.skip : pm.test)('Has the correct state', function() {",
                       "    var state = {",
                       "        \"status\": \"Submitted\",",
                       "        \"actions\": [",
