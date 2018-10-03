@@ -4170,111 +4170,8 @@
               "response": []
             },
             {
-              "_postman_id": "2d07a9f7-bdc5-4f14-992e-2f56797fb42f",
-              "name": "Submit Switch Copy",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "86d626ce-9124-41a5-bc7b-32c9d3bfa1e1",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
-              },
-              "response": []
-            },
-            {
               "_postman_id": "4968361b-d45d-4178-99bf-37e1924984d0",
               "name": "Cancel Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state = {",
-                      "        \"status\": \"Canceled\",",
-                      "        \"actions\": [",
-                      "            \"Uncancel\",",
-                      "            \"HTTP-DELETE\"",
-                      "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {},",
-                      "            \"overall\": []",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "3c262430-85b3-4eb4-8e52-314fd5df7d4a",
-              "name": "Cancel Switch Copy",
               "event": [
                 {
                   "listen": "test",
@@ -4360,299 +4257,6 @@
                 "body": {},
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
                 "description": "\t"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "d07b28a5-5eb0-4520-a266-c294faf372c7",
-              "name": "Delete Switch Copy",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "DELETE",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  }
-                ],
-                "body": {},
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
-                "description": "\t"
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "1a4a756d-77f7-4cf9-a88c-3cbb1342548b",
-          "name": "Deposit Online Only",
-          "description": "",
-          "item": [
-            {
-              "_postman_id": "3e28dc2d-a825-4c84-a014-ea1fd0be2403",
-              "name": "Create Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "7868b44e-5ea4-4d92-aefd-16d228e67edb",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has required 2nd level elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('index');",
-                      "    pm.expect(jsonData.data.item).to.have.property('type');",
-                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
-                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
-                      "    pm.expect(jsonData.data.item).to.have.property('values');",
-                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                      "    pm.expect(jsonData.data.item).to.have.property('state');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct index', function() {",
-                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
-                      "});",
-                      "",
-                      "pm.test('Has the correct targetId and locationId', function() {",
-                      "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get('deposit_online_target_id'));",
-                      "});",
-                      "",
-                      "pm.test('Has the correct accountHolderIndex', function() {",
-                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state;",
-                      "    state = {",
-                      "        \"status\": \"Incomplete\",",
-                      "        \"actions\": [",
-                      "            \"HTTP-PUT\",",
-                      "            \"Cancel\"",
-                      "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {},",
-                      "            \"overall\": [",
-                      "                \"At least one account must be selected\"",
-                      "            ]",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct ux.accounts element', function() {",
-                      "   var ux = {",
-                      "        \"fields\": [",
-                      "            {",
-                      "                \"key\": \"instructions\",",
-                      "                \"label\": \"Instructions\",",
-                      "                \"type\": \"html\",",
-                      "                \"body\": \"This is a Test biller. These are Online only instructions.\"",
-                      "            }",
-                      "        ]",
-                      "    };",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct ux.fields element', function() {",
-                      "    pm.expect(jsonData.data.item.ux.fields.length).to.be.at.least(1);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct values element', function() {",
-                      "    var values;",
-                      "    values =  {",
-                      "        \"accounts\": []",
-                      "    };",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api-Key"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_online_target_id}}\",\r\n  \"accountholderIndex\": 0\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "8bd087ce-98b3-4ed6-9ed8-03da14439a64",
-              "name": "Update Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "954bab1b-02c0-4a9f-a4f4-9e7b61287a2f",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has required 2nd level elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('index');",
-                      "    pm.expect(jsonData.data.item).to.have.property('type');",
-                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
-                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
-                      "    pm.expect(jsonData.data.item).to.have.property('values');",
-                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                      "    pm.expect(jsonData.data.item).to.have.property('state');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct index', function() {",
-                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
-                      "});",
-                      "",
-                      "pm.test('Has the correct targetId and locationId', function() {",
-                      "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get('deposit_online_target_id'));",
-                      "});",
-                      "",
-                      "pm.test('Has the correct accountHolderIndex', function() {",
-                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state;",
-                      "    state = {",
-                      "        \"status\": \"Incomplete\",",
-                      "        \"actions\": [",
-                      "            \"HTTP-PUT\",",
-                      "            \"Cancel\"",
-                      "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {},",
-                      "            \"overall\": [",
-                      "                \"At least one account must be selected\"",
-                      "            ]",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct ux.accounts element', function() {",
-                      "   var ux = {",
-                      "        \"fields\": [",
-                      "            {",
-                      "                \"key\": \"instructions\",",
-                      "                \"label\": \"Instructions\",",
-                      "                \"type\": \"html\",",
-                      "                \"body\": \"This is a Test biller. These are Online only instructions.\"",
-                      "            }",
-                      "        ]",
-                      "    };",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct ux.fields element', function() {",
-                      "    pm.expect(jsonData.data.item.ux.fields.length).to.be.at.least(1);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct values element', function() {",
-                      "    var values;",
-                      "    values =  {",
-                      "        \"accounts\": []",
-                      "    };",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "PUT",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api-Key"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_online_target_id}}\",\r\n  \"accountholderIndex\": 0\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
               "response": []
             }
@@ -4967,6 +4571,49 @@
                   "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_print_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Net or Amount (in dollars)\": \"500\",\r\n      \"Custom_or Percentage of Pay (1 - 100)\": \"50\",\r\n      \"Custom_Last 4 of SSN\": \"1234\",\r\n      \"Custom_Employee ID\": \"123\",\r\n      \"Custom_Depositor's Full Mailing Address\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/3"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "2d07a9f7-bdc5-4f14-992e-2f56797fb42f",
+              "name": "Submit Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "86d626ce-9124-41a5-bc7b-32c9d3bfa1e1",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             }
@@ -6613,6 +6260,359 @@
                   "raw": "{\r\n  \"type\": \"payment\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n\t\t\"name\": \"Test\",\r\n\t\t\"MailingAddress\": {\r\n\t\t  \"Line1\": \"123 Main Street\",\r\n\t\t  \"City\": \"Duluth\",\r\n\t\t  \"State\": \"MN\",\r\n\t\t  \"Zip\": 55803\r\n\t\t},\r\n\t\t\"category\": 1,\r\n\t\t\"Custom_Withdrawal Date\": \"12-12-18\",\r\n        \"Custom_Amount\": \"100\",\r\n        \"Switch_BillingAccountNumber\": \"1234\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/6"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "1a4a756d-77f7-4cf9-a88c-3cbb1342548b",
+          "name": "Deposit Online Only",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "3e28dc2d-a825-4c84-a014-ea1fd0be2403",
+              "name": "Create Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "7868b44e-5ea4-4d92-aefd-16d228e67edb",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has required 2nd level elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('index');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
+                      "    pm.expect(jsonData.data.item).to.have.property('values');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "    pm.expect(jsonData.data.item).to.have.property('state');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct index', function() {",
+                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "});",
+                      "",
+                      "pm.test('Has the correct targetId and locationId', function() {",
+                      "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get('deposit_online_target_id'));",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accountHolderIndex', function() {",
+                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state;",
+                      "    state = {",
+                      "        \"status\": \"Incomplete\",",
+                      "        \"actions\": [",
+                      "            \"HTTP-PUT\",",
+                      "            \"Cancel\"",
+                      "        ],",
+                      "        \"validation\": {",
+                      "            \"accounts\": [],",
+                      "            \"fields\": {},",
+                      "            \"overall\": [",
+                      "                \"At least one account must be selected\"",
+                      "            ]",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux.accounts element', function() {",
+                      "   var ux = {",
+                      "        \"fields\": [",
+                      "            {",
+                      "                \"key\": \"instructions\",",
+                      "                \"label\": \"Instructions\",",
+                      "                \"type\": \"html\",",
+                      "                \"body\": \"This is a Test biller. These are Online only instructions.\"",
+                      "            }",
+                      "        ]",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux.fields element', function() {",
+                      "    pm.expect(jsonData.data.item.ux.fields.length).to.be.at.least(1);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct values element', function() {",
+                      "    var values;",
+                      "    values =  {",
+                      "        \"accounts\": []",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api-Key"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_online_target_id}}\",\r\n  \"accountholderIndex\": 0\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "8bd087ce-98b3-4ed6-9ed8-03da14439a64",
+              "name": "Update Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "954bab1b-02c0-4a9f-a4f4-9e7b61287a2f",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has required 2nd level elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('index');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
+                      "    pm.expect(jsonData.data.item).to.have.property('values');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "    pm.expect(jsonData.data.item).to.have.property('state');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct index', function() {",
+                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "});",
+                      "",
+                      "pm.test('Has the correct targetId and locationId', function() {",
+                      "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get('deposit_online_target_id'));",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accountHolderIndex', function() {",
+                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state;",
+                      "    state = {",
+                      "        \"status\": \"Incomplete\",",
+                      "        \"actions\": [",
+                      "            \"HTTP-PUT\",",
+                      "            \"Cancel\"",
+                      "        ],",
+                      "        \"validation\": {",
+                      "            \"accounts\": [],",
+                      "            \"fields\": {},",
+                      "            \"overall\": [",
+                      "                \"At least one account must be selected\"",
+                      "            ]",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux.accounts element', function() {",
+                      "   var ux = {",
+                      "        \"fields\": [",
+                      "            {",
+                      "                \"key\": \"instructions\",",
+                      "                \"label\": \"Instructions\",",
+                      "                \"type\": \"html\",",
+                      "                \"body\": \"This is a Test biller. These are Online only instructions.\"",
+                      "            }",
+                      "        ]",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux.fields element', function() {",
+                      "    pm.expect(jsonData.data.item.ux.fields.length).to.be.at.least(1);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct values element', function() {",
+                      "    var values;",
+                      "    values =  {",
+                      "        \"accounts\": []",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api-Key"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_online_target_id}}\",\r\n  \"accountholderIndex\": 0\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "3c262430-85b3-4eb4-8e52-314fd5df7d4a",
+              "name": "Cancel Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state = {",
+                      "        \"status\": \"Canceled\",",
+                      "        \"actions\": [",
+                      "            \"Uncancel\",",
+                      "            \"HTTP-DELETE\"",
+                      "        ],",
+                      "        \"validation\": {",
+                      "            \"accounts\": [],",
+                      "            \"fields\": {},",
+                      "            \"overall\": []",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "d07b28a5-5eb0-4520-a266-c294faf372c7",
+              "name": "Delete Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
+                "description": "\t"
               },
               "response": []
             }
