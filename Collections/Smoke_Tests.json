@@ -5625,6 +5625,65 @@
               "response": []
             },
             {
+              "_postman_id": "dc2cdabc-e9dd-4662-8837-14f5d5585e89",
+              "name": "Submit Switch Copy",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "466adb61-8322-4aa8-82f8-fdd9e24c7c78",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state = {",
+                      "        \"status\": \"Submitted\",",
+                      "        \"actions\": [",
+                      "            \"Cancel\"",
+                      "        ],",
+                      "        \"validation\": {",
+                      "            \"accounts\": [],",
+                      "            \"fields\": {},",
+                      "            \"overall\": []",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"index\": 5,\r\n  \"action\": \"Submit\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+              },
+              "response": []
+            },
+            {
               "_postman_id": "0e40dd80-7048-48fa-a275-6ecd86aafd69",
               "name": "Cancel Switch",
               "event": [
@@ -5712,65 +5771,6 @@
                 "body": {},
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
                 "description": "\t"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "dc2cdabc-e9dd-4662-8837-14f5d5585e89",
-              "name": "Submit Switch Copy",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "466adb61-8322-4aa8-82f8-fdd9e24c7c78",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state = {",
-                      "        \"status\": \"Submitted\",",
-                      "        \"actions\": [",
-                      "            \"Cancel\"",
-                      "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {},",
-                      "            \"overall\": []",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 5,\r\n  \"action\": \"Submit\"\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             }
