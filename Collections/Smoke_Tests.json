@@ -3108,7 +3108,7 @@
       "item": [
         {
           "_postman_id": "493acc59-f1a5-42ae-b688-5a027596e36c",
-          "name": "Deposits Using TargetId",
+          "name": "Deposit Using TargetId",
           "description": "",
           "item": [
             {
@@ -5942,7 +5942,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "2c76a496-9ece-47f8-9522-0a20924f1a58",
+                    "id": "13d58bcb-55fd-4d89-b1a2-38fe6707ed05",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -5970,11 +5970,11 @@
                       "});",
                       "",
                       "pm.test('Has the correct index', function() {",
-                      "   pm.expect(jsonData.data.item.index).to.equal(4);",
+                      "   pm.expect(jsonData.data.item.index).to.equal(6);",
                       "});",
                       "",
                       "pm.test('Has the correct type', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Payment\");",
                       "});",
                       "",
                       "pm.test('Has the correct accountHolderIndex', function() {",
