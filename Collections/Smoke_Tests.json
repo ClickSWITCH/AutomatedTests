@@ -5559,7 +5559,7 @@
         },
         {
           "_postman_id": "d7721cc1-f91c-4323-a65f-bb8d43c25e97",
-          "name": "Deposits using LocationId Copy",
+          "name": "Payments using LocationId",
           "description": "",
           "item": [
             {
@@ -5569,7 +5569,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "92439e1c-e389-4709-94c0-687169b185c8",
+                    "id": "4ff06d21-8df2-402c-a51f-53f6bf971cbe",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -5598,11 +5598,11 @@
                       "});",
                       "",
                       "pm.test('Has the correct index', function() {",
-                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
+                      "   pm.expect(jsonData.data.item.index).to.equal(5);",
                       "});",
                       "",
                       "pm.test('Has the correct type', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Payment\");",
                       "});",
                       "",
                       "pm.test('Has the correct targetId and locationId', function() {",
@@ -5701,11 +5701,9 @@
                       "            ],",
                       "            \"fields\": {",
                       "                \"category\": 0,",
-                      "                \"Custom_Work Location\": null,",
-                      "                \"Custom_Employee ID\": null,",
-                      "                \"Custom_Last 4 of SSN\": null,",
-                      "                \"Custom_Amount or Net Pay\": null,",
-                      "                \"Custom_or Percentage\": null",
+                      "                \"Custom_Withdrawal Date\": null,",
+                      "                \"Custom_Amount\": null,",
+                      "                \"Switch_BillingAccountNumber\": null",
                       "            }",
                       "        };",
                       "    } else {",
