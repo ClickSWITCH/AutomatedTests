@@ -5133,7 +5133,7 @@
         },
         {
           "_postman_id": "8456429d-8ce8-4646-9176-d2fb3acadef8",
-          "name": "Deposits Using TargetId Copy",
+          "name": "Payment using TargetId",
           "description": "",
           "item": [
             {
