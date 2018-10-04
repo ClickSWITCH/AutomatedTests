@@ -2994,90 +2994,6 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "d5d70d89-ed1b-4945-9907-3d21e5ae34aa",
-          "name": "Locations",
-          "description": "",
-          "item": [
-            {
-              "_postman_id": "69525eb6-e783-4c5c-a6af-0e38be41efbb",
-              "name": "Locations",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "e307f46d-3641-4098-8537-155ae6a1d450",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has at least one item', function() {",
-                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
-                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    jsonData.data.items.forEach(i => {",
-                      "       pm.expect(i).to.have.property('locationId');",
-                      "       pm.expect(i).to.have.property('name');",
-                      "       pm.expect(i).to.have.property('address');",
-                      "    });",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('location'); ",
-                      "});",
-                      "",
-                      "pm.environment.set(\"location_id\", jsonData.data.items[0].locationId);"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  }
-                ],
-                "body": {},
-                "url": {
-                  "raw": "{{base_url}}{{locations_postfix}}?customer={{customer_key}}&name={{location_name}}",
-                  "host": [
-                    "{{base_url}}{{locations_postfix}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "customer",
-                      "value": "{{customer_key}}",
-                      "equals": true
-                    },
-                    {
-                      "key": "name",
-                      "value": "{{location_name}}",
-                      "equals": true
-                    }
-                  ]
-                }
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
           "_postman_id": "f828642c-cd3b-4d55-8135-a8e52a82ffa7",
           "name": "Split Deposits Copy",
           "description": "",
@@ -3282,6 +3198,90 @@
                 ],
                 "body": {},
                 "url": "{{base_url}}{{targets_postfix3}}{{split_deposit_target_id}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "d5d70d89-ed1b-4945-9907-3d21e5ae34aa",
+          "name": "Locations",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "69525eb6-e783-4c5c-a6af-0e38be41efbb",
+              "name": "Locations",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "e307f46d-3641-4098-8537-155ae6a1d450",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has at least one item', function() {",
+                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
+                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    jsonData.data.items.forEach(i => {",
+                      "       pm.expect(i).to.have.property('locationId');",
+                      "       pm.expect(i).to.have.property('name');",
+                      "       pm.expect(i).to.have.property('address');",
+                      "    });",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('location'); ",
+                      "});",
+                      "",
+                      "pm.environment.set(\"location_id\", jsonData.data.items[0].locationId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "body": {},
+                "url": {
+                  "raw": "{{base_url}}{{locations_postfix}}?customer={{customer_key}}&name={{location_name}}",
+                  "host": [
+                    "{{base_url}}{{locations_postfix}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer",
+                      "value": "{{customer_key}}",
+                      "equals": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "{{location_name}}",
+                      "equals": true
+                    }
+                  ]
+                }
               },
               "response": []
             }
