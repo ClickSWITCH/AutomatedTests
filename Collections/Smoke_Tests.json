@@ -7494,7 +7494,7 @@
         {
           "_postman_id": "e858d5e4-68af-4ec6-b006-2192ff647a5a",
           "name": "Payment using neither",
-          "description": "Folder containing the tests that create, update and submit a switch using an unknown payment target.",
+          "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using an unknown payment target.",
           "item": [
             {
               "_postman_id": "938c29cb-bddf-4d67-8d17-5ef2f9ac9957",
@@ -8083,7 +8083,7 @@
         {
           "_postman_id": "c3ade53b-1f0f-489e-97a2-fa8c00dfb622",
           "name": "Payment Print Only",
-          "description": "",
+          "description": "Folder containing the tests that create, update and delete a switch using a print only payment target.",
           "item": [
             {
               "_postman_id": "6417f012-4fbf-4f09-b220-faa31783b451",
@@ -8478,12 +8478,34 @@
               "response": []
             }
           ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e2c9fcb5-b2df-4a8d-9af2-8fa54176da7d",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "dcd57b52-e02c-4a4b-abd8-fe74de1fd3e7",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "_postman_isSubFolder": true
         },
         {
           "_postman_id": "1a4a756d-77f7-4cf9-a88c-3cbb1342548b",
           "name": "Deposit Online Only",
-          "description": "",
+          "description": "Folder containing the tests that create, update and delete a switch using a print only deposit target.",
           "item": [
             {
               "_postman_id": "3e28dc2d-a825-4c84-a014-ea1fd0be2403",
@@ -8738,6 +8760,28 @@
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
               "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "b652b3c1-9694-486a-9762-389c6a4b147d",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "049ad08e-2ce2-4f5f-acdd-27ea10487ba9",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
             }
           ],
           "_postman_isSubFolder": true
