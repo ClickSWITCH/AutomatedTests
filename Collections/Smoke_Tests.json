@@ -2891,7 +2891,7 @@
           "item": [
             {
               "_postman_id": "65dfb559-9ece-4a1c-a825-0e23b7b781b9",
-              "name": "Targets",
+              "name": "Target By Name",
               "event": [
                 {
                   "listen": "test",
@@ -3087,11 +3087,11 @@
         {
           "_postman_id": "b58508c4-1567-4c52-83cb-2101ff69fd7a",
           "name": "Payments Online Only",
-          "description": "",
+          "description": "Folder containing the tests that find an online only payment target.",
           "item": [
             {
               "_postman_id": "1fc4a6ef-7c1f-4e7e-9df1-3bca5f3fdf1d",
-              "name": "Targets",
+              "name": "Target By Name",
               "event": [
                 {
                   "listen": "test",
@@ -3262,16 +3262,38 @@
               "response": []
             }
           ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e0f4761e-690b-4320-8652-aba30853e02e",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "a2f4ff74-89c0-4623-bd15-833450903b61",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "_postman_isSubFolder": true
         },
         {
           "_postman_id": "f828642c-cd3b-4d55-8135-a8e52a82ffa7",
           "name": "Split Deposits",
-          "description": "",
+          "description": "Folder containing the tests that finds a split deposit target.",
           "item": [
             {
               "_postman_id": "9f47c5a7-17c6-4ba8-8e39-71cf099ebdf0",
-              "name": "Targets",
+              "name": "Target By Name",
               "event": [
                 {
                   "listen": "test",
@@ -3494,6 +3516,28 @@
                 "url": "{{base_url}}{{targets_postfix3}}{{split_deposit_target_id}}"
               },
               "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "8d93cfc3-8c8b-42c1-8d01-71b448777378",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "5a33755b-181b-4d3c-94fe-37e66da9cc7e",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
             }
           ],
           "_postman_isSubFolder": true
