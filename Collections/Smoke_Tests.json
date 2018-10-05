@@ -391,7 +391,7 @@
     {
       "_postman_id": "b10b502f-0595-408f-9e4f-3943eb03b975",
       "name": "Customers",
-      "description": "",
+      "description": "Folder containing the tests for the PUT `/customers/{customerKey}` and GET `/customers/{customerKey}` routes.",
       "item": [
         {
           "_postman_id": "6a43c845-43bc-4dfd-96fe-a38139a01e45",
@@ -1844,12 +1844,34 @@
           ],
           "_postman_isSubFolder": true
         }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "449fb18f-56cc-434c-b8d2-105b2abfe4bb",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "54c1da51-b04e-49fa-b4fc-a0890d98309a",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
       ]
     },
     {
       "_postman_id": "f359ecb9-c546-4149-9d89-fa6687133697",
       "name": "Targets",
-      "description": "",
+      "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
       "item": [
         {
           "_postman_id": "d3fd99c8-7f5d-447c-a60c-b408eedb0f1a",
