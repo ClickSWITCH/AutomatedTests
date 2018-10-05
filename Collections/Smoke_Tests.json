@@ -219,7 +219,7 @@
             ],
             "body": {},
             "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
-            "description": "Testing the GET /types/switch/statuses route"
+            "description": "Asserts that the GET `/types/switch/statuses` endpoint is returning the correct values."
           },
           "response": []
         },
