@@ -2,14 +2,14 @@
   "info": {
     "_postman_id": "1dcea77f-1205-444a-8316-1e06856a07e4",
     "name": "Smoke Tests",
-    "description": "A collection of tests that hit all the API endpoints to ensure the API is functioning properly. ",
+    "description": "A collection of tests that hit all the V3 API endpoints to ensure the API is functioning properly. The requests are split into 4 folders: Types, Customers, Targets, and Switches.",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
       "_postman_id": "3ffc5fb9-1f91-417f-b5ba-73263c35d599",
       "name": "Types",
-      "description": "Folder containing the tests for the `/types/targets`, `/types/switch/statuses`, and `/types/switch/actions` routes.",
+      "description": "Folder containing the tests for the GET `/types/targets`, `/types/switch/statuses`, and `/types/switch/actions` routes.",
       "item": [
         {
           "_postman_id": "c920930d-49bf-4aa4-8be4-faf7f1bb5ba9",
@@ -3090,7 +3090,7 @@
                 {
                   "listen": "test",
                   "script": {
-                    "id": "941c289b-34bf-4737-826a-9527a535a682",
+                    "id": "e61e303a-619f-4bcf-aa1a-8b5f128fc5bc",
                     "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
@@ -3186,13 +3186,13 @@
                       "                \"key\": \"Custom_Agency ID\",",
                       "                \"label\": \"Agency ID\",",
                       "                \"type\": \"textbox\",",
-                      "                \"required\": false",
+                      "                \"required\": true",
                       "            },",
                       "            {",
                       "                \"key\": \"Custom_Employee Identification Number (EIN)\",",
                       "                \"label\": \"Employee Identification Number (EIN)\",",
                       "                \"type\": \"textbox\",",
-                      "                \"required\": false",
+                      "                \"required\": true",
                       "            }",
                       "        ]",
                       "    };",
