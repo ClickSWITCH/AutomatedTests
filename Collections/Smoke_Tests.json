@@ -1499,7 +1499,8 @@
                       "disabled": true
                     }
                   ]
-                }
+                },
+                "description": "Test that creates a customer containing one account holder and two accounts."
               },
               "response": []
             }
