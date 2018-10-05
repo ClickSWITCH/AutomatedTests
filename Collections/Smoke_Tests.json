@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "1dcea77f-1205-444a-8316-1e06856a07e4",
     "name": "Smoke Tests",
-    "description": "A collection of tests that hit all the V3 API endpoints to ensure the API is functioning properly. The requests are split into 4 folders: Types, Customers, Targets, and Switches.",
+    "description": "A collection of tests that hit all the V3 API endpoints to ensure the API is functioning properly. The requests are split into 4 folders: Types, Customers, Targets, and Switches. The tests must be run in the order displayed here to function properly.",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
@@ -937,7 +937,8 @@
                       "disabled": true
                     }
                   ]
-                }
+                },
+                "description": "Test that removes and account from the customer."
               },
               "response": []
             },
@@ -1092,7 +1093,8 @@
                       "disabled": true
                     }
                   ]
-                }
+                },
+                "description": "Test that removes an account holder from the customer."
               },
               "response": []
             }
@@ -1124,7 +1126,7 @@
         {
           "_postman_id": "e5266828-cab5-4004-a716-e104fd5371f5",
           "name": "Get Customer",
-          "description": "",
+          "description": "Folder containing the test that GETs the customer to ensure the updates worked.",
           "item": [
             {
               "_postman_id": "8f414dc1-24a8-4fdc-84d9-4bfd7d55ef2b",
@@ -1278,12 +1280,34 @@
               "response": []
             }
           ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e1c252ce-7bd2-4213-8a9e-a59a58aff7f1",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "3e94fea3-2e95-40bd-8425-0bd21a7455ab",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "_postman_isSubFolder": true
         },
         {
           "_postman_id": "d4de1479-35cb-4093-8525-36939311ef8f",
           "name": "Single Customer Two Accounts",
-          "description": "",
+          "description": "Folder containing the test that creates a customer containing one account holder and two accounts.",
           "item": [
             {
               "_postman_id": "24374036-0d43-4a1d-8432-968b57e02652",
@@ -1478,6 +1502,28 @@
                 }
               },
               "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "888ec7f8-66d0-4050-89c9-51e7c9783fc7",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "c437c46a-b4da-46bc-a6fe-a7d1580cd1c5",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
             }
           ],
           "_postman_isSubFolder": true
