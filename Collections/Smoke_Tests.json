@@ -595,7 +595,7 @@
         {
           "_postman_id": "f055ce6c-3411-4aaf-9a17-a33aabfd356e",
           "name": "Update Customer",
-          "description": "",
+          "description": "Folder containing the tests that update the created customer by adding and removing account holders, accounts, and renaming customer fields.",
           "item": [
             {
               "_postman_id": "d4825af1-9ac6-440a-b960-baf9485d85c6",
@@ -773,7 +773,8 @@
                       "disabled": true
                     }
                   ]
-                }
+                },
+                "description": "Test that renames some customer values, adds an account holder and an account to the customer."
               },
               "response": []
             },
@@ -1094,6 +1095,28 @@
                 }
               },
               "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "3fd065c2-0ad1-4d2b-8970-8a0ea7d9ce59",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "fbbefbfa-fbcf-4c1e-b738-6ef601e65352",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
             }
           ],
           "_postman_isSubFolder": true
