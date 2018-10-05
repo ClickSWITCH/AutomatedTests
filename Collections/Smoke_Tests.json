@@ -396,11 +396,11 @@
         {
           "_postman_id": "6a43c845-43bc-4dfd-96fe-a38139a01e45",
           "name": "Single Customer Single Account",
-          "description": "Folder containing the tests that create a customer with a single account holder and a single account. After creating the customer, the tests update that customer, and then GETs the customer to ensure the updates worked.",
+          "description": "Folder containing the test that creates a customer with a single account holder and a single account.",
           "item": [
             {
               "_postman_id": "b2f3dd3a-7d56-463b-a625-d2070a99f79f",
-              "name": "Create",
+              "name": "Create Customer",
               "event": [
                 {
                   "listen": "prerequest",
@@ -562,7 +562,8 @@
                   "mode": "raw",
                   "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"55802\",\n            \"state\": \"MN\",\n            \"country\": \"US\"\n        }\n    ]\n}"
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
               },
               "response": []
             }
