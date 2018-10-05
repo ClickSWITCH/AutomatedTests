@@ -2019,7 +2019,7 @@
           "item": [
             {
               "_postman_id": "44197ad8-446c-4661-9561-f8bf87d4d739",
-              "name": "Targets",
+              "name": "Target By Name",
               "event": [
                 {
                   "listen": "test",
@@ -2252,11 +2252,11 @@
         {
           "_postman_id": "fb890a1c-5e74-4d23-bfd2-294d6ff02161",
           "name": "Deposits Print Only",
-          "description": "",
+          "description": "Folder containing the tests that find a print only deposit target.",
           "item": [
             {
               "_postman_id": "f937f879-dd3d-41a1-bae8-12e275cb127e",
-              "name": "Targets",
+              "name": "Target By Name",
               "event": [
                 {
                   "listen": "test",
@@ -2456,6 +2456,28 @@
                 "url": "{{base_url}}{{targets_postfix3}}{{deposit_print_target_id}}"
               },
               "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "1c0ffdb5-8dc3-457a-b310-abeb59957e26",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "495c4015-ece3-4c26-b205-2c9ff1a3dcd9",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
             }
           ],
           "_postman_isSubFolder": true
