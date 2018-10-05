@@ -1750,7 +1750,7 @@
         {
           "_postman_id": "c5559167-37bb-4104-a47b-b6464c8dd396",
           "name": "Joint Customer Two Accounts",
-          "description": "",
+          "description": "Folder containing the test that creates a customer with two account holders and two accounts.",
           "item": [
             {
               "_postman_id": "8764422c-5c05-4600-9aa8-fcec7668f185",
@@ -1953,9 +1953,32 @@
                       "disabled": true
                     }
                   ]
-                }
+                },
+                "description": "Test that creates a customer with two account holders and two accounts."
               },
               "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fa3918c7-e052-48de-a24f-e3e3ad7a9913",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "5c0b9dcf-198f-4136-816c-da0466b173c2",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
             }
           ],
           "_postman_isSubFolder": true
