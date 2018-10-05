@@ -360,7 +360,7 @@
             ],
             "body": {},
             "url": "{{base_url}}{{actions_postfix}}{{context_param}}",
-            "description": "Tests for the GET /types/switches/actions route."
+            "description": "Asserts that the GET `/types/switch/actions` endpoint is returning the correct values."
           },
           "response": []
         }
@@ -396,7 +396,7 @@
         {
           "_postman_id": "6a43c845-43bc-4dfd-96fe-a38139a01e45",
           "name": "Single Customer Single Account",
-          "description": "",
+          "description": "Folder containing the tests that create a customer with a single account holder and a single account. After creating the customer, the tests update that customer, and then GETs the customer to ensure the updates worked.",
           "item": [
             {
               "_postman_id": "b2f3dd3a-7d56-463b-a625-d2070a99f79f",
@@ -565,6 +565,28 @@
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}"
               },
               "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "bab9f974-75c8-4842-b62a-e2a76d1cdfdc",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "1d82a45a-23f0-4aa2-b48b-1361f377084e",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
             }
           ],
           "_postman_isSubFolder": true
