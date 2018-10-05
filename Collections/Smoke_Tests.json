@@ -2485,11 +2485,11 @@
         {
           "_postman_id": "2e0e9ae4-4e27-4e97-ab3c-72716eedf370",
           "name": "Deposits Online Only",
-          "description": "",
+          "description": "Folder containing the tests that find a online only deposit target.",
           "item": [
             {
               "_postman_id": "df27c92b-ed6a-4c7f-9ab3-edc3fd2e4237",
-              "name": "Targets",
+              "name": "Target By Name",
               "event": [
                 {
                   "listen": "test",
@@ -2658,6 +2658,28 @@
                 "url": "{{base_url}}{{targets_postfix3}}{{deposit_online_target_id}}"
               },
               "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "259129d1-ff5f-4ffb-b5a2-31a9ab9e5b5b",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "03ea0fbb-28d7-4151-94d5-96bd84a56b84",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
             }
           ],
           "_postman_isSubFolder": true
