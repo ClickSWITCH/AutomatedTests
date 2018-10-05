@@ -3545,11 +3545,11 @@
         {
           "_postman_id": "d5d70d89-ed1b-4945-9907-3d21e5ae34aa",
           "name": "Locations",
-          "description": "",
+          "description": "Folder containing the tests that find a target by location.",
           "item": [
             {
               "_postman_id": "69525eb6-e783-4c5c-a6af-0e38be41efbb",
-              "name": "Locations",
+              "name": "Target By Location",
               "event": [
                 {
                   "listen": "test",
@@ -3624,6 +3624,28 @@
               "response": []
             }
           ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "987a0848-308e-432b-aa51-aab711ac353b",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "da4426ab-5a69-42b0-bd0d-3eee37b8cf51",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "_postman_isSubFolder": true
         }
       ],
@@ -3658,7 +3680,7 @@
         {
           "_postman_id": "493acc59-f1a5-42ae-b688-5a027596e36c",
           "name": "Deposit Using TargetId",
-          "description": "",
+          "description": "Folder containing the tests that create, update and submit a switch using a deposit target.",
           "item": [
             {
               "_postman_id": "e5a63129-1e0c-49f2-b959-6b67f8c2b958",
@@ -4309,12 +4331,34 @@
               "response": []
             }
           ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "537299b4-9cc6-4bc5-a8d6-70384fb437c7",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "20541407-4ed3-49ec-ae9c-66b5bd793f99",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "_postman_isSubFolder": true
         },
         {
           "_postman_id": "9fd88b31-077d-413e-9464-ee2116e418d0",
           "name": "Deposit using LocationId",
-          "description": "",
+          "description": "Folder containing the tests that create, update and submit a switch using a location target.",
           "item": [
             {
               "_postman_id": "812d4073-ea29-4aa8-adc8-3fa3fda75738",
@@ -4842,12 +4886,34 @@
               "response": []
             }
           ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "6c6065f0-2453-4506-9b91-9e8e9b5fcbe5",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "c77d980d-7e50-4432-a298-9e5de60fd1c8",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "_postman_isSubFolder": true
         },
         {
           "_postman_id": "11d2b950-0c79-4aeb-85a2-d68c5acce5c4",
           "name": "Deposit Print Only",
-          "description": "",
+          "description": "Folder containing the tests that create, update and submit a print only deposit target.",
           "item": [
             {
               "_postman_id": "298a20db-5dee-470c-b5a6-571af056b260",
@@ -5247,12 +5313,34 @@
               "response": []
             }
           ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "9c8697f0-40b9-459c-a357-fc8a4acb8d80",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "3df654aa-c6e6-43ef-b7b6-6e545557f17d",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "_postman_isSubFolder": true
         },
         {
           "_postman_id": "a0ae4813-4b87-4c2d-aac1-1b6529876368",
           "name": "Deposit using neither",
-          "description": "",
+          "description": "Folder containing the tests that create, update and submit an unknown deposit target switch.",
           "item": [
             {
               "_postman_id": "423d0a3b-c2dd-4181-9d2d-7eef2c2a627d",
@@ -5824,12 +5912,34 @@
               "response": []
             }
           ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "31f777c7-bfa4-418d-a09c-f64991954fa7",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "cd11666c-da12-444f-88b0-b516790882fb",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "_postman_isSubFolder": true
         },
         {
           "_postman_id": "644c5db1-b9bd-4378-b1fc-f95d84e58baa",
           "name": "Split Deposit",
-          "description": "",
+          "description": "Folder containing the tests that create, update and submit a split deposit target switch.",
           "item": [
             {
               "_postman_id": "a87e8db4-937b-4afa-b804-056d25269f88",
@@ -6353,12 +6463,34 @@
               "response": []
             }
           ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "ad33e107-5e8f-4873-8125-55059c39ea59",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "bfca0bb7-0237-4c70-bded-e9476dae30ea",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "_postman_isSubFolder": true
         },
         {
           "_postman_id": "8456429d-8ce8-4646-9176-d2fb3acadef8",
           "name": "Payment using TargetId",
-          "description": "",
+          "description": "Folder containing the tests that create, update and submit a switch using a payment target.",
           "item": [
             {
               "_postman_id": "06d1ebd8-0229-4bdf-aa68-c5e293f25834",
@@ -6795,12 +6927,34 @@
               "response": []
             }
           ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "124087d6-e09d-423f-8de8-8bf6d7527b20",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "3734194b-9f59-44f8-a3ae-791431a0e491",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "_postman_isSubFolder": true
         },
         {
           "_postman_id": "d7721cc1-f91c-4323-a65f-bb8d43c25e97",
           "name": "Payment using LocationId",
-          "description": "",
+          "description": "Folder containing the tests that create, update and submit a switch using a location payment target.",
           "item": [
             {
               "_postman_id": "c3973b0e-d0fb-479c-ba0d-4f7df9ec4abb",
@@ -7313,12 +7467,34 @@
               "response": []
             }
           ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "ec940722-368d-4b6d-ab74-e1464b2ff82d",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "009b4804-0c3e-4193-84a7-cb4944b32c16",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "_postman_isSubFolder": true
         },
         {
           "_postman_id": "e858d5e4-68af-4ec6-b006-2192ff647a5a",
           "name": "Payment using neither",
-          "description": "",
+          "description": "Folder containing the tests that create, update and submit a switch using an unknown payment target.",
           "item": [
             {
               "_postman_id": "938c29cb-bddf-4d67-8d17-5ef2f9ac9957",
@@ -7878,6 +8054,28 @@
                 "description": "\t"
               },
               "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "df745722-a50c-4f91-8955-5ebf8bedc944",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "e2193e97-5b25-4643-a9b7-6ee517f1a26b",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
             }
           ],
           "_postman_isSubFolder": true
