@@ -3680,7 +3680,7 @@
         {
           "_postman_id": "493acc59-f1a5-42ae-b688-5a027596e36c",
           "name": "Deposit Using TargetId",
-          "description": "Folder containing the tests that create, update and submit a switch using a deposit target.",
+          "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a deposit target.",
           "item": [
             {
               "_postman_id": "e5a63129-1e0c-49f2-b959-6b67f8c2b958",
@@ -4358,7 +4358,7 @@
         {
           "_postman_id": "9fd88b31-077d-413e-9464-ee2116e418d0",
           "name": "Deposit using LocationId",
-          "description": "Folder containing the tests that create, update and submit a switch using a location target.",
+          "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a location target.",
           "item": [
             {
               "_postman_id": "812d4073-ea29-4aa8-adc8-3fa3fda75738",
@@ -4913,7 +4913,7 @@
         {
           "_postman_id": "11d2b950-0c79-4aeb-85a2-d68c5acce5c4",
           "name": "Deposit Print Only",
-          "description": "Folder containing the tests that create, update and submit a print only deposit target.",
+          "description": "Folder containing the tests that create, update, submit, cancel, and delete a print only deposit target.",
           "item": [
             {
               "_postman_id": "298a20db-5dee-470c-b5a6-571af056b260",
@@ -5340,7 +5340,7 @@
         {
           "_postman_id": "a0ae4813-4b87-4c2d-aac1-1b6529876368",
           "name": "Deposit using neither",
-          "description": "Folder containing the tests that create, update and submit an unknown deposit target switch.",
+          "description": "Folder containing the tests that create, update, submit, cancel, and delete an unknown deposit target switch.",
           "item": [
             {
               "_postman_id": "423d0a3b-c2dd-4181-9d2d-7eef2c2a627d",
@@ -5939,7 +5939,7 @@
         {
           "_postman_id": "644c5db1-b9bd-4378-b1fc-f95d84e58baa",
           "name": "Split Deposit",
-          "description": "Folder containing the tests that create, update and submit a split deposit target switch.",
+          "description": "Folder containing the tests that create, update, submit, cancel, and delete a split deposit target switch.",
           "item": [
             {
               "_postman_id": "a87e8db4-937b-4afa-b804-056d25269f88",
@@ -6490,7 +6490,7 @@
         {
           "_postman_id": "8456429d-8ce8-4646-9176-d2fb3acadef8",
           "name": "Payment using TargetId",
-          "description": "Folder containing the tests that create, update and submit a switch using a payment target.",
+          "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a payment target.",
           "item": [
             {
               "_postman_id": "06d1ebd8-0229-4bdf-aa68-c5e293f25834",
@@ -6954,7 +6954,7 @@
         {
           "_postman_id": "d7721cc1-f91c-4323-a65f-bb8d43c25e97",
           "name": "Payment using LocationId",
-          "description": "Folder containing the tests that create, update and submit a switch using a location payment target.",
+          "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a location payment target.",
           "item": [
             {
               "_postman_id": "c3973b0e-d0fb-479c-ba0d-4f7df9ec4abb",
