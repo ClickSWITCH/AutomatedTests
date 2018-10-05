@@ -2687,7 +2687,7 @@
         {
           "_postman_id": "c1e8e5e6-b14d-42ac-89db-a627084795f5",
           "name": "Payments",
-          "description": "",
+          "description": "Folder containing the tests that find a payment target.",
           "item": [
             {
               "_postman_id": "bb9a93d2-413b-4f62-b7bc-9188b34b1d3f",
@@ -2858,6 +2858,28 @@
                 "url": "{{base_url}}{{targets_postfix3}}{{payment_target_id}}"
               },
               "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e9500365-9511-4bf2-95b4-ea818babc929",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "2e67aca5-900e-43bc-8111-59c6c7ae6ade",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
             }
           ],
           "_postman_isSubFolder": true
