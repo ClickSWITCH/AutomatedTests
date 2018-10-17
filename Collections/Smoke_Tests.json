@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "1dcea77f-1205-444a-8316-1e06856a07e4",
     "name": "Full Regression Test Suite",
-    "description": "A collection of tests that hit all the V3 API endpoints to ensure the API is functioning properly. The requests are split into 4 folders: Types, Customers, Targets, and Switches. The tests must be run in the order displayed here to function properly. Currently there are 73 requests and 466 tests in this collection.",
+    "description": "A collection of tests that hit all the V3 API endpoints to ensure the API is functioning properly. The requests are split into 4 folders: Types, Customers, Targets, and Switches. The tests must be run in the order displayed here to function properly. Currently there are **73** requests and **466** tests in this collection.",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
@@ -3741,7 +3741,6 @@
                   "listen": "test",
                   "script": {
                     "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "",
@@ -3856,7 +3855,8 @@
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});"
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
@@ -3865,7 +3865,7 @@
                 "header": [
                   {
                     "key": "api-key",
-                    "value": "{{api_key}}",
+                    "value": "AAeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbnN0aXR1dGlvbklkIjoxMDc5LCJjcmVhdGVEYXRlIjoiMjAxOC0wOC0wN1QwMDowMDowMCIsImVudmlyb25tZW50IjoiQ2FUZXN0IiwidmVyc2lvbiI6IjEiLCJhcHBNb2RlIjoxLCJyb2xlcyI6WyJFbmRVc2VyIl19.ytFxUvGUiUZwAeROl5HLjDPBsRF974f43dUMrvBO0rw",
                     "description": "Api-Key"
                   },
                   {
@@ -5350,7 +5350,6 @@
                   "listen": "test",
                   "script": {
                     "id": "9e9353eb-a31c-4b79-96b3-f0da8b150a5a",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "const isCanada = pm.environment.get('isCanada') === 'true';",
@@ -5527,7 +5526,8 @@
                       "    }",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});"
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
