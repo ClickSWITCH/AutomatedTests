@@ -5223,7 +5223,7 @@
             },
             {
               "_postman_id": "2c1bd144-f150-4c07-afa9-672ae8db4e58",
-              "name": "Get Switch By Id",
+              "name": "Get Switch PDF",
               "event": [
                 {
                   "listen": "test",
@@ -5250,11 +5250,11 @@
                   },
                   {
                     "key": "Content-Type",
-                    "value": "application/json"
+                    "value": "application/pdf"
                   }
                 ],
                 "body": {},
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}/{{switches_postfix}}/GetSwitchPdf/1"
               },
               "response": []
             },
