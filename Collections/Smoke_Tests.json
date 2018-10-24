@@ -8336,7 +8336,7 @@
             },
             {
               "_postman_id": "8107afd3-1265-4bfd-ace6-d15fe0329a5b",
-              "name": "Submit Switch Copy",
+              "name": "Cancel Switch",
               "event": [
                 {
                   "listen": "test",
