@@ -5705,7 +5705,6 @@
                   "listen": "test",
                   "script": {
                     "id": "5abd68d3-c5bf-4eae-b2e3-b40aa4ea6fff",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "",
@@ -5803,14 +5802,14 @@
                       "                ]",
                       "            },",
                       "            {",
-                      "                \"key\": \"___A for Add account or C for Change account\",",
-                      "                \"label\": \"Split[5]_A for Add account or C for Change account\",",
+                      "                \"key\": \"___Deposit Times per Year (24 or 26)\",",
+                      "                \"label\": \"Split[1]_Deposit Times per Year (24 or 26)\",",
                       "                \"type\": \"Textbox\",",
                       "                \"required\": false",
                       "            },",
                       "            {",
-                      "                \"key\": \"___Deposit Times per Year (24 or 26)\",",
-                      "                \"label\": \"Split[1]_Deposit Times per Year (24 or 26)\",",
+                      "                \"key\": \"___A for Add account or C for Change account\",",
+                      "                \"label\": \"Split[5]_A for Add account or C for Change account\",",
                       "                \"type\": \"Textbox\",",
                       "                \"required\": false",
                       "            },",
@@ -5819,7 +5818,7 @@
                       "                \"label\": \"Split[1]_A for Add account or C for Change acct\",",
                       "                \"type\": \"Textbox\",",
                       "                \"required\": false",
-                      "            }",
+                      "            },",
                       "        ]",
                       "    };",
                       "            ",
@@ -5865,7 +5864,8 @@
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});"
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
@@ -5885,7 +5885,7 @@
                   "mode": "raw",
                   "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{split_deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n\t{ \t\r\n\t\t\"index\": 0,\r\n\t\t\"fields\": {\r\n\t\t\t\"SplitType\" : \"Remainder\",\r\n\t\t\t\"___Deposit Times per Year (24 or 26)\" : \"24\",\r\n\t\t\t\"___A for Add account or C for Change acct\" : \"C\"\r\n\t\t}\r\n\t},\r\n\t{ \t\r\n\t\t\"index\": 1,\r\n\t    \"fields\": {\r\n\t    \t\"SplitType\" : \"Currency\",\r\n\t    \t\"SplitAmount\":12,\r\n\t    \t\"___Deposit Times per Year (24 or 26)\" : \"24\",\r\n\t    \t\"___A for Add account or C for Change acct\" : \"C\"\r\n\t    }\r\n\t}\r\n    ],\r\n    \"fields\": {\r\n    \t\"Custom_Agency ID\": \"test\",\r\n    \t\"Custom_Employee Identification Number (EIN)\": \"test\"\r\n    }\r\n  }\r\n}"
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/3"
               },
               "response": []
             },
