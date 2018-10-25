@@ -5818,7 +5818,7 @@
                       "                \"label\": \"Split[1]_A for Add account or C for Change acct\",",
                       "                \"type\": \"Textbox\",",
                       "                \"required\": false",
-                      "            },",
+                      "            }",
                       "        ]",
                       "    };",
                       "            ",
