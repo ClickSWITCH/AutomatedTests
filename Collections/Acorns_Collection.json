@@ -3348,9 +3348,9 @@
                   "listen": "test",
                   "script": {
                     "id": "33e47fcc-6a3b-4d88-8dfd-356b1b897b19",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('is_canada') === 'true';",
                       "",
                       "pm.test(\"Status code is 200\", function () {",
                       "    pm.response.to.have.status(200);",
@@ -3393,7 +3393,7 @@
                       "",
                       "pm.test('Has the correct state', function() {",
                       "   var state;",
-                      "    if (pm.environment.get('isCanada') === 'false') {",
+                      "    if (!isCanada) {",
                       "        state = {",
                       "            \"status\": \"Ready\",",
                       "            \"actions\": [",
@@ -3460,7 +3460,7 @@
                       "",
                       "pm.test('Has the correct values element', function() {",
                       "    var values;",
-                      "    if (pm.environment.get('isCanada') === 'false') {",
+                      "    if (!isCanada) {",
                       "         values = {",
                       "            \"accounts\": [",
                       "                {",
@@ -3494,7 +3494,8 @@
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});"
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
@@ -3534,9 +3535,9 @@
                   "listen": "test",
                   "script": {
                     "id": "bace9abb-c3f5-4814-bb68-5040f0036843",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('is_canada') === 'true';",
                       "",
                       "pm.test(\"Status code is 200\", function () {",
                       "    pm.response.to.have.status(200);",
@@ -3574,7 +3575,7 @@
                       "",
                       "pm.test('Has the correct state', function() {",
                       "    var state;",
-                      "    if (pm.environment.get('isCanada') === 'false') {",
+                      "    if (!isCanada) {",
                       "        state = {",
                       "            \"status\": \"Incomplete\",",
                       "            \"actions\": [",
@@ -3662,7 +3663,7 @@
                       "",
                       "pm.test('Has the correct values element', function() {",
                       "    var values;",
-                      "    if (pm.environment.get('isCanada') === 'false') {",
+                      "    if (!isCanada) {",
                       "        values = {",
                       "            \"accounts\": [],",
                       "            \"fields\": {",
@@ -3698,7 +3699,8 @@
                       "    }",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});"
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
