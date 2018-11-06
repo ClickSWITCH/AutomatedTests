@@ -2524,7 +2524,7 @@
       "item": [
         {
           "_postman_id": "0baabbc1-b9b9-4b42-89b7-f83b3108c9b0",
-          "name": "Deposit Using TargetId Copy",
+          "name": "Deposit Using TargetId",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a deposit target.",
           "item": [
             {
@@ -3196,625 +3196,6 @@
                   ""
                 ]
               }
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "b1342240-1949-45c3-9306-996713288b7f",
-          "name": "Deposits Using TargetId",
-          "description": "",
-          "item": [
-            {
-              "_postman_id": "a20c68b7-ec0d-4cbf-bce3-0242f7f40b9f",
-              "name": "Get Switches",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "ea5aa61e-add3-4780-bfc6-b68fc67b2ce9",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has empty array of switches', function() {",
-                      "   pm.expect(jsonData.data.currentItemCount).to.equal(0);",
-                      "   pm.expect(jsonData.data.items).to.be.empty;",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {},
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}",
-                "description": "Should return empty list since no switches have been created yet."
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "637a05c9-c4d6-4abd-a4de-25b87592a0a5",
-              "name": "Create Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "f7f0dc73-47c8-4642-8246-e0dc0ddd57b6",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has required 2nd level elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('index');",
-                      "    pm.expect(jsonData.data.item).to.have.property('type');",
-                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
-                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
-                      "    pm.expect(jsonData.data.item).to.have.property('values');",
-                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                      "    pm.expect(jsonData.data.item).to.have.property('state');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct index', function() {",
-                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
-                      "});",
-                      "",
-                      "pm.test('Has the correct targetId', function() {",
-                      "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get(\"deposit_target_id\"));",
-                      "});",
-                      "",
-                      "pm.test('Has the correct accountHolderIndex', function() {",
-                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state = {",
-                      "        \"status\": \"Incomplete\",",
-                      "        \"actions\": [",
-                      "            \"HTTP-PUT\",",
-                      "            \"Cancel\"",
-                      "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {",
-                      "                \"Custom_Depositor's Full Mailing Address\": \"Custom_Depositor's Full Mailing Address is required.\",",
-                      "                \"Custom_Last 4 of SSN\": \"Custom_Last 4 of SSN is required.\"",
-                      "            },",
-                      "            \"overall\": []",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct ux.accounts element', function() {",
-                      "   var accounts = {",
-                      "        \"limit\": 1,",
-                      "        \"maxChecking\": 1,",
-                      "        \"maxSavings\": 1,",
-                      "        \"choices\": [",
-                      "            {",
-                      "                \"index\": 0,",
-                      "                \"label\": \"*3607\"",
-                      "            },",
-                      "            {",
-                      "                \"index\": 1,",
-                      "                \"label\": \"*6070\"",
-                      "            }",
-                      "        ],",
-                      "        \"fields\": []",
-                      "    };",
-                      "            ",
-                      "    var customer_key = pm.environment.get('customer_key').toString();",
-                      "    ",
-                      "    var accountName1 = '*' + customer_key.substring(customer_key.length-4,customer_key.length);",
-                      "    ",
-                      "    var accountName2 = '*' + customer_key.substring(customer_key.length-3,customer_key.length) + '0';",
-                      "    ",
-                      "    accounts.choices[0].label = accountName1;",
-                      "    accounts.choices[1].label = accountName2;",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(accounts);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct values element', function() {",
-                      "   var values = {",
-                      "        \"accounts\": [",
-                      "            {",
-                      "                \"index\": 0",
-                      "            }",
-                      "        ],",
-                      "        \"fields\": {",
-                      "            \"Custom_Net or Amount (in dollars)\": null,",
-                      "            \"Custom_or Percentage of Pay (1 - 100)\": null,",
-                      "            \"Custom_Depositor's Full Mailing Address\": null,",
-                      "            \"Custom_Employee ID\": null,",
-                      "            \"Custom_Last 4 of SSN\": null",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api-Key"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"key\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "30e8bc4a-6b6f-4855-be52-9ed67977291e",
-              "name": "Get Switch By Id",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "d0f76763-2cc6-4609-90ec-1fa617ff2705",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has required 2nd level elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('index');",
-                      "    pm.expect(jsonData.data.item).to.have.property('type');",
-                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
-                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
-                      "    pm.expect(jsonData.data.item).to.have.property('values');",
-                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                      "    pm.expect(jsonData.data.item).to.have.property('state');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct index', function() {",
-                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
-                      "});",
-                      "",
-                      "pm.test('Has the correct targetId', function() {",
-                      "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get(\"deposit_target_id\"));",
-                      "});",
-                      "",
-                      "pm.test('Has the correct accountHolderIndex', function() {",
-                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state = {",
-                      "        \"status\": \"Incomplete\",",
-                      "        \"actions\": [",
-                      "            \"HTTP-PUT\",",
-                      "            \"Cancel\"",
-                      "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {",
-                      "                \"Custom_Depositor's Full Mailing Address\": \"Custom_Depositor's Full Mailing Address is required.\",",
-                      "                \"Custom_Last 4 of SSN\": \"Custom_Last 4 of SSN is required.\"",
-                      "            },",
-                      "            \"overall\": []",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct ux.accounts element', function() {",
-                      "   var accounts = {",
-                      "        \"limit\": 1,",
-                      "        \"maxChecking\": 1,",
-                      "        \"maxSavings\": 1,",
-                      "        \"choices\": [",
-                      "            {",
-                      "                \"index\": 0,",
-                      "                \"label\": \"*3607\"",
-                      "            },",
-                      "            {",
-                      "                \"index\": 1,",
-                      "                \"label\": \"*6070\"",
-                      "            }",
-                      "        ],",
-                      "        \"fields\": []",
-                      "    };",
-                      "            ",
-                      "    var customer_key = pm.environment.get('customer_key').toString();",
-                      "    ",
-                      "    var accountName1 = '*' + customer_key.substring(customer_key.length-4,customer_key.length);",
-                      "    ",
-                      "    var accountName2 = '*' + customer_key.substring(customer_key.length-3,customer_key.length) + '0';",
-                      "    ",
-                      "    accounts.choices[0].label = accountName1;",
-                      "    accounts.choices[1].label = accountName2;",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(accounts);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct values element', function() {",
-                      "   var values = {",
-                      "        \"accounts\": [",
-                      "            {",
-                      "                \"index\": 0",
-                      "            }",
-                      "        ],",
-                      "        \"fields\": {",
-                      "            \"Custom_Net or Amount (in dollars)\": null,",
-                      "            \"Custom_or Percentage of Pay (1 - 100)\": null,",
-                      "            \"Custom_Depositor's Full Mailing Address\": null,",
-                      "            \"Custom_Employee ID\": null,",
-                      "            \"Custom_Last 4 of SSN\": null",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {},
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "293a7f54-7516-466a-8202-3d2ce97bc310",
-              "name": "Update Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "5439c638-a458-4032-b79d-43c6b5fba561",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has required 2nd level elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('index');",
-                      "    pm.expect(jsonData.data.item).to.have.property('type');",
-                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
-                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
-                      "    pm.expect(jsonData.data.item).to.have.property('values');",
-                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                      "    pm.expect(jsonData.data.item).to.have.property('state');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct index', function() {",
-                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
-                      "});",
-                      "",
-                      "pm.test('Has the correct targetId', function() {",
-                      "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get(\"deposit_target_id\"));",
-                      "});",
-                      "",
-                      "pm.test('Has the correct accountHolderIndex', function() {",
-                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state = {",
-                      "        \"status\": \"Ready\",",
-                      "        \"actions\": [",
-                      "            \"HTTP-PUT\",",
-                      "            \"Cancel\",",
-                      "            \"Submit\"",
-                      "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {},",
-                      "            \"overall\": []",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct ux.accounts element', function() {",
-                      "   var accounts = {",
-                      "        \"limit\": 1,",
-                      "        \"maxChecking\": 1,",
-                      "        \"maxSavings\": 1,",
-                      "        \"choices\": [",
-                      "            {",
-                      "                \"index\": 0,",
-                      "                \"label\": \"*3607\"",
-                      "            },",
-                      "            {",
-                      "                \"index\": 1,",
-                      "                \"label\": \"*6070\"",
-                      "            }",
-                      "        ],",
-                      "        \"fields\": []",
-                      "    };",
-                      "            ",
-                      "    var customer_key = pm.environment.get('customer_key').toString();",
-                      "    ",
-                      "    var accountName1 = '*' + customer_key.substring(customer_key.length-4,customer_key.length);",
-                      "    ",
-                      "    var accountName2 = '*' + customer_key.substring(customer_key.length-3,customer_key.length) + '0';",
-                      "    ",
-                      "    accounts.choices[0].label = accountName1;",
-                      "    accounts.choices[1].label = accountName2;",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(accounts);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct values element', function() {",
-                      "   var values = {",
-                      "        \"accounts\": [",
-                      "            {",
-                      "                \"index\": 0",
-                      "            }",
-                      "        ],",
-                      "        \"fields\": {",
-                      "            \"Custom_Net or Amount (in dollars)\": \"500\",",
-                      "            \"Custom_or Percentage of Pay (1 - 100)\": \"50\",",
-                      "            \"Custom_Last 4 of SSN\": \"1234\",",
-                      "            \"Custom_Employee ID\": \"123\",",
-                      "            \"Custom_Depositor's Full Mailing Address\": \"123 Main Street\"",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "PUT",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Net or Amount (in dollars)\": \"500\",\r\n      \"Custom_or Percentage of Pay (1 - 100)\": \"50\",\r\n      \"Custom_Last 4 of SSN\": \"1234\",\r\n      \"Custom_Employee ID\": \"123\",\r\n      \"Custom_Depositor's Full Mailing Address\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "5bf804e2-f4ba-4478-8951-ca9e5fae573c",
-              "name": "Submit Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "a5ae1e82-9cf7-4303-9bf6-db3aed3ce471",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "ada6df18-ae52-4068-95c3-24cc8cd607ff",
-              "name": "Cancel Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state = {",
-                      "        \"status\": \"Canceled\",",
-                      "        \"actions\": [",
-                      "            \"Uncancel\",",
-                      "            \"HTTP-DELETE\"",
-                      "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {},",
-                      "            \"overall\": []",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "e3f34d31-2a1b-48f2-80df-268f1aa6fb5b",
-              "name": "Delete Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "DELETE",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  }
-                ],
-                "body": {},
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
-                "description": "\t"
-              },
-              "response": []
             }
           ],
           "_postman_isSubFolder": true
@@ -4607,6 +3988,561 @@
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/2"
               },
               "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "75431ea9-e004-4379-9f37-b1a2dff32aad",
+          "name": "Deposit using LocationId Copy",
+          "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a location target.",
+          "item": [
+            {
+              "_postman_id": "e126749e-7679-4cff-83be-33bce4880c12",
+              "name": "Create Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "43dc4729-45de-4aa5-9e5f-cb57ff9ce355",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has required 2nd level elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('index');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
+                      "    pm.expect(jsonData.data.item).to.have.property('values');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "    pm.expect(jsonData.data.item).to.have.property('state');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct index', function() {",
+                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "});",
+                      "",
+                      "pm.test('Has the correct targetId and locationId', function() {",
+                      "   pm.expect(jsonData.data.item.locationId).to.equal(pm.environment.get('location_id'));",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accountHolderIndex', function() {",
+                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state;",
+                      "    if (!isCanada) {",
+                      "        state = {",
+                      "            \"status\": \"Incomplete\",",
+                      "            \"actions\": [",
+                      "                \"HTTP-PUT\",",
+                      "                \"Cancel\"",
+                      "            ],",
+                      "            \"validation\": {",
+                      "                \"accounts\": [],",
+                      "                \"fields\": {",
+                      "                    \"Custom_Work Location\": \"Custom_Work Location is required.\",",
+                      "                    \"Custom_Last 4 of SSN\": \"Custom_Last 4 of SSN is required.\"",
+                      "                },",
+                      "                \"overall\": [",
+                      "                    \"Category is required.\"",
+                      "                ]",
+                      "            }",
+                      "        };",
+                      "    } else {",
+                      "        state = {",
+                      "            \"status\": \"Incomplete\",",
+                      "            \"actions\": [",
+                      "                \"HTTP-PUT\",",
+                      "                \"Cancel\"",
+                      "            ],",
+                      "            \"validation\": {",
+                      "                \"accounts\": [],",
+                      "                \"fields\": {",
+                      "                    \"Custom_WorkLocationDepartment\": \"Custom_WorkLocationDepartment is required.\",",
+                      "                    \"Custom_Last 3 of SIN\": \"Custom_Last 3 of SIN is required.\"",
+                      "                },",
+                      "                \"overall\": [",
+                      "                    \"Category is required.\"",
+                      "                ]",
+                      "            }",
+                      "        };",
+                      "    }",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux.accounts element', function() {",
+                      "   var accounts = {",
+                      "        \"limit\": 1,",
+                      "        \"maxChecking\": 1,",
+                      "        \"maxSavings\": 1,",
+                      "        \"choices\": [",
+                      "            {",
+                      "                \"index\": 0,",
+                      "                \"label\": \"*3607\"",
+                      "            },",
+                      "            {",
+                      "                \"index\": 1,",
+                      "                \"label\": \"*6070\"",
+                      "            }",
+                      "        ],",
+                      "        \"fields\": []",
+                      "    };",
+                      "            ",
+                      "    var customer_key = pm.environment.get('customer_key').toString();",
+                      "    ",
+                      "    var accountName1 = '*' + customer_key.substring(customer_key.length-4,customer_key.length);",
+                      "    ",
+                      "    var accountName2 = '*' + customer_key.substring(customer_key.length-3,customer_key.length) + '0';",
+                      "    ",
+                      "    accounts.choices[0].label = accountName1;",
+                      "    accounts.choices[1].label = accountName2;",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux.fields element', function() {",
+                      "    pm.expect(jsonData.data.item.ux.fields.length).to.be.at.least(1);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct values element', function() {",
+                      "    var values;",
+                      "    if (!isCanada) {",
+                      "       values =  {",
+                      "            \"accounts\": [",
+                      "                {",
+                      "                    \"index\": 0",
+                      "                }",
+                      "            ],",
+                      "            \"fields\": {",
+                      "                \"category\": 0,",
+                      "                \"Custom_Work Location\": null,",
+                      "                \"Custom_Employee ID\": null,",
+                      "                \"Custom_Last 4 of SSN\": null,",
+                      "                \"Custom_Amount or Net Pay\": null,",
+                      "                \"Custom_or Percentage\": null",
+                      "            }",
+                      "        };",
+                      "    } else {",
+                      "        values = {",
+                      "            \"accounts\": [",
+                      "                {",
+                      "                    \"index\": 0",
+                      "                }",
+                      "            ],",
+                      "            \"fields\": {",
+                      "                \"category\": 0,",
+                      "                \"Custom_WorkLocationDepartment\": null,",
+                      "                \"Custom_Employee ID\": null,",
+                      "                \"Custom_Last 3 of SIN\": null",
+                      "            }",
+                      "        };",
+                      "    }",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api-Key"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"deposit\",\n  \"locationId\": \"{{location_id}}\",\n  \"accountholderIndex\": 0,\n  \"values\": {\n    \"accounts\": [\n      {\n        \"index\": 0\n      }\n    ]\n  }\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "9568956f-3ec1-4c81-992b-7a3f14c9e065",
+              "name": "Update Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "cae73f51-d132-4101-a403-19b29b781ac9",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct context', function() {",
+                      "    pm.expect(jsonData.context).to.equal('testing_context');",
+                      "})",
+                      "",
+                      "pm.test('Has required 2nd level elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('index');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
+                      "    pm.expect(jsonData.data.item).to.have.property('values');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "    pm.expect(jsonData.data.item).to.have.property('state');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct index', function() {",
+                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "});",
+                      "",
+                      "pm.test('Has the correct targetId and locationId', function() {",
+                      "   pm.expect(jsonData.data.item.locationId).to.equal(pm.environment.get('location_id'));",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accountHolderIndex', function() {",
+                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "   var state;",
+                      "    if (pm.environment.get('isCanada') === 'false') {",
+                      "        state = {",
+                      "            \"status\": \"Ready\",",
+                      "            \"actions\": [",
+                      "                \"HTTP-PUT\",",
+                      "                \"Cancel\",",
+                      "                \"Submit\"",
+                      "            ],",
+                      "            \"validation\": {",
+                      "                \"accounts\": [],",
+                      "                \"fields\": {",
+                      "                },",
+                      "                \"overall\": []",
+                      "            }",
+                      "        };",
+                      "    } else {",
+                      "        state = {",
+                      "            \"status\": \"Incomplete\",",
+                      "            \"actions\": [",
+                      "                \"HTTP-PUT\",",
+                      "                \"Cancel\"",
+                      "            ],",
+                      "            \"validation\": {",
+                      "                \"accounts\": [],",
+                      "                \"fields\": {",
+                      "                    \"Custom_WorkLocationDepartment\": \"Custom_WorkLocationDepartment is required.\",",
+                      "                    \"Custom_Last 3 of SIN\": \"Custom_Last 3 of SIN is required.\"",
+                      "                },",
+                      "                \"overall\": []",
+                      "            }",
+                      "        };  ",
+                      "    }",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux.accounts element', function() {",
+                      "   var accounts = {",
+                      "        \"limit\": 1,",
+                      "        \"maxChecking\": 1,",
+                      "        \"maxSavings\": 1,",
+                      "        \"choices\": [",
+                      "            {",
+                      "                \"index\": 0,",
+                      "                \"label\": \"*3607\"",
+                      "            },",
+                      "            {",
+                      "                \"index\": 1,",
+                      "                \"label\": \"*6070\"",
+                      "            }",
+                      "        ],",
+                      "        \"fields\": []",
+                      "    };",
+                      "            ",
+                      "    var customer_key = pm.environment.get('customer_key').toString();",
+                      "    ",
+                      "    var accountName1 = '*' + customer_key.substring(customer_key.length-4,customer_key.length);",
+                      "    ",
+                      "    var accountName2 = '*' + customer_key.substring(customer_key.length-3,customer_key.length) + '0';",
+                      "    ",
+                      "    accounts.choices[0].label = accountName1;",
+                      "    accounts.choices[1].label = accountName2;",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct values element', function() {",
+                      "    var values;",
+                      "    if (pm.environment.get('isCanada') === 'false') {",
+                      "         values = {",
+                      "            \"accounts\": [",
+                      "                {",
+                      "                    \"index\": 0",
+                      "                }",
+                      "            ],",
+                      "            \"fields\": {",
+                      "                \"category\": 1,",
+                      "                \"Custom_Amount or Net Pay\": \"Net\",",
+                      "                \"Custom_or Percentage\": \"100\",",
+                      "                \"Custom_Last 4 of SSN\": \"1234\",",
+                      "                \"Custom_Employee ID\": \"123\",",
+                      "\"Custom_Work Location\": \"123 Main Street\"",
+                      "            }",
+                      "        };",
+                      "    } else {",
+                      "         values = {",
+                      "            \"accounts\": [",
+                      "                {",
+                      "                    \"index\": 0",
+                      "                }",
+                      "            ],",
+                      "            \"fields\": {",
+                      "                \"category\": 1,",
+                      "                \"Custom_WorkLocationDepartment\": null,",
+                      "                \"Custom_Employee ID\": \"123\",",
+                      "                \"Custom_Last 3 of SIN\": null",
+                      "            }",
+                      "        };",
+                      "    }",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"locationId\": \"{{location_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"category\": 1,\r\n      \"Custom_Amount or Net Pay\": \"Net\",\r\n      \"Custom_or Percentage\": \"100\",\r\n      \"Custom_Last 4 of SSN\": \"1234\",\r\n      \"Custom_Employee ID\": \"123\",\r\n      \"Custom_Work Location\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "06653f9c-ce96-470d-b3d7-df029cc12625",
+              "name": "Submit Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "6e5d8981-0a19-45f0-b122-184fed7d4be6",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
+                      "",
+                      "(isCanada ? pm.test.skip : pm.test)(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "(isCanada ? pm.test.skip : pm.test)('Has the correct state', function() {",
+                      "    var state = {",
+                      "        \"status\": \"Submitted\",",
+                      "        \"actions\": [",
+                      "            \"Cancel\"",
+                      "        ],",
+                      "        \"validation\": {",
+                      "            \"accounts\": [],",
+                      "            \"fields\": {},",
+                      "            \"overall\": []",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "5bfcb451-77e0-4de3-a9ff-a979a614d571",
+              "name": "Cancel Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "4a65b218-a347-42d8-97de-f8073082f13f",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state = {",
+                      "        \"status\": \"Canceled\",",
+                      "        \"actions\": [",
+                      "            \"Uncancel\",",
+                      "            \"HTTP-DELETE\"",
+                      "        ],",
+                      "        \"validation\": {}",
+                      "    };",
+                      "    ",
+                      "   jsonData.data.item.state.validation = {};",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "787605cd-0f23-47fd-a92f-970424078249",
+              "name": "Delete Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
+                "description": "\t"
+              },
+              "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "6c6065f0-2453-4506-9b91-9e8e9b5fcbe5",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "c77d980d-7e50-4432-a298-9e5de60fd1c8",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
             }
           ],
           "_postman_isSubFolder": true
