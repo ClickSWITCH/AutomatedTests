@@ -3757,7 +3757,7 @@
         },
         {
           "_postman_id": "1b00c120-6a1b-4305-ae08-14f6fc0e3635",
-          "name": "Deposit using neither Copy",
+          "name": "Deposit using neither",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete an unknown deposit target switch.",
           "item": [
             {
@@ -4356,7 +4356,7 @@
         },
         {
           "_postman_id": "577b745e-5286-4526-b0df-f5a0673a1fd5",
-          "name": "Deposit Online Only Copy",
+          "name": "Deposit Online Only",
           "description": "Folder containing the tests that create, update and delete a switch using a print only deposit target.",
           "item": [
             {
