@@ -3202,7 +3202,7 @@
         },
         {
           "_postman_id": "75431ea9-e004-4379-9f37-b1a2dff32aad",
-          "name": "Deposit using LocationId Copy",
+          "name": "Deposit using LocationId",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a location target.",
           "item": [
             {
