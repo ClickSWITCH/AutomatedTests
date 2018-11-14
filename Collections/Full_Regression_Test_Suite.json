@@ -7472,7 +7472,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n\t\t\"name\": \"Test\",\r\n\t\t\"MailingAddress\": {\r\n\t\t  \"Line1\": \"123 Main Street\",\r\n\t\t  \"City\": \"Duluth\",\r\n\t\t  \"State\": \"MN\",\r\n\t\t  \"Zip\": 55803,\r\n\t\t  \"Country\": \"US\"\r\n\t\t},\r\n\t\t\"category\": 1,\r\n\t\t\"Custom_Withdrawal Date\": \"12-12-18\",\r\n        \"Custom_Amount\": \"100\",\r\n        \"Switch_BillingAccountNumber\": \"1234\"\r\n    }\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n\t\t\"name\": \"Test\",\r\n\t\t\"MailingAddress\": {\r\n\t\t  \"Line1\": \"123 Main Street\",\r\n\t\t  \"City\": \"Duluth\",\r\n\t\t  \"State\": \"MN\",\r\n\t\t  \"Zip\": 55803\r\n\t\t},\r\n\t\t\"category\": 1,\r\n\t\t\"Custom_Withdrawal Date\": \"12-12-18\",\r\n        \"Custom_Amount\": \"100\",\r\n        \"Switch_BillingAccountNumber\": \"1234\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
