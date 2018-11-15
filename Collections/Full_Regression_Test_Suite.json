@@ -5893,64 +5893,64 @@
                     "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
                   },
                   "response": []
+                },
+                {
+                  "_postman_id": "02d84eef-554a-41d2-aa5d-7195b0cdd1e0",
+                  "name": "Submit Switch",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "f390423b-d7b2-4cc2-b058-060f8d297a5c",
+                        "type": "text/javascript",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 200\", function () {",
+                          "    pm.response.to.have.status(200);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct state', function() {",
+                          "    var state = {",
+                          "        \"status\": \"Submitted\",",
+                          "        \"actions\": [",
+                          "            \"Cancel\"",
+                          "        ],",
+                          "        \"validation\": {",
+                          "            \"accounts\": [],",
+                          "            \"fields\": {},",
+                          "            \"overall\": []",
+                          "        }",
+                          "    };",
+                          "    ",
+                          "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                          "});"
+                        ]
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+                  },
+                  "response": []
                 }
               ],
               "_postman_isSubFolder": true
-            },
-            {
-              "_postman_id": "02d84eef-554a-41d2-aa5d-7195b0cdd1e0",
-              "name": "Submit Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "f390423b-d7b2-4cc2-b058-060f8d297a5c",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state = {",
-                      "        \"status\": \"Submitted\",",
-                      "        \"actions\": [",
-                      "            \"Cancel\"",
-                      "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {},",
-                      "            \"overall\": []",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
-              },
-              "response": []
             },
             {
               "_postman_id": "5c7de94b-5a2c-46ff-8bf2-6c5b013abdba",
