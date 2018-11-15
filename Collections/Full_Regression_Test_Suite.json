@@ -5701,347 +5701,347 @@
                     "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
                   },
                   "response": []
-                },
-                {
-                  "_postman_id": "82ad52bd-02fe-4f39-b9bb-bee3a293428d",
-                  "name": "Update Switch",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "5abd68d3-c5bf-4eae-b2e3-b40aa4ea6fff",
-                        "exec": [
-                          "const jsonData = pm.response.json();",
-                          "",
-                          "pm.test(\"Status code is 200\", function () {",
-                          "    pm.response.to.have.status(200);",
-                          "});",
-                          "",
-                          "pm.test('Has required elements', function() {",
-                          "    pm.expect(jsonData).to.have.property('data');",
-                          "    pm.expect(jsonData).to.have.property('apiVersion');",
-                          "    pm.expect(jsonData).to.have.property('id');",
-                          "    pm.expect(jsonData.data).to.have.property('kind');",
-                          "    pm.expect(jsonData.data).to.have.property('lang');",
-                          "});",
-                          "",
-                          "pm.test('Has required 2nd level elements', function() {",
-                          "    pm.expect(jsonData.data.item).to.have.property('index');",
-                          "    pm.expect(jsonData.data.item).to.have.property('type');",
-                          "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                          "    pm.expect(jsonData.data.item).to.have.property('name');",
-                          "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
-                          "    pm.expect(jsonData.data.item).to.have.property('values');",
-                          "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                          "    pm.expect(jsonData.data.item).to.have.property('state');",
-                          "});",
-                          "",
-                          "pm.test('Has the correct index', function() {",
-                          "   pm.expect(jsonData.data.item.index).to.equal(1);",
-                          "});",
-                          "",
-                          "pm.test('Has the correct type', function() {",
-                          "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
-                          "});",
-                          "",
-                          "pm.test('Has the correct targetId', function() {",
-                          "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get(\"split_deposit_target_id\"));",
-                          "});",
-                          "",
-                          "pm.test('Has the correct accountHolderIndex', function() {",
-                          "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
-                          "});",
-                          "",
-                          "pm.test('Has the correct state', function() {",
-                          "    var state = {",
-                          "        \"status\": \"Ready\",",
-                          "        \"actions\": [",
-                          "            \"HTTP-PUT\",",
-                          "            \"Cancel\",",
-                          "            \"Submit\"",
-                          "        ],",
-                          "        \"validation\": {",
-                          "            \"accounts\": [],",
-                          "            \"fields\": {},",
-                          "            \"overall\": []",
-                          "        }",
-                          "    };",
-                          "    ",
-                          "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                          "});",
-                          "",
-                          "pm.test('Has the correct ux.accounts element', function() {",
-                          "   var accounts = {",
-                          "        \"limit\": 5,",
-                          "        \"maxChecking\": 5,",
-                          "        \"maxSavings\": 5,",
-                          "        \"choices\": [",
-                          "            {",
-                          "                \"index\": 0,",
-                          "                \"label\": \"*6363\"",
-                          "            },",
-                          "            {",
-                          "                \"index\": 1,",
-                          "                \"label\": \"*3630\"",
-                          "            }",
-                          "        ],",
-                          "        \"fields\": [",
-                          "            {",
-                          "                \"key\": \"SplitAmount\",",
-                          "                \"label\": \"Percent or Fixed Amount\",",
-                          "                \"type\": \"textbox\",",
-                          "                \"required\": true,",
-                          "                \"regex\": \"^(1-9\\\\\\\\d*\\\\\\\\.\\\\\\\\d2|(100(.0)?|(0(\\\\\\\\.1-9))|(1-90-9?(\\\\\\\\.\\\\\\\\d)?)))$\",",
-                          "                \"validationMessage\": \"Must be an amount with 2 decimal places or a whole percentage\"",
-                          "            },",
-                          "            {",
-                          "                \"key\": \"SplitType\",",
-                          "                \"label\": \"Type\",",
-                          "                \"type\": \"select\",",
-                          "                \"required\": true,",
-                          "                \"selections\": [",
-                          "                    {",
-                          "                        \"key\": \"Remainder\",",
-                          "                        \"label\": \"Remainder\"",
-                          "                    }",
-                          "                ]",
-                          "            },",
-                          "            {",
-                          "                \"key\": \"Custom_Deposit Times per Year (24 or 26)\",",
-                          "                \"label\": \"Split[1]_Deposit Times per Year (24 or 26)\",",
-                          "                \"type\": \"Textbox\",",
-                          "                \"required\": false",
-                          "            },",
-                          "            {",
-                          "                \"key\": \"Custom_A for Add account or C for Change acct\",",
-                          "                \"label\": \"Split[1]_A for Add account or C for Change acct\",",
-                          "                \"type\": \"Textbox\",",
-                          "                \"required\": false",
-                          "            },",
-                          "            {",
-                          "                \"key\": \"Custom_A for Add account or C for Change account\",",
-                          "                \"label\": \"Split[5]_A for Add account or C for Change account\",",
-                          "                \"type\": \"Textbox\",",
-                          "                \"required\": false",
-                          "            }",
-                          "        ]",
-                          "    };",
-                          "            ",
-                          "    var customer_key = pm.environment.get('customer_key').toString();",
-                          "    ",
-                          "    var accountName1 = '*' + customer_key.substring(customer_key.length-4,customer_key.length);",
-                          "    ",
-                          "    var accountName2 = '*' + customer_key.substring(customer_key.length-3,customer_key.length) + '0';",
-                          "    ",
-                          "    accounts.choices[0].label = accountName1;",
-                          "    accounts.choices[1].label = accountName2;",
-                          "    ",
-                          "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(accounts);",
-                          "});",
-                          "",
-                          "pm.test('Has the correct values element', function() {",
-                          "   var values = {",
-                          "        \"accounts\": [",
-                          "            {",
-                          "                \"index\": 0,",
-                          "                \"fields\": {",
-                          "                    \"splitAmount\": 0,",
-                          "                    \"splitType\": \"Remainder\",",
-                          "                    \"Custom_Deposit Times per Year (24 or 26)\": \"24\",",
-                          "                    \"Custom_A for Add account or C for Change acct\": \"C\"",
-                          "                }",
-                          "            },",
-                          "            {",
-                          "                \"index\": 1,",
-                          "                \"fields\": {",
-                          "                    \"splitAmount\": 12,",
-                          "                    \"splitType\": \"Currency\",",
-                          "                    \"Custom_Deposit Times per Year (24 or 26)\": \"24\",",
-                          "                    \"Custom_A for Add account or C for Change acct\": \"C\"",
-                          "                }",
-                          "            }",
-                          "        ],",
-                          "        \"fields\": {",
-                          "            \"Custom_Agency ID\": \"test\",",
-                          "            \"Custom_Employee Identification Number (EIN)\": \"test\"",
-                          "        }",
-                          "    };",
-                          "    ",
-                          "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
-                          "});"
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "PUT",
-                    "header": [
-                      {
-                        "key": "api-key",
-                        "value": "{{api_key}}"
-                      },
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{split_deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n\t{ \t\r\n\t\t\"index\": 0,\r\n\t\t\"fields\": {\r\n\t\t\t\"SplitType\" : \"Remainder\",\r\n\t\t\t\"Custom_Deposit Times per Year (24 or 26)\" : \"24\",\r\n\t\t\t\"Custom_A for Add account or C for Change acct\" : \"C\"\r\n\t\t}\r\n\t},\r\n\t{ \t\r\n\t\t\"index\": 1,\r\n\t    \"fields\": {\r\n\t    \t\"SplitType\" : \"Currency\",\r\n\t    \t\"SplitAmount\":12,\r\n\t    \t\"Custom_Deposit Times per Year (24 or 26)\" : \"24\",\r\n\t    \t\"Custom_A for Add account or C for Change acct\" : \"C\"\r\n\t    }\r\n\t}\r\n    ],\r\n    \"fields\": {\r\n    \t\"Custom_Agency ID\": \"test\",\r\n    \t\"Custom_Employee Identification Number (EIN)\": \"test\"\r\n    }\r\n  }\r\n}"
-                    },
-                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
-                  },
-                  "response": []
-                },
-                {
-                  "_postman_id": "02d84eef-554a-41d2-aa5d-7195b0cdd1e0",
-                  "name": "Submit Switch",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "f390423b-d7b2-4cc2-b058-060f8d297a5c",
-                        "type": "text/javascript",
-                        "exec": [
-                          "const jsonData = pm.response.json();",
-                          "",
-                          "pm.test(\"Status code is 200\", function () {",
-                          "    pm.response.to.have.status(200);",
-                          "});",
-                          "",
-                          "pm.test('Has the correct state', function() {",
-                          "    var state = {",
-                          "        \"status\": \"Submitted\",",
-                          "        \"actions\": [",
-                          "            \"Cancel\"",
-                          "        ],",
-                          "        \"validation\": {",
-                          "            \"accounts\": [],",
-                          "            \"fields\": {},",
-                          "            \"overall\": []",
-                          "        }",
-                          "    };",
-                          "    ",
-                          "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                          "});"
-                        ]
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "api-key",
-                        "value": "{{api_key}}"
-                      },
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
-                    },
-                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
-                  },
-                  "response": []
-                },
-                {
-                  "_postman_id": "5c7de94b-5a2c-46ff-8bf2-6c5b013abdba",
-                  "name": "Cancel Switch",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
-                        "type": "text/javascript",
-                        "exec": [
-                          "const jsonData = pm.response.json();",
-                          "",
-                          "pm.test(\"Status code is 200\", function () {",
-                          "    pm.response.to.have.status(200);",
-                          "});",
-                          "",
-                          "pm.test('Has the correct state', function() {",
-                          "    var state = {",
-                          "        \"status\": \"Canceled\",",
-                          "        \"actions\": [",
-                          "            \"Uncancel\",",
-                          "            \"HTTP-DELETE\"",
-                          "        ],",
-                          "        \"validation\": {",
-                          "            \"accounts\": [],",
-                          "            \"fields\": {},",
-                          "            \"overall\": []",
-                          "        }",
-                          "    };",
-                          "    ",
-                          "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                          "});"
-                        ]
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "api-key",
-                        "value": "{{api_key}}"
-                      },
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json"
-                      },
-                      {
-                        "key": "Accept",
-                        "value": "application/json"
-                      }
-                    ],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
-                    },
-                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
-                  },
-                  "response": []
-                },
-                {
-                  "_postman_id": "12236f6b-ffe1-4890-ac13-c7bd9cd295e4",
-                  "name": "Delete Switch",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
-                        "type": "text/javascript",
-                        "exec": [
-                          "pm.test(\"Status code is 200\", function () {",
-                          "    pm.response.to.have.status(200);",
-                          "});"
-                        ]
-                      }
-                    }
-                  ],
-                  "request": {
-                    "method": "DELETE",
-                    "header": [
-                      {
-                        "key": "api-key",
-                        "value": "{{api_key}}"
-                      }
-                    ],
-                    "body": {},
-                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
-                    "description": "\t"
-                  },
-                  "response": []
                 }
               ],
               "_postman_isSubFolder": true
+            },
+            {
+              "_postman_id": "82ad52bd-02fe-4f39-b9bb-bee3a293428d",
+              "name": "Update Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "5abd68d3-c5bf-4eae-b2e3-b40aa4ea6fff",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has required 2nd level elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('index');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
+                      "    pm.expect(jsonData.data.item).to.have.property('values');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "    pm.expect(jsonData.data.item).to.have.property('state');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct index', function() {",
+                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "});",
+                      "",
+                      "pm.test('Has the correct targetId', function() {",
+                      "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get(\"split_deposit_target_id\"));",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accountHolderIndex', function() {",
+                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state = {",
+                      "        \"status\": \"Ready\",",
+                      "        \"actions\": [",
+                      "            \"HTTP-PUT\",",
+                      "            \"Cancel\",",
+                      "            \"Submit\"",
+                      "        ],",
+                      "        \"validation\": {",
+                      "            \"accounts\": [],",
+                      "            \"fields\": {},",
+                      "            \"overall\": []",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux.accounts element', function() {",
+                      "   var accounts = {",
+                      "        \"limit\": 5,",
+                      "        \"maxChecking\": 5,",
+                      "        \"maxSavings\": 5,",
+                      "        \"choices\": [",
+                      "            {",
+                      "                \"index\": 0,",
+                      "                \"label\": \"*6363\"",
+                      "            },",
+                      "            {",
+                      "                \"index\": 1,",
+                      "                \"label\": \"*3630\"",
+                      "            }",
+                      "        ],",
+                      "        \"fields\": [",
+                      "            {",
+                      "                \"key\": \"SplitAmount\",",
+                      "                \"label\": \"Percent or Fixed Amount\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": true,",
+                      "                \"regex\": \"^(1-9\\\\\\\\d*\\\\\\\\.\\\\\\\\d2|(100(.0)?|(0(\\\\\\\\.1-9))|(1-90-9?(\\\\\\\\.\\\\\\\\d)?)))$\",",
+                      "                \"validationMessage\": \"Must be an amount with 2 decimal places or a whole percentage\"",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"SplitType\",",
+                      "                \"label\": \"Type\",",
+                      "                \"type\": \"select\",",
+                      "                \"required\": true,",
+                      "                \"selections\": [",
+                      "                    {",
+                      "                        \"key\": \"Remainder\",",
+                      "                        \"label\": \"Remainder\"",
+                      "                    }",
+                      "                ]",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_Deposit Times per Year (24 or 26)\",",
+                      "                \"label\": \"Split[1]_Deposit Times per Year (24 or 26)\",",
+                      "                \"type\": \"Textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_A for Add account or C for Change acct\",",
+                      "                \"label\": \"Split[1]_A for Add account or C for Change acct\",",
+                      "                \"type\": \"Textbox\",",
+                      "                \"required\": false",
+                      "            },",
+                      "            {",
+                      "                \"key\": \"Custom_A for Add account or C for Change account\",",
+                      "                \"label\": \"Split[5]_A for Add account or C for Change account\",",
+                      "                \"type\": \"Textbox\",",
+                      "                \"required\": false",
+                      "            }",
+                      "        ]",
+                      "    };",
+                      "            ",
+                      "    var customer_key = pm.environment.get('customer_key').toString();",
+                      "    ",
+                      "    var accountName1 = '*' + customer_key.substring(customer_key.length-4,customer_key.length);",
+                      "    ",
+                      "    var accountName2 = '*' + customer_key.substring(customer_key.length-3,customer_key.length) + '0';",
+                      "    ",
+                      "    accounts.choices[0].label = accountName1;",
+                      "    accounts.choices[1].label = accountName2;",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct values element', function() {",
+                      "   var values = {",
+                      "        \"accounts\": [",
+                      "            {",
+                      "                \"index\": 0,",
+                      "                \"fields\": {",
+                      "                    \"splitAmount\": 0,",
+                      "                    \"splitType\": \"Remainder\",",
+                      "                    \"Custom_Deposit Times per Year (24 or 26)\": \"24\",",
+                      "                    \"Custom_A for Add account or C for Change acct\": \"C\"",
+                      "                }",
+                      "            },",
+                      "            {",
+                      "                \"index\": 1,",
+                      "                \"fields\": {",
+                      "                    \"splitAmount\": 12,",
+                      "                    \"splitType\": \"Currency\",",
+                      "                    \"Custom_Deposit Times per Year (24 or 26)\": \"24\",",
+                      "                    \"Custom_A for Add account or C for Change acct\": \"C\"",
+                      "                }",
+                      "            }",
+                      "        ],",
+                      "        \"fields\": {",
+                      "            \"Custom_Agency ID\": \"test\",",
+                      "            \"Custom_Employee Identification Number (EIN)\": \"test\"",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{split_deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n\t{ \t\r\n\t\t\"index\": 0,\r\n\t\t\"fields\": {\r\n\t\t\t\"SplitType\" : \"Remainder\",\r\n\t\t\t\"Custom_Deposit Times per Year (24 or 26)\" : \"24\",\r\n\t\t\t\"Custom_A for Add account or C for Change acct\" : \"C\"\r\n\t\t}\r\n\t},\r\n\t{ \t\r\n\t\t\"index\": 1,\r\n\t    \"fields\": {\r\n\t    \t\"SplitType\" : \"Currency\",\r\n\t    \t\"SplitAmount\":12,\r\n\t    \t\"Custom_Deposit Times per Year (24 or 26)\" : \"24\",\r\n\t    \t\"Custom_A for Add account or C for Change acct\" : \"C\"\r\n\t    }\r\n\t}\r\n    ],\r\n    \"fields\": {\r\n    \t\"Custom_Agency ID\": \"test\",\r\n    \t\"Custom_Employee Identification Number (EIN)\": \"test\"\r\n    }\r\n  }\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "02d84eef-554a-41d2-aa5d-7195b0cdd1e0",
+              "name": "Submit Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "f390423b-d7b2-4cc2-b058-060f8d297a5c",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state = {",
+                      "        \"status\": \"Submitted\",",
+                      "        \"actions\": [",
+                      "            \"Cancel\"",
+                      "        ],",
+                      "        \"validation\": {",
+                      "            \"accounts\": [],",
+                      "            \"fields\": {},",
+                      "            \"overall\": []",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "5c7de94b-5a2c-46ff-8bf2-6c5b013abdba",
+              "name": "Cancel Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state = {",
+                      "        \"status\": \"Canceled\",",
+                      "        \"actions\": [",
+                      "            \"Uncancel\",",
+                      "            \"HTTP-DELETE\"",
+                      "        ],",
+                      "        \"validation\": {",
+                      "            \"accounts\": [],",
+                      "            \"fields\": {},",
+                      "            \"overall\": []",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "12236f6b-ffe1-4890-ac13-c7bd9cd295e4",
+              "name": "Delete Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
+                "description": "\t"
+              },
+              "response": []
             }
           ],
           "event": [
