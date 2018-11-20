@@ -406,7 +406,6 @@
                   "listen": "prerequest",
                   "script": {
                     "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
-                    "type": "text/javascript",
                     "exec": [
                       "var timestamp = Date.now();",
                       "",
@@ -429,14 +428,14 @@
                       "  return text;",
                       "}",
                       ""
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 },
                 {
                   "listen": "test",
                   "script": {
                     "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "",
@@ -452,7 +451,7 @@
                       "",
                       "pm.test('Has the correct context', function() {",
                       "    pm.expect(jsonData.context).to.equal('testing_context');",
-                      "})",
+                      "});",
                       "",
                       "pm.test('Has required 2nd level elements', function() {",
                       "    pm.expect(jsonData.data).to.have.property('item');",
@@ -541,7 +540,8 @@
                       "    pm.expect(addresses).to.deep.include(address);",
                       "});",
                       ""
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
