@@ -3903,7 +3903,7 @@
                       "   for (var k in values) valueKeys.push(k);",
                       "   ",
                       "   var uxKeys = [];",
-                      "   for (var k in ux) valueKeys.push(k.key);",
+                      "   for (var i in ux) uxKeys.push(i.key);",
                       "   ",
                       "   console.log(keys);",
                       "   ",
