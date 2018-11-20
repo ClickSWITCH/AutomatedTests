@@ -3782,7 +3782,6 @@
                   "listen": "test",
                   "script": {
                     "id": "c5e8e6ce-e8e7-459a-9f6c-abfd056f1128",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "",
@@ -3894,8 +3893,23 @@
                       "    };",
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
-                      "});"
-                    ]
+                      "});",
+                      "",
+                      "pm.test('Has matching values and ux.fields names', function() {",
+                      "   var values = jsonData.data.item.values.fields;",
+                      "   var ux = jsonData.data.item.ux.fields;",
+                      "   ",
+                      "   var keys = [];",
+                      "   for (var k in values) keys.push(k);",
+                      "   ",
+                      "   console.log(keys);",
+                      "   ",
+                      "   ",
+                      "   ",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
