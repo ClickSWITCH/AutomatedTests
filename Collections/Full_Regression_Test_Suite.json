@@ -3637,7 +3637,6 @@
                   "listen": "test",
                   "script": {
                     "id": "0c8ad97b-fa49-42f4-a004-c4e2e9b39682",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "",
@@ -3694,8 +3693,8 @@
                       "        \"validation\": {",
                       "            \"accounts\": [],",
                       "            \"fields\": {",
-                      "                \"Custom_Depositor's Full Mailing Address\": \"Custom_Depositor's Full Mailing Address is required.\",",
-                      "                \"Custom_Last 4 of SSN\": \"Custom_Last 4 of SSN is required.\"",
+                      "                \"Custom_Depositor's Full Mailing Address\": \"This field is required.\",",
+                      "                \"Custom_Last 4 of SSN\": \"This field is required.\"",
                       "            },",
                       "            \"overall\": []",
                       "        }",
@@ -3752,7 +3751,8 @@
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});"
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
@@ -3769,7 +3769,10 @@
                     "value": "application/json"
                   }
                 ],
-                "body": {},
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
               },
               "response": []
