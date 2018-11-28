@@ -4311,7 +4311,6 @@
                   "listen": "test",
                   "script": {
                     "id": "cae73f51-d132-4101-a403-19b29b781ac9",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "",
@@ -4385,8 +4384,8 @@
                       "            \"validation\": {",
                       "                \"accounts\": [],",
                       "                \"fields\": {",
-                      "                    \"Custom_WorkLocationDepartment\": \"Custom_WorkLocationDepartment is required.\",",
-                      "                    \"Custom_Last 3 of SIN\": \"Custom_Last 3 of SIN is required.\"",
+                      "                    \"Custom_WorkLocationDepartment\": \"This field is required\",",
+                      "                    \"Custom_Last 3 of SIN\": \"This field is required\"",
                       "                },",
                       "                \"overall\": []",
                       "            }",
@@ -4461,7 +4460,8 @@
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});"
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
