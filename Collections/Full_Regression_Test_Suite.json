@@ -4117,7 +4117,6 @@
                   "listen": "test",
                   "script": {
                     "id": "43dc4729-45de-4aa5-9e5f-cb57ff9ce355",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "const isCanada = pm.environment.get('isCanada') === 'true';",
@@ -4173,8 +4172,8 @@
                       "            \"validation\": {",
                       "                \"accounts\": [],",
                       "                \"fields\": {",
-                      "                    \"Custom_Work Location\": \"Custom_Work Location is required.\",",
-                      "                    \"Custom_Last 4 of SSN\": \"Custom_Last 4 of SSN is required.\"",
+                      "                    \"Custom_Work Location\": \"This field is required\",",
+                      "                    \"Custom_Last 4 of SSN\": \"This field is required\"",
                       "                },",
                       "                \"overall\": [",
                       "                    \"Category is required.\"",
@@ -4274,7 +4273,8 @@
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});"
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
