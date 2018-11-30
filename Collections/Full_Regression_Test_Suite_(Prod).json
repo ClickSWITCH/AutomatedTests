@@ -4967,9 +4967,7 @@
                       "            \"validation\": {",
                       "                \"accounts\": [],",
                       "                \"fields\": {},",
-                      "                \"overall\": [",
-                      "                    \"Category is required.\"",
-                      "                ]",
+                      "                \"overall\": []",
                       "            }",
                       "        };",
                       "    } else {",
@@ -5031,7 +5029,7 @@
                       "                }",
                       "            ],",
                       "            \"fields\": {",
-                      "                \"category\": 0,",
+                      "                \"category\": 1,",
                       "                \"Custom_SSN4\": \"1234\",",
                       "                \"Custom_Employee/ID\": \"1234\"",
                       "            }",
@@ -5111,7 +5109,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"locationId\": \"{{location_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n        \"Category\": 1,\r\n        \"Custom_SSN4\": \"1234\",\r\n        \"Custom_Employee/ID\": \"1234\"\r\n    }\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"locationId\": \"{{location_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n        \"category\": 1,\r\n        \"Custom_SSN4\": \"1234\",\r\n        \"Custom_Employee/ID\": \"1234\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
               },
