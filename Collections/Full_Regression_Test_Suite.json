@@ -2685,6 +2685,250 @@
           "_postman_isSubFolder": true
         },
         {
+          "_postman_id": "9c883c9a-c811-4120-8790-ba1c514f41a2",
+          "name": "Split Deposits",
+          "description": "Folder containing the tests that finds a split deposit target.",
+          "item": [
+            {
+              "_postman_id": "9cb4657f-3c2e-4746-b3d4-e60aea460f66",
+              "name": "Target By Name",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "10795ed6-ce38-4565-8bdb-19fc007914ed",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has some items', function() {",
+                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
+                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    jsonData.data.items.forEach(i => {",
+                      "        pm.expect(i).to.have.property('targetId');",
+                      "        pm.expect(i).to.have.property('name');",
+                      "        pm.expect(i).to.have.property('type');",
+                      "        pm.expect(i.type).to.eql('deposit');",
+                      "    });",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
+                      "});",
+                      "",
+                      "// Set an environment variable to test get target by id next.",
+                      "pm.environment.set(\"split_deposit_target_id\", jsonData.data.items[0].targetId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{split_deposit_name}}&customer={{customer_key}}",
+                  "host": [
+                    "{{base_url}}{{targets_postfix2}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "deposit",
+                      "equals": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "{{split_deposit_name}}",
+                      "equals": true
+                    },
+                    {
+                      "key": "customer",
+                      "value": "{{customer_key}}",
+                      "equals": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "3c53b5ef-e5c7-403c-bed2-54ee2eb36733",
+              "name": "Target By Id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "e61e303a-619f-4bcf-aa1a-8b5f128fc5bc",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "    pm.expect(jsonData.data).to.have.property('item');",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type element', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal('deposit'); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct categories', function() {",
+                      "    var categories = {",
+                      "        \"key\": \"1\",",
+                      "        \"label\": \"Payroll\"",
+                      "    };  ",
+                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux element', function() {",
+                      "    var ux = {",
+                      "        \"accounts\": {",
+                      "            \"limit\": 3,",
+                      "            \"maxChecking\": 3,",
+                      "            \"maxSavings\": 3,",
+                      "            \"choices\": [],",
+                      "            \"fields\": [",
+                      "                {",
+                      "                    \"key\": \"splitAmount\",",
+                      "                    \"label\": \"Percent or Fixed Amount\",",
+                      "                    \"type\": \"textbox\",",
+                      "                    \"required\": true,",
+                      "                    \"regex\": \"^(1-9\\\\\\\\d*\\\\\\\\.\\\\\\\\d2|(100(.0)?|(0(\\\\\\\\.1-9))|(1-90-9?(\\\\\\\\.\\\\\\\\d)?)))$\",",
+                      "                    \"validationMessage\": \"Must be an amount with 2 decimal places or a whole percentage\"",
+                      "                },",
+                      "                {",
+                      "                    \"key\": \"splitType\",",
+                      "                    \"label\": \"Type\",",
+                      "                    \"type\": \"select\",",
+                      "                    \"required\": true,",
+                      "                    \"selections\": [",
+                      "                        {",
+                      "                            \"key\": \"remainder\",",
+                      "                            \"label\": \"Remainder\"",
+                      "                        }",
+                      "                    ]",
+                      "                },",
+                      "                {",
+                      "                    \"key\": \"Custom_Is Entire Net Amount\",",
+                      "                    \"label\": \"Split[1]_Is Entire Net Amount\",",
+                      "                    \"type\": \"Checkbox\",",
+                      "                    \"required\": false",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"fields\": [",
+                      "            {",
+                      "                \"key\": \"Custom_SocialSecurityNumber\",",
+                      "                \"label\": \"SocialSecurityNumber\",",
+                      "                \"type\": \"textbox\",",
+                      "                \"required\": false",
+                      "            }",
+                      "        ]",
+                      "    };",
+                      "",
+                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux); ",
+                      "});",
+                      "",
+                      "pm.test('Has the correct final action', function() {",
+                      "   pm.expect(jsonData.data.item.finalAction).to.equal('submit'); ",
+                      "});",
+                      "",
+                      "",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{targets_postfix3}}{{split_deposit_target_id}}"
+              },
+              "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "8d93cfc3-8c8b-42c1-8d01-71b448777378",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "5a33755b-181b-4d3c-94fe-37e66da9cc7e",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
           "_postman_id": "c1e8e5e6-b14d-42ac-89db-a627084795f5",
           "name": "Payments",
           "description": "Folder containing the tests that find a payment target.",
@@ -8904,6 +9148,397 @@
           "listen": "test",
           "script": {
             "id": "b0b0fd91-799a-4373-b796-a7ca5b53bee6",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "_postman_id": "4e45b292-f6f2-4660-ac85-6e548731293f",
+      "name": "Types Copy",
+      "description": "Folder containing the tests for the GET `/types/targets`, `/types/switch/statuses`, and `/types/switch/actions` routes.",
+      "item": [
+        {
+          "_postman_id": "25f79cdf-1fd0-4ae8-8fec-c4491721453f",
+          "name": "Targets",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0e1295ee-9045-4151-acee-6d05bf191f08",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has 2 items', function() {",
+                  "    pm.expect(jsonData.data.currentItemCount).to.eql(2);",
+                  "    pm.expect(jsonData.data.items).to.have.length(2);",
+                  "});",
+                  "",
+                  "pm.test('Has the correct context', function() {",
+                  "    pm.expect(jsonData.context).to.equal('testing_context');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct kind attribute', function() {",
+                  "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
+                  "});",
+                  "",
+                  "pm.test('Has the correct items', function() {",
+                  "    var deposit = {",
+                  "        \"id\": \"deposit\",",
+                  "        \"label\": \"Direct Deposit\",",
+                  "        \"plural\": \"Direct Deposits\",",
+                  "        \"recipient\": \"Depositor\",",
+                  "        \"help\": \"Instructions to a company/govt. agency to change future direct deposits to your account.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(deposit);",
+                  "",
+                  "    //TODO: Add this test back in once we enable account closures again.",
+                  "    // var closure =  {",
+                  "    //     \"id\": \"closure\",",
+                  "    //     \"label\": \"Account Closure\",",
+                  "    //     \"plural\": \"Account Closures\",",
+                  "    //     \"recipient\": \"Financial Instituion\",",
+                  "    //     \"help\": \"Instructions to a company to close an account that you no longer need.\"",
+                  "    // };",
+                  "    // pm.expect(jsonData.data.items).to.deep.include(closure);",
+                  "    ",
+                  "    var payment =  {",
+                  "        \"id\": \"payment\",",
+                  "        \"label\": \"Automatic Payment\",",
+                  "        \"plural\": \"Automatic Payments\",",
+                  "        \"recipient\": \"Payee\",",
+                  "        \"help\": \"Instructions to a company/govt. agency to change future automatic payments from your account.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(payment);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "Api Key"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{base_url}}{{targets_postfix}}{{context_param}}",
+            "description": "Asserts that the GET `/types/targets` endpoint is returning the correct values."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "1003f1b9-3708-4059-a750-b0310a1a3cf9",
+          "name": "Statuses",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9c63fdee-f7cb-40c1-aefb-7a3c2bb161fc",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has 9 items', function() {",
+                  "   pm.expect(jsonData.data.currentItemCount).to.eql(10);",
+                  "   pm.expect(jsonData.data.items).to.have.length(10);",
+                  "});",
+                  "",
+                  "pm.test('Has the correct context', function() {",
+                  "    pm.expect(jsonData.context).to.equal('testing_context');",
+                  "})",
+                  "",
+                  "pm.test('Has the correct kind attribute', function() {",
+                  "   pm.expect(jsonData.data.kind).to.equal('types#switch#statuses'); ",
+                  "});",
+                  "",
+                  "pm.test('Has the correct items', function() {",
+                  "    var ready = {",
+                  "        \"id\": \"ready\",",
+                  "        \"label\": \"Ready\",",
+                  "        \"help\": \"The switch is ready to submit for processing.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(ready);",
+                  "",
+                  "    var incomplete = {",
+                  "        \"id\": \"incomplete\",",
+                  "        \"label\": \"Incomplete\",",
+                  "        \"help\": \"The switch is missing information required for processing.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(incomplete);",
+                  "",
+                  "    var canceled =  {",
+                  "        \"id\": \"canceled\",",
+                  "        \"label\": \"Canceled\",",
+                  "        \"help\": \"The switch has been canceled.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(canceled);",
+                  "    ",
+                  "    var submitted =  {",
+                  "        \"id\": \"submitted\",",
+                  "        \"label\": \"Submitted\",",
+                  "        \"help\": \"The switch has been submitted for processing.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(submitted);",
+                  "    ",
+                  "    var printed =  {",
+                  "        \"id\": \"printed\",",
+                  "        \"label\": \"Printed\",",
+                  "        \"help\": \"The switch has been printed for signature and/or in-person delivery.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(printed);",
+                  "    ",
+                  "    var inprocess =  {",
+                  "        \"id\": \"processing\",",
+                  "        \"label\": \"In Process\",",
+                  "        \"help\": \"The switch is currently being processed by our fulfillment team.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(inprocess);",
+                  "    ",
+                  "    var sent =  {",
+                  "        \"id\": \"sent\",",
+                  "        \"label\": \"Sent\",",
+                  "        \"help\": \"The switch has been sent to the company or govt. agency for action.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(sent);",
+                  "    ",
+                  "    var complete =  {",
+                  "        \"id\": \"complete\",",
+                  "        \"label\": \"Complete\",",
+                  "        \"help\": \"The company or govt. agency has acknowledged that the change has been completed.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(complete);",
+                  "    ",
+                  "    var unableToProcess =  {",
+                  "        \"id\": \"unabletoprocess\",",
+                  "        \"label\": \"Unable To Process\",",
+                  "        \"help\": \"The switch is unable to be processed.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(unableToProcess);",
+                  "    ",
+                  "    var deleted =  {",
+                  "        \"id\": \"deleted\",",
+                  "        \"label\": \"Deleted\",",
+                  "        \"help\": \"The switch is deleted\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(deleted);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "Api Key"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
+            "description": "Asserts that the GET `/types/switch/statuses` endpoint is returning the correct values."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "427533a9-0351-4e33-9731-f9c7638e5ab1",
+          "name": "Actions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "74d90fde-2509-4451-a886-18647421cd78",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('data');",
+                  "    pm.expect(jsonData).to.have.property('apiVersion');",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData.data).to.have.property('kind');",
+                  "    pm.expect(jsonData.data).to.have.property('lang');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct context', function() {",
+                  "    pm.expect(jsonData.context).to.equal('testing_context');",
+                  "})",
+                  "",
+                  "pm.test('Has the correct 8 items', function() {",
+                  "   pm.expect(jsonData.data.currentItemCount).to.eql(12);",
+                  "   pm.expect(jsonData.data.items).to.have.length(12);",
+                  "});",
+                  "",
+                  "pm.test('Has the correct kind attribute', function() {",
+                  "   pm.expect(jsonData.data.kind).to.equal('types#switch#actions'); ",
+                  "});",
+                  "",
+                  "pm.test('Has the correct items', function() {",
+                  "    var save = {",
+                  "        \"id\": \"http-put\",",
+                  "        \"label\": \"Save\",",
+                  "        \"help\": \"Saves a switch\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(save);",
+                  "    ",
+                  "    var submit = {",
+                  "        \"id\": \"submit\",",
+                  "        \"label\": \"Submit\",",
+                  "        \"help\": \"Submit the switch for processing.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(submit);",
+                  "",
+                  "    var cancel = {",
+                  "        \"id\": \"cancel\",",
+                  "        \"label\": \"Cancel\",",
+                  "        \"help\": \"Cancel the switch.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(cancel);",
+                  "",
+                  "    var complete =  {",
+                  "        \"id\": \"complete\",",
+                  "        \"label\": \"Complete\",",
+                  "        \"help\": \"You've taken the steps to make this change online or in person, so mark it complete.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(complete);",
+                  "    ",
+                  "    var printformailing =  {",
+                  "        \"id\": \"printformailing\",",
+                  "        \"label\": \"Print For Mailing\",",
+                  "        \"help\": \"Print this switch for mailing\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(printformailing);",
+                  "    ",
+                  "    var print =  {",
+                  "        \"id\": \"print\",",
+                  "        \"label\": \"Print\",",
+                  "        \"help\": \"Print the switch to sign or deliver in person.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(print);",
+                  "    ",
+                  "    var uncancel =  {",
+                  "        \"id\": \"uncancel\",",
+                  "        \"label\": \"Un-Cancel\",",
+                  "        \"help\": \"Returns a canceled switch back to a state where it can be edited.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(uncancel);",
+                  "    ",
+                  "    var deleteAction =  {",
+                  "        \"id\": \"http-delete\",",
+                  "        \"label\": \"Delete\",",
+                  "        \"help\": \"Deletes a switch that has been canceled.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(deleteAction);",
+                  "    ",
+                  "    var startprocessing =  {",
+                  "        \"id\": \"startprocessing\",",
+                  "        \"label\": \"Start Processing\",",
+                  "        \"help\": \"Start the processing of the switch\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(startprocessing);",
+                  "    ",
+                  "    var reassign =  {",
+                  "        \"id\": \"reassign\",",
+                  "        \"label\": \"Reassign\",",
+                  "        \"help\": \"Reassign the switch\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(reassign);",
+                  "    ",
+                  "    var mailreturned =  {",
+                  "        \"id\": \"mailreturned\",",
+                  "        \"label\": \"Mail Returned\",",
+                  "        \"help\": \"Mail the returned switch.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(mailreturned);",
+                  "    ",
+                  "    var reject = {",
+                  "        \"id\": \"reject\",",
+                  "        \"label\": \"Reject\",",
+                  "        \"help\": \"Reject the switch.\"",
+                  "    };",
+                  "    pm.expect(jsonData.data.items).to.deep.include(reject);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "api-key",
+                "value": "{{api_key}}",
+                "description": "Api Key"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{base_url}}{{actions_postfix}}{{context_param}}",
+            "description": "Asserts that the GET `/types/switch/actions` endpoint is returning the correct values."
+          },
+          "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "d6e4a28e-b3d1-4b2c-915b-c7876f1f1438",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "49f14a4d-1572-41a3-89aa-f9d17e5f8be7",
             "type": "text/javascript",
             "exec": [
               ""
