@@ -4752,7 +4752,6 @@
                   "listen": "test",
                   "script": {
                     "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "",
@@ -4767,16 +4766,15 @@
                       "            \"Uncancel\",",
                       "            \"HTTP-DELETE\"",
                       "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {},",
-                      "            \"overall\": []",
-                      "        }",
+                      "        \"validation\": {}",
                       "    };",
+                      "    ",
+                      "   jsonData.data.item.state.validation = {};",
                       "    ",
                       "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
                       "});"
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
@@ -4798,7 +4796,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Uncancel\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
