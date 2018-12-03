@@ -5804,7 +5804,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n\t\t\"name\": \"Test\",\r\n\t\t\"mailingAddress\": {\r\n\t\t  \"line1\": \"123 Main Street\",\r\n\t\t  \"city\": \"Duluth\",\r\n\t\t  \"state\": \"MN\",\r\n\t\t  \"zip\": 55803\r\n\t\t},\r\n\t\t\"category\": 1,\r\n\t\t\"Custom_Amount or Net Pay\": \"Net\",\r\n\t\t\"Custom_or Percentage\": \"100\",\r\n\t\t\"Custom_Last 4 of SSN\": \"1234\",\r\n\t\t\"Custom_Employee ID\": \"123\",\r\n\t\t\"Custom_Work Location\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n        \"name\": \"Test\",\r\n        \"phoneNumber\": \"1234567890\",\r\n        \"website\": \"www.test.com\",\r\n        \"mailingAddress\": {\r\n            \"line1\": \"123 Main Street\",\r\n            \"line2\": null,\r\n            \"line3\": null,\r\n            \"city\": \"New York\",\r\n            \"state\": \"NY\",\r\n            \"zip\": 44444\r\n        },\r\n        \"category\": 1,\r\n        \"Custom_SSN4\": \"1234\",\r\n        \"Custom_Employee/ID\": \"1234\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
