@@ -2940,7 +2940,7 @@
                       "                \"choices\": [],",
                       "                \"fields\": [",
                       "                    {",
-                      "                        \"key\": \"SplitAmount\",",
+                      "                        \"key\": \"splitAmount\",",
                       "                        \"label\": \"Percent or Fixed Amount\",",
                       "                        \"type\": \"textbox\",",
                       "                        \"required\": true,",
