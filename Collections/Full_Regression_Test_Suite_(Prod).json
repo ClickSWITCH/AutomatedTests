@@ -5828,7 +5828,7 @@
                       "                \"fields\": {",
                       "                    \"Custom_WorkLocationDepartment\": \"This field is required\",",
                       "                    \"Custom_Last 3 of SIN\": \"This field is required\",",
-                      "                     \"mailingAddress\": {}",
+                      "                    \"mailingAddress\": {}",
                       "                },",
                       "                \"overall\": []",
                       "            }",
