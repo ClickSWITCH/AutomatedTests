@@ -3868,7 +3868,7 @@
     },
     {
       "_postman_id": "d40b01d0-f1ce-4c03-ba1d-ecf627eb5fbb",
-      "name": "Switches",
+      "name": "Switches Copy",
       "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
       "item": [
         {
