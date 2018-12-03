@@ -4692,19 +4692,15 @@
                   "listen": "test",
                   "script": {
                     "id": "bc9a5690-3ae7-4784-a80f-1de7b2c418db",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
                       "",
-                      "pm.test(\"Status code is 200\", function () {",
+                      "(isCanada ? pm.test.skip : pm.test)(\"Status code is 200\", function () {",
                       "    pm.response.to.have.status(200);",
                       "});",
                       "",
-                      "pm.test('Has the correct context', function() {",
-                      "    pm.expect(jsonData.context).to.equal('testing_context');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
+                      "(isCanada ? pm.test.skip : pm.test)('Has the correct state', function() {",
                       "    var state = {",
                       "        \"status\": \"Submitted\",",
                       "        \"actions\": [",
@@ -4718,9 +4714,9 @@
                       "    };",
                       "    ",
                       "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});",
-                      ""
-                    ]
+                      "});"
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
