@@ -3868,7 +3868,7 @@
     },
     {
       "_postman_id": "d40b01d0-f1ce-4c03-ba1d-ecf627eb5fbb",
-      "name": "Switches Copy",
+      "name": "Switches",
       "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
       "item": [
         {
@@ -3940,6 +3940,7 @@
                     "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
                     "exec": [
                       "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
                       "",
                       "pm.test(\"Status code is 200\", function () {",
                       "    pm.response.to.have.status(200);",
@@ -5369,8 +5370,7 @@
                       "            \"validation\": {",
                       "                \"accounts\": [],",
                       "                \"fields\": {",
-                      "                    \"Custom_Work Location\": \"This field is required\",",
-                      "                    \"Custom_Last 4 of SSN\": \"This field is required\",",
+                      "                    \"Custom_SSN4\": \"This field is required\",",
                       "                    \"category\": \"This field is required\",",
                       "                    \"name\": \"This field is required\",",
                       "                    \"mailingAddress\": {",
