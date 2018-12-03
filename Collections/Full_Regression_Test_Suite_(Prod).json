@@ -4448,6 +4448,7 @@
                     "id": "c5e8e6ce-e8e7-459a-9f6c-abfd056f1128",
                     "exec": [
                       "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
                       "",
                       "pm.test(\"Status code is 200\", function () {",
                       "    pm.response.to.have.status(200);",
