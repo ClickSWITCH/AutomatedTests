@@ -5589,6 +5589,7 @@
                       "                \"Cancel\"",
                       "            ],",
                       "            \"validation\": {",
+                      "                \"accounts\": [],",
                       "                \"fields\": {",
                       "                    \"Custom_SIN3\": \"This field is required\",",
                       "                    \"category\": \"This field is required\",",
