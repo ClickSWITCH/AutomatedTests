@@ -2140,7 +2140,7 @@
                       "",
                       "pm.test('Has the correct context', function() {",
                       "    pm.expect(jsonData.context).to.equal('testing_context');",
-                      "})",
+                      "});",
                       "",
                       "pm.test('Has required inner elements', function() {",
                       "    pm.expect(jsonData.data.item).to.have.property('targetId');",
