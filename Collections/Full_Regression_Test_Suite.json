@@ -9818,26 +9818,6 @@
                   "script": {
                     "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
                     "exec": [
-                      "var timestamp = Date.now();",
-                      "",
-                      "var randomString = makeRandomString();",
-                      "",
-                      "// Set the timestamp to environment vars to create an unique",
-                      "// customer on each test run.",
-                      "pm.environment.set(\"customer_key\", timestamp);",
-                      "",
-                      "pm.environment.set(\"customer_name\", randomString);",
-                      "",
-                      "// Creates a random string of length 10.",
-                      "function makeRandomString() {",
-                      "  var text = \"\";",
-                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                      "",
-                      "  for (var i = 0; i < 10; i++)",
-                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
-                      "",
-                      "  return text;",
-                      "}",
                       ""
                     ],
                     "type": "text/javascript"
@@ -9911,26 +9891,6 @@
                   "script": {
                     "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
                     "exec": [
-                      "var timestamp = Date.now();",
-                      "",
-                      "var randomString = makeRandomString();",
-                      "",
-                      "// Set the timestamp to environment vars to create an unique",
-                      "// customer on each test run.",
-                      "pm.environment.set(\"customer_key\", timestamp);",
-                      "",
-                      "pm.environment.set(\"customer_name\", randomString);",
-                      "",
-                      "// Creates a random string of length 10.",
-                      "function makeRandomString() {",
-                      "  var text = \"\";",
-                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                      "",
-                      "  for (var i = 0; i < 10; i++)",
-                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
-                      "",
-                      "  return text;",
-                      "}",
                       ""
                     ],
                     "type": "text/javascript"
@@ -10004,26 +9964,6 @@
                   "script": {
                     "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
                     "exec": [
-                      "var timestamp = Date.now();",
-                      "",
-                      "var randomString = makeRandomString();",
-                      "",
-                      "// Set the timestamp to environment vars to create an unique",
-                      "// customer on each test run.",
-                      "pm.environment.set(\"customer_key\", timestamp);",
-                      "",
-                      "pm.environment.set(\"customer_name\", randomString);",
-                      "",
-                      "// Creates a random string of length 10.",
-                      "function makeRandomString() {",
-                      "  var text = \"\";",
-                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                      "",
-                      "  for (var i = 0; i < 10; i++)",
-                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
-                      "",
-                      "  return text;",
-                      "}",
                       ""
                     ],
                     "type": "text/javascript"
@@ -10813,6 +10753,1687 @@
                 },
                 {
                   "_postman_id": "9e8a7f14-0d45-4d2a-bf98-fafed0078563",
+                  "name": "Delete Switch - invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      }
+                    ],
+                    "body": {},
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11",
+                    "description": "\t"
+                  },
+                  "response": []
+                }
+              ],
+              "_postman_isSubFolder": true
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "1f165295-f989-4f43-91f0-c158d2f42c00",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "b0b0fd91-799a-4373-b796-a7ca5b53bee6",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
+          "_postman_isSubFolder": true
+        }
+      ]
+    },
+    {
+      "_postman_id": "0e385169-263f-49ca-b6d3-0834dfd455c1",
+      "name": "Validation Copy",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "41f9c4a7-ab79-44c3-830c-c325739527e1",
+          "name": "Authentication",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "ecbe2199-b1c3-4160-8758-5446eb455520",
+              "name": "Missing api key",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "9c63fdee-f7cb-40c1-aefb-7a3c2bb161fc",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,        ",
+                      "            \"message\": \"The header did not contain the key api-key.\",",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"message\": \"The header did not contain the key api-key.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
+                "description": "Asserts that the GET `/types/switch/statuses` endpoint is returning the correct values."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "fe45eaca-8fb4-4f3d-a0a1-0e6f01293761",
+              "name": "Invalid api key",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "9c63fdee-f7cb-40c1-aefb-7a3c2bb161fc",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 401\", function () {",
+                      "    pm.response.to.have.status(401);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 401,",
+                      "            \"message\": \"The api-key header provided was not valid.\",",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"message\": \"The api-key header provided was not valid.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Api Key",
+                    "key": "api-key",
+                    "value": "test"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
+                "description": "Asserts that the GET `/types/switch/statuses` endpoint is returning the correct values."
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "472023e3-2620-4c86-a53f-ae8dcf7a40ca",
+          "name": "Customers",
+          "description": "Folder containing the tests for the PUT `/customers/{customerKey}` and GET `/customers/{customerKey}` routes.",
+          "item": [
+            {
+              "_postman_id": "1399fdd9-c5ec-44d3-bf8d-0b95326b4c1b",
+              "name": "Missing country field",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Addresses[0].Country\",",
+                      "                    \"message\": \"'Country' should not be empty.\"",
+                      "                },",
+                      "                {",
+                      "                    \"reason\": \"Addresses[0].Country\",",
+                      "                    \"message\": \"The length of 'Country' must be at least 2 characters. You entered 0 characters.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "api key"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"55802\",\n            \"state\": \"MN\",\n            \"country\": \"\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "e28c2062-47cb-4a6c-9640-2fe99898b794",
+              "name": "Missing state field",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Addresses[0].State\",",
+                      "                    \"message\": \"'State' should not be empty.\"",
+                      "                },",
+                      "                {",
+                      "                    \"reason\": \"Addresses[0].State\",",
+                      "                    \"message\": \"The length of 'State' must be at least 2 characters. You entered 0 characters.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"55802\",\n            \"state\": \"\",\n            \"country\": \"US\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "ca8692b9-84b1-4e9d-8e51-d19543054733",
+              "name": "Missing zip field",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Addresses[0].Zip\",",
+                      "                    \"message\": \"'Zip' should not be empty.\"",
+                      "                },",
+                      "                {",
+                      "                    \"reason\": \"Addresses[0].Zip\",",
+                      "                    \"message\": \"The length of 'Zip' must be at least 5 characters. You entered 0 characters.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"\",\n            \"state\": \"MN\",\n            \"country\": \"US\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "6467d6e4-a493-4022-897e-ca06c5c6839e",
+              "name": "Missing city field",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Addresses[0].City\",",
+                      "                    \"message\": \"'City' should not be empty.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"\",\n            \"zip\": \"55803\",\n            \"state\": \"MN\",\n            \"country\": \"US\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "7874f34c-ea4e-40c0-b021-7d6d7590efa3",
+              "name": "Missing line1 field",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Addresses[0].Line1\",",
+                      "                    \"message\": \"'Line1' should not be empty.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"\",\n            \"city\": \"Duluth\",\n            \"zip\": \"55803\",\n            \"state\": \"MN\",\n            \"country\": \"US\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "8a030135-64a0-4a92-9bc6-26c943dfb3f4",
+              "name": "Incorrect routing number",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Accounts\",",
+                      "                    \"message\": \"There is a routing number which is not a routing number of this institution.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}0\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"123 Main Street\",\n            \"city\": \"Duluth\",\n            \"zip\": \"55803\",\n            \"state\": \"MN\",\n            \"country\": \"US\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "c1c6ddc0-fe28-45a3-9c41-8ed51ab5ef4b",
+              "name": "Invalid account number",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Accounts[0].Number\",",
+                      "                    \"message\": \"The account must provide a valid account number.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"123 Main Street\",\n            \"city\": \"Duluth\",\n            \"zip\": \"55803\",\n            \"state\": \"MN\",\n            \"country\": \"US\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "0ef09a9e-0031-4930-916e-936177156107",
+              "name": "Incorrect account type",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Accounts\",",
+                      "                    \"message\": \"There is an account type which is not an account type for this institution.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}s\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"123 Main Street\",\n            \"city\": \"Duluth\",\n            \"zip\": \"55803\",\n            \"state\": \"MN\",\n            \"country\": \"US\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "4f29e88c-e002-4dfd-85d4-d58c896551a9",
+              "name": "Incorrect account name",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Accounts\",",
+                      "                    \"message\": \"There is an account name which is not an account name for this institution.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}0\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"123 Main Street\",\n            \"city\": \"Duluth\",\n            \"zip\": \"55803\",\n            \"state\": \"MN\",\n            \"country\": \"US\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "e6248188-78c8-4435-8477-5325820caf3c",
+              "name": "Invalid account holder name",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"AccountHolders[0].LastName\",",
+                      "                    \"message\": \"The last name is required and must not exceed to 50 characters.\"",
+                      "                },",
+                      "                {",
+                      "                    \"reason\": \"AccountHolders[0].FirstName\",",
+                      "                    \"message\": \"The first name is required and must not exceed 50 characters.\"",
+                      "                },",
+                      "                {",
+                      "                    \"reason\": \"AccountHolders[0].MiddleInitial\",",
+                      "                    \"message\": \"The middle initial must not exceed one character.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n        \"middleInitial\": \"Jd\",\n        \"lastName\": \"Testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"123 Main Street\",\n            \"city\": \"Duluth\",\n            \"zip\": \"55803\",\n            \"state\": \"MN\",\n            \"country\": \"US\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "449fb18f-56cc-434c-b8d2-105b2abfe4bb",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "54c1da51-b04e-49fa-b4fc-a0890d98309a",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "e33d1dec-5fd9-4883-a861-435f65925298",
+          "name": "Targets",
+          "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
+          "item": [
+            {
+              "_postman_id": "afa74588-36a3-42d4-82fc-b646352da659",
+              "name": "Missing name and customer params",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "8cd56822-e0af-4fe0-ab14-37c92f907bcd",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Name\",",
+                      "                    \"message\": \"'Name' should not be empty.\"",
+                      "                },",
+                      "                {",
+                      "                    \"reason\": \"Customer\",",
+                      "                    \"message\": \"'Customer' must not be empty.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name=&customer=",
+                  "host": [
+                    "{{base_url}}{{targets_postfix2}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "deposit",
+                      "equals": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "",
+                      "equals": true
+                    },
+                    {
+                      "key": "customer",
+                      "value": "",
+                      "equals": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "6e23f777-d69a-4927-8987-bb6b45d2fc6a",
+              "name": "Invalid target id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "95385dad-0e49-4d91-99f0-52b75fe91ffd",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"targetId\",",
+                      "                    \"message\": \"The value 'test' is not valid.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{targets_postfix3}}test"
+              },
+              "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "63dc3038-b599-4e56-b35f-52d562974cbb",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "bcf30ce0-ca6c-424f-86a7-f109d862422e",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "dde3b340-a103-46cf-9115-600acccad7cf",
+          "name": "Switches",
+          "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
+          "item": [
+            {
+              "_postman_id": "2e740e78-ad56-4488-b77f-b3490dc17634",
+              "name": "Invalid indices and fields",
+              "description": "",
+              "item": [
+                {
+                  "_postman_id": "2d019474-cc3b-4742-afa5-0aff9691e4e2",
+                  "name": "Invalid customer key",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "c3939a64-cc66-468b-b40c-636565c4076b",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Customer Not Found\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Customer Not Found\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Api Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}test{{switches_postfix}}",
+                    "description": "Should return empty list since no switches have been created yet."
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "76ae12bd-cdf9-4fa4-8485-4359d8b0f3dc",
+                  "name": "Create switch - invalid target id",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 400\", function () {",
+                          "    pm.response.to.have.status(400);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 400,",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"reason\": \"TargetId\",",
+                          "                    \"message\": \"Invalid target id\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Api-Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"1234567890\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "bd12c3a4-501d-4ebf-8770-9b61e3fc999c",
+                  "name": "Create switch - invalid type",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 400\", function () {",
+                          "    pm.response.to.have.status(400);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 400,",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"reason\": \"Type\",",
+                          "                    \"message\": \"Invalid type provided.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Api-Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"type\": \"\",\r\n  \"targetId\": \"1234567890\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "87de3fb2-70d7-431b-9165-3bd04b56d325",
+                  "name": "Create switch - invalid accountHolderIndex",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 400\", function () {",
+                          "    pm.response.to.have.status(400);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 400,",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"reason\": \"AccountHolderIndex\",",
+                          "                    \"message\": \"Invalid account holder index\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Api-Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 15\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "6aa0fd47-43f1-457d-a991-64ea3e4b7e75",
+                  "name": "Invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "0c8ad97b-fa49-42f4-a004-c4e2e9b39682",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Api Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "9d59dddd-16c0-4180-857b-8d8e41b6dc31",
+                  "name": "Invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "c5e8e6ce-e8e7-459a-9f6c-abfd056f1128",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Net or Amount (in dollars)\": \"500\",\r\n      \"Custom_or Percentage of Pay (1 - 100)\": \"50\",\r\n      \"Custom_Last 4 of SSN\": \"1234\",\r\n      \"Custom_Employee ID\": \"123\",\r\n      \"Custom_Depositor's Full Mailing Address\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "510dbf68-1891-4233-80af-7d0c8b76de18",
+                  "name": "Submit Switch - invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "bc9a5690-3ae7-4784-a80f-1de7b2c418db",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11/action"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "6596329a-0d0c-4bda-ba10-8cd478110840",
+                  "name": "Cancel Switch- invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11/action"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "b5f1a7ea-84d5-4166-b4bf-6ab7f13dda06",
                   "name": "Delete Switch - invalid switch index",
                   "event": [
                     {
