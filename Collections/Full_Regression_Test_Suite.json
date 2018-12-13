@@ -9160,7 +9160,128 @@
       "_postman_id": "30336090-118a-49a7-a4e9-8bafaf96e514",
       "name": "Validation",
       "description": "",
-      "item": []
+      "item": [
+        {
+          "_postman_id": "cd0760dc-2921-4654-9a3e-9a1e9a1334a4",
+          "name": "Authentication Copy",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "556b58d3-c9b8-4819-adfe-a421e41cd6f0",
+              "name": "Missing api key",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "9c63fdee-f7cb-40c1-aefb-7a3c2bb161fc",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,        ",
+                      "            \"message\": \"The header did not contain the key api-key.\",",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"message\": \"The header did not contain the key api-key.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
+                "description": "Asserts that the GET `/types/switch/statuses` endpoint is returning the correct values."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "a8bd3378-f42b-4d5d-8f1d-ada234c34d71",
+              "name": "Invalid api key",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "9c63fdee-f7cb-40c1-aefb-7a3c2bb161fc",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 401\", function () {",
+                      "    pm.response.to.have.status(401);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 401,",
+                      "            \"message\": \"The api-key header provided was not valid.\",",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"message\": \"The api-key header provided was not valid.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Api Key",
+                    "key": "api-key",
+                    "value": "test"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
+                "description": "Asserts that the GET `/types/switch/statuses` endpoint is returning the correct values."
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        }
+      ]
     }
   ],
   "event": [
