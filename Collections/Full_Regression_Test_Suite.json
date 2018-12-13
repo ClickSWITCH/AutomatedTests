@@ -10430,6 +10430,610 @@
             }
           ],
           "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "d2fc4584-cd05-47c3-bf19-1ec2cba604a3",
+          "name": "Switches Copy",
+          "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
+          "item": [
+            {
+              "_postman_id": "71ccccb8-c0b9-4ee3-a316-fc3d9ab43900",
+              "name": "Invalid indices and fields",
+              "description": "",
+              "item": [
+                {
+                  "_postman_id": "f759f621-5312-4f61-8a46-11b6c7065935",
+                  "name": "Invalid customer key",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "c3939a64-cc66-468b-b40c-636565c4076b",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Customer Not Found\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Customer Not Found\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Api Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}test{{switches_postfix}}",
+                    "description": "Should return empty list since no switches have been created yet."
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "5b6916c0-63a9-4a30-909b-976ea6b103d8",
+                  "name": "Create switch - invalid target id",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 400\", function () {",
+                          "    pm.response.to.have.status(400);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 400,",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"reason\": \"TargetId\",",
+                          "                    \"message\": \"Invalid target id\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Api-Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"1234567890\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "c582134f-0168-4f3e-94f3-a19f53b6905d",
+                  "name": "Create switch - invalid type",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 400\", function () {",
+                          "    pm.response.to.have.status(400);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 400,",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"reason\": \"Type\",",
+                          "                    \"message\": \"Invalid type provided.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Api-Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"type\": \"\",\r\n  \"targetId\": \"1234567890\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "315eaff4-41e0-41d4-be85-d44fb32db759",
+                  "name": "Create switch - invalid accountHolderIndex",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 400\", function () {",
+                          "    pm.response.to.have.status(400);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 400,",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"reason\": \"AccountHolderIndex\",",
+                          "                    \"message\": \"Invalid account holder index\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Api-Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 15\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "1b7c17e2-7b6a-4b46-a910-778c084823f5",
+                  "name": "Invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "0c8ad97b-fa49-42f4-a004-c4e2e9b39682",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Api Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "20fe6670-9133-438e-815b-6c416b7cdedf",
+                  "name": "Invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "c5e8e6ce-e8e7-459a-9f6c-abfd056f1128",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Net or Amount (in dollars)\": \"500\",\r\n      \"Custom_or Percentage of Pay (1 - 100)\": \"50\",\r\n      \"Custom_Last 4 of SSN\": \"1234\",\r\n      \"Custom_Employee ID\": \"123\",\r\n      \"Custom_Depositor's Full Mailing Address\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "c2b08764-23f2-4b53-b60f-288cb433a312",
+                  "name": "Submit Switch - invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "bc9a5690-3ae7-4784-a80f-1de7b2c418db",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11/action"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "fabb76c2-27d7-41b1-9d1e-7c9abe534016",
+                  "name": "Cancel Switch- invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11/action"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "9e8a7f14-0d45-4d2a-bf98-fafed0078563",
+                  "name": "Delete Switch - invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      }
+                    ],
+                    "body": {},
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11",
+                    "description": "\t"
+                  },
+                  "response": []
+                }
+              ],
+              "_postman_isSubFolder": true
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "1f165295-f989-4f43-91f0-c158d2f42c00",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "b0b0fd91-799a-4373-b796-a7ca5b53bee6",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
+          "_postman_isSubFolder": true
         }
       ]
     }
