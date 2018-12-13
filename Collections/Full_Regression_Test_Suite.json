@@ -9283,7 +9283,7 @@
         },
         {
           "_postman_id": "93a315cd-be4b-4893-ad43-3347e02e61b4",
-          "name": "Customers Copy",
+          "name": "Customers",
           "description": "Folder containing the tests for the PUT `/customers/{customerKey}` and GET `/customers/{customerKey}` routes.",
           "item": [
             {
@@ -9295,26 +9295,6 @@
                   "script": {
                     "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
                     "exec": [
-                      "var timestamp = Date.now();",
-                      "",
-                      "var randomString = makeRandomString();",
-                      "",
-                      "// Set the timestamp to environment vars to create an unique",
-                      "// customer on each test run.",
-                      "pm.environment.set(\"customer_key\", timestamp);",
-                      "",
-                      "pm.environment.set(\"customer_name\", randomString);",
-                      "",
-                      "// Creates a random string of length 10.",
-                      "function makeRandomString() {",
-                      "  var text = \"\";",
-                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                      "",
-                      "  for (var i = 0; i < 10; i++)",
-                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
-                      "",
-                      "  return text;",
-                      "}",
                       ""
                     ],
                     "type": "text/javascript"
@@ -9489,26 +9469,6 @@
                   "script": {
                     "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
                     "exec": [
-                      "var timestamp = Date.now();",
-                      "",
-                      "var randomString = makeRandomString();",
-                      "",
-                      "// Set the timestamp to environment vars to create an unique",
-                      "// customer on each test run.",
-                      "pm.environment.set(\"customer_key\", timestamp);",
-                      "",
-                      "pm.environment.set(\"customer_name\", randomString);",
-                      "",
-                      "// Creates a random string of length 10.",
-                      "function makeRandomString() {",
-                      "  var text = \"\";",
-                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                      "",
-                      "  for (var i = 0; i < 10; i++)",
-                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
-                      "",
-                      "  return text;",
-                      "}",
                       ""
                     ],
                     "type": "text/javascript"
@@ -9586,26 +9546,6 @@
                   "script": {
                     "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
                     "exec": [
-                      "var timestamp = Date.now();",
-                      "",
-                      "var randomString = makeRandomString();",
-                      "",
-                      "// Set the timestamp to environment vars to create an unique",
-                      "// customer on each test run.",
-                      "pm.environment.set(\"customer_key\", timestamp);",
-                      "",
-                      "pm.environment.set(\"customer_name\", randomString);",
-                      "",
-                      "// Creates a random string of length 10.",
-                      "function makeRandomString() {",
-                      "  var text = \"\";",
-                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                      "",
-                      "  for (var i = 0; i < 10; i++)",
-                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
-                      "",
-                      "  return text;",
-                      "}",
                       ""
                     ],
                     "type": "text/javascript"
@@ -9679,26 +9619,6 @@
                   "script": {
                     "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
                     "exec": [
-                      "var timestamp = Date.now();",
-                      "",
-                      "var randomString = makeRandomString();",
-                      "",
-                      "// Set the timestamp to environment vars to create an unique",
-                      "// customer on each test run.",
-                      "pm.environment.set(\"customer_key\", timestamp);",
-                      "",
-                      "pm.environment.set(\"customer_name\", randomString);",
-                      "",
-                      "// Creates a random string of length 10.",
-                      "function makeRandomString() {",
-                      "  var text = \"\";",
-                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                      "",
-                      "  for (var i = 0; i < 10; i++)",
-                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
-                      "",
-                      "  return text;",
-                      "}",
                       ""
                     ],
                     "type": "text/javascript"
@@ -10263,7 +10183,7 @@
         },
         {
           "_postman_id": "76cc9932-858e-4253-af34-5b153b0bcd29",
-          "name": "Targets Copy",
+          "name": "Targets",
           "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
           "item": [
             {
@@ -10433,7 +10353,7 @@
         },
         {
           "_postman_id": "d2fc4584-cd05-47c3-bf19-1ec2cba604a3",
-          "name": "Switches Copy",
+          "name": "Switches",
           "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
           "item": [
             {
