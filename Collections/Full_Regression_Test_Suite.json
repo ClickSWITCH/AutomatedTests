@@ -10260,6 +10260,176 @@
             }
           ],
           "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "76cc9932-858e-4253-af34-5b153b0bcd29",
+          "name": "Targets Copy",
+          "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
+          "item": [
+            {
+              "_postman_id": "98b9637c-9911-4b79-afe9-af8691fb622f",
+              "name": "Missing name and customer params",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "8cd56822-e0af-4fe0-ab14-37c92f907bcd",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Name\",",
+                      "                    \"message\": \"'Name' should not be empty.\"",
+                      "                },",
+                      "                {",
+                      "                    \"reason\": \"Customer\",",
+                      "                    \"message\": \"'Customer' must not be empty.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name=&customer=",
+                  "host": [
+                    "{{base_url}}{{targets_postfix2}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "deposit",
+                      "equals": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "",
+                      "equals": true
+                    },
+                    {
+                      "key": "customer",
+                      "value": "",
+                      "equals": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "839d796b-c42c-4623-8daf-507bfd5ab5ca",
+              "name": "Invalid target id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "95385dad-0e49-4d91-99f0-52b75fe91ffd",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"targetId\",",
+                      "                    \"message\": \"The value 'test' is not valid.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{targets_postfix3}}test"
+              },
+              "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "63dc3038-b599-4e56-b35f-52d562974cbb",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "bcf30ce0-ca6c-424f-86a7-f109d862422e",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
+          "_postman_isSubFolder": true
         }
       ]
     }
