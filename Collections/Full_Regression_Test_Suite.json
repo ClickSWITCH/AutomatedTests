@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "1dcea77f-1205-444a-8316-1e06856a07e4",
     "name": "Full Regression Test Suite",
-    "description": "A collection of tests that hit all the V3 API endpoints to ensure the API is functioning properly. The requests are split into 4 folders: Types, Customers, Targets, and Switches. The tests must be run in the order displayed here to function properly. Currently there are **73** requests and **466** tests in this collection.",
+    "description": "A collection of tests that hit all the V3 API endpoints to ensure the API is functioning properly. The requests are split into 4 folders: Types, Customers, Targets, and Switches. The tests must be run in the order displayed here to function properly. Currently there are **93** requests and **507** tests in this collection.",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
