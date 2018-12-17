@@ -1,0 +1,2282 @@
+{
+  "info": {
+    "_postman_id": "0ba23c50-8da6-4c82-8bc5-b7724456c1ce",
+    "name": "Mobile API Smoke Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "_postman_id": "eb563c0b-0afb-4de9-9b2e-a8b10460473c",
+      "name": "Customers",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "fb877eaa-46a2-4e67-88cd-23bc57f65b28",
+          "name": "Single Customer Single Account Enroll",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fdc852cd-24c2-430b-97b7-02f7cd1aa25e",
+                "type": "text/javascript",
+                "exec": [
+                  "var timestamp = Date.now();",
+                  "",
+                  "var randomString = makeRandomString();",
+                  "",
+                  "// Set the timestamp to environment vars to create an unique",
+                  "// customer on each test run.",
+                  "pm.environment.set(\"customer_key\", timestamp);",
+                  "",
+                  "pm.environment.set(\"customer_name\", randomString);",
+                  "",
+                  "// Creates a random string of length 10.",
+                  "function makeRandomString() {",
+                  "  var text = \"\";",
+                  "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                  "",
+                  "  for (var i = 0; i < 10; i++)",
+                  "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+                  "",
+                  "  return text;",
+                  "}",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "80b84949-f0a1-45b9-a38e-b255c5fbbe3f",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Has to correct IDs\", function () {",
+                  "    pm.expect(jsonData.CustomerId).to.be.a('number');",
+                  "    pm.expect(jsonData.PrimaryContactId).to.be.a('number');",
+                  "    pm.expect(jsonData.SecondaryContactId).to.equal(null);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{subscription_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking_name}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"BranchId\": \"{{branch_id}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branch_id}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routing_number}}\",\r\n  \"EmailAddress\": \"{{customer_key}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institution_id}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{customer_name}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{customer_name}}\"\r\n}"
+            },
+            "url": "{{base_url}}{{customers_postfix}}{{api_key_param}}{{api_key}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "ce77525f-500b-4269-bfe2-b86cac42c833",
+          "name": "Joint Customer Joint Account Enroll",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fdc852cd-24c2-430b-97b7-02f7cd1aa25e",
+                "type": "text/javascript",
+                "exec": [
+                  "var timestamp = Date.now();",
+                  "",
+                  "var randomString = makeRandomString();",
+                  "",
+                  "// Set the timestamp to environment vars to create an unique",
+                  "// customer on each test run.",
+                  "pm.environment.set(\"customer_key\", timestamp);",
+                  "",
+                  "pm.environment.set(\"customer_name\", randomString);",
+                  "",
+                  "// Creates a random string of length 10.",
+                  "function makeRandomString() {",
+                  "  var text = \"\";",
+                  "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                  "",
+                  "  for (var i = 0; i < 10; i++)",
+                  "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+                  "",
+                  "  return text;",
+                  "}",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "25b13e01-3f30-414f-a319-4fd7166f53b5",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Has to correct IDs\", function () {",
+                  "    pm.expect(jsonData.CustomerId).to.be.a('number');",
+                  "    pm.expect(jsonData.PrimaryContactId).to.be.a('number');",
+                  "    pm.expect(jsonData.SecondaryContactId).to.be.a('number');",
+                  "});",
+                  "",
+                  "pm.environment.set(\"customer_id\", jsonData.CustomerId);",
+                  "pm.environment.set(\"customer_contact_id\", jsonData.PrimaryContactId);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{subscription_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking_name}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"BranchId\": \"{{branch_id}}\"\r\n    },\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}0\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{checking_name}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"BranchId\": \"{{branch_id}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branch_id}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routing_number}}\",\r\n  \"EmailAddress\": \"{{customer_key}}@clickswitch.com\",\r\n  \"InstitutionId\": \"{{institution_id}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{customer_name}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"SecondaryContact\": {\r\n\t\"FirstName\": \"{{customer_name}}\",\r\n\t\"MiddleInitial\": \"T\",\r\n\t\"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{customer_name}}\"\r\n}"
+            },
+            "url": "{{base_url}}{{customers_postfix}}{{api_key_param}}{{api_key}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "35072f1e-785c-406b-b1bf-594007f79a75",
+          "name": "Customer Find",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "2b72de1d-03b9-4154-aa65-2c1e72a79e65",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "46f51bab-ffea-443b-8ec8-3245d2066255",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Has to correct IDs\", function () {",
+                  "    pm.expect(jsonData.CustomerId).to.be.a('number');",
+                  "    pm.expect(jsonData.PrimaryContactId).to.be.a('number');",
+                  "    pm.expect(jsonData.SecondaryContactId).to.be.a('number');",
+                  "    ",
+                  "    pm.expect(jsonData.CustomerId).to.equal(pm.environment.get('customer_id'));",
+                  "    pm.expect(jsonData.PrimaryContactId).to.equal(pm.environment.get('customer_contact_id'));",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{subscription_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking_name}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"BranchId\": 5717\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": 5717,\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routing_number}}\",\r\n  \"EmailAddress\": \"{{customer_key}}@clickswitch.com\",\r\n  \"InstitutionId\": 2405,\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{customer_name}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{customer_name}}\"\r\n}"
+            },
+            "url": "{{base_url}}{{customers_postfix}}/search{{api_key_param}}{{api_key}}&searchUserName={{customer_name}}&institutionId={{institution_id}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "3e4adbdd-0d52-45cb-a3f8-9f512ae2db4d",
+          "name": "Customer Consent to Esign",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "b4fbe413-c2ef-411c-bdec-340eebc52a46",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "5dfcceb9-a16e-42c4-b380-c5cef2e6ad45",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{subscription_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking_name}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"BranchId\": \"{{branch_id}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branch_id}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routing_number}}\",\r\n  \"EmailAddress\": \"{{customer_key}}@clickswitch.com\",\r\n  \"InstitutionId\": \"{{institution_id}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{customer_name}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{customer_name}}\"\r\n}"
+            },
+            "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}/contacts/{{customer_contact_id}}/esignConsent{{api_key_param}}{{api_key}}"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "202e1d01-a5d6-4cfd-8d1c-1d6cd680a5ce",
+      "name": "Depositors",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "8ae8d1dd-318e-4f9d-9943-7199b6ebeabe",
+          "name": "Unknown Depositor",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "7a48a257-c39f-4ea2-918f-d92ad7e792b0",
+              "name": "Create Depositor",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "7949c388-1e48-45d3-ae5b-62f29b75a2cd",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositSplitInfo');",
+                      "    pm.expect(jsonData).to.have.property('Form');",
+                      "    pm.expect(jsonData).to.have.property('IsSplittingDepositsPossible');",
+                      "    pm.expect(jsonData).to.have.property('OnlineOnlyInstructions');",
+                      "    pm.expect(jsonData).to.have.property('PrintOnlyInstructions');",
+                      "    pm.expect(jsonData).to.have.property('ProfileId');",
+                      "    pm.expect(jsonData).to.have.property('Type');",
+                      "    pm.expect(jsonData).to.have.property('TermsAndConditions');",
+                      "    pm.expect(jsonData).to.have.property('SplitAccountTypeCheckingLimit');",
+                      "    pm.expect(jsonData).to.have.property('SplitAccountTypeSavingsLimit');",
+                      "});",
+                      "",
+                      "pm.environment.set('custom_depositor_id', jsonData.CustomerCreatedDepositorId);",
+                      "pm.environment.set('custom_depositor_switch_profile_id', jsonData.ProfileId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55555\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"Name\": \"Test Depositor\",\r\n  \"Notes\": \"Test\",\r\n  \"PhoneNumber\": \"2185555555\"\r\n}"
+                },
+                "url": "{{base_url}}{{customer_id}}/depositors{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "331e0e4a-88c0-4481-9e3c-90035af311fe",
+              "name": "Get Created Depositor",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c2c9858a-3042-4718-8335-a7458909ff42",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Contains at least one result\", function () {",
+                      "    pm.expect(jsonData.length).to.be.at.least(1);",
+                      "});",
+                      "",
+                      "pm.environment.set('unknown_target_id', jsonData[0].DepositorId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customer_id}}/depositors{{api_key_param}}{{api_key}}&searchName=Test Depositor&latitude=-92&longitude=47"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "440e7dfd-d0a7-4654-be27-817290346217",
+          "name": "Location Depositor",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "5b1ad7ad-5ff8-4dcc-8c90-275552217c66",
+              "name": "Location Id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "6e7770e3-231f-4c08-8901-770715598451",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Contains at least one result\", function () {",
+                      "    pm.expect(jsonData.length).to.be.at.least(1);",
+                      "});",
+                      "",
+                      "pm.environment.set('location_id', jsonData[jsonData.length-1].PlaceId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customer_id}}/depositors{{api_key_param}}{{api_key}}&searchName={{location_name}}&latitude=-92&longitude=47"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "630a58e8-14b4-488a-84a3-38a3316d4d09",
+              "name": "Create Depositor From LocationId",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "91b6c2c6-3cf4-4f52-9f79-1cb88b287d41",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositSplitInfo');",
+                      "    pm.expect(jsonData).to.have.property('Form');",
+                      "    pm.expect(jsonData).to.have.property('IsSplittingDepositsPossible');",
+                      "    pm.expect(jsonData).to.have.property('OnlineOnlyInstructions');",
+                      "    pm.expect(jsonData).to.have.property('PrintOnlyInstructions');",
+                      "    pm.expect(jsonData).to.have.property('ProfileId');",
+                      "    pm.expect(jsonData).to.have.property('Type');",
+                      "    pm.expect(jsonData).to.have.property('TermsAndConditions');",
+                      "    pm.expect(jsonData).to.have.property('SplitAccountTypeCheckingLimit');",
+                      "    pm.expect(jsonData).to.have.property('SplitAccountTypeSavingsLimit');",
+                      "});",
+                      "",
+                      "pm.environment.set('custom_location_depositor_id', jsonData.CustomerCreatedDepositorId);",
+                      "pm.environment.set('custom_location_switch_profile_id', jsonData.ProfileId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55555\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"Name\": \"Test Depositor2\",\r\n  \"Notes\": \"Test\",\r\n  \"PlaceId\": \"{{location_id}}\",\r\n  \"PhoneNumber\": \"2185555555\"\r\n}"
+                },
+                "url": "{{base_url}}{{customer_id}}/depositors{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "184c4c0f-6998-4f52-ad07-03625b2d10a4",
+          "name": "Deposit",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7804db2f-0c0d-400b-b2c8-471ad05fc0fe",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Contains at least one result\", function () {",
+                  "    pm.expect(jsonData.length).to.be.at.least(1);",
+                  "});",
+                  "",
+                  "pm.environment.set('deposit_target_id', jsonData[0].DepositorId);",
+                  "pm.environment.set('deposit_target_switch_profile_id', jsonData[0].SwitchTemplate.ProfileId);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{subscription_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{base_url}}{{customer_id}}/depositors{{api_key_param}}{{api_key}}&searchName={{deposit_target_name}}&latitude=-92&longitude=47"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "df38b5d7-6132-466a-98e7-b405f00f3240",
+          "name": "Deposit Print Only",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f9c3a917-2269-44ef-aa97-3b528286bc11",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Contains at least one result\", function () {",
+                  "    pm.expect(jsonData.length).to.be.at.least(1);",
+                  "});",
+                  "",
+                  "pm.environment.set('deposit_print_target_id', jsonData[0].DepositorId);",
+                  "pm.environment.set('deposit_print_target_switch_profile_id', jsonData[0].SwitchTemplate.ProfileId);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{subscription_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{base_url}}{{customer_id}}/depositors{{api_key_param}}{{api_key}}&searchName={{deposit_print_only_name}}&latitude=-92&longitude=47"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9bf20646-91ef-4d8d-adc0-fc03476037a3",
+          "name": "Deposit Online Only",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c93e0824-aba4-4f3b-bffe-12b066e8bc50",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Contains at least one result\", function () {",
+                  "    pm.expect(jsonData.length).to.be.at.least(1);",
+                  "});",
+                  "",
+                  "pm.environment.set('deposit_online_target_id', jsonData[0].DepositorId);",
+                  "pm.environment.set('deposit_online_target_switch_profile_id', jsonData[0].SwitchTemplate.ProfileId);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{subscription_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{base_url}}{{customer_id}}/depositors{{api_key_param}}{{api_key}}&searchName={{deposit_online_only_name}}&latitude=-92&longitude=47"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "065ff9e2-401e-4311-9845-6564e49c64ba",
+      "name": "Switches",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "c85062e0-c96e-46a6-ac0c-da57d2398d8a",
+          "name": "Unknown Switch",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "2ec3150d-bb7a-469c-b368-004b2b8f2016",
+              "name": "Create Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "628931bc-540b-450d-a63e-d0bcad4c179d",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('Accounts');",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorName');",
+                      "    pm.expect(jsonData).to.have.property('FormFields');",
+                      "    pm.expect(jsonData).to.have.property('Id');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accounts element', function() {",
+                      "   var accounts = ",
+                      "    {",
+                      "        \"AccountName\": \"\",",
+                      "        \"AccountNumber\": \"\",",
+                      "        \"AccountType\": \"\",",
+                      "        \"InstitutionName\": \"Saturn Systems API Testing\",",
+                      "        \"RoutingNumber\": \"\",",
+                      "        \"SplitAmount\": 100,",
+                      "        \"SplitUnitType\": \"Percentage\"",
+                      "    };",
+                      "        ",
+                      "    accounts.AccountName = pm.environment.get('checking_name');",
+                      "    accounts.AccountNumber = pm.environment.get('customer_key').toString();",
+                      "    accounts.AccountType = pm.environment.get('checking_name');",
+                      "    accounts.RoutingNumber = pm.environment.get('routing_number');",
+                      "    ",
+                      "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct status', function() {",
+                      "   pm.expect(jsonData.Status).to.equal('Initial') ;",
+                      "});",
+                      "",
+                      "pm.test('Has the correct form fields', function() {",
+                      "    pm.expect(jsonData.FormFields.length).to.be.at.least(2);",
+                      "});",
+                      "",
+                      "pm.environment.set('custom_switch_id', jsonData.Id);",
+                      "pm.environment.set('custom_target_guid', jsonData.SwitchProfileGuid);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"SplitUnitType\": \"Percentage\",\r\n      \"SplitAmount\": 100\r\n    }\r\n  ],\r\n  \"CustomerCreatedDepositorId\": \"{{custom_depositor_id}}\",\r\n  \"FormFields\": [\r\n\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{customer_contact_id}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{customer_contact_id}}\",\r\n  \"SwitchProfileId\": \"{{custom_depositor_switch_profile_id}}\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "6082b1a7-f0ea-463d-99b7-3d0cfd5bd47a",
+              "name": "Update Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "fb96ad79-d6d2-4563-8dd5-6a6c9fec1ef5",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('Accounts');",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorName');",
+                      "    pm.expect(jsonData).to.have.property('FormFields');",
+                      "    pm.expect(jsonData).to.have.property('Id');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accounts element', function() {",
+                      "   var accounts = ",
+                      "    {",
+                      "        \"AccountName\": \"\",",
+                      "        \"AccountNumber\": \"\",",
+                      "        \"AccountType\": \"\",",
+                      "        \"InstitutionName\": \"Saturn Systems API Testing\",",
+                      "        \"RoutingNumber\": \"\",",
+                      "        \"SplitAmount\": 100,",
+                      "        \"SplitUnitType\": \"Percentage\"",
+                      "    };",
+                      "        ",
+                      "    accounts.AccountName = pm.environment.get('checking_name');",
+                      "    accounts.AccountNumber = pm.environment.get('customer_key').toString();",
+                      "    accounts.AccountType = pm.environment.get('checking_name');",
+                      "    accounts.RoutingNumber = pm.environment.get('routing_number');",
+                      "    ",
+                      "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct status', function() {",
+                      "   pm.expect(jsonData.Status).to.equal('Initial') ;",
+                      "});",
+                      "",
+                      "pm.test('Has the correct form fields', function() {",
+                      "    pm.expect(jsonData.FormFields.length).to.be.at.least(2);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"SplitUnitType\": \"Percentage\",\r\n      \"SplitAmount\": 100\r\n    }\r\n  ],\r\n  \"CustomerCreatedDepositorId\": \"{{custom_depositor_id}}\",\r\n  \"FormFields\": [   \r\n  \t{\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"1234\",\r\n      \"VariableName\": \"Custom_SSN4\"\r\n    },\r\n    {\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"Test Building\",\r\n      \"VariableName\": \"Custom_Employee/ID\"\r\n    }\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{customer_contact_id}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{customer_contact_id}}\",\r\n  \"SwitchProfileId\": \"{{custom_depositor_switch_profile_id}}\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{custom_switch_id}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "24e209c4-3450-4d5f-884a-85f7cafd77b8",
+              "name": "Get Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "26731505-88d0-4e29-93db-3b88d51d5da3",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('Accounts');",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorName');",
+                      "    pm.expect(jsonData).to.have.property('FormFields');",
+                      "    pm.expect(jsonData).to.have.property('Id');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accounts element', function() {",
+                      "   var accounts = ",
+                      "    {",
+                      "        \"AccountName\": \"\",",
+                      "        \"AccountNumber\": \"\",",
+                      "        \"AccountType\": \"\",",
+                      "        \"InstitutionName\": \"Saturn Systems API Testing\",",
+                      "        \"RoutingNumber\": \"\",",
+                      "        \"SplitAmount\": 100,",
+                      "        \"SplitUnitType\": \"Percentage\"",
+                      "    };",
+                      "        ",
+                      "    accounts.AccountName = pm.environment.get('checking_name');",
+                      "    accounts.AccountNumber = pm.environment.get('customer_key').toString();",
+                      "    accounts.AccountType = pm.environment.get('checking_name');",
+                      "    accounts.RoutingNumber = pm.environment.get('routing_number');",
+                      "    ",
+                      "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct status', function() {",
+                      "   pm.expect(jsonData.Status).to.equal('Initial') ;",
+                      "});",
+                      "",
+                      "pm.test('Has the correct form fields', function() {",
+                      "    pm.expect(jsonData.FormFields.length).to.be.at.least(2);",
+                      "});",
+                      "",
+                      "pm.environment.set('switch_id', jsonData.Id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{custom_switch_id}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "78e4917b-1066-41a4-bb8e-e990a5450b30",
+              "name": "Get All Switches",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "31156932-59df-474a-a2cc-76b5c9c8f591",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Contains the correct number of switches\", function () {",
+                      "   pm.expect(jsonData.length).to.equal(1); ",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "c61cd527-ca36-4042-9414-33c65cdd5ef2",
+              "name": "Submit Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "02fce7ab-1df3-46c7-bfe9-e769d6fc2443",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('SwitchId');",
+                      "    pm.expect(jsonData).to.have.property('EffectiveDate');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('PayrollProvider');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{custom_switch_id}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "da5420fe-6a33-49ab-9114-b04b4c40a5da",
+          "name": "Normal Switch",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "b21f759e-7848-41f9-8b4b-8e21fc1e0978",
+              "name": "Create Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "57f57fce-2c73-476e-8674-38c04bbb9af7",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('Accounts');",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorName');",
+                      "    pm.expect(jsonData).to.have.property('FormFields');",
+                      "    pm.expect(jsonData).to.have.property('Id');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accounts element', function() {",
+                      "   var accounts = ",
+                      "    {",
+                      "        \"AccountName\": \"\",",
+                      "        \"AccountNumber\": \"\",",
+                      "        \"AccountType\": \"\",",
+                      "        \"InstitutionName\": \"Saturn Systems API Testing\",",
+                      "        \"RoutingNumber\": \"\",",
+                      "        \"SplitAmount\": 100,",
+                      "        \"SplitUnitType\": \"Percentage\"",
+                      "    };",
+                      "        ",
+                      "    accounts.AccountName = pm.environment.get('checking_name');",
+                      "    accounts.AccountNumber = pm.environment.get('customer_key').toString();",
+                      "    accounts.AccountType = pm.environment.get('checking_name');",
+                      "    accounts.RoutingNumber = pm.environment.get('routing_number');",
+                      "    ",
+                      "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct status', function() {",
+                      "   pm.expect(jsonData.Status).to.equal('Initial') ;",
+                      "});",
+                      "",
+                      "pm.test('Has the correct form fields', function() {",
+                      "    pm.expect(jsonData.FormFields.length).to.be.at.least(3);",
+                      "});",
+                      "",
+                      "pm.environment.set('deposit_switch_id', jsonData.Id);",
+                      "pm.environment.set('deposit_target_guid', jsonData.SwitchProfileGuid);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"SplitUnitType\": \"Percentage\",\r\n      \"SplitAmount\": 100\r\n    }\r\n  ],\r\n  \"DepositorId\": \"{{deposit_target_id}}\",\r\n  \"FormFields\": [\r\n\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{customer_contact_id}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{customer_contact_id}}\",\r\n  \"SwitchProfileId\": \"{{deposit_target_switch_profile_id}}\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "6b642a1f-2692-4c0b-87f2-92e7e7a8a7bf",
+              "name": "Update Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "309a7c0f-56d7-49f8-b480-a20412612fa6",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('Accounts');",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorName');",
+                      "    pm.expect(jsonData).to.have.property('FormFields');",
+                      "    pm.expect(jsonData).to.have.property('Id');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accounts element', function() {",
+                      "   var accounts = ",
+                      "    {",
+                      "        \"AccountName\": \"\",",
+                      "        \"AccountNumber\": \"\",",
+                      "        \"AccountType\": \"\",",
+                      "        \"InstitutionName\": \"Saturn Systems API Testing\",",
+                      "        \"RoutingNumber\": \"\",",
+                      "        \"SplitAmount\": 100,",
+                      "        \"SplitUnitType\": \"Percentage\"",
+                      "    };",
+                      "        ",
+                      "    accounts.AccountName = pm.environment.get('checking_name');",
+                      "    accounts.AccountNumber = pm.environment.get('customer_key').toString();",
+                      "    accounts.AccountType = pm.environment.get('checking_name');",
+                      "    accounts.RoutingNumber = pm.environment.get('routing_number');",
+                      "    ",
+                      "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct status', function() {",
+                      "   pm.expect(jsonData.Status).to.equal('Initial') ;",
+                      "});",
+                      "",
+                      "pm.test('Has the correct form fields', function() {",
+                      "    pm.expect(jsonData.FormFields.length).to.be.at.least(3);",
+                      "});",
+                      "",
+                      "pm.environment.set('deposit_target_guid', jsonData.SwitchProfileGuid);",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"SplitUnitType\": \"Percentage\",\r\n      \"SplitAmount\": 100\r\n    }\r\n  ],\r\n  \"DepositorId\": \"{{deposit_target_id}}\",\r\n  \"FormFields\": [   \r\n  \t{\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"1234\",\r\n      \"VariableName\": \"Custom_SSN4\"\r\n    },\r\n    {\r\n      \"Type\": \"address\",\r\n      \"AddressValue\": {\r\n            \"AddressLine1\": \"123 Test St.\",\r\n            \"AddressLine2\": null,\r\n            \"AddressLine3\": null,\r\n            \"City\": \"Test\",\r\n            \"CountryCode\": \"US\",\r\n            \"PostalCode\": \"55555\",\r\n            \"StateProvinceCode\": \"MN\"\r\n\t\t},\r\n      \"VariableName\": \"Custom_Company/MailingAddress\"\r\n    }\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{customer_contact_id}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{customer_contact_id}}\",\r\n  \"SwitchProfileId\": \"{{deposit_target_switch_profile_id}}\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{deposit_switch_id}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "a6396b0f-1c6e-4be2-b699-b287f1e1437e",
+              "name": "Get Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "dd6f8bba-d6b2-4a0a-be19-604329dbf5bd",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('Accounts');",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorName');",
+                      "    pm.expect(jsonData).to.have.property('FormFields');",
+                      "    pm.expect(jsonData).to.have.property('Id');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accounts element', function() {",
+                      "   var accounts = ",
+                      "    {",
+                      "        \"AccountName\": \"\",",
+                      "        \"AccountNumber\": \"\",",
+                      "        \"AccountType\": \"\",",
+                      "        \"InstitutionName\": \"Saturn Systems API Testing\",",
+                      "        \"RoutingNumber\": \"\",",
+                      "        \"SplitAmount\": 100,",
+                      "        \"SplitUnitType\": \"Percentage\"",
+                      "    };",
+                      "        ",
+                      "    accounts.AccountName = pm.environment.get('checking_name');",
+                      "    accounts.AccountNumber = pm.environment.get('customer_key').toString();",
+                      "    accounts.AccountType = pm.environment.get('checking_name');",
+                      "    accounts.RoutingNumber = pm.environment.get('routing_number');",
+                      "    ",
+                      "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct status', function() {",
+                      "   pm.expect(jsonData.Status).to.equal('Initial') ;",
+                      "});",
+                      "",
+                      "pm.test('Has the correct form fields', function() {",
+                      "    pm.expect(jsonData.FormFields.length).to.be.at.least(3);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{deposit_switch_id}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "3a0adbd3-934b-4cfd-a174-cc0717185978",
+              "name": "Get All Switches",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "f5a09f18-a9d4-4943-91a7-f9a759d05f02",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Contains the correct number of switches\", function () {",
+                      "   pm.expect(jsonData.length).to.equal(2); ",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "4ece84c2-c3f2-46a5-b71a-ac30359aed83",
+              "name": "Submit Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "11a2b909-dbf1-403a-a771-67741218b1e4",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('SwitchId');",
+                      "    pm.expect(jsonData).to.have.property('EffectiveDate');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('PayrollProvider');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"PrimaryContactSignature\": {\r\n    \"ContactId\": \"{{customer_contact_id}}\",\r\n    \"Signature\": \"Test Signature\"\r\n  }\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{deposit_switch_id}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "32697133-5374-4997-b1af-622ba20f5659",
+          "name": "Location Id Switch",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "20f9d969-11c1-469e-b2c5-dbcaeb4b6e5d",
+              "name": "Create Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "a30754e4-17a2-43d9-8787-be0c751d51ab",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('Accounts');",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorName');",
+                      "    pm.expect(jsonData).to.have.property('FormFields');",
+                      "    pm.expect(jsonData).to.have.property('Id');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accounts element', function() {",
+                      "   var accounts = ",
+                      "    {",
+                      "        \"AccountName\": \"\",",
+                      "        \"AccountNumber\": \"\",",
+                      "        \"AccountType\": \"\",",
+                      "        \"InstitutionName\": \"Saturn Systems API Testing\",",
+                      "        \"RoutingNumber\": \"\",",
+                      "        \"SplitAmount\": 100,",
+                      "        \"SplitUnitType\": \"Percentage\"",
+                      "    };",
+                      "        ",
+                      "    accounts.AccountName = pm.environment.get('checking_name');",
+                      "    accounts.AccountNumber = pm.environment.get('customer_key').toString();",
+                      "    accounts.AccountType = pm.environment.get('checking_name');",
+                      "    accounts.RoutingNumber = pm.environment.get('routing_number');",
+                      "    ",
+                      "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct status', function() {",
+                      "   pm.expect(jsonData.Status).to.equal('Initial') ;",
+                      "});",
+                      "",
+                      "pm.test('Has the correct form fields', function() {",
+                      "    pm.expect(jsonData.FormFields.length).to.be.at.least(2);",
+                      "});",
+                      "",
+                      "pm.environment.set('location_deposit_switch_id', jsonData.Id);",
+                      "",
+                      "",
+                      "",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"SplitUnitType\": \"Percentage\",\r\n      \"SplitAmount\": 100\r\n    }\r\n  ],\r\n  \"CustomerCreatedDepositorId\": \"{{custom_location_depositor_id}}\",\r\n  \"FormFields\": [\r\n\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{customer_contact_id}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{customer_contact_id}}\",\r\n  \"SwitchProfileId\": \"{{custom_location_switch_profile_id}}\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "d89c43e8-69c4-4e9c-8da9-9ccf9ceb385e",
+              "name": "Update and Submit Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "902aa43e-3c6c-4679-ab6b-841eed38a774",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 202\", function () {",
+                      "    pm.response.to.have.status(202);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('SwitchId');",
+                      "    pm.expect(jsonData).to.have.property('EffectiveDate');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('PayrollProvider');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"SplitUnitType\": \"Percentage\",\r\n      \"SplitAmount\": 100\r\n    }\r\n  ],\r\n  \"CustomerCreatedDepositorId\": \"{{custom_location_depositor_id}}\",\r\n  \"FormFields\": [   \r\n  \t{\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"1234\",\r\n      \"VariableName\": \"Custom_SSN4\"\r\n    },\r\n    {\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"Test\",\r\n      \"VariableName\": \"Custom_Employee/ID\"\r\n    }\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{customer_contact_id}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{customer_contact_id}}\",\r\n  \"SwitchProfileId\": \"{{custom_location_switch_profile_id}}\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{location_deposit_switch_id}}{{api_key_param}}{{api_key}}&submitOnSave=true"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "5cae9e1d-279c-4849-a39a-c905bb0d03c2",
+          "name": "Print Only Switch",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "5e91975d-4353-41f9-a114-b2e6c13bf6f9",
+              "name": "Create Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "556cbd47-d4f4-42a9-a5a5-2d44103f03a3",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('Accounts');",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorName');",
+                      "    pm.expect(jsonData).to.have.property('FormFields');",
+                      "    pm.expect(jsonData).to.have.property('Id');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accounts element', function() {",
+                      "   var accounts = ",
+                      "    {",
+                      "        \"AccountName\": \"\",",
+                      "        \"AccountNumber\": \"\",",
+                      "        \"AccountType\": \"\",",
+                      "        \"InstitutionName\": \"Saturn Systems API Testing\",",
+                      "        \"RoutingNumber\": \"\",",
+                      "        \"SplitAmount\": 100,",
+                      "        \"SplitUnitType\": \"Percentage\"",
+                      "    };",
+                      "        ",
+                      "    accounts.AccountName = pm.environment.get('checking_name');",
+                      "    accounts.AccountNumber = pm.environment.get('customer_key').toString();",
+                      "    accounts.AccountType = pm.environment.get('checking_name');",
+                      "    accounts.RoutingNumber = pm.environment.get('routing_number');",
+                      "    ",
+                      "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct status', function() {",
+                      "   pm.expect(jsonData.Status).to.equal('Initial') ;",
+                      "});",
+                      "",
+                      "pm.test('Has the correct form fields', function() {",
+                      "    pm.expect(jsonData.FormFields.length).to.be.at.least(3);",
+                      "});",
+                      "",
+                      "pm.environment.set('print_only_switch_id', jsonData.Id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"SplitUnitType\": \"Percentage\",\r\n      \"SplitAmount\": 100\r\n    }\r\n  ],\r\n  \"DepositorId\": \"{{deposit_print_target_id}}\",\r\n  \"FormFields\": [\r\n\t{\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"1234\",\r\n      \"VariableName\": \"Custom_SSN4\"\r\n    },\r\n    {\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"Test Building\",\r\n      \"VariableName\": \"Custom_Employee/ID\"\r\n    },\r\n    {\r\n      \"Type\": \"address\",\r\n      \"AddressValue\": {\r\n            \"AddressLine1\": \"123 Test St.\",\r\n            \"AddressLine2\": null,\r\n            \"AddressLine3\": null,\r\n            \"City\": \"Test\",\r\n            \"CountryCode\": \"US\",\r\n            \"PostalCode\": \"55555\",\r\n            \"StateProvinceCode\": \"MN\"\r\n\t\t},\r\n      \"VariableName\": \"Custom_Company/MailingAddress\"\r\n    }\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{customer_contact_id}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{customer_contact_id}}\",\r\n  \"SwitchProfileId\": \"{{deposit_print_target_switch_profile_id}}\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "3a2bc353-f363-4122-a5f9-f58acc2fce5b",
+              "name": "Get Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "5e126f13-faf5-4985-87b5-329f33bf9f6d",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('Accounts');",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorName');",
+                      "    pm.expect(jsonData).to.have.property('FormFields');",
+                      "    pm.expect(jsonData).to.have.property('Id');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accounts element', function() {",
+                      "   var accounts = ",
+                      "    {",
+                      "        \"AccountName\": \"\",",
+                      "        \"AccountNumber\": \"\",",
+                      "        \"AccountType\": \"\",",
+                      "        \"InstitutionName\": \"Saturn Systems API Testing\",",
+                      "        \"RoutingNumber\": \"\",",
+                      "        \"SplitAmount\": 100,",
+                      "        \"SplitUnitType\": \"Percentage\"",
+                      "    };",
+                      "        ",
+                      "    accounts.AccountName = pm.environment.get('checking_name');",
+                      "    accounts.AccountNumber = pm.environment.get('customer_key').toString();",
+                      "    accounts.AccountType = pm.environment.get('checking_name');",
+                      "    accounts.RoutingNumber = pm.environment.get('routing_number');",
+                      "    ",
+                      "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct status', function() {",
+                      "   pm.expect(jsonData.Status).to.equal('Initial') ;",
+                      "});",
+                      "",
+                      "pm.test('Has the correct form fields', function() {",
+                      "    pm.expect(jsonData.FormFields.length).to.be.at.least(3);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{print_only_switch_id}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "e4c4d0fb-178d-4a5d-880d-bd7672b2d0f3",
+              "name": "Get All Switches",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d4298fad-c7d4-40ac-b18c-6b61a0435111",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Contains the correct number of switches\", function () {",
+                      "   pm.expect(jsonData.length).to.equal(4); ",
+                      "});",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "bd3b802e-9f6e-48ec-a94d-717b38910058",
+              "name": "Submit Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "70f6644c-9545-4d93-84a8-4dfe18c89677",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 409\", function () {",
+                      "    pm.response.to.have.status(409);",
+                      "});",
+                      "",
+                      "pm.test(\"Contains the correct error message\", function () {",
+                      "   pm.expect(jsonData.Description).to.equal(\"The switch can only be printed.\"); ",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{print_only_switch_id}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "a3fcfdef-9180-489f-bc0f-8b18de239509",
+              "name": "Get Switch PDF",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "2d98a637-f01d-41a8-a568-d340414f9e93",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Response contains some data\", function () {",
+                      "   pm.expect(jsonData).to.not.equal(null);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/pdf"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{print_only_switch_id}}/pdf/print{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "d3e7860a-b562-49fc-b0cc-504f0f8a9d78",
+          "name": "Online Only Switch",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "5e92cf93-e0ad-41ef-8c81-2adffc0facb1",
+              "name": "Create Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "8f62bfcb-b75e-4e7f-b135-14523c7ac6e0",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('Accounts');",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorName');",
+                      "    pm.expect(jsonData).to.have.property('FormFields');",
+                      "    pm.expect(jsonData).to.have.property('Id');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accounts element', function() {",
+                      "   var accounts = ",
+                      "    {",
+                      "        \"AccountName\": \"\",",
+                      "        \"AccountNumber\": \"\",",
+                      "        \"AccountType\": \"\",",
+                      "        \"InstitutionName\": \"Saturn Systems API Testing\",",
+                      "        \"RoutingNumber\": \"\",",
+                      "        \"SplitAmount\": null,",
+                      "        \"SplitUnitType\": \"Percentage\"",
+                      "    };",
+                      "        ",
+                      "    accounts.AccountName = pm.environment.get('checking_name');",
+                      "    accounts.AccountNumber = pm.environment.get('customer_key').toString();",
+                      "    accounts.AccountType = pm.environment.get('checking_name');",
+                      "    accounts.RoutingNumber = pm.environment.get('routing_number');",
+                      "    ",
+                      "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct status', function() {",
+                      "    pm.expect(jsonData.Status).to.equal(\"TrackOnly\");",
+                      "});",
+                      "",
+                      "pm.environment.set('online_only_switch_id', jsonData.Id);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"SplitUnitType\": \"Percentage\"\r\n    }\r\n  ],\r\n  \"DepositorId\": \"{{deposit_online_target_id}}\",\r\n  \"FormFields\": [\r\n\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{customer_contact_id}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{customer_contact_id}}\",\r\n  \"SwitchProfileId\": \"{{deposit_online_target_switch_profile_id}}\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "5915ddff-094d-4fbf-8c73-e01aff3f57ff",
+              "name": "Get Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "a88323bb-4491-40b6-abf9-567eca09d2eb",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('Accounts');",
+                      "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorId');",
+                      "    pm.expect(jsonData).to.have.property('DepositorName');",
+                      "    pm.expect(jsonData).to.have.property('FormFields');",
+                      "    pm.expect(jsonData).to.have.property('Id');",
+                      "    pm.expect(jsonData).to.have.property('Status');",
+                      "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                      "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                      "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accounts element', function() {",
+                      "   var accounts = ",
+                      "    {",
+                      "        \"AccountName\": \"\",",
+                      "        \"AccountNumber\": \"\",",
+                      "        \"AccountType\": \"\",",
+                      "        \"InstitutionName\": \"Saturn Systems API Testing\",",
+                      "        \"RoutingNumber\": \"\",",
+                      "        \"SplitAmount\": null,",
+                      "        \"SplitUnitType\": \"Percentage\"",
+                      "    };",
+                      "        ",
+                      "    accounts.AccountName = pm.environment.get('checking_name');",
+                      "    accounts.AccountNumber = pm.environment.get('customer_key').toString();",
+                      "    accounts.AccountType = pm.environment.get('checking_name');",
+                      "    accounts.RoutingNumber = pm.environment.get('routing_number');",
+                      "    ",
+                      "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct status', function() {",
+                      "    pm.expect(jsonData.Status).to.equal(\"TrackOnly\");",
+                      "});",
+                      "",
+                      "pm.environment.set('print_only_switch_id', jsonData.Id);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{online_only_switch_id}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "489ebd3b-df4d-4f17-ad82-6aae388de5cc",
+              "name": "Get All Switches",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "ae86877f-9cc3-4406-988d-4e58a1c11ded",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Contains the correct number of switches\", function () {",
+                      "   pm.expect(jsonData.length).to.equal(5); ",
+                      "});",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "1e0874b1-43b9-4190-bd3c-684c722047ff",
+              "name": "Submit Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "3ef91648-9fe8-494d-af17-e932f52229bb",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 409\", function () {",
+                      "    pm.response.to.have.status(409);",
+                      "});",
+                      "",
+                      "pm.test(\"Contains the correct error message\", function () {",
+                      "   pm.expect(jsonData.Description).to.equal(\"The switch has already been submitted to ClickSWITCH.\"); ",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{online_only_switch_id}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "182533af-4507-4396-b482-9a84ad20991d",
+          "name": "Create and Delete Switch",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "a6fae1d2-ff71-4d65-a961-91d5ef2f60f0",
+              "name": "Create Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "9e3657a8-ddab-455c-9ffb-66856a47aec5",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "",
+                      "pm.environment.set('switch_id', jsonData.Id);",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{customer_key}}\",\r\n      \"RoutingNumber\": \"{{routing_number}}\",\r\n      \"SplitUnitType\": \"Remainder\"\r\n    }\r\n  ],\r\n  \"DepositorId\": \"{{deposit_target_id}}\",\r\n  \"FormFields\": [\r\n\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{customer_contact_id}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{customer_contact_id}}\",\r\n  \"SwitchProfileId\": \"{{deposit_target_switch_profile_id}}\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "dfcec6ab-4bb9-465a-8b6a-1f54b321ee55",
+              "name": "Delete Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d831da88-de3c-49f2-91a5-89f5450de2b2",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 204\", function () {",
+                      "    pm.response.to.have.status(204);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}/{{switch_id}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "3c5d56d8-eb4f-4719-9e4d-dd686b81d60f",
+              "name": "Get All Switches",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "ae86877f-9cc3-4406-988d-4e58a1c11ded",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Contains the correct number of switches\", function () {",
+                      "   pm.expect(jsonData.length).to.equal(5); ",
+                      "});",
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{subscription_key}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}/{{customer_id}}{{switches_postfix}}{{api_key_param}}{{api_key}}"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "6568028e-7706-4f5f-9ffe-f820624ceab5",
+          "name": "Get Depositor By Switch Profile Id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "dd7f840c-5157-4a09-b1e9-aea9cddc2905",
+                "type": "text/javascript",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Has required elements', function() {",
+                  "    pm.expect(jsonData).to.have.property('Address');",
+                  "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                  "    pm.expect(jsonData).to.have.property('DepositorId');",
+                  "    pm.expect(jsonData).to.have.property('Name');",
+                  "    pm.expect(jsonData).to.have.property('PhoneNumber');",
+                  "    pm.expect(jsonData).to.have.property('PlaceId');",
+                  "    pm.expect(jsonData).to.have.property('SwitchTemplate');",
+                  "    pm.expect(jsonData.SwitchTemplate).to.have.property('CustomerCreatedDepositorId');",
+                  "    pm.expect(jsonData.SwitchTemplate).to.have.property('DepositorId');",
+                  "    pm.expect(jsonData.SwitchTemplate).to.have.property('DepositSplitInfo');",
+                  "    pm.expect(jsonData.SwitchTemplate).to.have.property('Form');",
+                  "    pm.expect(jsonData.SwitchTemplate).to.have.property('IsSplittingDepositsPossible');",
+                  "    pm.expect(jsonData.SwitchTemplate).to.have.property('OnlineOnlyInstructions');",
+                  "    pm.expect(jsonData.SwitchTemplate).to.have.property('PrintOnlyInstructions');",
+                  "    pm.expect(jsonData.SwitchTemplate).to.have.property('ProfileId');",
+                  "    pm.expect(jsonData.SwitchTemplate).to.have.property('Type');",
+                  "    pm.expect(jsonData.SwitchTemplate).to.have.property('TermsAndConditions');",
+                  "    pm.expect(jsonData.SwitchTemplate).to.have.property('SplitAccountTypeCheckingLimit');",
+                  "    pm.expect(jsonData.SwitchTemplate).to.have.property('SplitAccountTypeSavingsLimit');",
+                  "});",
+                  "",
+                  "pm.test('Has the correct depositor id', function() {",
+                  "   pm.expect(jsonData.DepositorId).to.equal(pm.environment.get(\"deposit_target_id\")); ",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{subscription_key}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{base_url}}{{customer_id}}/depositors/{{deposit_target_guid}}{{api_key_param}}{{api_key}}"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "919eea87-edb8-4e71-a2fc-5ddad24ba537",
+      "name": "Other",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "ba6eebf2-56d5-4203-8e60-2c1a3435ba43",
+          "name": "Get API Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b3e67bdb-f97a-4122-9385-c1135595263e",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{subscription_key}}"
+              }
+            ],
+            "body": {},
+            "url": "{{base_url}}status"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "98228e66-ca35-490a-a393-8d42e8a4ed15",
+          "name": "Get  Payroll Provider Logo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{base_url}}payroll-providers/5248ab74-6cc1-4693-87f0-628756b3c9db/00B8729D20B2610ED6080E1E77BF57A997259FDC0714BC32D740AA87DC14AD3F"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
