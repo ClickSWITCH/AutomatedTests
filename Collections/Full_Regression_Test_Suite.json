@@ -11684,6 +11684,365 @@
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
               },
               "response": []
+            },
+            {
+              "_postman_id": "d796d1ee-03be-4549-bc7b-ce83c974f7d0",
+              "name": "Update Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c5e8e6ce-e8e7-459a-9f6c-abfd056f1128",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct context', function() {",
+                      "    pm.expect(jsonData.context).to.equal('testing_context');",
+                      "});",
+                      "",
+                      "pm.test('Has required 2nd level elements', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('index');",
+                      "    pm.expect(jsonData.data.item).to.have.property('type');",
+                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                      "    pm.expect(jsonData.data.item).to.have.property('name');",
+                      "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
+                      "    pm.expect(jsonData.data.item).to.have.property('values');",
+                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                      "    pm.expect(jsonData.data.item).to.have.property('state');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct index', function() {",
+                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct type', function() {",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
+                      "});",
+                      "",
+                      "pm.test('Has the correct targetId', function() {",
+                      "   pm.expect(jsonData.data.item.targetId).to.equal(pm.environment.get(\"deposit_target_id\"));",
+                      "});",
+                      "",
+                      "pm.test('Has the correct accountHolderIndex', function() {",
+                      "   pm.expect(jsonData.data.item.accountHolderIndex).to.equal(0);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "        var state;",
+                      "    if (!isCanada) {",
+                      "        state = {",
+                      "            \"status\": \"Ready\",",
+                      "            \"actions\": [",
+                      "                \"HTTP-PUT\",",
+                      "                \"Cancel\",",
+                      "                \"Submit\"",
+                      "            ],",
+                      "            \"validation\": {",
+                      "                \"accounts\": [],",
+                      "                \"fields\": {},",
+                      "                \"overall\": []",
+                      "            }",
+                      "        };",
+                      "    } else {",
+                      "        state = {",
+                      "            \"status\": \"Incomplete\",",
+                      "            \"actions\": [",
+                      "                \"HTTP-PUT\",",
+                      "                \"Cancel\"",
+                      "            ],",
+                      "            \"validation\": {",
+                      "                \"accounts\": [],",
+                      "                \"fields\": {",
+                      "                    \"state\": \"Must be a valid 2 character Province or Territory code\",",
+                      "                    \"zip\": \"Must be a valid postal code\"",
+                      "                },",
+                      "                \"overall\": []",
+                      "            }",
+                      "        };",
+                      "    }",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct ux.accounts element', function() {",
+                      "    var accounts;",
+                      "    accounts = {",
+                      "        \"limit\": 5,",
+                      "        \"maxChecking\": 5,",
+                      "        \"maxSavings\": 5,",
+                      "        \"choices\": [",
+                      "            {",
+                      "                \"index\": 0,",
+                      "                \"label\": \"*8265\"",
+                      "            },",
+                      "            {",
+                      "                \"index\": 1,",
+                      "                \"label\": \"*2650\"",
+                      "            }",
+                      "        ],",
+                      "        \"fields\": []",
+                      "    };",
+                      "            ",
+                      "    var customer_key = pm.environment.get('customer_key').toString();",
+                      "    ",
+                      "    var accountName1 = '*' + customer_key.substring(customer_key.length-4,customer_key.length);",
+                      "    ",
+                      "    var accountName2 = '*' + customer_key.substring(customer_key.length-3,customer_key.length) + '0';",
+                      "    ",
+                      "    accounts.choices[0].label = accountName1;",
+                      "    accounts.choices[1].label = accountName2;",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(accounts);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct values element', function() {",
+                      "    var values;",
+                      "    values = {",
+                      "        \"accounts\": [",
+                      "            {",
+                      "                \"index\": 0",
+                      "            }",
+                      "        ],",
+                      "        \"fields\": {",
+                      "            \"Custom_SSN4\": \"1234\",",
+                      "            \"Custom_Employee/ID\": \"1234\",",
+                      "            \"Custom_Company/MailingAddress\": {",
+                      "                \"line1\": \"123 Main Street\",",
+                      "                \"line2\": null,",
+                      "                \"line3\": null,",
+                      "                \"city\": \"New York\",",
+                      "                \"state\": \"NY\",",
+                      "                \"zip\": \"44444\"",
+                      "            }",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
+                      "});",
+                      "",
+                      "pm.test('Has matching values and ux.fields names', function() {",
+                      "   var values = jsonData.data.item.values.fields;",
+                      "   var ux = jsonData.data.item.ux.fields;",
+                      "   ",
+                      "   var getValueKeys = function(object, array) {",
+                      "       for (var k in object) {",
+                      "           if (typeof object[k] === 'object' && object[k] !== null) {",
+                      "               for (var i in object[k]) array.push(i);",
+                      "           } else {",
+                      "               array.push(k);",
+                      "           }",
+                      "       } ",
+                      "   };",
+                      "   ",
+                      "    var getUxKeys = function(object, array) {",
+                      "        for (var k in object) {",
+                      "           if (object[k].hasOwnProperty('fields')) {",
+                      "                for (var i in object[k].fields) {",
+                      "                   array.push(object[k].fields[i].key);",
+                      "                }",
+                      "           } else {",
+                      "              array.push(object[k].key);",
+                      "           }",
+                      "        } ",
+                      "    };",
+                      "   ",
+                      "    var valueKeys = [];",
+                      "    var uxKeys = [];",
+                      "    ",
+                      "    getValueKeys(values, valueKeys);",
+                      "    getUxKeys(ux, uxKeys);",
+                      "   ",
+                      "   valueKeys.sort();",
+                      "   uxKeys.sort();",
+                      "   ",
+                      "   pm.expect(valueKeys).to.eql(uxKeys);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "360c2534-a4f5-4f5f-9647-1fb4ef6ffa31",
+              "name": "Submit Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "bc9a5690-3ae7-4784-a80f-1de7b2c418db",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
+                      "",
+                      "(isCanada ? pm.test.skip : pm.test)(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "(isCanada ? pm.test.skip : pm.test)('Has the correct state', function() {",
+                      "    var state = {",
+                      "        \"status\": \"Submitted\",",
+                      "        \"actions\": [",
+                      "            \"Cancel\"",
+                      "        ],",
+                      "        \"validation\": {",
+                      "            \"accounts\": [],",
+                      "            \"fields\": {},",
+                      "            \"overall\": []",
+                      "        }",
+                      "    };",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action{{context_param}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "b9a3611e-43ca-4df0-b082-74879b8a6614",
+              "name": "Cancel Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state = {",
+                      "        \"status\": \"Canceled\",",
+                      "        \"actions\": [",
+                      "            \"Uncancel\",",
+                      "            \"HTTP-DELETE\"",
+                      "        ],",
+                      "        \"validation\": {}",
+                      "    };",
+                      "    ",
+                      "   jsonData.data.item.state.validation = {};",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "719baf18-1485-4f06-ae2b-e6bdf96380b4",
+              "name": "Delete Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
+                "description": "\t"
+              },
+              "response": []
             }
           ],
           "event": [
