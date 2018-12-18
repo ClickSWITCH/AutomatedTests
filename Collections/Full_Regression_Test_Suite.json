@@ -4866,7 +4866,7 @@
                       "                \"accounts\": [],",
                       "                \"fields\": {",
                       "                    \"Custom_SIN3\": \"This field is required\",",
-                      "                    \"category\": \"This field is required and must match one of the provided categories.\"",
+                      "                    \"category\": \"The field is required and must match one of the provided categories.\",",
                       "                },",
                       "                \"overall\": [",
                       "                ]",
