@@ -1,18 +1,18 @@
 {
   "info": {
-    "_postman_id": "1dcea77f-1205-444a-8316-1e06856a07e4",
-    "name": "Full Regression Test Suite (Broken)",
+    "_postman_id": "ee9effda-3b97-4867-9291-7b4f0b64dcb1",
+    "name": "Full Regression Test Suite",
     "description": "A collection of tests that hit all the V3 API endpoints to ensure the API is functioning properly. The requests are split into 4 folders: Types, Customers, Targets, and Switches. The tests must be run in the order displayed here to function properly. Currently there are **93** requests and **507** tests in this collection.",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
-      "_postman_id": "3ffc5fb9-1f91-417f-b5ba-73263c35d599",
+      "_postman_id": "4d4f9441-b552-4370-85cc-7b8b3edbc841",
       "name": "Types",
       "description": "Folder containing the tests for the GET `/types/targets`, `/types/switch/statuses`, and `/types/switch/actions` routes.",
       "item": [
         {
-          "_postman_id": "c920930d-49bf-4aa4-8be4-faf7f1bb5ba9",
+          "_postman_id": "5365bb1c-dc2d-45d4-8f29-e931dadf9bad",
           "name": "Targets",
           "event": [
             {
@@ -90,14 +90,17 @@
                 "description": "Api Key"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": "{{base_url}}{{targets_postfix}}{{context_param}}",
             "description": "Asserts that the GET `/types/targets` endpoint is returning the correct values."
           },
           "response": []
         },
         {
-          "_postman_id": "1a2f76d3-b8e7-4bcb-9141-d43e26dd8c9e",
+          "_postman_id": "74e05ddd-aeb3-4699-8593-00440f39196b",
           "name": "Statuses",
           "event": [
             {
@@ -217,14 +220,17 @@
                 "description": "Api Key"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
             "description": "Asserts that the GET `/types/switch/statuses` endpoint is returning the correct values."
           },
           "response": []
         },
         {
-          "_postman_id": "f9d48576-d42a-4b77-9d89-c02346deb0a1",
+          "_postman_id": "17790f9b-fd9a-4b64-8777-349f39a7452e",
           "name": "Actions",
           "event": [
             {
@@ -358,7 +364,10 @@
                 "description": "Api Key"
               }
             ],
-            "body": {},
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
             "url": "{{base_url}}{{actions_postfix}}{{context_param}}",
             "description": "Asserts that the GET `/types/switch/actions` endpoint is returning the correct values."
           },
@@ -389,17 +398,17 @@
       ]
     },
     {
-      "_postman_id": "b10b502f-0595-408f-9e4f-3943eb03b975",
+      "_postman_id": "dd8028bf-3f82-4931-ba52-06946a25647f",
       "name": "Customers",
       "description": "Folder containing the tests for the PUT `/customers/{customerKey}` and GET `/customers/{customerKey}` routes.",
       "item": [
         {
-          "_postman_id": "6a43c845-43bc-4dfd-96fe-a38139a01e45",
+          "_postman_id": "7d8159e6-0f81-4a2b-86d8-ec14c5ebd79f",
           "name": "Single Customer Single Account",
           "description": "Folder containing the test that creates a customer with a single account holder and a single account.",
           "item": [
             {
-              "_postman_id": "b2f3dd3a-7d56-463b-a625-d2070a99f79f",
+              "_postman_id": "9eba4e79-200d-4767-ac3f-21bb3c3c5fab",
               "name": "Create Customer",
               "event": [
                 {
@@ -593,12 +602,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "f055ce6c-3411-4aaf-9a17-a33aabfd356e",
+          "_postman_id": "ec0a0720-ff46-411b-8257-63e0fe291075",
           "name": "Update Customer",
           "description": "Folder containing the tests that update the created customer by adding and removing account holders, accounts, and renaming customer fields.",
           "item": [
             {
-              "_postman_id": "d4825af1-9ac6-440a-b960-baf9485d85c6",
+              "_postman_id": "ea5b3828-087f-4f53-9390-28180f390af9",
               "name": "Update Customer Rename Values",
               "event": [
                 {
@@ -779,7 +788,7 @@
               "response": []
             },
             {
-              "_postman_id": "1a094cb6-b153-4146-be88-f931078db96c",
+              "_postman_id": "c6c865d1-bff3-44af-8c6b-2feeaa996e40",
               "name": "Update Customer Remove Account",
               "event": [
                 {
@@ -943,7 +952,7 @@
               "response": []
             },
             {
-              "_postman_id": "383f7111-c323-40d7-a758-c94c8a0048bf",
+              "_postman_id": "d273b75f-b7be-4460-931d-31ae12e44312",
               "name": "Update Customer Remove Account Holder",
               "event": [
                 {
@@ -1124,12 +1133,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "e5266828-cab5-4004-a716-e104fd5371f5",
+          "_postman_id": "370db5a0-5034-4be1-a8ae-e26045b4fdb0",
           "name": "Get Customer",
           "description": "Folder containing the test that GETs the customer to ensure the updates worked.",
           "item": [
             {
-              "_postman_id": "8f414dc1-24a8-4fdc-84d9-4bfd7d55ef2b",
+              "_postman_id": "990618ca-e52f-4e63-a3bc-5c919fec5e2c",
               "name": "Get Created Customer",
               "event": [
                 {
@@ -1260,7 +1269,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "  {\n    \"email\": \"{{customer_email}}@clickswitch.com\",\n    \"phoneNumber\": \"2183309148\",\n    \"metadata\": {\n      \"employee_id\": \"jsmith\",\n      \"branch\": \"21\"\n    },\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"John\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Doe\"\n        },\n        {\n        \"firstName\": \"Jane\",\n        \"middleInitial\": \"M\",\n        \"lastName\": \"Doe\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"212345678900\",\n        \"type\": \"{{checking}}\",\n        \"name\": \"{{checking}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n        \"line1\": \"129 Main St.\",\n        \"city\": \"Metropolis\",\n        \"zip\": \"37484\",\n        \"state\": \"DE\",\n        \"country\": \"US\"\n        }\n    ]\n  } \n \n"
+                  "raw": ""
                 },
                 "url": {
                   "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
@@ -1305,12 +1314,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "d4de1479-35cb-4093-8525-36939311ef8f",
+          "_postman_id": "85ab5721-b166-48f1-9e36-9adf63bbe243",
           "name": "Single Customer Two Accounts",
           "description": "Folder containing the test that creates a customer containing one account holder and two accounts.",
           "item": [
             {
-              "_postman_id": "24374036-0d43-4a1d-8432-968b57e02652",
+              "_postman_id": "fe35d92a-db8e-4db5-a6ad-41e53615784c",
               "name": "Create",
               "event": [
                 {
@@ -1530,12 +1539,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "4a44cfc2-7332-4b17-aceb-9d308b066e46",
+          "_postman_id": "55f5439d-9967-4263-957e-557052e98618",
           "name": "Joint Customer Single Account",
           "description": "Folder containing the test that creates a customer with two account holders and a single account.",
           "item": [
             {
-              "_postman_id": "65c6edd2-7cac-45ec-8e57-3e1c3afa61b0",
+              "_postman_id": "530154e1-0cc5-4910-ae4b-a2c6800fe6c5",
               "name": "Create",
               "event": [
                 {
@@ -1748,12 +1757,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "c5559167-37bb-4104-a47b-b6464c8dd396",
+          "_postman_id": "4b7daf95-75fc-4743-9f35-1be19f30c9df",
           "name": "Joint Customer Two Accounts",
           "description": "Folder containing the test that creates a customer with two account holders and two accounts.",
           "item": [
             {
-              "_postman_id": "8764422c-5c05-4600-9aa8-fcec7668f185",
+              "_postman_id": "5e35c877-c469-4f8c-953f-e37b220960f5",
               "name": "Create",
               "event": [
                 {
@@ -2008,17 +2017,17 @@
       ]
     },
     {
-      "_postman_id": "08ebed9f-c352-4ab1-8290-b4d3103102ec",
+      "_postman_id": "c9624546-933a-4544-88c1-1ace0f345c73",
       "name": "Targets",
       "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
       "item": [
         {
-          "_postman_id": "abcbdaa3-d4c5-4643-8b2e-7ed67d499825",
+          "_postman_id": "979583b3-0ea8-484a-acd0-dc4e0216c98b",
           "name": "Deposits",
           "description": "Folder containing the tests that find a deposit target.",
           "item": [
             {
-              "_postman_id": "29cd4d05-9878-4f04-b5a2-8202cdff3279",
+              "_postman_id": "673e85af-e1bb-417f-bb75-ce4e7c800200",
               "name": "Target By Name",
               "event": [
                 {
@@ -2105,7 +2114,7 @@
               "response": []
             },
             {
-              "_postman_id": "7b8312b4-a47f-4a4b-b279-32bda8047ccb",
+              "_postman_id": "934acdc7-e825-44b0-97e1-63cdb6acdc5a",
               "name": "Target By Id",
               "event": [
                 {
@@ -2360,12 +2369,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "fc612c1c-daa6-4267-8351-95363914d7cc",
+          "_postman_id": "be29f6d7-7352-4e53-8498-08c5461f682b",
           "name": "Deposits Print Only",
           "description": "Folder containing the tests that find a print only deposit target.",
           "item": [
             {
-              "_postman_id": "da6d3de9-adee-4054-aa1e-dfc107058a65",
+              "_postman_id": "b301c7bb-e6d3-48f6-993e-eb43c591262a",
               "name": "Target By Name",
               "event": [
                 {
@@ -2452,7 +2461,7 @@
               "response": []
             },
             {
-              "_postman_id": "b8235ee6-d37c-49e9-b03e-45453a766dfa",
+              "_postman_id": "bbe7d306-d321-45bc-97b1-a7c2b000a66e",
               "name": "Target By Id",
               "event": [
                 {
@@ -2703,12 +2712,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "ab9b6724-7c30-4889-903a-f3f0e2d1f74c",
+          "_postman_id": "79725a4a-ad73-4fc1-b734-90faf616fae0",
           "name": "Deposits Online Only",
           "description": "Folder containing the tests that find a online only deposit target.",
           "item": [
             {
-              "_postman_id": "2acdc971-1838-4fc9-b70e-3cbb107814ff",
+              "_postman_id": "ba5ef64a-4d43-4576-b7d8-a0053b1ce888",
               "name": "Target By Name",
               "event": [
                 {
@@ -2795,7 +2804,7 @@
               "response": []
             },
             {
-              "_postman_id": "2fdba3ec-4eec-4903-b647-018aecd6392b",
+              "_postman_id": "8a5ee99c-277e-4313-8412-a7ae1bb3b467",
               "name": "Target By Id",
               "event": [
                 {
@@ -2911,12 +2920,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "6c1c6c19-eb57-4f73-abf8-b1dba103d12c",
+          "_postman_id": "03d3be12-2370-42da-9f52-11b86924cd8a",
           "name": "Split Deposits",
           "description": "Folder containing the tests that finds a split deposit target.",
           "item": [
             {
-              "_postman_id": "007c7899-4026-4057-a090-7ed15a1065d3",
+              "_postman_id": "1e79a2a5-5ac6-498e-b9ab-6a48ff29907e",
               "name": "Target By Name",
               "event": [
                 {
@@ -3004,7 +3013,7 @@
               "response": []
             },
             {
-              "_postman_id": "df7c51fd-681e-4fb8-a269-b003f5ed98b6",
+              "_postman_id": "9eacd717-22a1-4162-802a-7ec1dcb538ee",
               "name": "Target By Id",
               "event": [
                 {
@@ -3172,12 +3181,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "aade05c0-a6be-44c3-8d09-c0f487dc8e5f",
+          "_postman_id": "92a6af8f-9014-4f89-be0f-cba9eb37358b",
           "name": "Payments",
           "description": "Folder containing the tests that find a payment target.",
           "item": [
             {
-              "_postman_id": "ec0bd5d8-a186-419e-b148-dfbdcffd2704",
+              "_postman_id": "4553881b-bca8-419d-8bdb-ba1aa832e234",
               "name": "Target By Name",
               "event": [
                 {
@@ -3264,7 +3273,7 @@
               "response": []
             },
             {
-              "_postman_id": "30b77456-fbfd-4287-8612-8ca23d8c20a2",
+              "_postman_id": "27c8b83a-9eca-43c9-9b3d-d9f8a1825a39",
               "name": "Target By Id",
               "event": [
                 {
@@ -3378,12 +3387,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "f25504f8-cda6-4ec6-8121-997daddec0ba",
+          "_postman_id": "44c26b74-3d6e-4f70-b793-e4f2e50da18d",
           "name": "Payments Print Only",
           "description": "Folder containing the tests that find a print only payment target.",
           "item": [
             {
-              "_postman_id": "498034c9-b223-4f1a-b325-e9cb8242ee1b",
+              "_postman_id": "49c1d446-1cdc-4473-84ba-1ec19e614960",
               "name": "Target By Name",
               "event": [
                 {
@@ -3470,7 +3479,7 @@
               "response": []
             },
             {
-              "_postman_id": "7c9aab30-aac1-4e39-9339-a0461e06fd38",
+              "_postman_id": "f38c79b3-e083-423f-a98b-47f744ed160c",
               "name": "Target By Id",
               "event": [
                 {
@@ -3584,12 +3593,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "2a5902e7-4968-412c-a42e-dec9e09abca4",
+          "_postman_id": "b23b4081-bdfe-4c92-889e-09cbccf41f1c",
           "name": "Payments Online Only",
           "description": "Folder containing the tests that find an online only payment target.",
           "item": [
             {
-              "_postman_id": "86b93857-a3a3-4913-94c0-797c3a54eb0f",
+              "_postman_id": "f69f8068-740a-4341-bfa1-7c20f3ad5001",
               "name": "Target By Name",
               "event": [
                 {
@@ -3676,7 +3685,7 @@
               "response": []
             },
             {
-              "_postman_id": "3e07949e-3698-435f-9ee7-cc9442a239b4",
+              "_postman_id": "436138b8-53dc-4b3a-8673-720573912d2d",
               "name": "Target By Id",
               "event": [
                 {
@@ -3792,12 +3801,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "d513e909-f883-42d4-a4a7-7aa0971b4d1e",
+          "_postman_id": "1bf00ec7-6939-4365-83fc-8f2fc8b0fe4c",
           "name": "Locations",
           "description": "Folder containing the tests that find a target by location.",
           "item": [
             {
-              "_postman_id": "8b03f05d-63ff-4115-af8b-611eee4d7e45",
+              "_postman_id": "fc730cd6-7b6a-4929-a951-8388e1bf9e2a",
               "name": "Target By Location",
               "event": [
                 {
@@ -3925,17 +3934,17 @@
       ]
     },
     {
-      "_postman_id": "4c986e72-0014-40d7-9e4c-9218b55f2c96",
+      "_postman_id": "acedc0ca-2646-45ce-9566-03a7b8ed3e64",
       "name": "Switches",
       "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
       "item": [
         {
-          "_postman_id": "f0b06a14-f31e-4354-af67-54e5f0b013ea",
+          "_postman_id": "634083ea-c24b-4dd3-b9e8-7041af34587c",
           "name": "Deposit Using TargetId",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a deposit target.",
           "item": [
             {
-              "_postman_id": "889af0cc-a4cc-46f8-bca5-b3eebb9468d3",
+              "_postman_id": "14de2615-05f5-4a02-bea3-16367d23da0c",
               "name": "Get Switches",
               "event": [
                 {
@@ -3989,7 +3998,7 @@
               "response": []
             },
             {
-              "_postman_id": "22e7a254-388a-4b16-be16-86e1c844a6e8",
+              "_postman_id": "3ed32995-feb2-4220-b4bc-d79fd4353749",
               "name": "Create Switch",
               "event": [
                 {
@@ -4184,14 +4193,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}"
               },
               "response": []
             },
             {
-              "_postman_id": "ff315fdc-bab9-42cc-a8c1-4095b03c1fda",
+              "_postman_id": "c85aca84-fcc2-4573-97d0-14b5e595582f",
               "name": "Get Switch By Id",
               "event": [
                 {
@@ -4389,7 +4398,7 @@
               "response": []
             },
             {
-              "_postman_id": "d796d1ee-03be-4549-bc7b-ce83c974f7d0",
+              "_postman_id": "d4903aa4-3f3b-4021-af44-a685d87472b8",
               "name": "Update Switch",
               "event": [
                 {
@@ -4592,14 +4601,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n        \"Custom_SSN4\": \"1234\",\r\n        \"Custom_Employee/ID\": \"1234\",\r\n        \"Custom_Company/MailingAddress\": {\r\n            \"line1\": \"123 Main Street\",\r\n            \"line2\": null,\r\n            \"line3\": null,\r\n            \"city\": \"New York\",\r\n            \"state\": \"NY\",\r\n            \"zip\": 44444\r\n        }\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
               },
               "response": []
             },
             {
-              "_postman_id": "360c2534-a4f5-4f5f-9647-1fb4ef6ffa31",
+              "_postman_id": "72a87f52-1876-41e1-96d3-064e34a95a6c",
               "name": "Submit Switch",
               "event": [
                 {
@@ -4652,14 +4661,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action{{context_param}}"
               },
               "response": []
             },
             {
-              "_postman_id": "b9a3611e-43ca-4df0-b082-74879b8a6614",
+              "_postman_id": "f9ee3ea0-dccf-4731-874c-9e003e759671",
               "name": "Cancel Switch",
               "event": [
                 {
@@ -4710,14 +4719,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "719baf18-1485-4f06-ae2b-e6bdf96380b4",
+              "_postman_id": "ee0848bc-403c-4938-85e3-6d62ac210482",
               "name": "Delete Switch",
               "event": [
                 {
@@ -4773,12 +4782,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "f742db11-e61a-467e-8030-210e08a44985",
+          "_postman_id": "dda06598-4e92-4be4-af02-03a9a62ad67d",
           "name": "Deposit using LocationId",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a location target.",
           "item": [
             {
-              "_postman_id": "89c7927e-8ed5-4039-8e37-3a484fefcda7",
+              "_postman_id": "a4cda85c-583c-4f66-bc78-7dbcf4da502a",
               "name": "Create Switch",
               "event": [
                 {
@@ -4995,14 +5004,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\n  \"type\": \"deposit\",\n  \"locationId\": \"{{location_id}}\",\n  \"accountholderIndex\": 0,\n  \"values\": {\n    \"accounts\": [\n      {\n        \"index\": 0\n      }\n    ]\n  }\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
               "response": []
             },
             {
-              "_postman_id": "a87d4305-59f5-4961-b775-e0bb8e8fddaf",
+              "_postman_id": "1574feeb-a5d4-4c16-96d6-3dd20ea31858",
               "name": "Update Switch",
               "event": [
                 {
@@ -5208,14 +5217,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"locationId\": \"{{location_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n        \"category\": 1,\r\n        \"Custom_SSN4\": \"1234\",\r\n        \"Custom_Employee/ID\": \"1234\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
               },
               "response": []
             },
             {
-              "_postman_id": "25071504-d4b0-401e-a42f-60f3e607ee04",
+              "_postman_id": "c7ca5bae-7763-429d-a368-1b401f2182c4",
               "name": "Submit Switch",
               "event": [
                 {
@@ -5268,14 +5277,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "39034d10-f13b-49d8-a924-457bdd7f3670",
+              "_postman_id": "b1962489-9fa7-4e62-957b-56a44d11598a",
               "name": "Cancel Switch",
               "event": [
                 {
@@ -5326,14 +5335,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "bafd3af3-1dd7-4ade-832a-1ba27a996366",
+              "_postman_id": "e25f1ef8-d66d-44e6-8198-d51641b76202",
               "name": "Delete Switch",
               "event": [
                 {
@@ -5389,12 +5398,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "5923765a-7ccf-4dbf-a087-bd1d104b5e8a",
+          "_postman_id": "d1b510e5-6c4f-456c-8ac5-c40103845848",
           "name": "Deposit using neither",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete an unknown deposit target switch.",
           "item": [
             {
-              "_postman_id": "5f0e62a9-7c68-43a9-a27b-fd2d460a9858",
+              "_postman_id": "f1f98a79-7efc-41ff-85ee-0a90e646bb87",
               "name": "Create Switch",
               "event": [
                 {
@@ -5656,14 +5665,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
               "response": []
             },
             {
-              "_postman_id": "26ca1712-2d13-4b41-b346-3079c823f6e3",
+              "_postman_id": "225284bd-56db-43c5-b09e-c7fd80c57bd6",
               "name": "Update Switch",
               "event": [
                 {
@@ -5897,14 +5906,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n        \"name\": \"Test\",\r\n        \"phoneNumber\": \"1234567890\",\r\n        \"website\": \"www.test.com\",\r\n        \"mailingAddress\": {\r\n            \"line1\": \"123 Main Street\",\r\n            \"line2\": null,\r\n            \"line3\": null,\r\n            \"city\": \"New York\",\r\n            \"state\": \"NY\",\r\n            \"zip\": 44444\r\n        },\r\n        \"category\": 1,\r\n        \"Custom_SSN4\": \"1234\",\r\n        \"Custom_Employee/ID\": \"1234\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
               "response": []
             },
             {
-              "_postman_id": "6f1d3747-462a-4bcc-b272-722bc163d479",
+              "_postman_id": "65986530-ccf9-478b-b333-6b08c6e0ce28",
               "name": "Submit Switch",
               "event": [
                 {
@@ -5959,14 +5968,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "cd8d9f7d-a51b-4cf3-9aa1-2b6d465053a3",
+              "_postman_id": "3b059ab0-6279-4c90-8d74-dbf7fb350dab",
               "name": "Cancel Switch",
               "event": [
                 {
@@ -6017,14 +6026,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "c9fca959-1858-4432-98cd-952bd89a6dc9",
+              "_postman_id": "0b891cf9-cdfa-40af-a92b-dfe7c118dc4e",
               "name": "Delete Switch",
               "event": [
                 {
@@ -6080,7 +6089,7 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "4e860a94-9fb3-4fc8-8906-2dddb7eac201",
+          "_postman_id": "657bc9df-97c7-4163-812b-db6f849feba8",
           "name": "Split Deposits",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete a split deposit target switch.",
           "item": [],
@@ -6109,12 +6118,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "299f8455-2130-4b3f-963b-94a97ac8ce34",
+          "_postman_id": "65f5ed03-59be-4e83-9bc6-41870dfb3a4e",
           "name": "Payment using TargetId",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a payment target.",
           "item": [
             {
-              "_postman_id": "5d47ee3c-2d7c-4a22-8534-94f6e1247fff",
+              "_postman_id": "a5e3f761-64a1-459b-8cc7-f28be684bd09",
               "name": "Create Switch",
               "event": [
                 {
@@ -6301,14 +6310,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
               "response": []
             },
             {
-              "_postman_id": "cf41444e-6378-4a2c-8088-c6a3562e99b4",
+              "_postman_id": "8a802ac2-5e31-43d4-980c-b8f4405ee3f0",
               "name": "Update Switch",
               "event": [
                 {
@@ -6505,14 +6514,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Date to Withdraw funds\": \"12-12-18\",\r\n      \"Switch_ContactServiceAddress\": {\r\n      \t\"line1\": \"123 Main Street\",\r\n      \t\"city\": \"New York\",\r\n      \t\"state\": \"NY\",\r\n      \t\"zip\": \"55555\"\r\n      },\r\n      \"Switch_BillingAccountNumber\": \"1234\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
               "response": []
             },
             {
-              "_postman_id": "6658f513-3e8a-49fa-a3a4-3cb4725dc1ea",
+              "_postman_id": "9668a6ae-8090-41e5-93a6-d254282d864c",
               "name": "Submit Switch",
               "event": [
                 {
@@ -6565,14 +6574,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "ff73d746-3920-4eb0-9bd6-389d488e6f27",
+              "_postman_id": "08ce3e4b-5527-41e5-8efc-277913132482",
               "name": "Cancel Switch",
               "event": [
                 {
@@ -6645,14 +6654,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "2a2d6177-5458-45a8-bf92-39cc02a11c6b",
+              "_postman_id": "f7b2527f-be68-4c98-9e21-91861bff5ef6",
               "name": "Delete Switch",
               "event": [
                 {
@@ -6708,12 +6717,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "b9570fca-c327-46fc-a4f5-23467d8ac45e",
+          "_postman_id": "a9be138b-7cc2-477c-a8d0-64f1bd520560",
           "name": "Payment using LocationId",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a location payment target.",
           "item": [
             {
-              "_postman_id": "ba4bb20e-d668-403a-a642-9af360984f39",
+              "_postman_id": "41526f6d-74dc-4382-89d9-ffe65802776c",
               "name": "Create Switch",
               "event": [
                 {
@@ -6936,14 +6945,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"locationId\": \"{{location_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
               "response": []
             },
             {
-              "_postman_id": "b1c80d9b-6452-4979-b696-1557a2b4af12",
+              "_postman_id": "a91aeaba-fb0b-4bbb-82cc-4b53d3ebde6d",
               "name": "Update Switch",
               "event": [
                 {
@@ -7150,14 +7159,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"locationId\": \"{{location_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n        \"category\": 1,\r\n        \"Custom_Amount\": \"100\",\r\n        \"Custom_Withdrawal Date\": \"12-12-18\",\r\n        \"Custom_Effective Date\": \"12-12-18\",\r\n        \"Custom_Frequency\": \"Test\",\r\n        \"Custom_SSN 4\": \"1234\",\r\n        \"Switch_BillingAccountNumber\": \"1234\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
               "response": []
             },
             {
-              "_postman_id": "4b2feacf-f9ed-40ee-97e0-5f42b7e5e178",
+              "_postman_id": "83ae1b9f-952f-4b39-bbb3-d11a512b6646",
               "name": "Submit Switch",
               "event": [
                 {
@@ -7209,14 +7218,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "5c43db83-935c-47e6-b647-16e55af4f5ab",
+              "_postman_id": "d2d76f9e-62fc-48e8-9275-dafc4abde371",
               "name": "Cancel Switch",
               "event": [
                 {
@@ -7269,14 +7278,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "abc3baf8-9303-4ece-be17-2a47f579b6f9",
+              "_postman_id": "7437f47e-8a46-484e-a066-94bf87926fc6",
               "name": "Delete Switch",
               "event": [
                 {
@@ -7332,12 +7341,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "11ba4d7a-ae3f-4ff9-9d7e-f81783e4d3cd",
+          "_postman_id": "c1cc71c1-a507-440b-bf0f-25aa0a1a24f6",
           "name": "Payment using neither",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using an unknown payment target.",
           "item": [
             {
-              "_postman_id": "59d76229-980d-4ff0-836d-abe6c1e4257a",
+              "_postman_id": "91795c34-0d15-4a00-a1ab-2482615fc478",
               "name": "Create Switch",
               "event": [
                 {
@@ -7585,14 +7594,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"accountholderIndex\": 0\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
               "response": []
             },
             {
-              "_postman_id": "8ba7be05-f9cd-4004-9c38-8b8a074f6b74",
+              "_postman_id": "a2cc4101-b445-4ad4-8da9-75cc48a9627b",
               "name": "Update Switch",
               "event": [
                 {
@@ -7830,14 +7839,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ], \r\n    \"fields\": {\r\n        \"name\": \"Test\",\r\n        \"phoneNumber\": \"1234567890\",\r\n        \"website\": \"www.test.com\",\r\n        \"mailingAddress\": {\r\n            \"line1\": \"123 Main Street\",\r\n            \"line2\": null,\r\n            \"line3\": null,\r\n            \"city\": \"New York\",\r\n            \"state\": \"NY\",\r\n            \"zip\": \"44444\"\r\n        },\r\n        \"category\": 1,\r\n        \"Custom_Amount\": \"100\",\r\n        \"Custom_Withdrawal Date\": \"12-12-18\",\r\n        \"Custom_Effective Date\": \"12-12-18\",\r\n        \"Custom_Frequency\": \"Test\",\r\n        \"Custom_SSN 4\": 1234,\r\n        \"Switch_BillingAccountNumber\": \"1234\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
               "response": []
             },
             {
-              "_postman_id": "3b9663d6-048b-47c1-801e-bee694868931",
+              "_postman_id": "1acf4ae3-71eb-463c-8b09-f030a14356ea",
               "name": "Submit Switch",
               "event": [
                 {
@@ -7891,14 +7900,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "cf42c6ad-f563-457f-9766-6f938bd30b25",
+              "_postman_id": "afcc0907-d82e-498b-b2b6-27d65956172c",
               "name": "Cancel Switch",
               "event": [
                 {
@@ -7953,14 +7962,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "2e0dfcdd-2446-45ce-8028-6828943920af",
+              "_postman_id": "65f4dca0-31fc-4452-b87b-bd2119148165",
               "name": "Delete Switch",
               "event": [
                 {
@@ -8016,12 +8025,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "dedd73db-248e-4f57-8396-689d2ebf00e1",
+          "_postman_id": "af1655a2-9e12-435e-85ec-abd18034173b",
           "name": "Payment Print Only",
           "description": "Folder containing the tests that create, update and delete a switch using a print only payment target.",
           "item": [
             {
-              "_postman_id": "92354f10-7eb5-4f4d-930d-4860ccd91858",
+              "_postman_id": "94ca2743-4d3f-4e44-8b8f-ce9a19b9a1cf",
               "name": "Create Switch",
               "event": [
                 {
@@ -8214,14 +8223,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_print_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
               "response": []
             },
             {
-              "_postman_id": "12a640c6-d430-4354-8bb3-4dfd50f98fbb",
+              "_postman_id": "30db7f2d-c72c-4cf8-9741-b0d45d95b287",
               "name": "Update Switch",
               "event": [
                 {
@@ -8429,14 +8438,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_print_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n\t\t\"Custom_Date to Withdraw funds\": \"12-12-18\",\r\n\t\t\"Switch_ContactServiceAddress\": {\r\n\t\t\t\"line1\": \"123 Main Street\",\r\n\t\t\t\"city\": \"New York\",\r\n\t\t\t\"state\": \"NY\",\r\n\t\t\t\"zip\": \"55555\"\r\n\t\t},\r\n\t\t\"Switch_BillingAccountNumber\": \"1234\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
               "response": []
             },
             {
-              "_postman_id": "f358d7eb-4f4d-429d-bdc3-b47f65b4a649",
+              "_postman_id": "667e0a62-c47e-462e-ab4c-54007b986f79",
               "name": "Cancel Switch",
               "event": [
                 {
@@ -8509,14 +8518,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "f3c79fdc-1cb1-4ee6-9687-bb8e59032b47",
+              "_postman_id": "ff121dcd-a6b0-42a3-9eb5-0a385f9e0652",
               "name": "Delete Switch",
               "event": [
                 {
@@ -8572,12 +8581,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "d5d770f6-afa3-45c3-bf58-521c2f7520a7",
+          "_postman_id": "ecf81d83-cc6e-444a-8ddd-58feca84a85d",
           "name": "Deposit Online Only",
           "description": "Folder containing the tests that create, update and delete a switch using a print only deposit target.",
           "item": [
             {
-              "_postman_id": "ee8a1cc0-1b23-4da0-b3bd-1979f67fe54b",
+              "_postman_id": "b46c81d7-c02f-45a5-a424-9c8471ef75b4",
               "name": "Create Switch",
               "event": [
                 {
@@ -8697,14 +8706,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_online_target_id}}\",\r\n  \"accountholderIndex\": 0\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
               "response": []
             },
             {
-              "_postman_id": "616f42a4-4e5c-4074-bfe3-805461475f4f",
+              "_postman_id": "5787493f-d465-4830-96df-c6c0a0d81c71",
               "name": "Update Switch",
               "event": [
                 {
@@ -8824,14 +8833,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_online_target_id}}\",\r\n  \"accountholderIndex\": 0\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
               "response": []
             },
             {
-              "_postman_id": "a78fcc90-e318-40b7-8703-8f1a587b304f",
+              "_postman_id": "fc20b9da-72aa-4458-900c-fe25384e0a58",
               "name": "Cancel Switch",
               "event": [
                 {
@@ -8886,14 +8895,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "0f24c77c-1be3-44a7-b0bd-5a4671a7531e",
+              "_postman_id": "aa82466d-d2c7-41d7-84b2-52445c280033",
               "name": "Delete Switch",
               "event": [
                 {
@@ -8949,12 +8958,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "893b702a-5cac-4489-ac56-8b481d7783c3",
+          "_postman_id": "cc07cdbc-7a46-4402-b121-86b69b6abacd",
           "name": "Deposit Print Only",
           "description": "Folder containing the tests that create, update, submit, cancel, and deletea switch for a print only deposit target.",
           "item": [
             {
-              "_postman_id": "d9e5b1ee-9ea1-4707-98fb-0c024a24be15",
+              "_postman_id": "45ca105b-20b7-4377-b1e5-9874a47d1d00",
               "name": "Create Switch",
               "event": [
                 {
@@ -9170,14 +9179,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_print_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
               "response": []
             },
             {
-              "_postman_id": "b521c6e0-8a84-4421-b943-98ca162a6ae8",
+              "_postman_id": "144cd2ec-a2d2-484d-87bf-9fcf8280f19a",
               "name": "Update Switch",
               "event": [
                 {
@@ -9385,14 +9394,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_print_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n        \"Custom_Company/MailingAddress\": {\r\n            \"line1\": \"123 Main Street\",\r\n            \"line2\": null,\r\n            \"line3\": null,\r\n            \"city\": \"New York\",\r\n            \"state\": \"NY\",\r\n            \"zip\": 44444\r\n        },\r\n        \"Custom_SSN4\": \"1234\",\r\n        \"Custom_Employee/ID\": \"1234\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
               "response": []
             },
             {
-              "_postman_id": "a3beef18-6cb6-42a3-bcbc-bda746286705",
+              "_postman_id": "a332d481-12a5-4a2a-bc2a-3c60e87244de",
               "name": "Print Switch",
               "event": [
                 {
@@ -9445,14 +9454,14 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": ""
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Print\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
             },
             {
-              "_postman_id": "ac727ef1-0b68-4129-b2eb-3770a34e24c9",
+              "_postman_id": "50dbd148-2079-4d6c-8fda-5306876998d1",
               "name": "Get Switch PDF",
               "event": [
                 {
@@ -9541,17 +9550,17 @@
       ]
     },
     {
-      "_postman_id": "30336090-118a-49a7-a4e9-8bafaf96e514",
+      "_postman_id": "3ebc058a-94eb-43cc-958f-72f5b011d03c",
       "name": "Validation",
       "description": "",
       "item": [
         {
-          "_postman_id": "cd0760dc-2921-4654-9a3e-9a1e9a1334a4",
+          "_postman_id": "74f8abed-bed1-41ee-8743-6e4142e44ed5",
           "name": "Authentication",
           "description": "",
           "item": [
             {
-              "_postman_id": "556b58d3-c9b8-4819-adfe-a421e41cd6f0",
+              "_postman_id": "9c73f4a1-1aab-4a84-b762-43a5e7e97e9f",
               "name": "Missing api key",
               "event": [
                 {
@@ -9604,7 +9613,7 @@
               "response": []
             },
             {
-              "_postman_id": "a8bd3378-f42b-4d5d-8f1d-ada234c34d71",
+              "_postman_id": "f1a204b6-1e86-43c5-be97-3b58fab94c2d",
               "name": "Invalid api key",
               "event": [
                 {
@@ -9666,12 +9675,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "93a315cd-be4b-4893-ad43-3347e02e61b4",
+          "_postman_id": "5821985e-9d87-451d-a5c0-d8f1bcc50f09",
           "name": "Customers",
           "description": "Folder containing the tests for the PUT `/customers/{customerKey}` and GET `/customers/{customerKey}` routes.",
           "item": [
             {
-              "_postman_id": "d638945a-3a55-4e6a-8986-28f9c7ab4132",
+              "_postman_id": "93e7d35d-2416-42ba-bc47-2ca2259597b8",
               "name": "Missing country field",
               "event": [
                 {
@@ -9748,7 +9757,7 @@
               "response": []
             },
             {
-              "_postman_id": "84c661d1-ea6a-48c3-a187-c5456c6cde5d",
+              "_postman_id": "c073925c-4968-4e20-81f8-ba091a90cacc",
               "name": "Missing state field",
               "event": [
                 {
@@ -9825,7 +9834,7 @@
               "response": []
             },
             {
-              "_postman_id": "bdd5033c-6396-42ff-bfa4-03ce20b5dd1c",
+              "_postman_id": "e80e18e9-35cd-42a3-aa5b-aaa0b2d34913",
               "name": "Missing zip field",
               "event": [
                 {
@@ -9902,7 +9911,7 @@
               "response": []
             },
             {
-              "_postman_id": "a2be0e8b-54dc-46ac-b10a-19e439cad4fc",
+              "_postman_id": "8152cfe6-9452-4d7d-b291-72a3d6f0b008",
               "name": "Missing city field",
               "event": [
                 {
@@ -9975,7 +9984,7 @@
               "response": []
             },
             {
-              "_postman_id": "dd86f162-f05d-418d-96d6-05c8ae3fb7e2",
+              "_postman_id": "18674b81-97c6-422f-a30e-6431801349b4",
               "name": "Missing line1 field",
               "event": [
                 {
@@ -10048,7 +10057,7 @@
               "response": []
             },
             {
-              "_postman_id": "b96a41e3-a610-4033-a754-580ac715e831",
+              "_postman_id": "d87e31ec-a337-4b00-bd52-7bd05e0e293f",
               "name": "Incorrect routing number",
               "event": [
                 {
@@ -10121,7 +10130,7 @@
               "response": []
             },
             {
-              "_postman_id": "6d8f9aaa-ba0e-4e2b-9712-0d63ce06cf18",
+              "_postman_id": "1ae3ed76-c833-48b0-8e79-ce354134776f",
               "name": "Invalid account number",
               "event": [
                 {
@@ -10194,7 +10203,7 @@
               "response": []
             },
             {
-              "_postman_id": "3d1aca67-d3ee-457e-83c9-931a564543a1",
+              "_postman_id": "7f90476c-b0df-4058-a263-ca3acb2c0056",
               "name": "Incorrect account type",
               "event": [
                 {
@@ -10267,7 +10276,7 @@
               "response": []
             },
             {
-              "_postman_id": "8b2b7e14-5b24-44ad-a8e8-8f4babd5bca7",
+              "_postman_id": "46d73240-f22d-49ef-bf07-407c71dca7aa",
               "name": "Incorrect account name",
               "event": [
                 {
@@ -10340,7 +10349,7 @@
               "response": []
             },
             {
-              "_postman_id": "b58696d8-16a0-4cc0-8280-18d931c54907",
+              "_postman_id": "653eb1dc-1572-4400-9df1-ad311d428cf7",
               "name": "Invalid account holder name",
               "event": [
                 {
@@ -10446,12 +10455,12 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "76cc9932-858e-4253-af34-5b153b0bcd29",
+          "_postman_id": "6f6eb582-3341-4d92-b0cb-11b99081ad00",
           "name": "Targets",
           "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
           "item": [
             {
-              "_postman_id": "98b9637c-9911-4b79-afe9-af8691fb622f",
+              "_postman_id": "8283be0f-d91a-4886-b410-4a044c354857",
               "name": "Missing name and customer params",
               "event": [
                 {
@@ -10534,7 +10543,7 @@
               "response": []
             },
             {
-              "_postman_id": "839d796b-c42c-4623-8daf-507bfd5ab5ca",
+              "_postman_id": "5c1c9cd6-d650-4a8b-81ba-f3f50ec4be97",
               "name": "Invalid target id",
               "event": [
                 {
@@ -10616,17 +10625,17 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "d2fc4584-cd05-47c3-bf19-1ec2cba604a3",
+          "_postman_id": "f76da534-58be-4ce7-93f8-e406c751e0c1",
           "name": "Switches",
           "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
           "item": [
             {
-              "_postman_id": "71ccccb8-c0b9-4ee3-a316-fc3d9ab43900",
+              "_postman_id": "9f605e2f-7090-4566-8dbb-f04d18ca04a5",
               "name": "Invalid indices and fields",
               "description": "",
               "item": [
                 {
-                  "_postman_id": "f759f621-5312-4f61-8a46-11b6c7065935",
+                  "_postman_id": "227a8402-c86b-4328-b852-5fafdf44ee31",
                   "name": "Invalid customer key",
                   "event": [
                     {
@@ -10684,7 +10693,7 @@
                   "response": []
                 },
                 {
-                  "_postman_id": "5b6916c0-63a9-4a30-909b-976ea6b103d8",
+                  "_postman_id": "867dcb1a-3ced-4804-a230-d420228dd49a",
                   "name": "Create switch - invalid target id",
                   "event": [
                     {
@@ -10749,7 +10758,7 @@
                   "response": []
                 },
                 {
-                  "_postman_id": "c582134f-0168-4f3e-94f3-a19f53b6905d",
+                  "_postman_id": "683fc795-c51d-4b62-9712-cf5548f24eda",
                   "name": "Create switch - invalid type",
                   "event": [
                     {
@@ -10814,7 +10823,7 @@
                   "response": []
                 },
                 {
-                  "_postman_id": "315eaff4-41e0-41d4-be85-d44fb32db759",
+                  "_postman_id": "8cab583e-d3f3-4f26-836a-4b17ab67ff49",
                   "name": "Create switch - invalid accountHolderIndex",
                   "event": [
                     {
@@ -10879,7 +10888,7 @@
                   "response": []
                 },
                 {
-                  "_postman_id": "1b7c17e2-7b6a-4b46-a910-778c084823f5",
+                  "_postman_id": "cb62cb63-5ce0-4437-b159-e3a7403f1906",
                   "name": "Invalid switch index",
                   "event": [
                     {
@@ -10942,7 +10951,7 @@
                   "response": []
                 },
                 {
-                  "_postman_id": "20fe6670-9133-438e-815b-6c416b7cdedf",
+                  "_postman_id": "26e1f65d-f6b5-42fc-8d02-f4712244b3b5",
                   "name": "Invalid switch index",
                   "event": [
                     {
@@ -11004,7 +11013,7 @@
                   "response": []
                 },
                 {
-                  "_postman_id": "c2b08764-23f2-4b53-b60f-288cb433a312",
+                  "_postman_id": "edb48a97-2ff2-4d3e-89f2-1b5963cc21d0",
                   "name": "Submit Switch - invalid switch index",
                   "event": [
                     {
@@ -11070,7 +11079,7 @@
                   "response": []
                 },
                 {
-                  "_postman_id": "fabb76c2-27d7-41b1-9d1e-7c9abe534016",
+                  "_postman_id": "274f03a8-39cf-41dc-a29d-45bd638e2e84",
                   "name": "Cancel Switch- invalid switch index",
                   "event": [
                     {
@@ -11136,7 +11145,7 @@
                   "response": []
                 },
                 {
-                  "_postman_id": "9e8a7f14-0d45-4d2a-bf98-fafed0078563",
+                  "_postman_id": "d8ec3de5-dec3-4c9c-8f68-97fb92a086be",
                   "name": "Delete Switch - invalid switch index",
                   "event": [
                     {
