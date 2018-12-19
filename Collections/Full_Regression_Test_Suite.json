@@ -2114,93 +2114,6 @@
               "response": []
             },
             {
-              "_postman_id": "6459de87-28f9-48c5-bf2e-b97e23f145d0",
-              "name": "Target By Name Copy",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "8cd56822-e0af-4fe0-ab14-37c92f907bcd",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has some items', function() {",
-                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
-                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    jsonData.data.items.forEach(i => {",
-                      "        pm.expect(i).to.have.property('targetId');",
-                      "        pm.expect(i).to.have.property('name');",
-                      "        pm.expect(i).to.have.property('type');",
-                      "        pm.expect(i.type).to.eql('deposit');",
-                      "    });",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
-                      "});",
-                      "",
-                      "// Set an environment variable to test get target by id next.",
-                      "pm.environment.set(\"deposit_target_id\", jsonData.data.items[0].targetId);"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{deposit_target_name}}&customer={{customer_key}}",
-                  "host": [
-                    "{{base_url}}{{targets_postfix2}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "type",
-                      "value": "deposit",
-                      "equals": true
-                    },
-                    {
-                      "key": "name",
-                      "value": "{{deposit_target_name}}",
-                      "equals": true
-                    },
-                    {
-                      "key": "customer",
-                      "value": "{{customer_key}}",
-                      "equals": true
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
               "_postman_id": "934acdc7-e825-44b0-97e1-63cdb6acdc5a",
               "name": "Target By Id",
               "event": [
@@ -2427,6 +2340,93 @@
                   "raw": ""
                 },
                 "url": "{{base_url}}{{targets_postfix3}}{{deposit_target_id}}{{context_param}}"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "6459de87-28f9-48c5-bf2e-b97e23f145d0",
+              "name": "Target By Name Copy",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "8cd56822-e0af-4fe0-ab14-37c92f907bcd",
+                    "type": "text/javascript",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has some items', function() {",
+                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
+                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
+                      "});",
+                      "",
+                      "pm.test('Has required inner elements', function() {",
+                      "    jsonData.data.items.forEach(i => {",
+                      "        pm.expect(i).to.have.property('targetId');",
+                      "        pm.expect(i).to.have.property('name');",
+                      "        pm.expect(i).to.have.property('type');",
+                      "        pm.expect(i.type).to.eql('deposit');",
+                      "    });",
+                      "});",
+                      "",
+                      "pm.test('Has the correct kind attribute', function() {",
+                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
+                      "});",
+                      "",
+                      "// Set an environment variable to test get target by id next.",
+                      "pm.environment.set(\"deposit_target_id\", jsonData.data.items[0].targetId);"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{deposit_target_name}}&customer={{customer_key}}",
+                  "host": [
+                    "{{base_url}}{{targets_postfix2}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "deposit",
+                      "equals": true
+                    },
+                    {
+                      "key": "name",
+                      "value": "{{deposit_target_name}}",
+                      "equals": true
+                    },
+                    {
+                      "key": "customer",
+                      "value": "{{customer_key}}",
+                      "equals": true
+                    }
+                  ]
+                }
               },
               "response": []
             }
