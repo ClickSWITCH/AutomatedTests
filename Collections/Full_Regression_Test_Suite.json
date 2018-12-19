@@ -3998,6 +3998,60 @@
               "response": []
             },
             {
+              "_postman_id": "b1308a8f-c32e-4863-9cd6-e8c9c4422213",
+              "name": "Get Switches Copy",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c3939a64-cc66-468b-b40c-636565c4076b",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has the correct context', function() {",
+                      "    pm.expect(jsonData.context).to.equal('testing_context');",
+                      "});",
+                      "",
+                      "pm.test('Has empty array of switches', function() {",
+                      "   pm.expect(jsonData.data.currentItemCount).to.equal(0);",
+                      "   pm.expect(jsonData.data.items).to.be.empty;",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "Api Key"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}",
+                "description": "Should return empty list since no switches have been created yet by this customer."
+              },
+              "response": []
+            },
+            {
               "_postman_id": "3ed32995-feb2-4220-b4bc-d79fd4353749",
               "name": "Create Switch",
               "event": [
@@ -4753,60 +4807,6 @@
                 "body": {},
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
                 "description": "\t"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "b1308a8f-c32e-4863-9cd6-e8c9c4422213",
-              "name": "Get Switches Copy",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "c3939a64-cc66-468b-b40c-636565c4076b",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct context', function() {",
-                      "    pm.expect(jsonData.context).to.equal('testing_context');",
-                      "});",
-                      "",
-                      "pm.test('Has empty array of switches', function() {",
-                      "   pm.expect(jsonData.data.currentItemCount).to.equal(0);",
-                      "   pm.expect(jsonData.data.items).to.be.empty;",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}",
-                "description": "Should return empty list since no switches have been created yet by this customer."
               },
               "response": []
             }
