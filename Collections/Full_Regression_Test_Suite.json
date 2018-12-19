@@ -1981,6 +1981,10 @@
                       "            \"state\": \"MN\",",
                       "            \"country\": \"US\"",
                       "        };",
+                      "        ",
+                      "        address.zip = pm.environment.get('zip');",
+                      "        address.state = pm.environment.get('state');",
+                      "        address.country = pm.environment.get('country');",
                       "                    ",
                       "        pm.expect(addresses).to.deep.include(address);",
                       "    });",
@@ -2008,7 +2012,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"M\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        },\n        {\n        \"number\": \"{{customer_key}}0\",\n        \"type\": \"{{savings_type}}\",\n        \"name\": \"{{savings_name}}\",\n        \"routingNumber\": \"{{routing_number_2}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"55802\",\n            \"state\": \"MN\",\n            \"country\": \"US\"\n        }\n    ]\n}"
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"M\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        },\n        {\n        \"number\": \"{{customer_key}}0\",\n        \"type\": \"{{savings_type}}\",\n        \"name\": \"{{savings_name}}\",\n        \"routingNumber\": \"{{routing_number_2}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
                 },
                 "url": {
                   "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
