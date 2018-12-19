@@ -750,6 +750,10 @@
                       "            \"state\": \"WI\",",
                       "            \"country\": \"CA\"",
                       "        };",
+                      "        ",
+                      "        address.zip = pm.environment.get('zip');",
+                      "        address.state = pm.environment.get('state');",
+                      "        address.country = pm.environment.get('country');",
                       "                    ",
                       "        pm.expect(addresses).to.deep.include(address);",
                       "    });",
@@ -777,7 +781,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"m\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        },\n        {\n        \"number\": \"{{customer_key}}000\",\n        \"type\": \"{{savings_type}}\",\n        \"name\": \"{{savings_name}}\",\n        \"routingNumber\": \"{{routing_number_2}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"55833\",\n            \"state\": \"WI\",\n            \"country\": \"CA\"\n        }\n    ]\n}"
+                  "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"m\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        },\n        {\n        \"number\": \"{{customer_key}}000\",\n        \"type\": \"{{savings_type}}\",\n        \"name\": \"{{savings_name}}\",\n        \"routingNumber\": \"{{routing_number_2}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
                 },
                 "url": {
                   "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
@@ -946,7 +950,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"m\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"55833\",\n            \"state\": \"WI\",\n            \"country\": \"CA\"\n        }\n    ]\n}"
+                  "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"m\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
                 },
                 "url": {
                   "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
@@ -1107,7 +1111,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"55833\",\n            \"state\": \"WI\",\n            \"country\": \"CA\"\n        }\n    ]\n}"
+                  "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
                 },
                 "url": {
                   "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
