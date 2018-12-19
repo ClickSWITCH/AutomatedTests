@@ -1692,12 +1692,7 @@
                       "                    ",
                       "        pm.expect(addresses).to.deep.include(address);",
                       "    });",
-                      "}",
-                      "",
-                      "",
-                      "",
-                      "",
-                      ""
+                      "}"
                     ],
                     "type": "text/javascript"
                   }
@@ -1987,7 +1982,6 @@
                   "listen": "prerequest",
                   "script": {
                     "id": "7fd0ed89-ce20-4361-9fbb-944873615ee7",
-                    "type": "text/javascript",
                     "exec": [
                       "var timestamp = Date.now();",
                       "",
@@ -2010,16 +2004,17 @@
                       "  return text;",
                       "}",
                       ""
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 },
                 {
                   "listen": "test",
                   "script": {
                     "id": "6d5da495-3091-4a5f-81f5-9191f441d2ef",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
                       "",
                       "pm.test(\"Status code is 200\", function () {",
                       "    pm.response.to.have.status(200);",
@@ -2053,12 +2048,12 @@
                       "pm.test('Has the correct email', function() {",
                       "   var email = jsonData.data.item.email;",
                       "   var customerEmail = pm.environment.get(\"customer_key\");",
-                      "   pm.expect(email).to.equal(customerEmail + \"@clickswitch.com\")",
+                      "   pm.expect(email).to.equal(customerEmail + \"@clickswitch.com\");",
                       "});",
                       "",
                       "pm.test('Has the correct phoneNumber', function() {",
                       "   var phone = jsonData.data.item.phoneNumber;",
-                      "   pm.expect(phone).to.equal(\"2185555555\")",
+                      "   pm.expect(phone).to.equal(\"2185555555\");",
                       "});",
                       "",
                       "pm.test('Has the correct account holders', function() {",
@@ -2146,7 +2141,8 @@
                       "    pm.expect(addresses).to.deep.include(address);",
                       "});",
                       ""
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
@@ -2154,9 +2150,9 @@
                 "method": "PUT",
                 "header": [
                   {
+                    "description": "api key",
                     "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "api key"
+                    "value": "{{api_key}}"
                   },
                   {
                     "key": "Content-Type",
@@ -2174,9 +2170,9 @@
                   ],
                   "query": [
                     {
+                      "equals": true,
                       "key": "context",
                       "value": "",
-                      "equals": true,
                       "disabled": true
                     }
                   ]
