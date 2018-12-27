@@ -1947,7 +1947,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"M\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        },\n        {\n        \"number\": \"{{customer_key}}0\",\n        \"type\": \"{{savings_type}}\",\n        \"name\": \"{{savings_name}}\",\n        \"routingNumber\": \"{{routing_number_2}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"55802\",\n            \"state\": \"MN\",\n            \"country\": \"US\"\n        }\n    ]\n}"
+                  "raw": "{\r\n\t\"customerKey\": \"{{customer_key}}\",\r\n    \"email\": \"{{customer_key}}@clickswitch.com\",\r\n    \"phoneNumber\": \"2185555555\",\r\n    \"accountHolders\" : [\r\n        {\r\n        \"firstName\": \"{{customer_name}}\",\r\n        \"middleInitial\": \"J\",\r\n        \"lastName\": \"Test\"\r\n        },\r\n        {\r\n        \"firstName\": \"{{customer_name}}\",\r\n        \"middleInitial\": \"M\",\r\n        \"lastName\": \"Test\"\r\n        }\r\n    ],\r\n    \"accounts\": [\r\n        {\r\n        \"number\": \"{{customer_key}}\",\r\n        \"type\": \"{{checking_type}}\",\r\n        \"name\": \"{{checking_name}}\",\r\n        \"routingNumber\": \"{{routing_number}}\"\r\n        },\r\n        {\r\n        \"number\": \"{{customer_key}}0\",\r\n        \"type\": \"{{savings_type}}\",\r\n        \"name\": \"{{savings_name}}\",\r\n        \"routingNumber\": \"{{routing_number_2}}\"\r\n        }\r\n    ],\r\n    \"addresses\": [\r\n        {\r\n            \"line1\": \"600 Canal Park Dr.\",\r\n            \"city\": \"Duluth\",\r\n            \"zip\": \"55802\",\r\n            \"state\": \"MN\",\r\n            \"country\": \"US\"\r\n        }\r\n    ]\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}",
                 "description": "Test that creates a customer with two account holders and two accounts."
@@ -6862,6 +6862,7 @@
                       "            ],",
                       "            \"fields\": {",
                       "                \"category\": 0,",
+                      "                \"Custom_Amount\": null,",
                       "                \"Switch_BillingAccountNumber\": null",
                       "            }",
                       "        };",
