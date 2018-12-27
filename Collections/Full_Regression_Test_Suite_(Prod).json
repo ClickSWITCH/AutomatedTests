@@ -6862,7 +6862,6 @@
                       "            ],",
                       "            \"fields\": {",
                       "                \"category\": 0,",
-                      "                \"Custom_Amount\": null,",
                       "                \"Switch_BillingAccountNumber\": null",
                       "            }",
                       "        };",
