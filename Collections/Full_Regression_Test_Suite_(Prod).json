@@ -4240,7 +4240,7 @@
                       "",
                       "pm.test('Has the correct context', function() {",
                       "    pm.expect(jsonData.context).to.equal('testing_context');",
-                      "})",
+                      "});",
                       "",
                       "pm.test('Has required 2nd level elements', function() {",
                       "    pm.expect(jsonData.data.item).to.have.property('index');",
