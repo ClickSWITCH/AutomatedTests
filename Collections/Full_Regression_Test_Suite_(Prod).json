@@ -9987,7 +9987,7 @@
                       "            \"errors\": [",
                       "                {",
                       "                    \"reason\": \"Addresses[0].City\",",
-                      "                    \"message\": \"'City' should not be empty.\"",
+                      "                    \"message\": \"'City' must not be empty.\"",
                       "                }",
                       "            ]",
                       "        },",
