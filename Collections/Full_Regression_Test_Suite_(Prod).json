@@ -10526,7 +10526,7 @@
                       "            \"errors\": [",
                       "                {",
                       "                    \"reason\": \"Name\",",
-                      "                    \"message\": \"'Name' should not be empty.\"",
+                      "                    \"message\": \"'Name' must not be empty.\"",
                       "                },",
                       "                {",
                       "                    \"reason\": \"Customer\",",
