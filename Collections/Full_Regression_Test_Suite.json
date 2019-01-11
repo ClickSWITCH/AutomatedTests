@@ -9229,7 +9229,7 @@
                       "});",
                       "",
                       "pm.test('Has the correct index', function() {",
-                      "   pm.expect(jsonData.data.item.index).to.equal(1);",
+                      "   pm.expect(jsonData.data.item.index).to.equal(2);",
                       "});",
                       "",
                       "pm.test('Has the correct type', function() {",
