@@ -9353,6 +9353,46 @@
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}/{{switches_postfix}}/1"
               },
               "response": []
+            },
+            {
+              "_postman_id": "05adc313-0a10-4e9d-8815-2ce5ec1b164e",
+              "name": "Get Switch PDF Copy",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "0c8ad97b-fa49-42f4-a004-c4e2e9b39682",
+                    "exec": [
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
+                      "",
+                      "(isCanada ? pm.test.skip : pm.test)(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Api Key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/pdf"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}/{{switches_postfix}}/1"
+              },
+              "response": []
             }
           ],
           "event": [
