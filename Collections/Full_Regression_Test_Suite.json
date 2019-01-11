@@ -9504,7 +9504,7 @@
                   "mode": "raw",
                   "raw": ""
                 },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}/{{switches_postfix}}/1"
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}/{{switches_postfix}}/2"
               },
               "response": []
             }
