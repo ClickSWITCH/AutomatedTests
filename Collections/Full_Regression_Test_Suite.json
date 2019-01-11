@@ -8685,7 +8685,7 @@
                       "pm.test('Has the correct state', function() {",
                       "    var state;",
                       "    state = {",
-                      "        \"status\": \"Incomplete\",",
+                      "        \"status\": \"Ready\",",
                       "        \"actions\": [",
                       "            \"HTTP-PUT\",",
                       "            \"Cancel\",",
