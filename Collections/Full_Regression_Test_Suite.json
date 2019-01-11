@@ -8942,66 +8942,6 @@
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
               },
               "response": []
-            },
-            {
-              "_postman_id": "e37888f4-f897-4408-9c95-0ef745d89b07",
-              "name": "Cancel Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state = {",
-                      "        \"status\": \"Canceled\",",
-                      "        \"actions\": [",
-                      "            \"Uncancel\",",
-                      "            \"HTTP-DELETE\"",
-                      "        ],",
-                      "        \"validation\": {",
-                      "            \"accounts\": [],",
-                      "            \"fields\": {},",
-                      "            \"overall\": []",
-                      "        }",
-                      "    };",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
-              },
-              "response": []
             }
           ],
           "event": [
