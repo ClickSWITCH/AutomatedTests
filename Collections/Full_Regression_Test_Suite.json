@@ -5508,7 +5508,7 @@
         },
         {
           "_postman_id": "c754fa40-ccf2-41d8-a21b-d9354b7862ec",
-          "name": "Deposit using neither Copy",
+          "name": "Deposit using neither",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete an unknown deposit target switch.",
           "item": [
             {
@@ -5570,7 +5570,7 @@
                       "                \"accounts\": [],",
                       "                \"fields\": {",
                       "                    \"Custom_SSN4\": \"This field is required\",",
-                      "                    \"category\": \"This field is required\",",
+                      "                    \"category\": \"The field is required and must match one of the provided categories.\",",
                       "                    \"name\": \"This field is required\",",
                       "                    \"mailingAddress\": {",
                       "                        \"line1\": \"This field is required\",",
@@ -5594,8 +5594,8 @@
                       "            \"validation\": {",
                       "                \"accounts\": [],",
                       "                \"fields\": {",
-                      "                    \"Custom_SIN3\": \"This field is required\",",
-                      "                    \"category\": \"This field is required\",",
+                      "                    \"Custom_SSN4\": \"This field is required\",",
+                      "                    \"category\": \"The field is required and must match one of the provided categories.\",",
                       "                    \"name\": \"This field is required\",",
                       "                    \"mailingAddress\": {",
                       "                        \"line1\": \"This field is required\",",
