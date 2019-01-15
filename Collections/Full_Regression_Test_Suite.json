@@ -4031,7 +4031,7 @@
       "item": [
         {
           "_postman_id": "b43722df-6a22-4bc0-b038-2dca26dfcbfa",
-          "name": "Deposit Using TargetId Copy",
+          "name": "Deposit Using TargetId",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a deposit target.",
           "item": [
             {
