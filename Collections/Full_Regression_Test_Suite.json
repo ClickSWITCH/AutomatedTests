@@ -5717,7 +5717,7 @@
                       "                    \"key\": \"splitAmount\",",
                       "                    \"label\": \"Percent or Fixed Amount\",",
                       "                    \"type\": \"textbox\",",
-                      "                    \"required\": true,",
+                      "                    \"required\": false,",
                       "                    \"regex\": \"^(1-9\\\\\\\\d*\\\\\\\\.\\\\\\\\d2|(100(.0)?|(0(\\\\\\\\.1-9))|(1-90-9?(\\\\\\\\.\\\\\\\\d)?)))$\",",
                       "                    \"validationMessage\": \"Must be an amount with 2 decimal places or a whole percentage\"",
                       "                }",
