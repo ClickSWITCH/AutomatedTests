@@ -5050,7 +5050,7 @@
                       "            ],",
                       "            \"fields\": {",
                       "                \"category\": 0,",
-                      "                \"Custom_SSN4\": null,",
+                      "                \"Custom_SIN3\": null,",
                       "                \"Custom_Employee/ID\": null",
                       "            }",
                       "        };",
