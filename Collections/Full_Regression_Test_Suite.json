@@ -5609,7 +5609,7 @@
                       "            \"validation\": {",
                       "                \"accounts\": [],",
                       "                \"fields\": {",
-                      "                    \"Custom_SSN4\": \"This field is required\",",
+                      "                    \"Custom_SIN3\": \"This field is required\",",
                       "                    \"category\": \"The field is required and must match one of the provided categories.\",",
                       "                    \"name\": \"This field is required\",",
                       "                    \"mailingAddress\": {",
