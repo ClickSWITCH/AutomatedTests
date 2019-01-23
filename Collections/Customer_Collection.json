@@ -4764,7 +4764,6 @@
                       "pm.test('Has the correct values element', function() {",
                       "    var values;",
                       "    values =  {",
-                      "        \"accounts\": []",
                       "    };",
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
