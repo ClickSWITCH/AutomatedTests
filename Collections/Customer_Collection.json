@@ -4241,6 +4241,7 @@
                       "        \"validation\": {",
                       "            \"accounts\": [],",
                       "            \"fields\": {",
+                      "                \"mailingAddress\": {}",
                       "            },",
                       "            \"overall\": []",
                       "        }",
