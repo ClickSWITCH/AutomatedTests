@@ -3143,7 +3143,8 @@
                       "        \"status\": \"Ready\",",
                       "        \"actions\": [",
                       "            \"HTTP-PUT\",",
-                      "            \"Cancel\"",
+                      "            \"Cancel\",",
+                      "            \"Submit\"",
                       "        ],",
                       "        \"validation\": {",
                       "            \"accounts\": [],",
@@ -3226,15 +3227,15 @@
                       "            }",
                       "        ],",
                       "        \"fields\": {",
-                      "            \"Custom_SSN4\": null,",
-                      "            \"Custom_Employee/ID\": null,",
+                      "            \"Custom_SSN4\": \"1234\",",
+                      "            \"Custom_Employee/ID\": \"1234\",",
                       "            \"Custom_Company/MailingAddress\": {",
-                      "                \"line1\": null,",
+                      "                \"line1\": \"123 Main Street\",",
                       "                \"line2\": null,",
                       "                \"line3\": null,",
-                      "                \"city\": null,",
-                      "                \"state\": null,",
-                      "                \"zip\": null",
+                      "                \"city\": \"New York\",",
+                      "                \"state\": \"NY\",",
+                      "                \"zip\": \"44444\"",
                       "            }",
                       "        }",
                       "    };",
@@ -3459,7 +3460,6 @@
                   "listen": "test",
                   "script": {
                     "id": "43dc4729-45de-4aa5-9e5f-cb57ff9ce355",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "const isCanada = pm.environment.get('isCanada') === 'true';",
@@ -3616,7 +3616,8 @@
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});"
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
@@ -3639,7 +3640,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"type\": \"deposit\",\n  \"locationId\": \"{{location_id}}\",\n  \"accountholderIndex\": 0,\n  \"values\": {\n    \"accounts\": [\n      {\n        \"index\": 0\n      }\n    ]\n  }\n}"
+                  "raw": "{\n  \"type\": \"deposit\",\n  \"locationId\": \"{{location_id}}\",\n  \"accountholderIndex\": 0,\n  \"values\": {\n    \"accounts\": [\n      {\n        \"index\": 0,\n        \"fields\": {\n        \t\"splitAmount\": 0,\n        \t\"splitType\": \"Remainder\"\n    \t}\n      }\n    ]\n  }\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
