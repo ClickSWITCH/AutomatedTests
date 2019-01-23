@@ -4392,7 +4392,9 @@
                       "        ],",
                       "        \"validation\": {",
                       "            \"accounts\": [],",
-                      "            \"fields\": {},",
+                      "            \"fields\": {",
+                      "                \"mailingAddress\": {}",
+                      "            },",
                       "            \"overall\": []",
                       "        }",
                       "    };",
@@ -4555,7 +4557,6 @@
                   "listen": "test",
                   "script": {
                     "id": "7868b44e-5ea4-4d92-aefd-16d228e67edb",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "",
@@ -4601,17 +4602,16 @@
                       "pm.test('Has the correct state', function() {",
                       "    var state;",
                       "    state = {",
-                      "        \"status\": \"Incomplete\",",
+                      "        \"status\": \"Ready\",",
                       "        \"actions\": [",
                       "            \"HTTP-PUT\",",
-                      "            \"Cancel\"",
+                      "            \"Cancel\",",
+                      "            \"Complete\"",
                       "        ],",
                       "        \"validation\": {",
                       "            \"accounts\": [],",
                       "            \"fields\": {},",
-                      "            \"overall\": [",
-                      "                \"At least one account must be selected\"",
-                      "            ]",
+                      "            \"overall\": []",
                       "        }",
                       "    };",
                       "    ",
@@ -4645,7 +4645,8 @@
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});"
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
