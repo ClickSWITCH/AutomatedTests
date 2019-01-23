@@ -3140,20 +3140,14 @@
                       "",
                       "pm.test('Has the correct state', function() {",
                       "    var state = {",
-                      "        \"status\": \"Incomplete\",",
+                      "        \"status\": \"Ready\",",
                       "        \"actions\": [",
                       "            \"HTTP-PUT\",",
                       "            \"Cancel\"",
                       "        ],",
                       "        \"validation\": {",
                       "            \"accounts\": [],",
-                      "            \"fields\": {",
-                      "                \"Custom_SSN4\": \"This field is required\",",
-                      "                \"line1\": \"This field is required\",",
-                      "                \"city\": \"This field is required\",",
-                      "                \"state\": \"This field is required\",",
-                      "                \"zip\": \"This field is required\"",
-                      "            },",
+                      "            \"fields\": {},",
                       "            \"overall\": []",
                       "        }",
                       "    };",
@@ -3266,7 +3260,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"index\": 1,\n  \"type\": \"deposit\",\n  \"targetId\": \"{{deposit_target_id}}\",\n  \"accountholderIndex\": 0,\n  \"values\": {\n    \"accounts\": [\n      {\n        \"index\": 0,\n        \"fields\": {\n        \t\"splitAmount\": 0,\n        \t\"splitType\": \"Remainder\"\n    \t}\n      }\n    ],\n    \"fields\": {\n        \"Custom_Net or Amount (in dollars)\": 100,\n        \"Custom_or Percentage of Pay (1 - 100)\": 100,\n        \"Custom_Depositor's Full Mailing Address\": {\n            \"line1\": \"123 Main Street\",\n            \"line2\": null,\n            \"line3\": null,\n            \"city\": \"New York\",\n            \"state\": \"NY\",\n            \"zip\": 44444\n        },\n        \"Custom_Employee ID\": \"1234\",\n        \"Custom_Last 4 of SSN\": \"1234\"\n    }\n  }\n}"
+                  "raw": "{\n  \"index\": 1,\n  \"type\": \"deposit\",\n  \"targetId\": \"{{deposit_target_id}}\",\n  \"accountholderIndex\": 0,\n  \"values\": {\n    \"accounts\": [\n      {\n        \"index\": 0,\n        \"fields\": {\n        \t\"splitAmount\": 0,\n        \t\"splitType\": \"Remainder\"\n    \t}\n      }\n    ],\n    \"fields\": {\n        \"Custom_SSN4\": 1234,\n        \"Custom_Employee/ID\": \"1234\",\n        \"Custom_Company/MailingAddress\": {\n            \"line1\": \"123 Main Street\",\n            \"line2\": null,\n            \"line3\": null,\n            \"city\": \"New York\",\n            \"state\": \"NY\",\n            \"zip\": \"44444\"\n        }\n    }\n  }\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
               },
