@@ -4639,9 +4639,7 @@
                       "",
                       "pm.test('Has the correct values element', function() {",
                       "    var values;",
-                      "    values =  {",
-                      "        \"accounts\": []",
-                      "    };",
+                      "    values =  {};",
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});"
@@ -4737,7 +4735,6 @@
                       "            \"accounts\": [],",
                       "            \"fields\": {},",
                       "            \"overall\": [",
-                      "                \"At least one account must be selected\"",
                       "            ]",
                       "        }",
                       "    };",
