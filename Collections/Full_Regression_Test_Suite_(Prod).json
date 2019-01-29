@@ -9719,7 +9719,7 @@
                       "            \"errors\": [",
                       "                {",
                       "                    \"reason\": \"Addresses[0].Zip\",",
-                      "                    \"message\": \"'Zip' must not be empty.\"",
+                      "                    \"message\": \"'Zip' should not be empty.\"",
                       "                },",
                       "                {",
                       "                    \"reason\": \"Addresses[0].Zip\",",
