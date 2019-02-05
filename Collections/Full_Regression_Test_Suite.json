@@ -3371,7 +3371,6 @@
                   "listen": "test",
                   "script": {
                     "id": "c32d0f62-0067-43d3-b4e7-3becab451b1a",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "",
@@ -3422,7 +3421,7 @@
                       "    };",
                       "    ",
                       "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(uxAccounts); ",
-                      "    pm.expect(jsonData.data.item.ux.fields.length).to.equal(3);",
+                      "    pm.expect(jsonData.data.item.ux.fields.length).to.equal(7);",
                       "});",
                       "",
                       "pm.test('Has the correct final action', function() {",
@@ -3431,7 +3430,8 @@
                       "",
                       "",
                       ""
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
@@ -3577,7 +3577,6 @@
                   "listen": "test",
                   "script": {
                     "id": "77525ab5-0ef7-4dae-b49e-71380f5a4f2a",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "",
@@ -3628,7 +3627,7 @@
                       "    };",
                       "    ",
                       "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(uxAccounts); ",
-                      "    pm.expect(jsonData.data.item.ux.fields.length).to.equal(3);",
+                      "    pm.expect(jsonData.data.item.ux.fields.length).to.equal(7);",
                       "});",
                       "",
                       "pm.test('Has the correct final action', function() {",
@@ -3637,7 +3636,8 @@
                       "",
                       "",
                       ""
-                    ]
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
@@ -14594,22 +14594,8 @@
                             "exec": [
                               "const jsonData = pm.response.json();",
                               "",
-                              "pm.test(\"Status code is 401\", function() {",
-                              "    pm.response.to.have.status(401);",
-                              "});",
-                              "",
-                              "pm.test(\"Contains the correct error\", function() {",
-                              "    error = {",
-                              "        \"code\": 401,",
-                              "        \"message\": \"The api-key header provided was not valid.\",",
-                              "        \"errors\": [",
-                              "            {",
-                              "                \"message\": \"The api-key header provided was not valid.\"",
-                              "            }",
-                              "        ]",
-                              "    };",
-                              "    ",
-                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "pm.test(\"Status code is 404\", function() {",
+                              "    pm.response.to.have.status(404);",
                               "});"
                             ],
                             "type": "text/javascript"
@@ -14621,7 +14607,7 @@
                         "header": [
                           {
                             "key": "api-key",
-                            "value": "aaaaa",
+                            "value": "AAeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbnN0aXR1dGlvbklkIjoxNywiY3JlYXRlRGF0ZSI6IjIwMTgtMDgtMjFUMDA6MDA6MDAiLCJlbnZpcm9ubWVudCI6IlVzVGVzdCIsInZlcnNpb24iOiIzLjAuMCIsImFwcE1vZGUiOjEsInJvbGVzIjpbIkVuZFVzZXIiXX0.ScCp_YeHxS62Idwp_FCH1yoFHfPvRZEfKyvLWDSDjzg",
                             "type": "text"
                           }
                         ],
