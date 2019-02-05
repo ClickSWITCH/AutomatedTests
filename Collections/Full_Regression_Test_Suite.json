@@ -8491,8 +8491,6 @@
                       "    }",
                       "    ",
                       "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
                       "});",
                       "",
                       "pm.test('Has matching values and ux.fields names', function() {",
