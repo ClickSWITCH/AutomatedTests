@@ -12805,6 +12805,171 @@
                 }
               ],
               "_postman_isSubFolder": true
+            },
+            {
+              "_postman_id": "279a83c2-2ac5-4042-bab8-0cb8c8f7699c",
+              "name": "Types Copy",
+              "description": "Folder containing the tests for the GET `/types/targets`, `/types/switch/statuses`, and `/types/switch/actions` routes.",
+              "item": [
+                {
+                  "_postman_id": "ccb9c150-e252-4946-bf72-330dd14cc34c",
+                  "name": "Targets",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "0e1295ee-9045-4151-acee-6d05bf191f08",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 400\", function() {",
+                          "    pm.response.to.have.status(400);",
+                          "});",
+                          "",
+                          "pm.test(\"Contains the correct error\", function() {",
+                          "    error = {",
+                          "        \"code\": 400,",
+                          "        \"message\": \"The header did not contain the key api-key.\",",
+                          "        \"errors\": [",
+                          "            {",
+                          "                \"message\": \"The header did not contain the key api-key.\"",
+                          "            }",
+                          "        ]",
+                          "    };",
+                          "    ",
+                          "   pm.expect(jsonData.error).to.deep.include(error); ",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": "{{base_url}}{{targets_postfix}}{{context_param}}",
+                    "description": "Asserts that the GET `/types/targets` endpoint is returning the correct values."
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "61768587-0f7e-4491-829c-ac17e0faeb3f",
+                  "name": "Statuses",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "9c63fdee-f7cb-40c1-aefb-7a3c2bb161fc",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 400\", function() {",
+                          "    pm.response.to.have.status(400);",
+                          "});",
+                          "",
+                          "pm.test(\"Contains the correct error\", function() {",
+                          "    error = {",
+                          "        \"code\": 400,",
+                          "        \"message\": \"The header did not contain the key api-key.\",",
+                          "        \"errors\": [",
+                          "            {",
+                          "                \"message\": \"The header did not contain the key api-key.\"",
+                          "            }",
+                          "        ]",
+                          "    };",
+                          "    ",
+                          "   pm.expect(jsonData.error).to.deep.include(error); ",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
+                    "description": "Asserts that the GET `/types/switch/statuses` endpoint is returning the correct values."
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "e4ec0ca1-c7df-4aa9-a129-d304f37db4bb",
+                  "name": "Actions",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "74d90fde-2509-4451-a886-18647421cd78",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 400\", function() {",
+                          "    pm.response.to.have.status(400);",
+                          "});",
+                          "",
+                          "pm.test(\"Contains the correct error\", function() {",
+                          "    error = {",
+                          "        \"code\": 400,",
+                          "        \"message\": \"The header did not contain the key api-key.\",",
+                          "        \"errors\": [",
+                          "            {",
+                          "                \"message\": \"The header did not contain the key api-key.\"",
+                          "            }",
+                          "        ]",
+                          "    };",
+                          "    ",
+                          "   pm.expect(jsonData.error).to.deep.include(error); ",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": "{{base_url}}{{actions_postfix}}{{context_param}}",
+                    "description": "Asserts that the GET `/types/switch/actions` endpoint is returning the correct values."
+                  },
+                  "response": []
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "d6e4a28e-b3d1-4b2c-915b-c7876f1f1438",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "49f14a4d-1572-41a3-89aa-f9d17e5f8be7",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "_postman_isSubFolder": true
             }
           ],
           "_postman_isSubFolder": true
