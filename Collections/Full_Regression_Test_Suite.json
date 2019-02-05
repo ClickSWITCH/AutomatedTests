@@ -11625,6 +11625,12 @@
           "_postman_isSubFolder": true
         }
       ]
+    },
+    {
+      "_postman_id": "9fa62c23-ae07-419f-91ea-f354f8522855",
+      "name": "Authorization",
+      "description": "",
+      "item": []
     }
   ],
   "event": [
