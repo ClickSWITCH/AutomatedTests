@@ -14088,7 +14088,7 @@
           "item": [
             {
               "_postman_id": "061a707e-bd8f-4cc2-83fb-f4bd3686fad8",
-              "name": "Customers Copy",
+              "name": "Customers",
               "description": "Folder containing the tests for the PUT `/customers/{customerKey}` and GET `/customers/{customerKey}` routes.",
               "item": [
                 {
@@ -14137,17 +14137,21 @@
                             "exec": [
                               "const jsonData = pm.response.json();",
                               "",
-                              "pm.test(\"Status code is 401\", function() {",
-                              "    pm.response.to.have.status(401);",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
                               "});",
                               "",
                               "pm.test(\"Contains the correct error\", function() {",
                               "    error = {",
-                              "        \"code\": 401,",
-                              "        \"message\": \"The api-key header provided was not valid.\",",
+                              "        \"code\": 400,",
                               "        \"errors\": [",
                               "            {",
-                              "                \"message\": \"The api-key header provided was not valid.\"",
+                              "                \"reason\": \"Accounts\",",
+                              "                \"message\": \"There is a routing number which is not a routing number of this institution.\"",
+                              "            },",
+                              "            {",
+                              "                \"reason\": \"Accounts\",",
+                              "                \"message\": \"There is an account name which is not an account name for this institution.\"",
                               "            }",
                               "        ]",
                               "    };",
@@ -14168,7 +14172,7 @@
                           },
                           {
                             "key": "api-key",
-                            "value": "aaaaa",
+                            "value": "AAeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbnN0aXR1dGlvbklkIjoyNDA1LCJjcmVhdGVEYXRlIjoiMjAxOC0wOC0yMVQwMDowMDowMCIsImVudmlyb25tZW50IjoiVXNUZXN0IiwidmVyc2lvbiI6IjMuMC4wIiwiYXBwTW9kZSI6MSwicm9sZXMiOlsiRW5kVXNlciJdfQ.ITvcbICoJfEVVkspWtvkDpRHyBFM0Hv5YDNlaCZ5MZU",
                             "type": "text"
                           }
                         ],
