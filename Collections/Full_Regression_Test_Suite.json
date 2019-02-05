@@ -14232,8 +14232,8 @@
                             "exec": [
                               "const jsonData = pm.response.json();",
                               "",
-                              "pm.test(\"Status code is 401\", function() {",
-                              "    pm.response.to.have.status(401);",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
                               "});",
                               "",
                               "pm.test(\"Contains the correct error\", function() {",
