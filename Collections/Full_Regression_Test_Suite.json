@@ -11644,6 +11644,13 @@
           "description": "",
           "item": [],
           "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "34ba53cf-2231-401e-b5c5-9c7e7471529c",
+          "name": "Different Institution API Key",
+          "description": "",
+          "item": [],
+          "_postman_isSubFolder": true
         }
       ]
     }
