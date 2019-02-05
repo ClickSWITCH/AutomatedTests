@@ -14082,20 +14082,6 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "34ba53cf-2231-401e-b5c5-9c7e7471529c",
-          "name": "Different Institution API Key",
-          "description": "",
-          "item": [],
-          "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "e6bbb4e7-f0ed-4978-be21-911830e438bb",
-          "name": "Role Based API Key",
-          "description": "",
-          "item": [],
-          "_postman_isSubFolder": true
-        },
-        {
           "_postman_id": "061a707e-bd8f-4cc2-83fb-f4bd3686fad8",
           "name": "Customers Copy",
           "description": "Folder containing the tests for the PUT `/customers/{customerKey}` and GET `/customers/{customerKey}` routes.",
@@ -14449,6 +14435,20 @@
               }
             }
           ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "34ba53cf-2231-401e-b5c5-9c7e7471529c",
+          "name": "Different Institution API Key",
+          "description": "",
+          "item": [],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "e6bbb4e7-f0ed-4978-be21-911830e438bb",
+          "name": "Role Based API Key",
+          "description": "",
+          "item": [],
           "_postman_isSubFolder": true
         }
       ]
