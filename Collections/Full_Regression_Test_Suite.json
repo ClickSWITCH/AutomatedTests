@@ -14507,7 +14507,7 @@
                         "header": [
                           {
                             "key": "api-key",
-                            "value": "AAeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbnN0aXR1dGlvbklkIjoxNywiY3JlYXRlRGF0ZSI6IjIwMTgtMDgtMjFUMDA6MDA6MDAiLCJlbnZpcm9ubWVudCI6IlVzVGVzdCIsInZlcnNpb24iOiIzLjAuMCIsImFwcE1vZGUiOjEsInJvbGVzIjpbIkVuZFVzZXIiXX0.ScCp_YeHxS62Idwp_FCH1yoFHfPvRZEfKyvLWDSDjzg",
+                            "value": "{{wrong_api_key}}",
                             "type": "text"
                           }
                         ],
