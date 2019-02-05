@@ -12722,23 +12722,34 @@
                           "listen": "test",
                           "script": {
                             "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
-                            "type": "text/javascript",
                             "exec": [
-                              "pm.test(\"Status code is 200\", function () {",
-                              "    pm.response.to.have.status(200);",
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
                               "});"
-                            ]
+                            ],
+                            "type": "text/javascript"
                           }
                         }
                       ],
                       "request": {
                         "method": "DELETE",
-                        "header": [
-                          {
-                            "key": "api-key",
-                            "value": "{{api_key}}"
-                          }
-                        ],
+                        "header": [],
                         "body": {},
                         "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
                         "description": "\t"
