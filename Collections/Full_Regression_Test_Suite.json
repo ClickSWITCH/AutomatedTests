@@ -12854,7 +12854,13 @@
                   ],
                   "request": {
                     "method": "GET",
-                    "header": [],
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "aaaaa",
+                        "type": "text"
+                      }
+                    ],
                     "body": {
                       "mode": "raw",
                       "raw": ""
@@ -13582,7 +13588,7 @@
             },
             {
               "_postman_id": "d7a66037-be7b-406e-bc83-a682fd3b2bdd",
-              "name": "Switches Copy",
+              "name": "Switches",
               "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
               "item": [
                 {
