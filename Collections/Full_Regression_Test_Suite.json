@@ -11637,6 +11637,13 @@
           "description": "",
           "item": [],
           "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "daec6a08-52e7-4196-8cf0-00cd43dd1bc5",
+          "name": "Invalid API Key",
+          "description": "",
+          "item": [],
+          "_postman_isSubFolder": true
         }
       ]
     }
