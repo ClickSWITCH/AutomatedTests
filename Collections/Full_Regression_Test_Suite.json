@@ -6355,6 +6355,7 @@
                     "id": "7a118597-7d96-4700-ab9a-2083b6cff886",
                     "exec": [
                       "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
                       "",
                       "pm.test(\"Status code is 200\", function () {",
                       "    pm.response.to.have.status(200);",
