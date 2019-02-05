@@ -14148,10 +14148,6 @@
                               "            {",
                               "                \"reason\": \"Accounts\",",
                               "                \"message\": \"There is a routing number which is not a routing number of this institution.\"",
-                              "            },",
-                              "            {",
-                              "                \"reason\": \"Accounts\",",
-                              "                \"message\": \"There is an account name which is not an account name for this institution.\"",
                               "            }",
                               "        ]",
                               "    };",
@@ -14172,7 +14168,7 @@
                           },
                           {
                             "key": "api-key",
-                            "value": "AAeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbnN0aXR1dGlvbklkIjoyNDA1LCJjcmVhdGVEYXRlIjoiMjAxOC0wOC0yMVQwMDowMDowMCIsImVudmlyb25tZW50IjoiVXNUZXN0IiwidmVyc2lvbiI6IjMuMC4wIiwiYXBwTW9kZSI6MSwicm9sZXMiOlsiRW5kVXNlciJdfQ.ITvcbICoJfEVVkspWtvkDpRHyBFM0Hv5YDNlaCZ5MZU",
+                            "value": "AAeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbnN0aXR1dGlvbklkIjoxNywiY3JlYXRlRGF0ZSI6IjIwMTgtMDgtMjFUMDA6MDA6MDAiLCJlbnZpcm9ubWVudCI6IlVzVGVzdCIsInZlcnNpb24iOiIzLjAuMCIsImFwcE1vZGUiOjEsInJvbGVzIjpbIkVuZFVzZXIiXX0.ScCp_YeHxS62Idwp_FCH1yoFHfPvRZEfKyvLWDSDjzg",
                             "type": "text"
                           }
                         ],
@@ -14371,7 +14367,7 @@
                         "header": [
                           {
                             "key": "api-key",
-                            "value": "aaaaa",
+                            "value": "AAeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbnN0aXR1dGlvbklkIjoxNywiY3JlYXRlRGF0ZSI6IjIwMTgtMDgtMjFUMDA6MDA6MDAiLCJlbnZpcm9ubWVudCI6IlVzVGVzdCIsInZlcnNpb24iOiIzLjAuMCIsImFwcE1vZGUiOjEsInJvbGVzIjpbIkVuZFVzZXIiXX0.ScCp_YeHxS62Idwp_FCH1yoFHfPvRZEfKyvLWDSDjzg",
                             "type": "text"
                           }
                         ],
@@ -14379,20 +14375,7 @@
                           "mode": "raw",
                           "raw": ""
                         },
-                        "url": {
-                          "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
-                          "host": [
-                            "{{base_url}}{{customers_postfix}}{{customer_key}}"
-                          ],
-                          "query": [
-                            {
-                              "key": "context",
-                              "value": "",
-                              "equals": true,
-                              "disabled": true
-                            }
-                          ]
-                        }
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}"
                       },
                       "response": []
                     }
