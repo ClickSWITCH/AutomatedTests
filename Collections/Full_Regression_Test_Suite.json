@@ -12816,7 +12816,7 @@
           "item": [
             {
               "_postman_id": "279a83c2-2ac5-4042-bab8-0cb8c8f7699c",
-              "name": "Types Copy",
+              "name": "Types",
               "description": "Folder containing the tests for the GET `/types/targets`, `/types/switch/statuses`, and `/types/switch/actions` routes.",
               "item": [
                 {
