@@ -12881,17 +12881,17 @@
                         "exec": [
                           "const jsonData = pm.response.json();",
                           "",
-                          "pm.test(\"Status code is 400\", function() {",
-                          "    pm.response.to.have.status(400);",
+                          "pm.test(\"Status code is 401\", function() {",
+                          "    pm.response.to.have.status(401);",
                           "});",
                           "",
                           "pm.test(\"Contains the correct error\", function() {",
                           "    error = {",
-                          "        \"code\": 400,",
-                          "        \"message\": \"The header did not contain the key api-key.\",",
+                          "        \"code\": 401,",
+                          "        \"message\": \"The api-key header provided was not valid.\",",
                           "        \"errors\": [",
                           "            {",
-                          "                \"message\": \"The header did not contain the key api-key.\"",
+                          "                \"message\": \"The api-key header provided was not valid.\"",
                           "            }",
                           "        ]",
                           "    };",
@@ -12905,7 +12905,13 @@
                   ],
                   "request": {
                     "method": "GET",
-                    "header": [],
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "aaaaa",
+                        "type": "text"
+                      }
+                    ],
                     "body": {
                       "mode": "raw",
                       "raw": ""
@@ -12926,17 +12932,17 @@
                         "exec": [
                           "const jsonData = pm.response.json();",
                           "",
-                          "pm.test(\"Status code is 400\", function() {",
-                          "    pm.response.to.have.status(400);",
+                          "pm.test(\"Status code is 401\", function() {",
+                          "    pm.response.to.have.status(401);",
                           "});",
                           "",
                           "pm.test(\"Contains the correct error\", function() {",
                           "    error = {",
-                          "        \"code\": 400,",
-                          "        \"message\": \"The header did not contain the key api-key.\",",
+                          "        \"code\": 401,",
+                          "        \"message\": \"The api-key header provided was not valid.\",",
                           "        \"errors\": [",
                           "            {",
-                          "                \"message\": \"The header did not contain the key api-key.\"",
+                          "                \"message\": \"The api-key header provided was not valid.\"",
                           "            }",
                           "        ]",
                           "    };",
@@ -12950,7 +12956,13 @@
                   ],
                   "request": {
                     "method": "GET",
-                    "header": [],
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "aaaaa",
+                        "type": "text"
+                      }
+                    ],
                     "body": {
                       "mode": "raw",
                       "raw": ""
@@ -13036,17 +13048,17 @@
                             "exec": [
                               "const jsonData = pm.response.json();",
                               "",
-                              "pm.test(\"Status code is 400\", function() {",
-                              "    pm.response.to.have.status(400);",
+                              "pm.test(\"Status code is 401\", function() {",
+                              "    pm.response.to.have.status(401);",
                               "});",
                               "",
                               "pm.test(\"Contains the correct error\", function() {",
                               "    error = {",
-                              "        \"code\": 400,",
-                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"code\": 401,",
+                              "        \"message\": \"The api-key header provided was not valid.\",",
                               "        \"errors\": [",
                               "            {",
-                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "                \"message\": \"The api-key header provided was not valid.\"",
                               "            }",
                               "        ]",
                               "    };",
@@ -13064,6 +13076,11 @@
                           {
                             "key": "Content-Type",
                             "value": "application/json"
+                          },
+                          {
+                            "key": "api-key",
+                            "value": "aaaaa",
+                            "type": "text"
                           }
                         ],
                         "body": {
