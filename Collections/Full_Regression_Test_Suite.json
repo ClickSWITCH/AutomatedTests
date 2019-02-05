@@ -14540,114 +14540,6 @@
                       "response": []
                     },
                     {
-                      "_postman_id": "c6f63981-1394-47b9-946b-372da86620fb",
-                      "name": "Get Switch By Id",
-                      "event": [
-                        {
-                          "listen": "test",
-                          "script": {
-                            "id": "0c8ad97b-fa49-42f4-a004-c4e2e9b39682",
-                            "exec": [
-                              "const jsonData = pm.response.json();",
-                              "",
-                              "pm.test(\"Status code is 401\", function() {",
-                              "    pm.response.to.have.status(401);",
-                              "});",
-                              "",
-                              "pm.test(\"Contains the correct error\", function() {",
-                              "    error = {",
-                              "        \"code\": 401,",
-                              "        \"message\": \"The api-key header provided was not valid.\",",
-                              "        \"errors\": [",
-                              "            {",
-                              "                \"message\": \"The api-key header provided was not valid.\"",
-                              "            }",
-                              "        ]",
-                              "    };",
-                              "    ",
-                              "   pm.expect(jsonData.error).to.deep.include(error); ",
-                              "});"
-                            ],
-                            "type": "text/javascript"
-                          }
-                        }
-                      ],
-                      "request": {
-                        "method": "GET",
-                        "header": [
-                          {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                          },
-                          {
-                            "key": "api-key",
-                            "value": "aaaaa",
-                            "type": "text"
-                          }
-                        ],
-                        "body": {
-                          "mode": "raw",
-                          "raw": ""
-                        },
-                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
-                      },
-                      "response": []
-                    },
-                    {
-                      "_postman_id": "578c0368-32e5-4b88-b8c8-4a02fb16fb25",
-                      "name": "Update Switch",
-                      "event": [
-                        {
-                          "listen": "test",
-                          "script": {
-                            "id": "c5e8e6ce-e8e7-459a-9f6c-abfd056f1128",
-                            "exec": [
-                              "const jsonData = pm.response.json();",
-                              "",
-                              "pm.test(\"Status code is 401\", function() {",
-                              "    pm.response.to.have.status(401);",
-                              "});",
-                              "",
-                              "pm.test(\"Contains the correct error\", function() {",
-                              "    error = {",
-                              "        \"code\": 401,",
-                              "        \"message\": \"The api-key header provided was not valid.\",",
-                              "        \"errors\": [",
-                              "            {",
-                              "                \"message\": \"The api-key header provided was not valid.\"",
-                              "            }",
-                              "        ]",
-                              "    };",
-                              "    ",
-                              "   pm.expect(jsonData.error).to.deep.include(error); ",
-                              "});"
-                            ],
-                            "type": "text/javascript"
-                          }
-                        }
-                      ],
-                      "request": {
-                        "method": "PUT",
-                        "header": [
-                          {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                          },
-                          {
-                            "key": "api-key",
-                            "value": "aaaaa",
-                            "type": "text"
-                          }
-                        ],
-                        "body": {
-                          "mode": "raw",
-                          "raw": "{\r\n  \"type\": \"Deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountHolderIndex\": 0,\r\n  \"values\": {\r\n\t  \"accounts\":[\r\n\t\t{\r\n\t\t\t\"index\": 0\r\n\t\t}\r\n\t],\r\n\t\"fields\": {\r\n        \"Custom_Net or Amount (in dollars)\": \"100\",\r\n        \"Custom_or Percentage of Pay (1 - 100)\": \"100\",\r\n        \"Custom_Depositor's Full Mailing Address\": {\r\n            \"line1\": \"123 Main Street\",\r\n            \"line2\": null,\r\n            \"line3\": null,\r\n            \"city\": \"New York\",\r\n            \"state\": \"NY\",\r\n            \"zip\": \"44444\"\r\n        },\r\n        \"Custom_Employee ID\": \"1234\",\r\n        \"Custom_Last 4 of SSN\": \"1234\"\r\n\t}\r\n  }\r\n}"
-                        },
-                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
-                      },
-                      "response": []
-                    },
-                    {
                       "_postman_id": "54a80110-9bcf-4e2e-8268-d4fcd0854013",
                       "name": "Submit Switch",
                       "event": [
@@ -14658,22 +14550,8 @@
                             "exec": [
                               "const jsonData = pm.response.json();",
                               "",
-                              "pm.test(\"Status code is 401\", function() {",
-                              "    pm.response.to.have.status(401);",
-                              "});",
-                              "",
-                              "pm.test(\"Contains the correct error\", function() {",
-                              "    error = {",
-                              "        \"code\": 401,",
-                              "        \"message\": \"The api-key header provided was not valid.\",",
-                              "        \"errors\": [",
-                              "            {",
-                              "                \"message\": \"The api-key header provided was not valid.\"",
-                              "            }",
-                              "        ]",
-                              "    };",
-                              "    ",
-                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "pm.test(\"Status code is 404\", function() {",
+                              "    pm.response.to.have.status(404);",
                               "});"
                             ],
                             "type": "text/javascript"
@@ -14693,7 +14571,7 @@
                           },
                           {
                             "key": "api-key",
-                            "value": "aaaaa",
+                            "value": "AAeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbnN0aXR1dGlvbklkIjoxNywiY3JlYXRlRGF0ZSI6IjIwMTgtMDgtMjFUMDA6MDA6MDAiLCJlbnZpcm9ubWVudCI6IlVzVGVzdCIsInZlcnNpb24iOiIzLjAuMCIsImFwcE1vZGUiOjEsInJvbGVzIjpbIkVuZFVzZXIiXX0.ScCp_YeHxS62Idwp_FCH1yoFHfPvRZEfKyvLWDSDjzg",
                             "type": "text"
                           }
                         ],
@@ -14702,64 +14580,6 @@
                           "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
                         },
                         "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action{{context_param}}"
-                      },
-                      "response": []
-                    },
-                    {
-                      "_postman_id": "cd5710a7-1220-491b-9efc-4227149f78ec",
-                      "name": "Cancel Switch",
-                      "event": [
-                        {
-                          "listen": "test",
-                          "script": {
-                            "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
-                            "exec": [
-                              "const jsonData = pm.response.json();",
-                              "",
-                              "pm.test(\"Status code is 401\", function() {",
-                              "    pm.response.to.have.status(401);",
-                              "});",
-                              "",
-                              "pm.test(\"Contains the correct error\", function() {",
-                              "    error = {",
-                              "        \"code\": 401,",
-                              "        \"message\": \"The api-key header provided was not valid.\",",
-                              "        \"errors\": [",
-                              "            {",
-                              "                \"message\": \"The api-key header provided was not valid.\"",
-                              "            }",
-                              "        ]",
-                              "    };",
-                              "    ",
-                              "   pm.expect(jsonData.error).to.deep.include(error); ",
-                              "});"
-                            ],
-                            "type": "text/javascript"
-                          }
-                        }
-                      ],
-                      "request": {
-                        "method": "POST",
-                        "header": [
-                          {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                          },
-                          {
-                            "key": "Accept",
-                            "value": "application/json"
-                          },
-                          {
-                            "key": "api-key",
-                            "value": "aaaaa",
-                            "type": "text"
-                          }
-                        ],
-                        "body": {
-                          "mode": "raw",
-                          "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
-                        },
-                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
                       },
                       "response": []
                     },
