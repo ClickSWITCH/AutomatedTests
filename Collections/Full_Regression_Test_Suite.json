@@ -8791,7 +8791,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_print_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n\t\t\"Custom_Date to Withdraw funds\": \"12-12-18\",\r\n\t\t\"Switch_ContactServiceAddress\": {\r\n\t\t\t\"line1\": \"123 Main Street\",\r\n\t\t\t\"city\": \"New York\",\r\n\t\t\t\"state\": \"NY\",\r\n\t\t\t\"zip\": \"55555\"\r\n\t\t},\r\n\t\t\"Switch_BillingAccountNumber\": \"1234\"\r\n    }\r\n  }\r\n}"
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_print_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n\t\t\"Custom_Date to Withdraw funds\": \"12-12-18\",\r\n\t\t\"Switch_ContactServiceAddress\": {\r\n\t\t\t\"line1\": \"123 Main Street\",\r\n\t\t\t\"city\": \"New York\",\r\n\t\t\t\"state\": \"NY\",\r\n\t\t\t\"zip\": \"55555\"\r\n\t\t},\r\n\t\t\"Switch_BillingAccountNumber\": \"1234\",\r\n\t\t\"Custom_Amount\": 100\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
