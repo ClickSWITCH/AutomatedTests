@@ -11852,111 +11852,23 @@
                             "exec": [
                               "const jsonData = pm.response.json();",
                               "",
-                              "pm.test(\"Status code is 200\", function () {",
-                              "    pm.response.to.have.status(200);",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
                               "});",
                               "",
-                              "pm.test('Has required 1st level elements', function() {",
-                              "    pm.expect(jsonData).to.have.property('data');",
-                              "    pm.expect(jsonData).to.have.property('apiVersion');",
-                              "    pm.expect(jsonData).to.have.property('id');",
-                              "});",
-                              "",
-                              "pm.test('Has the correct context', function() {",
-                              "    pm.expect(jsonData.context).to.equal('testing_context');",
-                              "});",
-                              "",
-                              "pm.test('Has required 2nd level elements', function() {",
-                              "    pm.expect(jsonData.data).to.have.property('item');",
-                              "    pm.expect(jsonData.data).to.have.property('kind');",
-                              "    pm.expect(jsonData.data).to.have.property('lang');",
-                              "});",
-                              "",
-                              "pm.test('Has required 3rd level elements', function() {",
-                              "    pm.expect(jsonData.data.item).to.have.property('email');",
-                              "    pm.expect(jsonData.data.item).to.have.property('phoneNumber');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accountHolders');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accounts');",
-                              "    pm.expect(jsonData.data.item).to.have.property('addresses');",
-                              "    pm.expect(jsonData.data.item).to.have.property('metadata');",
-                              "});",
-                              "",
-                              "pm.test('Has the correct kind attribute', function() {",
-                              "   pm.expect(jsonData.data.kind).to.equal('Customer'); ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct email', function() {",
-                              "   var email = jsonData.data.item.email;",
-                              "   var customerEmail = pm.environment.get(\"customer_key\");",
-                              "   pm.expect(email).to.equal(customerEmail + \"@clickswitch.com\");",
-                              "});",
-                              "",
-                              "pm.test('Has the correct phoneNumber', function() {",
-                              "   var phone = jsonData.data.item.phoneNumber;",
-                              "   pm.expect(phone).to.equal(\"2185555555\");",
-                              "});",
-                              "",
-                              "pm.test('Has the correct account holders', function() {",
-                              "   var accountHolders = jsonData.data.item.accountHolders;",
-                              "   ",
-                              "   pm.expect(accountHolders).to.have.length(1);",
-                              "   ",
-                              "   var john = {",
-                              "        \"firstName\": \"\",",
-                              "        \"middleInitial\": \"J\",",
-                              "        \"lastName\": \"Test\"",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
                               "    };",
                               "    ",
-                              "    john.firstName = pm.environment.get(\"customer_name\");",
-                              "                ",
-                              "    pm.expect(accountHolders).to.deep.include(john);",
-                              "});",
-                              "",
-                              "pm.test('Has the correct accounts', function() {",
-                              "   var accounts = jsonData.data.item.accounts;",
-                              "   ",
-                              "   pm.expect(accounts).to.have.length(1);",
-                              "   ",
-                              "   var account = {",
-                              "        \"number\": \"\",",
-                              "        \"type\": \"\",",
-                              "        \"name\": \"\",",
-                              "        \"routingNumber\": \"\",",
-                              "        \"index\": 0,",
-                              "        \"metadata\": {}",
-                              "    };",
-                              "    ",
-                              "    // Set the account vars to the values passed in the request body.",
-                              "    account.number = pm.environment.get(\"customer_key\").toString();",
-                              "    account.type = pm.environment.get(\"checking_type\");",
-                              "    account.name = pm.environment.get(\"checking_name\");",
-                              "    account.routingNumber = pm.environment.get(\"routing_number\");",
-                              "    ",
-                              "    pm.expect(accounts).to.deep.include(account);",
-                              "    ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct addresses', function() {",
-                              "   var addresses = jsonData.data.item.addresses;",
-                              "   ",
-                              "   pm.expect(addresses).to.have.length(1);",
-                              "   ",
-                              "   var address = {",
-                              "        \"line1\": \"600 Canal Park Dr.\",",
-                              "        \"city\": \"Duluth\",",
-                              "        \"zip\": \"55802\",",
-                              "        \"state\": \"MN\",",
-                              "        \"country\": \"US\"",
-                              "    };",
-                              "    ",
-                              "    address.zip = pm.environment.get('zip');",
-                              "    address.state = pm.environment.get('state');",
-                              "    address.country = pm.environment.get('country');",
-                              "                ",
-                              "    pm.expect(addresses).to.deep.include(address);",
-                              "});",
-                              "",
-                              ""
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
                             ],
                             "type": "text/javascript"
                           }
@@ -11965,11 +11877,6 @@
                       "request": {
                         "method": "PUT",
                         "header": [
-                          {
-                            "key": "api-key",
-                            "value": "{{api_key}}",
-                            "description": "api key"
-                          },
                           {
                             "key": "Content-Type",
                             "value": "application/json"
@@ -12035,131 +11942,23 @@
                             "exec": [
                               "const jsonData = pm.response.json();",
                               "",
-                              "pm.test(\"Status code is 200\", function () {",
-                              "    pm.response.to.have.status(200);",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
                               "});",
                               "",
-                              "pm.test('Has required 1st level elements', function() {",
-                              "    pm.expect(jsonData).to.have.property('data');",
-                              "    pm.expect(jsonData).to.have.property('apiVersion');",
-                              "    pm.expect(jsonData).to.have.property('id');",
-                              "});",
-                              "",
-                              "pm.test('Has required 2nd level elements', function() {",
-                              "    pm.expect(jsonData.data).to.have.property('item');",
-                              "    pm.expect(jsonData.data).to.have.property('kind');",
-                              "    pm.expect(jsonData.data).to.have.property('lang');",
-                              "});",
-                              "",
-                              "pm.test('Has required 3rd level elements', function() {",
-                              "    pm.expect(jsonData.data.item).to.have.property('email');",
-                              "    pm.expect(jsonData.data.item).to.have.property('phoneNumber');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accountHolders');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accounts');",
-                              "    pm.expect(jsonData.data.item).to.have.property('addresses');",
-                              "    pm.expect(jsonData.data.item).to.have.property('metadata');",
-                              "});",
-                              "",
-                              "pm.test('Has the correct kind attribute', function() {",
-                              "   pm.expect(jsonData.data.kind).to.equal('Customer'); ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct email', function() {",
-                              "   var email = jsonData.data.item.email;",
-                              "   var customerEmail = pm.environment.get(\"customer_key\");",
-                              "   pm.expect(email).to.equal(customerEmail + \"123\" + \"@clickswitch.com\")",
-                              "});",
-                              "",
-                              "pm.test('Has the correct phoneNumber', function() {",
-                              "   var phone = jsonData.data.item.phoneNumber;",
-                              "   pm.expect(phone).to.equal(\"2185555123\")",
-                              "});",
-                              "",
-                              "pm.test('Has the correct account holders', function() {",
-                              "   var accountHolders = jsonData.data.item.accountHolders;",
-                              "   ",
-                              "   pm.expect(accountHolders).to.have.length(2);",
-                              "   ",
-                              "   var john = {",
-                              "        \"firstName\": \"Test\",",
-                              "        \"middleInitial\": \"j\",",
-                              "        \"lastName\": \"Test\"",
-                              "    };",
-                              "                ",
-                              "    pm.expect(accountHolders).to.deep.include(john);",
-                              "    ",
-                              "   var jane = {",
-                              "        \"firstName\": \"Test\",",
-                              "        \"middleInitial\": \"m\",",
-                              "        \"lastName\": \"Test\"",
-                              "    };",
-                              "                ",
-                              "    pm.expect(accountHolders).to.deep.include(jane);",
-                              "});",
-                              "",
-                              "pm.test('Has the correct accounts', function() {",
-                              "   var accounts = jsonData.data.item.accounts;",
-                              "   ",
-                              "   pm.expect(accounts).to.have.length(2);",
-                              "   ",
-                              "   var account = {",
-                              "        \"number\": \"\",",
-                              "        \"type\": \"\",",
-                              "        \"name\": \"\",",
-                              "        \"routingNumber\": \"\",",
-                              "        \"index\": 0,",
-                              "        \"metadata\": {}",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
                               "    };",
                               "    ",
-                              "    // Set the account vars to the values passed in the request body.",
-                              "    account.number = pm.environment.get(\"customer_key\").toString() + \"00\";",
-                              "    account.type = pm.environment.get(\"checking_type\");",
-                              "    account.name = pm.environment.get(\"checking_name\");",
-                              "    account.routingNumber = pm.environment.get(\"routing_number\");",
-                              "    ",
-                              "    pm.expect(accounts).to.deep.include(account);",
-                              "    ",
-                              "    var account2 = {",
-                              "        \"number\": \"\",",
-                              "        \"type\": \"\",",
-                              "        \"name\": \"\",",
-                              "        \"routingNumber\": \"\",",
-                              "        \"index\": 1,",
-                              "        \"metadata\": {}",
-                              "    };",
-                              "    ",
-                              "    // Set the account vars to the values passed in the request body.",
-                              "    account2.number = pm.environment.get(\"customer_key\").toString()+\"000\";",
-                              "    account2.type = pm.environment.get(\"savings_type\");",
-                              "    account2.name = pm.environment.get(\"savings_name\");",
-                              "    account2.routingNumber = pm.environment.get(\"routing_number_2\");",
-                              "    ",
-                              "    pm.expect(accounts).to.deep.include(account2);",
-                              "    ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct addresses', function() {",
-                              "   var addresses = jsonData.data.item.addresses;",
-                              "   ",
-                              "   pm.expect(addresses).to.have.length(1);",
-                              "   ",
-                              "  // Todo: Removed the spaces from the address.",
-                              "   var address = {",
-                              "        \"line1\": \"600 Canal Park Dr..\",",
-                              "        \"city\": \"Duluthh\",",
-                              "        \"zip\": \"55833\",",
-                              "        \"state\": \"WI\",",
-                              "        \"country\": \"CA\"",
-                              "    };",
-                              "    ",
-                              "    address.zip = pm.environment.get('zip');",
-                              "    address.state = pm.environment.get('state');",
-                              "    address.country = pm.environment.get('country');",
-                              "                ",
-                              "    pm.expect(addresses).to.deep.include(address);",
-                              "});",
-                              "",
-                              ""
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
                             ],
                             "type": "text/javascript"
                           }
@@ -12168,11 +11967,6 @@
                       "request": {
                         "method": "PUT",
                         "header": [
-                          {
-                            "key": "api-key",
-                            "value": "{{api_key}}",
-                            "description": "api key"
-                          },
                           {
                             "key": "Content-Type",
                             "value": "application/json"
@@ -12197,336 +11991,6 @@
                           ]
                         },
                         "description": "Test that renames some customer values, adds an account holder and an account to the customer."
-                      },
-                      "response": []
-                    },
-                    {
-                      "_postman_id": "9ec975a3-258d-46a8-be5e-d2ac44d165a7",
-                      "name": "Update Customer Remove Account",
-                      "event": [
-                        {
-                          "listen": "prerequest",
-                          "script": {
-                            "id": "ec257296-6c1d-4c72-9790-2632324427bb",
-                            "exec": [
-                              ""
-                            ],
-                            "type": "text/javascript"
-                          }
-                        },
-                        {
-                          "listen": "test",
-                          "script": {
-                            "id": "992025da-dba6-4a58-bb10-38a80e9a8724",
-                            "exec": [
-                              "const jsonData = pm.response.json();",
-                              "   ",
-                              "pm.test(\"Status code is 200\", function () {",
-                              "    pm.response.to.have.status(200);",
-                              "});",
-                              "",
-                              "pm.test('Has required 1st level elements', function() {",
-                              "    pm.expect(jsonData).to.have.property('data');",
-                              "    pm.expect(jsonData).to.have.property('apiVersion');",
-                              "    pm.expect(jsonData).to.have.property('id');",
-                              "});",
-                              "",
-                              "pm.test('Has required 2nd level elements', function() {",
-                              "    pm.expect(jsonData.data).to.have.property('item');",
-                              "    pm.expect(jsonData.data).to.have.property('kind');",
-                              "    pm.expect(jsonData.data).to.have.property('lang');",
-                              "});",
-                              "",
-                              "pm.test('Has required 3rd level elements', function() {",
-                              "    pm.expect(jsonData.data.item).to.have.property('email');",
-                              "    pm.expect(jsonData.data.item).to.have.property('phoneNumber');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accountHolders');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accounts');",
-                              "    pm.expect(jsonData.data.item).to.have.property('addresses');",
-                              "    pm.expect(jsonData.data.item).to.have.property('metadata');",
-                              "});",
-                              "",
-                              "pm.test('Has the correct kind attribute', function() {",
-                              "   pm.expect(jsonData.data.kind).to.equal('Customer'); ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct email', function() {",
-                              "   var email = jsonData.data.item.email;",
-                              "   var customerEmail = pm.environment.get(\"customer_key\");",
-                              "   pm.expect(email).to.equal(customerEmail + \"123\" + \"@clickswitch.com\")",
-                              "});",
-                              "",
-                              "pm.test('Has the correct phoneNumber', function() {",
-                              "   var phone = jsonData.data.item.phoneNumber;",
-                              "   pm.expect(phone).to.equal(\"2185555123\")",
-                              "});",
-                              "",
-                              "pm.test('Has the correct account holders', function() {",
-                              "   var accountHolders = jsonData.data.item.accountHolders;",
-                              "   ",
-                              "   pm.expect(accountHolders).to.have.length(2);",
-                              "   ",
-                              "   var john = {",
-                              "        \"firstName\": \"Test\",",
-                              "        \"middleInitial\": \"j\",",
-                              "        \"lastName\": \"Test\"",
-                              "    };",
-                              "                ",
-                              "    pm.expect(accountHolders).to.deep.include(john);",
-                              "    ",
-                              "   var jane = {",
-                              "        \"firstName\": \"Test\",",
-                              "        \"middleInitial\": \"m\",",
-                              "        \"lastName\": \"Test\"",
-                              "    };",
-                              "                ",
-                              "    pm.expect(accountHolders).to.deep.include(jane);",
-                              "});",
-                              "",
-                              "pm.test('Has the correct accounts', function() {",
-                              "   var accounts = jsonData.data.item.accounts;",
-                              "   ",
-                              "   pm.expect(accounts).to.have.length(1);",
-                              "   ",
-                              "   var account = {",
-                              "        \"number\": \"\",",
-                              "        \"type\": \"\",",
-                              "        \"name\": \"\",",
-                              "        \"routingNumber\": \"\",",
-                              "        \"index\": 0,",
-                              "        \"metadata\": {}",
-                              "    };",
-                              "    ",
-                              "    // Set the account vars to the values passed in the request body.",
-                              "    account.number = pm.environment.get(\"customer_key\").toString() + \"00\";",
-                              "    account.type = pm.environment.get(\"checking_type\");",
-                              "    account.name = pm.environment.get(\"checking_name\");",
-                              "    account.routingNumber = pm.environment.get(\"routing_number\");",
-                              "    ",
-                              "    pm.expect(accounts).to.deep.include(account);",
-                              "    ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct addresses', function() {",
-                              "   var addresses = jsonData.data.item.addresses;",
-                              "   ",
-                              "   pm.expect(addresses).to.have.length(1);",
-                              "   ",
-                              "  // Todo: Removed the spaces from the address.",
-                              "   var address = {",
-                              "        \"line1\": \"600 Canal Park Dr..\",",
-                              "        \"city\": \"Duluthh\",",
-                              "        \"zip\": \"55833\",",
-                              "        \"state\": \"WI\",",
-                              "        \"country\": \"CA\"",
-                              "    };",
-                              "    ",
-                              "    address.zip = pm.environment.get('zip');",
-                              "    address.state = pm.environment.get('state');",
-                              "    address.country = pm.environment.get('country');",
-                              "                ",
-                              "    pm.expect(addresses).to.deep.include(address);",
-                              "});",
-                              "",
-                              ""
-                            ],
-                            "type": "text/javascript"
-                          }
-                        }
-                      ],
-                      "request": {
-                        "method": "PUT",
-                        "header": [
-                          {
-                            "key": "api-key",
-                            "value": "{{api_key}}",
-                            "description": "api key"
-                          },
-                          {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                          }
-                        ],
-                        "body": {
-                          "mode": "raw",
-                          "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"m\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
-                        },
-                        "url": {
-                          "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
-                          "host": [
-                            "{{base_url}}{{customers_postfix}}{{customer_key}}"
-                          ],
-                          "query": [
-                            {
-                              "key": "context",
-                              "value": "",
-                              "equals": true,
-                              "disabled": true
-                            }
-                          ]
-                        },
-                        "description": "Test that removes and account from the customer."
-                      },
-                      "response": []
-                    },
-                    {
-                      "_postman_id": "39ac1354-9019-4b8a-b0a3-242c30155ec0",
-                      "name": "Update Customer Remove Account Holder",
-                      "event": [
-                        {
-                          "listen": "prerequest",
-                          "script": {
-                            "id": "ec257296-6c1d-4c72-9790-2632324427bb",
-                            "exec": [
-                              ""
-                            ],
-                            "type": "text/javascript"
-                          }
-                        },
-                        {
-                          "listen": "test",
-                          "script": {
-                            "id": "2b1ed99f-d52e-45ca-8e52-96456a95c43f",
-                            "exec": [
-                              "const jsonData = pm.response.json();",
-                              "",
-                              "pm.test(\"Status code is 200\", function () {",
-                              "    pm.response.to.have.status(200);",
-                              "});",
-                              "",
-                              "pm.test('Has required 1st level elements', function() {",
-                              "    pm.expect(jsonData).to.have.property('data');",
-                              "    pm.expect(jsonData).to.have.property('apiVersion');",
-                              "    pm.expect(jsonData).to.have.property('id');",
-                              "});",
-                              "",
-                              "pm.test('Has required 2nd level elements', function() {",
-                              "    pm.expect(jsonData.data).to.have.property('item');",
-                              "    pm.expect(jsonData.data).to.have.property('kind');",
-                              "    pm.expect(jsonData.data).to.have.property('lang');",
-                              "});",
-                              "",
-                              "pm.test('Has required 3rd level elements', function() {",
-                              "    pm.expect(jsonData.data.item).to.have.property('email');",
-                              "    pm.expect(jsonData.data.item).to.have.property('phoneNumber');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accountHolders');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accounts');",
-                              "    pm.expect(jsonData.data.item).to.have.property('addresses');",
-                              "    pm.expect(jsonData.data.item).to.have.property('metadata');",
-                              "});",
-                              "",
-                              "pm.test('Has the correct kind attribute', function() {",
-                              "   pm.expect(jsonData.data.kind).to.equal('Customer'); ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct email', function() {",
-                              "   var email = jsonData.data.item.email;",
-                              "   var customerEmail = pm.environment.get(\"customer_key\");",
-                              "   pm.expect(email).to.equal(customerEmail + \"123\" + \"@clickswitch.com\")",
-                              "});",
-                              "",
-                              "pm.test('Has the correct phoneNumber', function() {",
-                              "   var phone = jsonData.data.item.phoneNumber;",
-                              "   pm.expect(phone).to.equal(\"2185555123\")",
-                              "});",
-                              "",
-                              "pm.test('Has the correct account holders', function() {",
-                              "   var accountHolders = jsonData.data.item.accountHolders;",
-                              "   ",
-                              "   pm.expect(accountHolders).to.have.length(1);",
-                              "   ",
-                              "   var john = {",
-                              "        \"firstName\": \"Test\",",
-                              "        \"middleInitial\": \"j\",",
-                              "        \"lastName\": \"Test\"",
-                              "    };",
-                              "                ",
-                              "    pm.expect(accountHolders).to.deep.include(john);",
-                              "});",
-                              "",
-                              "pm.test('Has the correct accounts', function() {",
-                              "   var accounts = jsonData.data.item.accounts;",
-                              "   ",
-                              "   pm.expect(accounts).to.have.length(1);",
-                              "   ",
-                              "   var account = {",
-                              "        \"number\": \"\",",
-                              "        \"type\": \"\",",
-                              "        \"name\": \"\",",
-                              "        \"routingNumber\": \"\",",
-                              "        \"index\": 0,",
-                              "        \"metadata\": {}",
-                              "    };",
-                              "    ",
-                              "    // Set the account vars to the values passed in the request body.",
-                              "    account.number = pm.environment.get(\"customer_key\").toString() + \"00\";",
-                              "    account.type = pm.environment.get(\"checking_type\");",
-                              "    account.name = pm.environment.get(\"checking_name\");",
-                              "    account.routingNumber = pm.environment.get(\"routing_number\");",
-                              "    ",
-                              "    pm.expect(accounts).to.deep.include(account);",
-                              "    ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct addresses', function() {",
-                              "   var addresses = jsonData.data.item.addresses;",
-                              "   ",
-                              "   pm.expect(addresses).to.have.length(1);",
-                              "   ",
-                              "  // Todo: Removed the spaces from the address.",
-                              "   var address = {",
-                              "        \"line1\": \"600 Canal Park Dr..\",",
-                              "        \"city\": \"Duluthh\",",
-                              "        \"zip\": \"55833\",",
-                              "        \"state\": \"WI\",",
-                              "        \"country\": \"CA\"",
-                              "    };",
-                              "    ",
-                              "    address.zip = pm.environment.get('zip');",
-                              "    address.state = pm.environment.get('state');",
-                              "    address.country = pm.environment.get('country');",
-                              "                ",
-                              "    pm.expect(addresses).to.deep.include(address);",
-                              "});",
-                              "",
-                              ""
-                            ],
-                            "type": "text/javascript"
-                          }
-                        }
-                      ],
-                      "request": {
-                        "method": "PUT",
-                        "header": [
-                          {
-                            "key": "api-key",
-                            "value": "{{api_key}}",
-                            "description": "api key"
-                          },
-                          {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                          }
-                        ],
-                        "body": {
-                          "mode": "raw",
-                          "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
-                        },
-                        "url": {
-                          "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
-                          "host": [
-                            "{{base_url}}{{customers_postfix}}{{customer_key}}"
-                          ],
-                          "query": [
-                            {
-                              "key": "context",
-                              "value": "",
-                              "equals": true,
-                              "disabled": true
-                            }
-                          ]
-                        },
-                        "description": "Test that removes an account holder from the customer."
                       },
                       "response": []
                     }
@@ -12581,106 +12045,1229 @@
                             "exec": [
                               "const jsonData = pm.response.json();",
                               "",
-                              "pm.test(\"Status code is 200\", function () {",
-                              "    pm.response.to.have.status(200);",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
                               "});",
                               "",
-                              "pm.test('Has required 1st level elements', function() {",
-                              "    pm.expect(jsonData).to.have.property('data');",
-                              "    pm.expect(jsonData).to.have.property('apiVersion');",
-                              "    pm.expect(jsonData).to.have.property('id');",
-                              "});",
-                              "",
-                              "pm.test('Has required 2nd level elements', function() {",
-                              "    pm.expect(jsonData.data).to.have.property('item');",
-                              "    pm.expect(jsonData.data).to.have.property('kind');",
-                              "    pm.expect(jsonData.data).to.have.property('lang');",
-                              "});",
-                              "",
-                              "pm.test('Has required 3rd level elements', function() {",
-                              "    pm.expect(jsonData.data.item).to.have.property('email');",
-                              "    pm.expect(jsonData.data.item).to.have.property('phoneNumber');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accountHolders');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accounts');",
-                              "    pm.expect(jsonData.data.item).to.have.property('addresses');",
-                              "    pm.expect(jsonData.data.item).to.have.property('metadata');",
-                              "});",
-                              "",
-                              "pm.test('Has the correct kind attribute', function() {",
-                              "   pm.expect(jsonData.data.kind).to.equal('Customer'); ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct email', function() {",
-                              "   var email = jsonData.data.item.email;",
-                              "   var customerEmail = pm.environment.get(\"customer_key\");",
-                              "   pm.expect(email).to.equal(customerEmail + \"123\" + \"@clickswitch.com\")",
-                              "});",
-                              "",
-                              "pm.test('Has the correct phoneNumber', function() {",
-                              "   var phone = jsonData.data.item.phoneNumber;",
-                              "   pm.expect(phone).to.equal(\"2185555123\")",
-                              "});",
-                              "",
-                              "pm.test('Has the correct account holders', function() {",
-                              "   var accountHolders = jsonData.data.item.accountHolders;",
-                              "   ",
-                              "   pm.expect(accountHolders).to.have.length(1);",
-                              "   ",
-                              "   var john = {",
-                              "        \"firstName\": \"Test\",",
-                              "        \"middleInitial\": \"j\",",
-                              "        \"lastName\": \"Test\"",
-                              "    };",
-                              "                ",
-                              "    pm.expect(accountHolders).to.deep.include(john);",
-                              "});",
-                              "",
-                              "pm.test('Has the correct accounts', function() {",
-                              "   var accounts = jsonData.data.item.accounts;",
-                              "   ",
-                              "   pm.expect(accounts).to.have.length(1);",
-                              "   ",
-                              "   var account = {",
-                              "        \"number\": \"\",",
-                              "        \"type\": \"\",",
-                              "        \"name\": \"\",",
-                              "        \"routingNumber\": \"\",",
-                              "        \"index\": 0,",
-                              "        \"metadata\": {}",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
                               "    };",
                               "    ",
-                              "    // Set the account vars to the values passed in the request body.",
-                              "    account.number = pm.environment.get(\"customer_key\").toString() + \"00\";",
-                              "    account.type = pm.environment.get(\"checking_type\");",
-                              "    account.name = pm.environment.get(\"checking_name\");",
-                              "    account.routingNumber = pm.environment.get(\"routing_number\");",
-                              "    ",
-                              "    pm.expect(accounts).to.deep.include(account);",
-                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": {
+                          "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
+                          "host": [
+                            "{{base_url}}{{customers_postfix}}{{customer_key}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "context",
+                              "value": "",
+                              "equals": true,
+                              "disabled": true
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "e1c252ce-7bd2-4213-8a9e-a59a58aff7f1",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "3e94fea3-2e95-40bd-8425-0bd21a7455ab",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "449fb18f-56cc-434c-b8d2-105b2abfe4bb",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "54c1da51-b04e-49fa-b4fc-a0890d98309a",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "_postman_id": "49cb7097-8edc-4329-94f9-b1b107c50646",
+              "name": "Targets",
+              "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
+              "item": [
+                {
+                  "_postman_id": "cf99792b-1c66-4283-8081-0800ae91f87f",
+                  "name": "Deposits",
+                  "description": "Folder containing the tests that find a deposit target.",
+                  "item": [
+                    {
+                      "_postman_id": "417c6cf2-52e0-441c-bba5-ee70bbd9be3b",
+                      "name": "Target By Name",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "8cd56822-e0af-4fe0-ab14-37c92f907bcd",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
                               "});",
                               "",
-                              "pm.test('Has the correct addresses', function() {",
-                              "   var addresses = jsonData.data.item.addresses;",
-                              "   ",
-                              "   pm.expect(addresses).to.have.length(1);",
-                              "   ",
-                              "  // Todo: Removed the spaces from the address.",
-                              "   var address = {",
-                              "        \"line1\": \"600 Canal Park Dr..\",",
-                              "        \"city\": \"Duluthh\",",
-                              "        \"zip\": \"55833\",",
-                              "        \"state\": \"WI\",",
-                              "        \"country\": \"CA\"",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
                               "    };",
                               "    ",
-                              "    address.zip = pm.environment.get('zip');",
-                              "    address.state = pm.environment.get('state');",
-                              "    address.country = pm.environment.get('country');",
-                              "                ",
-                              "    pm.expect(addresses).to.deep.include(address);",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": {
+                          "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{deposit_target_name}}&customer={{customer_key}}",
+                          "host": [
+                            "{{base_url}}{{targets_postfix2}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "type",
+                              "value": "deposit",
+                              "equals": true
+                            },
+                            {
+                              "key": "name",
+                              "value": "{{deposit_target_name}}",
+                              "equals": true
+                            },
+                            {
+                              "key": "customer",
+                              "value": "{{customer_key}}",
+                              "equals": true
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "757e8405-8ec1-4ce7-a34e-6b043139b8e7",
+                      "name": "Target By Id",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "95385dad-0e49-4d91-99f0-52b75fe91ffd",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
                               "});",
                               "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": "{{base_url}}{{targets_postfix3}}{{deposit_target_id}}{{context_param}}"
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "eb920b3c-4af1-44ff-adf0-be00bc730a89",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "2cbf03b3-7300-4c39-9b0e-6329a580f48b",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                },
+                {
+                  "_postman_id": "49a43768-1e47-4037-ac75-53f08f0ffc1b",
+                  "name": "Locations",
+                  "description": "Folder containing the tests that find a target by location.",
+                  "item": [
+                    {
+                      "_postman_id": "92808bd0-3aad-4df5-b433-6c69d29b71a6",
+                      "name": "Target By Location",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "e307f46d-3641-4098-8537-155ae6a1d450",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": {
+                          "raw": "{{base_url}}{{locations_postfix}}?customer={{customer_key}}&name={{location_name}}",
+                          "host": [
+                            "{{base_url}}{{locations_postfix}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "customer",
+                              "value": "{{customer_key}}",
+                              "equals": true
+                            },
+                            {
+                              "key": "name",
+                              "value": "{{location_name}}",
+                              "equals": true
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "987a0848-308e-432b-aa51-aab711ac353b",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "da4426ab-5a69-42b0-bd0d-3eee37b8cf51",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "63dc3038-b599-4e56-b35f-52d562974cbb",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "bcf30ce0-ca6c-424f-86a7-f109d862422e",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "_postman_id": "b70122e7-4c3b-458e-a253-ac0ad408e74b",
+              "name": "Switches",
+              "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
+              "item": [
+                {
+                  "_postman_id": "6f75a498-aa90-437c-adfa-c871f02f0e5a",
+                  "name": "Deposit Using TargetId",
+                  "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a deposit target.",
+                  "item": [
+                    {
+                      "_postman_id": "0e6789f6-82e7-434c-9a17-d5ddfb328308",
+                      "name": "Get Switches",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "c3939a64-cc66-468b-b40c-636565c4076b",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}",
+                        "description": "Should return empty list since no switches have been created yet."
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "cf1d0a47-3aac-43c1-849d-8578b593d55b",
+                      "name": "Create Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "d01ba022-6829-4ac8-a482-2148a3c99d56",
+                      "name": "Get Switch By Id",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "0c8ad97b-fa49-42f4-a004-c4e2e9b39682",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "df84ca08-e8b8-4fda-8972-e7ae73b6479a",
+                      "name": "Update Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "c5e8e6ce-e8e7-459a-9f6c-abfd056f1128",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"type\": \"Deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountHolderIndex\": 0,\r\n  \"values\": {\r\n\t  \"accounts\":[\r\n\t\t{\r\n\t\t\t\"index\": 0\r\n\t\t}\r\n\t],\r\n\t\"fields\": {\r\n        \"Custom_Net or Amount (in dollars)\": \"100\",\r\n        \"Custom_or Percentage of Pay (1 - 100)\": \"100\",\r\n        \"Custom_Depositor's Full Mailing Address\": {\r\n            \"line1\": \"123 Main Street\",\r\n            \"line2\": null,\r\n            \"line3\": null,\r\n            \"city\": \"New York\",\r\n            \"state\": \"NY\",\r\n            \"zip\": \"44444\"\r\n        },\r\n        \"Custom_Employee ID\": \"1234\",\r\n        \"Custom_Last 4 of SSN\": \"1234\"\r\n\t}\r\n  }\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "3b9f462b-a89b-42da-94ac-7880800f6007",
+                      "name": "Submit Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "bc9a5690-3ae7-4784-a80f-1de7b2c418db",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "e7063d47-4338-474b-a7b2-e6433fe73d1f",
+                      "name": "Cancel Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "0a39f741-d86c-4b67-903b-9ead842bf546",
+                      "name": "Delete Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "body": {},
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
+                        "description": "\t"
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "537299b4-9cc6-4bc5-a8d6-70384fb437c7",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "20541407-4ed3-49ec-ae9c-66b5bd793f99",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "1f165295-f989-4f43-91f0-c158d2f42c00",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "b0b0fd91-799a-4373-b796-a7ca5b53bee6",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "_postman_isSubFolder": true
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "daec6a08-52e7-4196-8cf0-00cd43dd1bc5",
+          "name": "Invalid API Key",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "279a83c2-2ac5-4042-bab8-0cb8c8f7699c",
+              "name": "Types",
+              "description": "Folder containing the tests for the GET `/types/targets`, `/types/switch/statuses`, and `/types/switch/actions` routes.",
+              "item": [
+                {
+                  "_postman_id": "ccb9c150-e252-4946-bf72-330dd14cc34c",
+                  "name": "Targets",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "0e1295ee-9045-4151-acee-6d05bf191f08",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 401\", function() {",
+                          "    pm.response.to.have.status(401);",
+                          "});",
+                          "",
+                          "pm.test(\"Contains the correct error\", function() {",
+                          "    error = {",
+                          "        \"code\": 401,",
+                          "        \"message\": \"The api-key header provided was not valid.\",",
+                          "        \"errors\": [",
+                          "            {",
+                          "                \"message\": \"The api-key header provided was not valid.\"",
+                          "            }",
+                          "        ]",
+                          "    };",
+                          "    ",
+                          "   pm.expect(jsonData.error).to.deep.include(error); ",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "aaaaa",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": "{{base_url}}{{targets_postfix}}{{context_param}}",
+                    "description": "Asserts that the GET `/types/targets` endpoint is returning the correct values."
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "61768587-0f7e-4491-829c-ac17e0faeb3f",
+                  "name": "Statuses",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "9c63fdee-f7cb-40c1-aefb-7a3c2bb161fc",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 401\", function() {",
+                          "    pm.response.to.have.status(401);",
+                          "});",
+                          "",
+                          "pm.test(\"Contains the correct error\", function() {",
+                          "    error = {",
+                          "        \"code\": 401,",
+                          "        \"message\": \"The api-key header provided was not valid.\",",
+                          "        \"errors\": [",
+                          "            {",
+                          "                \"message\": \"The api-key header provided was not valid.\"",
+                          "            }",
+                          "        ]",
+                          "    };",
+                          "    ",
+                          "   pm.expect(jsonData.error).to.deep.include(error); ",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "aaaaa",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
+                    "description": "Asserts that the GET `/types/switch/statuses` endpoint is returning the correct values."
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "e4ec0ca1-c7df-4aa9-a129-d304f37db4bb",
+                  "name": "Actions",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "74d90fde-2509-4451-a886-18647421cd78",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 401\", function() {",
+                          "    pm.response.to.have.status(401);",
+                          "});",
+                          "",
+                          "pm.test(\"Contains the correct error\", function() {",
+                          "    error = {",
+                          "        \"code\": 401,",
+                          "        \"message\": \"The api-key header provided was not valid.\",",
+                          "        \"errors\": [",
+                          "            {",
+                          "                \"message\": \"The api-key header provided was not valid.\"",
+                          "            }",
+                          "        ]",
+                          "    };",
+                          "    ",
+                          "   pm.expect(jsonData.error).to.deep.include(error); ",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "aaaaa",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": "{{base_url}}{{actions_postfix}}{{context_param}}",
+                    "description": "Asserts that the GET `/types/switch/actions` endpoint is returning the correct values."
+                  },
+                  "response": []
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "d6e4a28e-b3d1-4b2c-915b-c7876f1f1438",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "49f14a4d-1572-41a3-89aa-f9d17e5f8be7",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "_postman_id": "e7b1cc3d-12e0-4581-aa4a-d2cccb5e5608",
+              "name": "Customers",
+              "description": "Folder containing the tests for the PUT `/customers/{customerKey}` and GET `/customers/{customerKey}` routes.",
+              "item": [
+                {
+                  "_postman_id": "2637d325-c52a-4b85-946d-c664dd45150f",
+                  "name": "Single Customer Single Account",
+                  "description": "Folder containing the test that creates a customer with a single account holder and a single account.",
+                  "item": [
+                    {
+                      "_postman_id": "be1bd36f-3657-448d-9c59-f26490af8e97",
+                      "name": "Create Customer",
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                            "exec": [
+                              "var timestamp = Date.now();",
+                              "",
+                              "var randomString = makeRandomString();",
+                              "",
+                              "// Set the timestamp to environment vars to create an unique",
+                              "// customer on each test run.",
+                              "pm.environment.set(\"customer_key\", timestamp);",
+                              "",
+                              "pm.environment.set(\"customer_name\", randomString);",
+                              "",
+                              "// Creates a random string of length 10.",
+                              "function makeRandomString() {",
+                              "  var text = \"\";",
+                              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                              "",
+                              "  for (var i = 0; i < 10; i++)",
+                              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+                              "",
+                              "  return text;",
+                              "}",
                               ""
+                            ],
+                            "type": "text/javascript"
+                          }
+                        },
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 401\", function() {",
+                              "    pm.response.to.have.status(401);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 401,",
+                              "        \"message\": \"The api-key header provided was not valid.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The api-key header provided was not valid.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "api-key",
+                            "value": "aaaaa",
+                            "type": "text"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                        "description": "Creates a customer with a single account holder and a single account."
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "bab9f974-75c8-4842-b62a-e2a76d1cdfdc",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "1d82a45a-23f0-4aa2-b48b-1361f377084e",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                },
+                {
+                  "_postman_id": "f11f37c8-c695-498b-a146-dd47d02cb266",
+                  "name": "Update Customer",
+                  "description": "Folder containing the tests that update the created customer by adding and removing account holders, accounts, and renaming customer fields.",
+                  "item": [
+                    {
+                      "_postman_id": "4915b3c6-3b27-4e73-91ad-3f0f2fbf96d2",
+                      "name": "Update Customer Rename Values",
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "id": "ec257296-6c1d-4c72-9790-2632324427bb",
+                            "exec": [
+                              ""
+                            ],
+                            "type": "text/javascript"
+                          }
+                        },
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "2d9c74b1-ba33-4165-a4a5-f11907b6773f",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 401\", function() {",
+                              "    pm.response.to.have.status(401);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 401,",
+                              "        \"message\": \"The api-key header provided was not valid.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The api-key header provided was not valid.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "api-key",
+                            "value": "aaaaa",
+                            "type": "text"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"m\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        },\n        {\n        \"number\": \"{{customer_key}}000\",\n        \"type\": \"{{savings_type}}\",\n        \"name\": \"{{savings_name}}\",\n        \"routingNumber\": \"{{routing_number_2}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                        },
+                        "url": {
+                          "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
+                          "host": [
+                            "{{base_url}}{{customers_postfix}}{{customer_key}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "context",
+                              "value": "",
+                              "equals": true,
+                              "disabled": true
+                            }
+                          ]
+                        },
+                        "description": "Test that renames some customer values, adds an account holder and an account to the customer."
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "3fd065c2-0ad1-4d2b-8970-8a0ea7d9ce59",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "fbbefbfa-fbcf-4c1e-b738-6ef601e65352",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                },
+                {
+                  "_postman_id": "21842a53-c0fa-4daf-b503-bde09c519f8b",
+                  "name": "Get Customer",
+                  "description": "Folder containing the test that GETs the customer to ensure the updates worked.",
+                  "item": [
+                    {
+                      "_postman_id": "f3c51387-898c-4c45-858b-cb1818433c06",
+                      "name": "Get Created Customer",
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "id": "ec257296-6c1d-4c72-9790-2632324427bb",
+                            "exec": [
+                              ""
+                            ],
+                            "type": "text/javascript"
+                          }
+                        },
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "7d0287dd-3363-4563-a7eb-51e9634da12d",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 401\", function() {",
+                              "    pm.response.to.have.status(401);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 401,",
+                              "        \"message\": \"The api-key header provided was not valid.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The api-key header provided was not valid.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
                             ],
                             "type": "text/javascript"
                           }
@@ -12691,8 +13278,8 @@
                         "header": [
                           {
                             "key": "api-key",
-                            "value": "{{api_key}}",
-                            "description": "api key"
+                            "value": "aaaaa",
+                            "type": "text"
                           }
                         ],
                         "body": {
@@ -12740,458 +13327,6 @@
                     }
                   ],
                   "_postman_isSubFolder": true
-                },
-                {
-                  "_postman_id": "65edd1fc-1219-413f-bef5-bd4347fcfff7",
-                  "name": "Single Customer Two Accounts",
-                  "description": "Folder containing the test that creates a customer containing one account holder and two accounts.",
-                  "item": [
-                    {
-                      "_postman_id": "81f2642f-0b50-4807-af90-02a42ec808ab",
-                      "name": "Create",
-                      "event": [
-                        {
-                          "listen": "prerequest",
-                          "script": {
-                            "id": "01a4cd0a-81d4-4e68-922d-45b278eaf2a0",
-                            "exec": [
-                              "var timestamp = Date.now();",
-                              "",
-                              "var randomString = makeRandomString();",
-                              "",
-                              "// Set the timestamp to environment vars to create an unique",
-                              "// customer on each test run.",
-                              "pm.environment.set(\"customer_key\", timestamp);",
-                              "",
-                              "pm.environment.set(\"customer_name\", randomString);",
-                              "",
-                              "// Creates a random string of length 10.",
-                              "function makeRandomString() {",
-                              "  var text = \"\";",
-                              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                              "",
-                              "  for (var i = 0; i < 10; i++)",
-                              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
-                              "",
-                              "  return text;",
-                              "}",
-                              ""
-                            ],
-                            "type": "text/javascript"
-                          }
-                        },
-                        {
-                          "listen": "test",
-                          "script": {
-                            "id": "744d30ab-5c71-47e4-a9de-62f86d6ba104",
-                            "exec": [
-                              "const jsonData = pm.response.json();",
-                              "",
-                              "pm.test(\"Status code is 200\", function () {",
-                              "    pm.response.to.have.status(200);",
-                              "});",
-                              "",
-                              "pm.test('Has required 1st level elements', function() {",
-                              "    pm.expect(jsonData).to.have.property('data');",
-                              "    pm.expect(jsonData).to.have.property('apiVersion');",
-                              "    pm.expect(jsonData).to.have.property('id');",
-                              "});",
-                              "",
-                              "pm.test('Has required 2nd level elements', function() {",
-                              "    pm.expect(jsonData.data).to.have.property('item');",
-                              "    pm.expect(jsonData.data).to.have.property('kind');",
-                              "    pm.expect(jsonData.data).to.have.property('lang');",
-                              "});",
-                              "",
-                              "pm.test('Has required 3rd level elements', function() {",
-                              "    pm.expect(jsonData.data.item).to.have.property('email');",
-                              "    pm.expect(jsonData.data.item).to.have.property('phoneNumber');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accountHolders');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accounts');",
-                              "    pm.expect(jsonData.data.item).to.have.property('addresses');",
-                              "    pm.expect(jsonData.data.item).to.have.property('metadata');",
-                              "});",
-                              "",
-                              "pm.test('Has the correct kind attribute', function() {",
-                              "   pm.expect(jsonData.data.kind).to.equal('Customer'); ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct email', function() {",
-                              "   var email = jsonData.data.item.email;",
-                              "   var customerEmail = pm.environment.get(\"customer_key\");",
-                              "   pm.expect(email).to.equal(customerEmail + \"@clickswitch.com\")",
-                              "});",
-                              "",
-                              "pm.test('Has the correct phoneNumber', function() {",
-                              "   var phone = jsonData.data.item.phoneNumber;",
-                              "   pm.expect(phone).to.equal(\"2185555555\")",
-                              "});",
-                              "",
-                              "pm.test('Has the correct account holders', function() {",
-                              "   var accountHolders = jsonData.data.item.accountHolders;",
-                              "   ",
-                              "   pm.expect(accountHolders).to.have.length(1);",
-                              "   ",
-                              "   var john = {",
-                              "        \"firstName\": \"\",",
-                              "        \"middleInitial\": \"J\",",
-                              "        \"lastName\": \"Test\"",
-                              "    };",
-                              "    ",
-                              "    john.firstName = pm.environment.get(\"customer_name\");",
-                              "                ",
-                              "    pm.expect(accountHolders).to.deep.include(john);",
-                              "});",
-                              "",
-                              "pm.test('Has the correct accounts', function() {",
-                              "   var accounts = jsonData.data.item.accounts;",
-                              "   ",
-                              "   pm.expect(accounts).to.have.length(2);",
-                              "   ",
-                              "   var account = {",
-                              "        \"number\": \"\",",
-                              "        \"type\": \"\",",
-                              "        \"name\": \"\",",
-                              "        \"routingNumber\": \"\",",
-                              "        \"index\": 0,",
-                              "        \"metadata\": {}",
-                              "    };",
-                              "    ",
-                              "    // Set the account vars to the values passed in the request body.",
-                              "    account.number = pm.environment.get(\"customer_key\").toString();",
-                              "    account.type = pm.environment.get(\"checking_type\");",
-                              "    account.name = pm.environment.get(\"checking_name\");",
-                              "    account.routingNumber = pm.environment.get(\"routing_number\");",
-                              "    ",
-                              "    pm.expect(accounts).to.deep.include(account);",
-                              "    ",
-                              "    var account2 = {",
-                              "        \"number\": \"\",",
-                              "        \"type\": \"\",",
-                              "        \"name\": \"\",",
-                              "        \"routingNumber\": \"\",",
-                              "        \"index\": 1,",
-                              "        \"metadata\": {}",
-                              "    };",
-                              "    ",
-                              "    // Set the account vars to the values passed in the request body.",
-                              "    account2.number = pm.environment.get(\"customer_key\").toString()+\"0\";",
-                              "    account2.type = pm.environment.get(\"savings_type\");",
-                              "    account2.name = pm.environment.get(\"savings_name\");",
-                              "    account2.routingNumber = pm.environment.get(\"routing_number_2\");",
-                              "    ",
-                              "    pm.expect(accounts).to.deep.include(account2);",
-                              "    ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct addresses', function() {",
-                              "   var addresses = jsonData.data.item.addresses;",
-                              "   ",
-                              "   pm.expect(addresses).to.have.length(1);",
-                              "   ",
-                              "  // Todo: Removed the spaces from the address.",
-                              "   var address = {",
-                              "        \"line1\": \"600 Canal Park Dr.\",",
-                              "        \"city\": \"Duluth\",",
-                              "        \"zip\": \"55802\",",
-                              "        \"state\": \"MN\",",
-                              "        \"country\": \"US\"",
-                              "    };",
-                              "    ",
-                              "    address.zip = pm.environment.get('zip');",
-                              "    address.state = pm.environment.get('state');",
-                              "    address.country = pm.environment.get('country');",
-                              "                ",
-                              "    pm.expect(addresses).to.deep.include(address);",
-                              "});",
-                              "",
-                              "",
-                              ""
-                            ],
-                            "type": "text/javascript"
-                          }
-                        }
-                      ],
-                      "request": {
-                        "method": "PUT",
-                        "header": [
-                          {
-                            "key": "api-key",
-                            "value": "{{api_key}}",
-                            "description": "api key"
-                          },
-                          {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                          }
-                        ],
-                        "body": {
-                          "mode": "raw",
-                          "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        },\n        {\n        \"number\": \"{{customer_key}}0\",\n        \"type\": \"{{savings_type}}\",\n        \"name\": \"{{savings_name}}\",\n        \"routingNumber\": \"{{routing_number_2}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
-                        },
-                        "url": {
-                          "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
-                          "host": [
-                            "{{base_url}}{{customers_postfix}}{{customer_key}}"
-                          ],
-                          "query": [
-                            {
-                              "key": "context",
-                              "value": "",
-                              "equals": true,
-                              "disabled": true
-                            }
-                          ]
-                        },
-                        "description": "Test that creates a customer containing one account holder and two accounts."
-                      },
-                      "response": []
-                    }
-                  ],
-                  "event": [
-                    {
-                      "listen": "prerequest",
-                      "script": {
-                        "id": "888ec7f8-66d0-4050-89c9-51e7c9783fc7",
-                        "type": "text/javascript",
-                        "exec": [
-                          ""
-                        ]
-                      }
-                    },
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "c437c46a-b4da-46bc-a6fe-a7d1580cd1c5",
-                        "type": "text/javascript",
-                        "exec": [
-                          ""
-                        ]
-                      }
-                    }
-                  ],
-                  "_postman_isSubFolder": true
-                },
-                {
-                  "_postman_id": "658e0ecc-a666-4215-91fb-e185fea5c10a",
-                  "name": "Joint Customer Single Account",
-                  "description": "Folder containing the test that creates a customer with two account holders and a single account.",
-                  "item": [
-                    {
-                      "_postman_id": "d00d337c-f968-49b8-9dc8-d7d8ebe86cca",
-                      "name": "Create",
-                      "event": [
-                        {
-                          "listen": "prerequest",
-                          "script": {
-                            "id": "9dc534b5-53d2-4e0d-bc0e-9305bd8f08e7",
-                            "exec": [
-                              "var timestamp = Date.now();",
-                              "",
-                              "var randomString = makeRandomString();",
-                              "",
-                              "// Set the timestamp to environment vars to create an unique",
-                              "// customer on each test run.",
-                              "pm.environment.set(\"customer_key\", timestamp);",
-                              "",
-                              "pm.environment.set(\"customer_name\", randomString);",
-                              "",
-                              "// Creates a random string of length 10.",
-                              "function makeRandomString() {",
-                              "  var text = \"\";",
-                              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                              "",
-                              "  for (var i = 0; i < 10; i++)",
-                              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
-                              "",
-                              "  return text;",
-                              "}",
-                              ""
-                            ],
-                            "type": "text/javascript"
-                          }
-                        },
-                        {
-                          "listen": "test",
-                          "script": {
-                            "id": "972411c0-ac98-44b5-b5d9-e6a5a15c609f",
-                            "exec": [
-                              "const jsonData = pm.response.json();",
-                              "",
-                              "pm.test(\"Status code is 200\", function () {",
-                              "    pm.response.to.have.status(200);",
-                              "});",
-                              "",
-                              "pm.test('Has required 1st level elements', function() {",
-                              "    pm.expect(jsonData).to.have.property('data');",
-                              "    pm.expect(jsonData).to.have.property('apiVersion');",
-                              "    pm.expect(jsonData).to.have.property('id');",
-                              "});",
-                              "",
-                              "pm.test('Has required 2nd level elements', function() {",
-                              "    pm.expect(jsonData.data).to.have.property('item');",
-                              "    pm.expect(jsonData.data).to.have.property('kind');",
-                              "    pm.expect(jsonData.data).to.have.property('lang');",
-                              "});",
-                              "",
-                              "pm.test('Has required 3rd level elements', function() {",
-                              "    pm.expect(jsonData.data.item).to.have.property('email');",
-                              "    pm.expect(jsonData.data.item).to.have.property('phoneNumber');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accountHolders');",
-                              "    pm.expect(jsonData.data.item).to.have.property('accounts');",
-                              "    pm.expect(jsonData.data.item).to.have.property('addresses');",
-                              "    pm.expect(jsonData.data.item).to.have.property('metadata');",
-                              "});",
-                              "",
-                              "pm.test('Has the correct kind attribute', function() {",
-                              "   pm.expect(jsonData.data.kind).to.equal('Customer'); ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct email', function() {",
-                              "   var email = jsonData.data.item.email;",
-                              "   var customerEmail = pm.environment.get(\"customer_key\");",
-                              "   pm.expect(email).to.equal(customerEmail + \"@clickswitch.com\");",
-                              "});",
-                              "",
-                              "pm.test('Has the correct phoneNumber', function() {",
-                              "   var phone = jsonData.data.item.phoneNumber;",
-                              "   pm.expect(phone).to.equal(\"2185555555\");",
-                              "});",
-                              "",
-                              "pm.test('Has the correct account holders', function() {",
-                              "   var accountHolders = jsonData.data.item.accountHolders;",
-                              "   ",
-                              "   pm.expect(accountHolders).to.have.length(2);",
-                              "   ",
-                              "   var john = {",
-                              "        \"firstName\": \"\",",
-                              "        \"middleInitial\": \"J\",",
-                              "        \"lastName\": \"Test\"",
-                              "    };",
-                              "    ",
-                              "    john.firstName = pm.environment.get(\"customer_name\");",
-                              "                ",
-                              "    pm.expect(accountHolders).to.deep.include(john);",
-                              "    ",
-                              "   var jane = {",
-                              "        \"firstName\": \"\",",
-                              "        \"middleInitial\": \"M\",",
-                              "        \"lastName\": \"Test\"",
-                              "    };",
-                              "    ",
-                              "    jane.firstName = pm.environment.get(\"customer_name\");",
-                              "                ",
-                              "    pm.expect(accountHolders).to.deep.include(jane);",
-                              "});",
-                              "",
-                              "pm.test('Has the correct accounts', function() {",
-                              "   var accounts = jsonData.data.item.accounts;",
-                              "   ",
-                              "   pm.expect(accounts).to.have.length(1);",
-                              "   ",
-                              "   var account = {",
-                              "        \"number\": \"\",",
-                              "        \"type\": \"\",",
-                              "        \"name\": \"\",",
-                              "        \"routingNumber\": \"\",",
-                              "        \"index\": 0,",
-                              "        \"metadata\": {}",
-                              "    };",
-                              "    ",
-                              "    // Set the account vars to the values passed in the request body.",
-                              "    account.number = pm.environment.get(\"customer_key\").toString();",
-                              "    account.type = pm.environment.get(\"checking_type\");",
-                              "    account.name = pm.environment.get(\"checking_name\");",
-                              "    account.routingNumber = pm.environment.get(\"routing_number\");",
-                              "    ",
-                              "    pm.expect(accounts).to.deep.include(account);",
-                              "    ",
-                              "});",
-                              "",
-                              "pm.test('Has the correct addresses', function() {",
-                              "   var addresses = jsonData.data.item.addresses;",
-                              "   ",
-                              "   pm.expect(addresses).to.have.length(1);",
-                              "   ",
-                              "   // Todo: Removed the spaces from the address.",
-                              "   var address = {",
-                              "        \"line1\": \"600 Canal Park Dr.\",",
-                              "        \"city\": \"Duluth\",",
-                              "        \"zip\": \"55802\",",
-                              "        \"state\": \"MN\",",
-                              "        \"country\": \"US\"",
-                              "    };",
-                              "    ",
-                              "    address.zip = pm.environment.get('zip');",
-                              "    address.state = pm.environment.get('state');",
-                              "    address.country = pm.environment.get('country');",
-                              "                ",
-                              "    pm.expect(addresses).to.deep.include(address);",
-                              "});"
-                            ],
-                            "type": "text/javascript"
-                          }
-                        }
-                      ],
-                      "request": {
-                        "method": "PUT",
-                        "header": [
-                          {
-                            "key": "api-key",
-                            "value": "{{api_key}}",
-                            "description": "api key"
-                          },
-                          {
-                            "key": "Content-Type",
-                            "value": "application/json"
-                          }
-                        ],
-                        "body": {
-                          "mode": "raw",
-                          "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"M\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
-                        },
-                        "url": {
-                          "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
-                          "host": [
-                            "{{base_url}}{{customers_postfix}}{{customer_key}}"
-                          ],
-                          "query": [
-                            {
-                              "key": "context",
-                              "value": "",
-                              "equals": true,
-                              "disabled": true
-                            }
-                          ]
-                        },
-                        "description": "Test that creates a customer containing two account holders and a single account."
-                      },
-                      "response": []
-                    }
-                  ],
-                  "event": [
-                    {
-                      "listen": "prerequest",
-                      "script": {
-                        "id": "3e26dd8f-3644-4153-a852-4605951c691c",
-                        "type": "text/javascript",
-                        "exec": [
-                          ""
-                        ]
-                      }
-                    },
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "16157d8a-bb24-4521-9dd5-c84afcabb29b",
-                        "type": "text/javascript",
-                        "exec": [
-                          ""
-                        ]
-                      }
-                    }
-                  ],
-                  "_postman_isSubFolder": true
                 }
               ],
               "event": [
@@ -13217,15 +13352,673 @@
                 }
               ],
               "_postman_isSubFolder": true
+            },
+            {
+              "_postman_id": "62d87919-73db-4ebb-a270-5d33e8f3d109",
+              "name": "Targets",
+              "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
+              "item": [
+                {
+                  "_postman_id": "ec07f7dc-aab8-48b9-a7bd-3d7f6cdccc2d",
+                  "name": "Deposits",
+                  "description": "Folder containing the tests that find a deposit target.",
+                  "item": [
+                    {
+                      "_postman_id": "2d81a395-12d2-475e-befb-81fe4a9c3334",
+                      "name": "Target By Name",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "8cd56822-e0af-4fe0-ab14-37c92f907bcd",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": {
+                          "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{deposit_target_name}}&customer={{customer_key}}",
+                          "host": [
+                            "{{base_url}}{{targets_postfix2}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "type",
+                              "value": "deposit",
+                              "equals": true
+                            },
+                            {
+                              "key": "name",
+                              "value": "{{deposit_target_name}}",
+                              "equals": true
+                            },
+                            {
+                              "key": "customer",
+                              "value": "{{customer_key}}",
+                              "equals": true
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "4ab7eec5-9bfc-4fcb-bb1c-b1a45a2a7cf6",
+                      "name": "Target By Id",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "95385dad-0e49-4d91-99f0-52b75fe91ffd",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": "{{base_url}}{{targets_postfix3}}{{deposit_target_id}}{{context_param}}"
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "eb920b3c-4af1-44ff-adf0-be00bc730a89",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "2cbf03b3-7300-4c39-9b0e-6329a580f48b",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                },
+                {
+                  "_postman_id": "b9e88fbd-0f53-4e1f-8dc7-61a64575e657",
+                  "name": "Locations",
+                  "description": "Folder containing the tests that find a target by location.",
+                  "item": [
+                    {
+                      "_postman_id": "99bcd9ed-da5b-4389-aed7-24e4f9457354",
+                      "name": "Target By Location",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "e307f46d-3641-4098-8537-155ae6a1d450",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": {
+                          "raw": "{{base_url}}{{locations_postfix}}?customer={{customer_key}}&name={{location_name}}",
+                          "host": [
+                            "{{base_url}}{{locations_postfix}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "customer",
+                              "value": "{{customer_key}}",
+                              "equals": true
+                            },
+                            {
+                              "key": "name",
+                              "value": "{{location_name}}",
+                              "equals": true
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "987a0848-308e-432b-aa51-aab711ac353b",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "da4426ab-5a69-42b0-bd0d-3eee37b8cf51",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "63dc3038-b599-4e56-b35f-52d562974cbb",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "bcf30ce0-ca6c-424f-86a7-f109d862422e",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "_postman_id": "d7a66037-be7b-406e-bc83-a682fd3b2bdd",
+              "name": "Switches",
+              "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
+              "item": [
+                {
+                  "_postman_id": "e5c7ba3e-3b9e-4397-9e28-a850af6f3725",
+                  "name": "Deposit Using TargetId",
+                  "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a deposit target.",
+                  "item": [
+                    {
+                      "_postman_id": "f4b248cb-db9a-434c-bcee-44b4a926218b",
+                      "name": "Get Switches",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "c3939a64-cc66-468b-b40c-636565c4076b",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}",
+                        "description": "Should return empty list since no switches have been created yet."
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "e4549a27-c065-4c76-9cec-d942dd96b4d1",
+                      "name": "Create Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "043cb44e-3406-4811-8438-c15573415551",
+                      "name": "Get Switch By Id",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "0c8ad97b-fa49-42f4-a004-c4e2e9b39682",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "cc01e775-14f3-48c3-b165-43d5659a0092",
+                      "name": "Update Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "c5e8e6ce-e8e7-459a-9f6c-abfd056f1128",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"type\": \"Deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountHolderIndex\": 0,\r\n  \"values\": {\r\n\t  \"accounts\":[\r\n\t\t{\r\n\t\t\t\"index\": 0\r\n\t\t}\r\n\t],\r\n\t\"fields\": {\r\n        \"Custom_Net or Amount (in dollars)\": \"100\",\r\n        \"Custom_or Percentage of Pay (1 - 100)\": \"100\",\r\n        \"Custom_Depositor's Full Mailing Address\": {\r\n            \"line1\": \"123 Main Street\",\r\n            \"line2\": null,\r\n            \"line3\": null,\r\n            \"city\": \"New York\",\r\n            \"state\": \"NY\",\r\n            \"zip\": \"44444\"\r\n        },\r\n        \"Custom_Employee ID\": \"1234\",\r\n        \"Custom_Last 4 of SSN\": \"1234\"\r\n\t}\r\n  }\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "faab571b-b339-4828-afed-e6c426023a0b",
+                      "name": "Submit Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "bc9a5690-3ae7-4784-a80f-1de7b2c418db",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "ced4f861-8277-417b-b9eb-4a8def465869",
+                      "name": "Cancel Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "e31e73e1-5fd1-4213-82af-00555a6bde53",
+                      "name": "Delete Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "body": {},
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
+                        "description": "\t"
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "537299b4-9cc6-4bc5-a8d6-70384fb437c7",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "20541407-4ed3-49ec-ae9c-66b5bd793f99",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "1f165295-f989-4f43-91f0-c158d2f42c00",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "b0b0fd91-799a-4373-b796-a7ca5b53bee6",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "_postman_isSubFolder": true
             }
           ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "daec6a08-52e7-4196-8cf0-00cd43dd1bc5",
-          "name": "Invalid API Key",
-          "description": "",
-          "item": [],
           "_postman_isSubFolder": true
         },
         {
