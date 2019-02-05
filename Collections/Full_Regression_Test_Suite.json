@@ -12106,6 +12106,175 @@
                         "description": "Test that renames some customer values, adds an account holder and an account to the customer."
                       },
                       "response": []
+                    },
+                    {
+                      "_postman_id": "9ec975a3-258d-46a8-be5e-d2ac44d165a7",
+                      "name": "Update Customer Remove Account",
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "id": "ec257296-6c1d-4c72-9790-2632324427bb",
+                            "exec": [
+                              ""
+                            ],
+                            "type": "text/javascript"
+                          }
+                        },
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "992025da-dba6-4a58-bb10-38a80e9a8724",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "   ",
+                              "pm.test(\"Status code is 200\", function () {",
+                              "    pm.response.to.have.status(200);",
+                              "});",
+                              "",
+                              "pm.test('Has required 1st level elements', function() {",
+                              "    pm.expect(jsonData).to.have.property('data');",
+                              "    pm.expect(jsonData).to.have.property('apiVersion');",
+                              "    pm.expect(jsonData).to.have.property('id');",
+                              "});",
+                              "",
+                              "pm.test('Has required 2nd level elements', function() {",
+                              "    pm.expect(jsonData.data).to.have.property('item');",
+                              "    pm.expect(jsonData.data).to.have.property('kind');",
+                              "    pm.expect(jsonData.data).to.have.property('lang');",
+                              "});",
+                              "",
+                              "pm.test('Has required 3rd level elements', function() {",
+                              "    pm.expect(jsonData.data.item).to.have.property('email');",
+                              "    pm.expect(jsonData.data.item).to.have.property('phoneNumber');",
+                              "    pm.expect(jsonData.data.item).to.have.property('accountHolders');",
+                              "    pm.expect(jsonData.data.item).to.have.property('accounts');",
+                              "    pm.expect(jsonData.data.item).to.have.property('addresses');",
+                              "    pm.expect(jsonData.data.item).to.have.property('metadata');",
+                              "});",
+                              "",
+                              "pm.test('Has the correct kind attribute', function() {",
+                              "   pm.expect(jsonData.data.kind).to.equal('Customer'); ",
+                              "});",
+                              "",
+                              "pm.test('Has the correct email', function() {",
+                              "   var email = jsonData.data.item.email;",
+                              "   var customerEmail = pm.environment.get(\"customer_key\");",
+                              "   pm.expect(email).to.equal(customerEmail + \"123\" + \"@clickswitch.com\")",
+                              "});",
+                              "",
+                              "pm.test('Has the correct phoneNumber', function() {",
+                              "   var phone = jsonData.data.item.phoneNumber;",
+                              "   pm.expect(phone).to.equal(\"2185555123\")",
+                              "});",
+                              "",
+                              "pm.test('Has the correct account holders', function() {",
+                              "   var accountHolders = jsonData.data.item.accountHolders;",
+                              "   ",
+                              "   pm.expect(accountHolders).to.have.length(2);",
+                              "   ",
+                              "   var john = {",
+                              "        \"firstName\": \"Test\",",
+                              "        \"middleInitial\": \"j\",",
+                              "        \"lastName\": \"Test\"",
+                              "    };",
+                              "                ",
+                              "    pm.expect(accountHolders).to.deep.include(john);",
+                              "    ",
+                              "   var jane = {",
+                              "        \"firstName\": \"Test\",",
+                              "        \"middleInitial\": \"m\",",
+                              "        \"lastName\": \"Test\"",
+                              "    };",
+                              "                ",
+                              "    pm.expect(accountHolders).to.deep.include(jane);",
+                              "});",
+                              "",
+                              "pm.test('Has the correct accounts', function() {",
+                              "   var accounts = jsonData.data.item.accounts;",
+                              "   ",
+                              "   pm.expect(accounts).to.have.length(1);",
+                              "   ",
+                              "   var account = {",
+                              "        \"number\": \"\",",
+                              "        \"type\": \"\",",
+                              "        \"name\": \"\",",
+                              "        \"routingNumber\": \"\",",
+                              "        \"index\": 0,",
+                              "        \"metadata\": {}",
+                              "    };",
+                              "    ",
+                              "    // Set the account vars to the values passed in the request body.",
+                              "    account.number = pm.environment.get(\"customer_key\").toString() + \"00\";",
+                              "    account.type = pm.environment.get(\"checking_type\");",
+                              "    account.name = pm.environment.get(\"checking_name\");",
+                              "    account.routingNumber = pm.environment.get(\"routing_number\");",
+                              "    ",
+                              "    pm.expect(accounts).to.deep.include(account);",
+                              "    ",
+                              "});",
+                              "",
+                              "pm.test('Has the correct addresses', function() {",
+                              "   var addresses = jsonData.data.item.addresses;",
+                              "   ",
+                              "   pm.expect(addresses).to.have.length(1);",
+                              "   ",
+                              "  // Todo: Removed the spaces from the address.",
+                              "   var address = {",
+                              "        \"line1\": \"600 Canal Park Dr..\",",
+                              "        \"city\": \"Duluthh\",",
+                              "        \"zip\": \"55833\",",
+                              "        \"state\": \"WI\",",
+                              "        \"country\": \"CA\"",
+                              "    };",
+                              "    ",
+                              "    address.zip = pm.environment.get('zip');",
+                              "    address.state = pm.environment.get('state');",
+                              "    address.country = pm.environment.get('country');",
+                              "                ",
+                              "    pm.expect(addresses).to.deep.include(address);",
+                              "});",
+                              "",
+                              ""
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "api-key",
+                            "value": "{{api_key}}",
+                            "description": "api key"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"m\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                        },
+                        "url": {
+                          "raw": "{{base_url}}{{customers_postfix}}{{customer_key}}",
+                          "host": [
+                            "{{base_url}}{{customers_postfix}}{{customer_key}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "context",
+                              "value": "",
+                              "equals": true,
+                              "disabled": true
+                            }
+                          ]
+                        },
+                        "description": "Test that removes and account from the customer."
+                      },
+                      "response": []
                     }
                   ],
                   "event": [
