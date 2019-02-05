@@ -12805,267 +12805,6 @@
                 }
               ],
               "_postman_isSubFolder": true
-            },
-            {
-              "_postman_id": "62d87919-73db-4ebb-a270-5d33e8f3d109",
-              "name": "Targets Copy",
-              "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
-              "item": [
-                {
-                  "_postman_id": "ec07f7dc-aab8-48b9-a7bd-3d7f6cdccc2d",
-                  "name": "Deposits",
-                  "description": "Folder containing the tests that find a deposit target.",
-                  "item": [
-                    {
-                      "_postman_id": "2d81a395-12d2-475e-befb-81fe4a9c3334",
-                      "name": "Target By Name",
-                      "event": [
-                        {
-                          "listen": "test",
-                          "script": {
-                            "id": "8cd56822-e0af-4fe0-ab14-37c92f907bcd",
-                            "exec": [
-                              "const jsonData = pm.response.json();",
-                              "",
-                              "pm.test(\"Status code is 400\", function() {",
-                              "    pm.response.to.have.status(400);",
-                              "});",
-                              "",
-                              "pm.test(\"Contains the correct error\", function() {",
-                              "    error = {",
-                              "        \"code\": 400,",
-                              "        \"message\": \"The header did not contain the key api-key.\",",
-                              "        \"errors\": [",
-                              "            {",
-                              "                \"message\": \"The header did not contain the key api-key.\"",
-                              "            }",
-                              "        ]",
-                              "    };",
-                              "    ",
-                              "   pm.expect(jsonData.error).to.deep.include(error); ",
-                              "});"
-                            ],
-                            "type": "text/javascript"
-                          }
-                        }
-                      ],
-                      "request": {
-                        "method": "GET",
-                        "header": [],
-                        "body": {
-                          "mode": "raw",
-                          "raw": ""
-                        },
-                        "url": {
-                          "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{deposit_target_name}}&customer={{customer_key}}",
-                          "host": [
-                            "{{base_url}}{{targets_postfix2}}"
-                          ],
-                          "query": [
-                            {
-                              "key": "type",
-                              "value": "deposit",
-                              "equals": true
-                            },
-                            {
-                              "key": "name",
-                              "value": "{{deposit_target_name}}",
-                              "equals": true
-                            },
-                            {
-                              "key": "customer",
-                              "value": "{{customer_key}}",
-                              "equals": true
-                            }
-                          ]
-                        }
-                      },
-                      "response": []
-                    },
-                    {
-                      "_postman_id": "4ab7eec5-9bfc-4fcb-bb1c-b1a45a2a7cf6",
-                      "name": "Target By Id",
-                      "event": [
-                        {
-                          "listen": "test",
-                          "script": {
-                            "id": "95385dad-0e49-4d91-99f0-52b75fe91ffd",
-                            "exec": [
-                              "const jsonData = pm.response.json();",
-                              "",
-                              "pm.test(\"Status code is 400\", function() {",
-                              "    pm.response.to.have.status(400);",
-                              "});",
-                              "",
-                              "pm.test(\"Contains the correct error\", function() {",
-                              "    error = {",
-                              "        \"code\": 400,",
-                              "        \"message\": \"The header did not contain the key api-key.\",",
-                              "        \"errors\": [",
-                              "            {",
-                              "                \"message\": \"The header did not contain the key api-key.\"",
-                              "            }",
-                              "        ]",
-                              "    };",
-                              "    ",
-                              "   pm.expect(jsonData.error).to.deep.include(error); ",
-                              "});"
-                            ],
-                            "type": "text/javascript"
-                          }
-                        }
-                      ],
-                      "request": {
-                        "method": "GET",
-                        "header": [],
-                        "body": {
-                          "mode": "raw",
-                          "raw": ""
-                        },
-                        "url": "{{base_url}}{{targets_postfix3}}{{deposit_target_id}}{{context_param}}"
-                      },
-                      "response": []
-                    }
-                  ],
-                  "event": [
-                    {
-                      "listen": "prerequest",
-                      "script": {
-                        "id": "eb920b3c-4af1-44ff-adf0-be00bc730a89",
-                        "type": "text/javascript",
-                        "exec": [
-                          ""
-                        ]
-                      }
-                    },
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "2cbf03b3-7300-4c39-9b0e-6329a580f48b",
-                        "type": "text/javascript",
-                        "exec": [
-                          ""
-                        ]
-                      }
-                    }
-                  ],
-                  "_postman_isSubFolder": true
-                },
-                {
-                  "_postman_id": "b9e88fbd-0f53-4e1f-8dc7-61a64575e657",
-                  "name": "Locations",
-                  "description": "Folder containing the tests that find a target by location.",
-                  "item": [
-                    {
-                      "_postman_id": "99bcd9ed-da5b-4389-aed7-24e4f9457354",
-                      "name": "Target By Location",
-                      "event": [
-                        {
-                          "listen": "test",
-                          "script": {
-                            "id": "e307f46d-3641-4098-8537-155ae6a1d450",
-                            "exec": [
-                              "const jsonData = pm.response.json();",
-                              "",
-                              "pm.test(\"Status code is 400\", function() {",
-                              "    pm.response.to.have.status(400);",
-                              "});",
-                              "",
-                              "pm.test(\"Contains the correct error\", function() {",
-                              "    error = {",
-                              "        \"code\": 400,",
-                              "        \"message\": \"The header did not contain the key api-key.\",",
-                              "        \"errors\": [",
-                              "            {",
-                              "                \"message\": \"The header did not contain the key api-key.\"",
-                              "            }",
-                              "        ]",
-                              "    };",
-                              "    ",
-                              "   pm.expect(jsonData.error).to.deep.include(error); ",
-                              "});"
-                            ],
-                            "type": "text/javascript"
-                          }
-                        }
-                      ],
-                      "request": {
-                        "method": "GET",
-                        "header": [],
-                        "body": {
-                          "mode": "raw",
-                          "raw": ""
-                        },
-                        "url": {
-                          "raw": "{{base_url}}{{locations_postfix}}?customer={{customer_key}}&name={{location_name}}",
-                          "host": [
-                            "{{base_url}}{{locations_postfix}}"
-                          ],
-                          "query": [
-                            {
-                              "key": "customer",
-                              "value": "{{customer_key}}",
-                              "equals": true
-                            },
-                            {
-                              "key": "name",
-                              "value": "{{location_name}}",
-                              "equals": true
-                            }
-                          ]
-                        }
-                      },
-                      "response": []
-                    }
-                  ],
-                  "event": [
-                    {
-                      "listen": "prerequest",
-                      "script": {
-                        "id": "987a0848-308e-432b-aa51-aab711ac353b",
-                        "type": "text/javascript",
-                        "exec": [
-                          ""
-                        ]
-                      }
-                    },
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "da4426ab-5a69-42b0-bd0d-3eee37b8cf51",
-                        "type": "text/javascript",
-                        "exec": [
-                          ""
-                        ]
-                      }
-                    }
-                  ],
-                  "_postman_isSubFolder": true
-                }
-              ],
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "63dc3038-b599-4e56-b35f-52d562974cbb",
-                    "type": "text/javascript",
-                    "exec": [
-                      ""
-                    ]
-                  }
-                },
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "bcf30ce0-ca6c-424f-86a7-f109d862422e",
-                    "type": "text/javascript",
-                    "exec": [
-                      ""
-                    ]
-                  }
-                }
-              ],
-              "_postman_isSubFolder": true
             }
           ],
           "_postman_isSubFolder": true
@@ -13571,6 +13310,267 @@
                   "listen": "test",
                   "script": {
                     "id": "54c1da51-b04e-49fa-b4fc-a0890d98309a",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "_postman_id": "62d87919-73db-4ebb-a270-5d33e8f3d109",
+              "name": "Targets Copy",
+              "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
+              "item": [
+                {
+                  "_postman_id": "ec07f7dc-aab8-48b9-a7bd-3d7f6cdccc2d",
+                  "name": "Deposits",
+                  "description": "Folder containing the tests that find a deposit target.",
+                  "item": [
+                    {
+                      "_postman_id": "2d81a395-12d2-475e-befb-81fe4a9c3334",
+                      "name": "Target By Name",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "8cd56822-e0af-4fe0-ab14-37c92f907bcd",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": {
+                          "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{deposit_target_name}}&customer={{customer_key}}",
+                          "host": [
+                            "{{base_url}}{{targets_postfix2}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "type",
+                              "value": "deposit",
+                              "equals": true
+                            },
+                            {
+                              "key": "name",
+                              "value": "{{deposit_target_name}}",
+                              "equals": true
+                            },
+                            {
+                              "key": "customer",
+                              "value": "{{customer_key}}",
+                              "equals": true
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "4ab7eec5-9bfc-4fcb-bb1c-b1a45a2a7cf6",
+                      "name": "Target By Id",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "95385dad-0e49-4d91-99f0-52b75fe91ffd",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": "{{base_url}}{{targets_postfix3}}{{deposit_target_id}}{{context_param}}"
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "eb920b3c-4af1-44ff-adf0-be00bc730a89",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "2cbf03b3-7300-4c39-9b0e-6329a580f48b",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                },
+                {
+                  "_postman_id": "b9e88fbd-0f53-4e1f-8dc7-61a64575e657",
+                  "name": "Locations",
+                  "description": "Folder containing the tests that find a target by location.",
+                  "item": [
+                    {
+                      "_postman_id": "99bcd9ed-da5b-4389-aed7-24e4f9457354",
+                      "name": "Target By Location",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "e307f46d-3641-4098-8537-155ae6a1d450",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": {
+                          "raw": "{{base_url}}{{locations_postfix}}?customer={{customer_key}}&name={{location_name}}",
+                          "host": [
+                            "{{base_url}}{{locations_postfix}}"
+                          ],
+                          "query": [
+                            {
+                              "key": "customer",
+                              "value": "{{customer_key}}",
+                              "equals": true
+                            },
+                            {
+                              "key": "name",
+                              "value": "{{location_name}}",
+                              "equals": true
+                            }
+                          ]
+                        }
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "987a0848-308e-432b-aa51-aab711ac353b",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "da4426ab-5a69-42b0-bd0d-3eee37b8cf51",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "63dc3038-b599-4e56-b35f-52d562974cbb",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "bcf30ce0-ca6c-424f-86a7-f109d862422e",
                     "type": "text/javascript",
                     "exec": [
                       ""
