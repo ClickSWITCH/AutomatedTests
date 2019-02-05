@@ -12420,34 +12420,43 @@
                           "listen": "test",
                           "script": {
                             "id": "c3939a64-cc66-468b-b40c-636565c4076b",
+                            "type": "text/javascript",
                             "exec": [
                               "const jsonData = pm.response.json();",
                               "",
-                              "pm.test(\"Status code is 400\", function() {",
-                              "    pm.response.to.have.status(400);",
+                              "pm.test(\"Status code is 200\", function () {",
+                              "    pm.response.to.have.status(200);",
                               "});",
                               "",
-                              "pm.test(\"Contains the correct error\", function() {",
-                              "    error = {",
-                              "        \"code\": 400,",
-                              "        \"message\": \"The header did not contain the key api-key.\",",
-                              "        \"errors\": [",
-                              "            {",
-                              "                \"message\": \"The header did not contain the key api-key.\"",
-                              "            }",
-                              "        ]",
-                              "    };",
-                              "    ",
-                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "pm.test('Has required elements', function() {",
+                              "    pm.expect(jsonData).to.have.property('data');",
+                              "    pm.expect(jsonData).to.have.property('apiVersion');",
+                              "    pm.expect(jsonData).to.have.property('id');",
+                              "    pm.expect(jsonData.data).to.have.property('kind');",
+                              "    pm.expect(jsonData.data).to.have.property('lang');",
+                              "});",
+                              "",
+                              "pm.test('Has the correct context', function() {",
+                              "    pm.expect(jsonData.context).to.equal('testing_context');",
+                              "})",
+                              "",
+                              "pm.test('Has empty array of switches', function() {",
+                              "   pm.expect(jsonData.data.currentItemCount).to.equal(0);",
+                              "   pm.expect(jsonData.data.items).to.be.empty;",
                               "});"
-                            ],
-                            "type": "text/javascript"
+                            ]
                           }
                         }
                       ],
                       "request": {
                         "method": "GET",
-                        "header": [],
+                        "header": [
+                          {
+                            "key": "api-key",
+                            "value": "{{api_key}}",
+                            "description": "Api Key"
+                          }
+                        ],
                         "body": {
                           "mode": "raw",
                           "raw": ""
