@@ -12981,7 +12981,7 @@
             },
             {
               "_postman_id": "e7b1cc3d-12e0-4581-aa4a-d2cccb5e5608",
-              "name": "Customers Copy",
+              "name": "Customers",
               "description": "Folder containing the tests for the PUT `/customers/{customerKey}` and GET `/customers/{customerKey}` routes.",
               "item": [
                 {
@@ -13321,7 +13321,7 @@
             },
             {
               "_postman_id": "62d87919-73db-4ebb-a270-5d33e8f3d109",
-              "name": "Targets Copy",
+              "name": "Targets",
               "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
               "item": [
                 {
@@ -13894,6 +13894,410 @@
                     },
                     {
                       "_postman_id": "e31e73e1-5fd1-4213-82af-00555a6bde53",
+                      "name": "Delete Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "body": {},
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
+                        "description": "\t"
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "537299b4-9cc6-4bc5-a8d6-70384fb437c7",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "20541407-4ed3-49ec-ae9c-66b5bd793f99",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "1f165295-f989-4f43-91f0-c158d2f42c00",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "b0b0fd91-799a-4373-b796-a7ca5b53bee6",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "_postman_id": "47d84c2c-b110-4180-a1f9-574cbf72f648",
+              "name": "Switches Copy Copy",
+              "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
+              "item": [
+                {
+                  "_postman_id": "1de31641-48f4-40ee-afac-6d132708a5d1",
+                  "name": "Deposit Using TargetId",
+                  "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a deposit target.",
+                  "item": [
+                    {
+                      "_postman_id": "253c8313-7cde-4b28-a8ad-44ae1e3c6649",
+                      "name": "Get Switches",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "c3939a64-cc66-468b-b40c-636565c4076b",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}",
+                        "description": "Should return empty list since no switches have been created yet."
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "6483eecc-8ce2-4606-8f4c-ae6b96f2d132",
+                      "name": "Create Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "91c64e43-d16b-4411-81be-9a136bb8f8ec",
+                      "name": "Get Switch By Id",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "0c8ad97b-fa49-42f4-a004-c4e2e9b39682",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "b429b5d9-0086-462f-b943-09470e83fe67",
+                      "name": "Update Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "c5e8e6ce-e8e7-459a-9f6c-abfd056f1128",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"type\": \"Deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountHolderIndex\": 0,\r\n  \"values\": {\r\n\t  \"accounts\":[\r\n\t\t{\r\n\t\t\t\"index\": 0\r\n\t\t}\r\n\t],\r\n\t\"fields\": {\r\n        \"Custom_Net or Amount (in dollars)\": \"100\",\r\n        \"Custom_or Percentage of Pay (1 - 100)\": \"100\",\r\n        \"Custom_Depositor's Full Mailing Address\": {\r\n            \"line1\": \"123 Main Street\",\r\n            \"line2\": null,\r\n            \"line3\": null,\r\n            \"city\": \"New York\",\r\n            \"state\": \"NY\",\r\n            \"zip\": \"44444\"\r\n        },\r\n        \"Custom_Employee ID\": \"1234\",\r\n        \"Custom_Last 4 of SSN\": \"1234\"\r\n\t}\r\n  }\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "063135af-df7e-42d9-b676-2d80623e8781",
+                      "name": "Submit Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "bc9a5690-3ae7-4784-a80f-1de7b2c418db",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "744395d7-060e-40fa-8661-0c25eb6e1224",
+                      "name": "Cancel Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"message\": \"The header did not contain the key api-key.\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"The header did not contain the key api-key.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "f90a7b3f-129b-4c0e-ab76-c7554ba737a7",
                       "name": "Delete Switch",
                       "event": [
                         {
