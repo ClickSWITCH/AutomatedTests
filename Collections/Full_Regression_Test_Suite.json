@@ -3627,7 +3627,7 @@
                       "    };",
                       "    ",
                       "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(uxAccounts); ",
-                      "    pm.expect(jsonData.data.item.ux.fields.length).to.equal(7);",
+                      "    pm.expect(jsonData.data.item.ux.fields.length).to.be.greaterThan(2);",
                       "});",
                       "",
                       "pm.test('Has the correct final action', function() {",
