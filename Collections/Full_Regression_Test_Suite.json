@@ -6315,7 +6315,39 @@
           "_postman_id": "51a3ebc8-1be7-42a5-869f-6334fc1dadd6",
           "name": "Payment using TargetId Copy",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a payment target.",
-          "item": [],
+          "item": [
+            {
+              "_postman_id": "c4f21218-5969-4f3c-9fe4-17b5782fff16",
+              "name": "Delete Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
+                "description": "\t"
+              },
+              "response": []
+            }
+          ],
           "event": [
             {
               "listen": "prerequest",
@@ -6958,37 +6990,6 @@
                   "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "c4f21218-5969-4f3c-9fe4-17b5782fff16",
-              "name": "Delete Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "DELETE",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  }
-                ],
-                "body": {},
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
-                "description": "\t"
               },
               "response": []
             }
