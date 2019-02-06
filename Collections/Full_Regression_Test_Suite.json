@@ -14805,60 +14805,1006 @@
       ]
     },
     {
-      "_postman_id": "3d01456e-b445-44b1-a8b2-32723a63ffaa",
-      "name": "Targets Copy",
-      "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
+      "_postman_id": "5faee9d4-dc5e-43b6-88ab-4217e025995d",
+      "name": "Validation Copy",
+      "description": "",
       "item": [
         {
-          "_postman_id": "f8701c1a-5f89-4693-86d4-d4d851a3708f",
-          "name": "Deposits",
-          "description": "Folder containing the tests that find a deposit target.",
+          "_postman_id": "0808de84-7dc6-445e-9814-1b69de64fc26",
+          "name": "Authentication",
+          "description": "",
           "item": [
             {
-              "_postman_id": "07d6ce14-2e98-4db4-ab3d-038e2434a0c0",
-              "name": "Target By Name",
+              "_postman_id": "991b8e4b-a5ef-421d-abd9-9225183fa016",
+              "name": "Missing api key",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "9c63fdee-f7cb-40c1-aefb-7a3c2bb161fc",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,        ",
+                      "            \"message\": \"The header did not contain the key api-key.\",",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"message\": \"The header did not contain the key api-key.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
+                "description": "Asserts that the GET `/types/switch/statuses` endpoint is returning the correct values."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "dfbf1138-38f6-4715-b403-7ea5ab321837",
+              "name": "Invalid api key",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "9c63fdee-f7cb-40c1-aefb-7a3c2bb161fc",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 401\", function () {",
+                      "    pm.response.to.have.status(401);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 401,",
+                      "            \"message\": \"The api-key header provided was not valid.\",",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"message\": \"The api-key header provided was not valid.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Api Key",
+                    "key": "api-key",
+                    "value": "test"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
+                "description": "Asserts that the GET `/types/switch/statuses` endpoint is returning the correct values."
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "99290f7e-f513-40b4-865a-7a4a248f783a",
+          "name": "Customers",
+          "description": "Folder containing the tests for the PUT `/customers/{customerKey}` and GET `/customers/{customerKey}` routes.",
+          "item": [
+            {
+              "_postman_id": "5ee877b4-3966-4108-ba07-54c2b6b0dd79",
+              "name": "Missing country field",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Addresses[0].Country\",",
+                      "                    \"message\": \"'Country' must not be empty.\"",
+                      "                },",
+                      "                {",
+                      "                    \"reason\": \"Addresses[0].Country\",",
+                      "                    \"message\": \"The length of 'Country' must be at least 2 characters. You entered 0 characters.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "description": "api key"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "1d3920f0-fec7-4952-bf4c-c9c3656f7ec9",
+              "name": "Missing state field",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response;",
+                      "   ",
+                      "   if (!isCanada) {",
+                      "        response = {",
+                      "            \"error\": {",
+                      "                \"code\": 400,",
+                      "                \"errors\": [",
+                      "                    {",
+                      "                        \"reason\": \"Addresses[0].State\",",
+                      "                        \"message\": \"'State' must not be empty.\"",
+                      "                    },",
+                      "                    {",
+                      "                        \"reason\": \"Addresses[0].State\",",
+                      "                        \"message\": \"Must be a valid 2 character state code\"",
+                      "                    }",
+                      "                ]",
+                      "            },",
+                      "            \"apiVersion\": \"3.0.0\",",
+                      "            \"context\": \"testing_context\",",
+                      "            \"id\": \"\"",
+                      "        };",
+                      "   }",
+                      "    else {",
+                      "         response = {",
+                      "            \"error\": {",
+                      "                \"code\": 400,",
+                      "                \"errors\": [",
+                      "                    {",
+                      "                        \"reason\": \"Addresses[0].State\",",
+                      "                        \"message\": \"'State' must not be empty.\"",
+                      "                    },",
+                      "                    {",
+                      "                        \"reason\": \"Addresses[0].State\",",
+                      "                        \"message\": \"Must be a valid 2 character Province or Territory code\"",
+                      "                    }",
+                      "                ]",
+                      "            },",
+                      "            \"apiVersion\": \"3.0.0\",",
+                      "            \"context\": \"testing_context\",",
+                      "            \"id\": \"\"",
+                      "        };",
+                      "    }",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "4c5a5a62-f8c3-459f-afba-fcec082ee80d",
+              "name": "Missing zip field",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response;",
+                      "   ",
+                      "   if (!isCanada) {",
+                      "        response = {",
+                      "            \"error\": {",
+                      "                \"code\": 400,",
+                      "                \"errors\": [",
+                      "                    {",
+                      "                        \"reason\": \"Addresses[0].Zip\",",
+                      "                        \"message\": \"'Zip' must not be empty.\"",
+                      "                    },",
+                      "                    {",
+                      "                        \"reason\": \"Addresses[0].Zip\",",
+                      "                        \"message\": \"Must be in the format 00000 or 00000-0000\"",
+                      "                    }",
+                      "                ]",
+                      "            },",
+                      "            \"apiVersion\": \"3.0.0\",",
+                      "            \"context\": \"testing_context\",",
+                      "            \"id\": \"\"",
+                      "        };",
+                      "   }",
+                      "    else {",
+                      "         response = {",
+                      "            \"error\": {",
+                      "                \"code\": 400,",
+                      "                \"errors\": [",
+                      "                    {",
+                      "                        \"reason\": \"Addresses[0].Zip\",",
+                      "                        \"message\": \"'Zip' must not be empty.\"",
+                      "                    },",
+                      "                    {",
+                      "                        \"reason\": \"Addresses[0].Zip\",",
+                      "                        \"message\": \"Must be a valid postal code\"",
+                      "                    }",
+                      "                ]",
+                      "            },",
+                      "            \"apiVersion\": \"3.0.0\",",
+                      "            \"context\": \"testing_context\",",
+                      "            \"id\": \"\"",
+                      "        };",
+                      "    }",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "c403c2ef-6fb2-48d5-835a-380fbe307c95",
+              "name": "Missing city field",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Addresses[0].City\",",
+                      "                    \"message\": \"'City' must not be empty.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "b1b6d201-b414-4fcf-a0bf-ea1bc054990b",
+              "name": "Missing line1 field",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Addresses[0].Line1\",",
+                      "                    \"message\": \"'Line1' must not be empty.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "b68b8589-f8e2-49e2-b1f8-dc95d8c9f345",
+              "name": "Incorrect routing number",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Accounts\",",
+                      "                    \"message\": \"There is a routing number which is not a routing number of this institution.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}0\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"123 Main Street\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "1688bb77-764f-4368-a05f-1a90c9bf38e4",
+              "name": "Invalid account number",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Accounts[0].Number\",",
+                      "                    \"message\": \"The account must provide a valid account number.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"123 Main Street\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "c815eaa5-aa82-4f13-8707-d20abe8a714c",
+              "name": "Incorrect account type",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Accounts\",",
+                      "                    \"message\": \"There is an account type which is not an account type for this institution.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}s\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"123 Main Street\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "83d2c98d-7b73-4be2-8b0b-64d4e1bb9816",
+              "name": "Incorrect account name",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Accounts\",",
+                      "                    \"message\": \"There is an account name which is not an account name for this institution.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}0\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"123 Main Street\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "c47006c3-37de-4c52-bab1-191919e6d348",
+              "name": "Invalid account holder name",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"AccountHolders[0].LastName\",",
+                      "                    \"message\": \"The last name is required and must not exceed to 50 characters.\"",
+                      "                },",
+                      "                {",
+                      "                    \"reason\": \"AccountHolders[0].FirstName\",",
+                      "                    \"message\": \"The first name is required and must not exceed 50 characters.\"",
+                      "                },",
+                      "                {",
+                      "                    \"reason\": \"AccountHolders[0].MiddleInitial\",",
+                      "                    \"message\": \"The middle initial must not exceed one character.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"context\": \"testing_context\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "api key",
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n        \"middleInitial\": \"Jd\",\n        \"lastName\": \"Testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"123 Main Street\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                "description": "Creates a customer with a single account holder and a single account."
+              },
+              "response": []
+            }
+          ],
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "449fb18f-56cc-434c-b8d2-105b2abfe4bb",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "54c1da51-b04e-49fa-b4fc-a0890d98309a",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "6de8f4e3-1bbf-4dfb-ba20-4751e937bf62",
+          "name": "Targets",
+          "description": "Folder containing the tests for the GET `/targets`, `/targets/{targetId}`, and `/locations` routes.",
+          "item": [
+            {
+              "_postman_id": "f1d652ca-562e-4e16-9f58-60e5a85d7ae1",
+              "name": "Missing name and customer params",
               "event": [
                 {
                   "listen": "test",
                   "script": {
                     "id": "8cd56822-e0af-4fe0-ab14-37c92f907bcd",
-                    "type": "text/javascript",
                     "exec": [
                       "const jsonData = pm.response.json();",
                       "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
                       "});",
                       "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
+                      "                {",
+                      "                    \"reason\": \"Name\",",
+                      "                    \"message\": \"'Name' must not be empty.\"",
+                      "                },",
+                      "                {",
+                      "                    \"reason\": \"Customer\",",
+                      "                    \"message\": \"'Customer' must not be empty.\"",
+                      "                }",
+                      "            ]",
+                      "        },",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"id\": \"\"",
+                      "    };",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
                       "});",
-                      "",
-                      "pm.test('Has some items', function() {",
-                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
-                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    jsonData.data.items.forEach(i => {",
-                      "        pm.expect(i).to.have.property('targetId');",
-                      "        pm.expect(i).to.have.property('name');",
-                      "        pm.expect(i).to.have.property('type');",
-                      "        pm.expect(i.type).to.eql('deposit');",
-                      "    });",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
-                      "});",
-                      "",
-                      "// Set an environment variable to test get target by id next.",
-                      "pm.environment.set(\"deposit_target_id\", jsonData.data.items[0].targetId);"
-                    ]
+                      ""
+                    ],
+                    "type": "text/javascript"
                   }
                 }
               ],
@@ -14876,7 +15822,7 @@
                   "raw": ""
                 },
                 "url": {
-                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{deposit_target_name}}&customer={{customer_key}}",
+                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name=&customer=",
                   "host": [
                     "{{base_url}}{{targets_postfix2}}"
                   ],
@@ -14888,12 +15834,12 @@
                     },
                     {
                       "key": "name",
-                      "value": "{{deposit_target_name}}",
+                      "value": "",
                       "equals": true
                     },
                     {
                       "key": "customer",
-                      "value": "{{customer_key}}",
+                      "value": "",
                       "equals": true
                     }
                   ]
@@ -14902,8 +15848,8 @@
               "response": []
             },
             {
-              "_postman_id": "ca4716da-1eb5-42ec-a830-8dd4c4841bad",
-              "name": "Target By Id",
+              "_postman_id": "ed3b22bb-bc46-49d8-9a90-1baf658a0bab",
+              "name": "Invalid target id",
               "event": [
                 {
                   "listen": "test",
@@ -14911,1067 +15857,30 @@
                     "id": "95385dad-0e49-4d91-99f0-52b75fe91ffd",
                     "exec": [
                       "const jsonData = pm.response.json();",
-                      "const isCanada = pm.environment.get('isCanada') === 'true';",
                       "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
                       "});",
                       "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "    pm.expect(jsonData.data).to.have.property('item');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct context', function() {",
-                      "    pm.expect(jsonData.context).to.equal('testing_context');",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
-                      "    pm.expect(jsonData.data.item).to.have.property('type');",
-                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
-                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type element', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal('deposit'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct categories', function() {",
-                      "    var categories = {",
-                      "        \"key\": \"1\",",
-                      "        \"label\": \"Payroll\"",
-                      "    };  ",
-                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct ux element', function() {",
-                      "    var ux;",
-                      "    if (!isCanada) {",
-                      "        ux = {",
-                      "            \"accounts\": {",
-                      "                \"limit\": 1,",
-                      "                \"maxChecking\": 1,",
-                      "                \"maxSavings\": 1,",
-                      "                \"choices\": [],",
-                      "                \"fields\": []",
-                      "            },",
-                      "            \"fields\": [",
+                      "pm.test('Has the correct error message', function() {",
+                      "   var response = {",
+                      "        \"error\": {",
+                      "            \"code\": 400,",
+                      "            \"errors\": [",
                       "                {",
-                      "                    \"key\": \"Custom_Net or Amount (in dollars)\",",
-                      "                    \"label\": \"Net or Amount (in dollars)\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_or Percentage of Pay (1 - 100)\",",
-                      "                    \"label\": \"or Percentage of Pay (1 - 100)\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Depositor's Full Mailing Address\",",
-                      "                    \"label\": \"Depositor's Full Mailing Address\",",
-                      "                    \"type\": \"composite\",",
-                      "                    \"required\": true,",
-                      "                    \"fields\": [",
-                      "                        {",
-                      "                            \"key\": \"line1\",",
-                      "                            \"label\": \"Line1\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"line2\",",
-                      "                            \"label\": \"Line2\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": false",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"line3\",",
-                      "                            \"label\": \"Line3\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": false",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"city\",",
-                      "                            \"label\": \"City\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"state\",",
-                      "                            \"label\": \"State\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true,",
-                      "                            \"regex\": \"^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$\",",
-                      "                            \"validationMessage\": \"Must be a valid 2 character state code\"",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"zip\",",
-                      "                            \"label\": \"Zip Code\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true,",
-                      "                            \"regex\": \"^\\\\d{5}(-\\\\d{4})?$\",",
-                      "                            \"validationMessage\": \"Must be in the format 00000 or 00000-0000\"",
-                      "                        }",
-                      "                    ]",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Employee ID\",",
-                      "                    \"label\": \"Employee ID\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Last 4 of SSN\",",
-                      "                    \"label\": \"Last 4 of SSN\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": true",
-                      "                }",
-                      "            ]",
-                      "        };",
-                      "    } else {",
-                      "        ux = {",
-                      "            \"accounts\": {",
-                      "                \"limit\": 1,",
-                      "                \"maxChecking\": 1,",
-                      "                \"maxSavings\": 1,",
-                      "                \"choices\": [],",
-                      "                \"fields\": []",
-                      "            },",
-                      "            \"fields\": [",
-                      "                {",
-                      "                    \"key\": \"Custom_Net or Amount (in dollars)\",",
-                      "                    \"label\": \"Net or Amount (in dollars)\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_or Percentage of Pay (1 - 100)\",",
-                      "                    \"label\": \"or Percentage of Pay (1 - 100)\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Depositor's Full Mailing Address\",",
-                      "                    \"label\": \"Depositor's Full Mailing Address\",",
-                      "                    \"type\": \"composite\",",
-                      "                    \"required\": true,",
-                      "                    \"fields\": [",
-                      "                        {",
-                      "                            \"key\": \"line1\",",
-                      "                            \"label\": \"Line1\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"line2\",",
-                      "                            \"label\": \"Line2\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": false",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"line3\",",
-                      "                            \"label\": \"Line3\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": false",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"city\",",
-                      "                            \"label\": \"City\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"state\",",
-                      "                            \"label\": \"Province\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true,",
-                      "                            \"regex\": \"^(N[BLSTU]|[AMN]B|[BQ]C|ON|PE|SK)$\",",
-                      "                            \"validationMessage\": \"Must be a valid 2 character Province or Territory code\"",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"zip\",",
-                      "                            \"label\": \"Postal Code\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true,",
-                      "                            \"regex\": \"^(?!.*[DFIOQU])[A-VXY]\\\\d[A-Z] ?\\\\d[A-Z]\\\\d$\",",
-                      "                            \"validationMessage\": \"Must be a valid postal code\"",
-                      "                        }",
-                      "                    ]",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Employee ID\",",
-                      "                    \"label\": \"Employee ID\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Last 4 of SSN\",",
-                      "                    \"label\": \"Last 4 of SSN\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": true",
-                      "                }",
-                      "            ]",
-                      "        };",
-                      "    }",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct final action', function() {",
-                      "   pm.expect(jsonData.data.item.finalAction).to.equal('submit'); ",
-                      "});",
-                      "",
-                      "",
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": "{{base_url}}{{targets_postfix3}}{{deposit_target_id}}{{context_param}}"
-              },
-              "response": []
-            }
-          ],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "eb920b3c-4af1-44ff-adf0-be00bc730a89",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "id": "2cbf03b3-7300-4c39-9b0e-6329a580f48b",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "18fa9317-fef9-4796-8e23-304a7132ad08",
-          "name": "Deposits Print Only",
-          "description": "Folder containing the tests that find a print only deposit target.",
-          "item": [
-            {
-              "_postman_id": "3219271e-53ee-4198-82fc-de29d1e921bf",
-              "name": "Target By Name",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "0a026d7c-53d9-417c-a1a9-0cc5e523c9f0",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has some items', function() {",
-                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
-                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    jsonData.data.items.forEach(i => {",
-                      "        pm.expect(i).to.have.property('targetId');",
-                      "        pm.expect(i).to.have.property('name');",
-                      "        pm.expect(i).to.have.property('type');",
-                      "        pm.expect(i.type).to.equal('deposit');",
-                      "    });",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
-                      "});",
-                      "",
-                      "// Set an environment variable to test get target by id next.",
-                      "pm.environment.set(\"deposit_print_target_id\", jsonData.data.items[0].targetId);"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{deposit_print_only_name}}&customer={{customer_key}}",
-                  "host": [
-                    "{{base_url}}{{targets_postfix2}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "type",
-                      "value": "deposit",
-                      "equals": true
-                    },
-                    {
-                      "key": "name",
-                      "value": "{{deposit_print_only_name}}",
-                      "equals": true
-                    },
-                    {
-                      "key": "customer",
-                      "value": "{{customer_key}}",
-                      "equals": true
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "1ac10eab-2d5d-4693-8317-09d05e97cf34",
-              "name": "Target By Id",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "22bc35a7-dcc5-4588-a688-b3508d48835b",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "const isCanada = pm.environment.get('isCanada') === 'true';",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "    pm.expect(jsonData.data).to.have.property('item');",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
-                      "    pm.expect(jsonData.data.item).to.have.property('type');",
-                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
-                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type element', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal('deposit'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct categories', function() {",
-                      "    var categories = {",
-                      "        \"key\": \"1\",",
-                      "        \"label\": \"Payroll\"",
-                      "    };  ",
-                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type element', function() {",
-                      "    var ux;",
-                      "    if (!isCanada) {",
-                      "        ux = {",
-                      "            \"accounts\": {",
-                      "                \"limit\": 1,",
-                      "                \"maxChecking\": 1,",
-                      "                \"maxSavings\": 1,",
-                      "                \"choices\": [],",
-                      "                \"fields\": []",
-                      "            },",
-                      "            \"fields\": [",
-                      "                {",
-                      "                    \"key\": \"Custom_Net or Amount (in dollars)\",",
-                      "                    \"label\": \"Net or Amount (in dollars)\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_or Percentage of Pay (1 - 100)\",",
-                      "                    \"label\": \"or Percentage of Pay (1 - 100)\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Depositor's Full Mailing Address\",",
-                      "                    \"label\": \"Depositor's Full Mailing Address\",",
-                      "                    \"type\": \"composite\",",
-                      "                    \"required\": true,",
-                      "                    \"fields\": [",
-                      "                        {",
-                      "                            \"key\": \"line1\",",
-                      "                            \"label\": \"Line1\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"line2\",",
-                      "                            \"label\": \"Line2\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": false",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"line3\",",
-                      "                            \"label\": \"Line3\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": false",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"city\",",
-                      "                            \"label\": \"City\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"state\",",
-                      "                            \"label\": \"State\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true,",
-                      "                            \"regex\": \"^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$\",",
-                      "                            \"validationMessage\": \"Must be a valid 2 character state code\"",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"zip\",",
-                      "                            \"label\": \"Zip Code\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true,",
-                      "                            \"regex\": \"^\\\\d{5}(-\\\\d{4})?$\",",
-                      "                            \"validationMessage\": \"Must be in the format 00000 or 00000-0000\"",
-                      "                        }",
-                      "                    ]",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Employee ID\",",
-                      "                    \"label\": \"Employee ID\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Last 4 of SSN\",",
-                      "                    \"label\": \"Last 4 of SSN\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": true",
-                      "                }",
-                      "            ]",
-                      "        };",
-                      "    } else {",
-                      "        ux = {",
-                      "            \"accounts\": {",
-                      "                \"limit\": 1,",
-                      "                \"maxChecking\": 1,",
-                      "                \"maxSavings\": 1,",
-                      "                \"choices\": [],",
-                      "                \"fields\": []",
-                      "            },",
-                      "            \"fields\": [",
-                      "                {",
-                      "                    \"key\": \"Custom_Net or Amount (in dollars)\",",
-                      "                    \"label\": \"Net or Amount (in dollars)\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_or Percentage of Pay (1 - 100)\",",
-                      "                    \"label\": \"or Percentage of Pay (1 - 100)\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Depositor's Full Mailing Address\",",
-                      "                    \"label\": \"Depositor's Full Mailing Address\",",
-                      "                    \"type\": \"composite\",",
-                      "                    \"required\": true,",
-                      "                    \"fields\": [",
-                      "                        {",
-                      "                            \"key\": \"line1\",",
-                      "                            \"label\": \"Line1\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"line2\",",
-                      "                            \"label\": \"Line2\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": false",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"line3\",",
-                      "                            \"label\": \"Line3\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": false",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"city\",",
-                      "                            \"label\": \"City\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"state\",",
-                      "                            \"label\": \"Province\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true,",
-                      "                            \"regex\": \"^(N[BLSTU]|[AMN]B|[BQ]C|ON|PE|SK)$\",",
-                      "                            \"validationMessage\": \"Must be a valid 2 character Province or Territory code\"",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"zip\",",
-                      "                            \"label\": \"Postal Code\",",
-                      "                            \"type\": \"textbox\",",
-                      "                            \"required\": true,",
-                      "                            \"regex\": \"^(?!.*[DFIOQU])[A-VXY]\\\\d[A-Z] ?\\\\d[A-Z]\\\\d$\",",
-                      "                            \"validationMessage\": \"Must be a valid postal code\"",
-                      "                        }",
-                      "                    ]",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Employee ID\",",
-                      "                    \"label\": \"Employee ID\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Last 4 of SSN\",",
-                      "                    \"label\": \"Last 4 of SSN\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": true",
-                      "                }",
-                      "            ]",
-                      "        };",
-                      "    }",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct final action', function() {",
-                      "   pm.expect(jsonData.data.item.finalAction).to.equal('print'); ",
-                      "});",
-                      "",
-                      "",
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": "{{base_url}}{{targets_postfix3}}{{deposit_print_target_id}}"
-              },
-              "response": []
-            }
-          ],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "1c0ffdb5-8dc3-457a-b310-abeb59957e26",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "id": "495c4015-ece3-4c26-b205-2c9ff1a3dcd9",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "c158dc9b-ee93-4672-b171-5aa31d218149",
-          "name": "Deposits Online Only",
-          "description": "Folder containing the tests that find a online only deposit target.",
-          "item": [
-            {
-              "_postman_id": "c691cb7b-3e12-4dbd-89d5-74c816810d19",
-              "name": "Target By Name",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "96f36281-d983-4cd3-b650-56aef5c60e0c",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has some items', function() {",
-                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
-                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    jsonData.data.items.forEach(i => {",
-                      "        pm.expect(i).to.have.property('targetId');",
-                      "        pm.expect(i).to.have.property('name');",
-                      "        pm.expect(i).to.have.property('type');",
-                      "        pm.expect(i.type).to.equal('deposit');",
-                      "    });",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
-                      "});",
-                      "",
-                      "// Set an environment variable to test get target by id next.",
-                      "pm.environment.set(\"deposit_online_target_id\", jsonData.data.items[0].targetId);"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{deposit_online_only_name}}&customer={{customer_key}}",
-                  "host": [
-                    "{{base_url}}{{targets_postfix2}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "type",
-                      "value": "deposit",
-                      "equals": true
-                    },
-                    {
-                      "key": "name",
-                      "value": "{{deposit_online_only_name}}",
-                      "equals": true
-                    },
-                    {
-                      "key": "customer",
-                      "value": "{{customer_key}}",
-                      "equals": true
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "5a848ab9-aa34-4205-be15-120825853ef5",
-              "name": "Target By Id",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "d5b905ea-437e-4b74-b222-56195e89a5f0",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "    pm.expect(jsonData.data).to.have.property('item');",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
-                      "    pm.expect(jsonData.data.item).to.have.property('type');",
-                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
-                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type element', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal('deposit'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct categories', function() {",
-                      "    var categories = {",
-                      "        \"key\": \"1\",",
-                      "        \"label\": \"Payroll\"",
-                      "    };  ",
-                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type element', function() {",
-                      "    var ux = {",
-                      "        \"fields\": [",
-                      "            {",
-                      "                \"key\": \"instructions\",",
-                      "                \"label\": \"Instructions\",",
-                      "                \"type\": \"html\",",
-                      "                \"body\": \"This is a Test biller. These are Online only instructions.\"",
-                      "            }",
-                      "        ]",
-                      "    };",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct final action', function() {",
-                      "   pm.expect(jsonData.data.item.finalAction).to.equal('complete'); ",
-                      "});",
-                      "",
-                      "",
-                      ""
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": "{{base_url}}{{targets_postfix3}}{{deposit_online_target_id}}"
-              },
-              "response": []
-            }
-          ],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "259129d1-ff5f-4ffb-b5a2-31a9ab9e5b5b",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "id": "03ea0fbb-28d7-4151-94d5-96bd84a56b84",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "e5913a89-6a54-4cbb-990d-0abb05d115b8",
-          "name": "Split Deposits",
-          "description": "Folder containing the tests that finds a split deposit target.",
-          "item": [
-            {
-              "_postman_id": "e7ace8af-0794-4e8d-b0bc-1f73550c2c71",
-              "name": "Target By Name",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "10795ed6-ce38-4565-8bdb-19fc007914ed",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "const isCanada = pm.environment.get('isCanada') === 'true';",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has some items', function() {",
-                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
-                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    jsonData.data.items.forEach(i => {",
-                      "        pm.expect(i).to.have.property('targetId');",
-                      "        pm.expect(i).to.have.property('name');",
-                      "        pm.expect(i).to.have.property('type');",
-                      "        pm.expect(i.type).to.eql('deposit');",
-                      "    });",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
-                      "});",
-                      "",
-                      "// Set an environment variable to test get target by id next.",
-                      "pm.environment.set(\"split_deposit_target_id\", jsonData.data.items[0].targetId);"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{base_url}}{{targets_postfix2}}?type=deposit&name={{split_deposit_name}}&customer={{customer_key}}",
-                  "host": [
-                    "{{base_url}}{{targets_postfix2}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "type",
-                      "value": "deposit",
-                      "equals": true
-                    },
-                    {
-                      "key": "name",
-                      "value": "{{split_deposit_name}}",
-                      "equals": true
-                    },
-                    {
-                      "key": "customer",
-                      "value": "{{customer_key}}",
-                      "equals": true
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "5ac86f6d-a08e-4603-81d5-8d0239058949",
-              "name": "Target By Id",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "e61e303a-619f-4bcf-aa1a-8b5f128fc5bc",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "const isCanada = pm.environment.get('isCanada') === 'true';",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "    pm.expect(jsonData.data).to.have.property('item');",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
-                      "    pm.expect(jsonData.data.item).to.have.property('type');",
-                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
-                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type element', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal('deposit'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct categories', function() {",
-                      "    var categories = {",
-                      "        \"key\": \"1\",",
-                      "        \"label\": \"Payroll\"",
-                      "    };  ",
-                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct ux element', function() {",
-                      "    var ux;",
-                      "    ux = {",
-                      "        \"accounts\": {",
-                      "            \"limit\": 5,",
-                      "            \"maxChecking\": 5,",
-                      "            \"maxSavings\": 5,",
-                      "            \"choices\": [],",
-                      "            \"fields\": [",
-                      "                {",
-                      "                    \"key\": \"splitType\",",
-                      "                    \"label\": \"Type\",",
-                      "                    \"type\": \"select\",",
-                      "                    \"required\": false,",
-                      "                    \"selections\": [",
-                      "                        {",
-                      "                            \"key\": \"remainder\",",
-                      "                            \"label\": \"Remainder\"",
-                      "                        },",
-                      "                        {",
-                      "                            \"key\": \"currency\",",
-                      "                            \"label\": \"$ Amount\"",
-                      "                        }",
-                      "                    ]",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"splitAmount\",",
-                      "                    \"label\": \"Percent or Fixed Amount\",",
-                      "                    \"type\": \"textbox\",",
-                      "                    \"required\": false,",
-                      "                    \"regex\": \"^(1-9\\\\\\\\d*\\\\\\\\.\\\\\\\\d2|(100(.0)?|(0(\\\\\\\\.1-9))|(1-90-9?(\\\\\\\\.\\\\\\\\d)?)))$\",",
-                      "                    \"validationMessage\": \"Must be an amount with 2 decimal places or a whole percentage\"",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Account:Add\",",
-                      "                    \"label\": \"Account Add\",",
-                      "                    \"type\": \"Checkbox\",",
-                      "                    \"required\": false",
-                      "                },",
-                      "                {",
-                      "                    \"key\": \"Custom_Account:Change\",",
-                      "                    \"label\": \"Account Change\",",
-                      "                    \"type\": \"Checkbox\",",
-                      "                    \"required\": false",
+                      "                    \"reason\": \"targetId\",",
+                      "                    \"message\": \"The value 'test' is not valid.\"",
                       "                }",
                       "            ]",
                       "        },",
-                      "        \"fields\": [",
-                      "            {",
-                      "                \"key\": \"Custom_Employee/ID\",",
-                      "                \"label\": \"Employee ID Number (EIN)\",",
-                      "                \"type\": \"textbox\",",
-                      "                \"required\": true",
-                      "            },",
-                      "            {",
-                      "                \"key\": \"Custom_Company/Dept\",",
-                      "                \"label\": \"Agency ID\",",
-                      "                \"type\": \"textbox\",",
-                      "                \"required\": true",
-                      "            }",
-                      "        ]",
+                      "        \"apiVersion\": \"3.0.0\",",
+                      "        \"id\": \"\"",
                       "    };",
-                      "",
-                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux); ",
+                      "    ",
+                      "    jsonData.id = \"\";",
+                      "                ",
+                      "    pm.expect(jsonData).to.eql(response);",
                       "});",
-                      "",
-                      "pm.test('Has the correct final action', function() {",
-                      "   pm.expect(jsonData.data.item.finalAction).to.equal('submit'); ",
-                      "});",
-                      "",
-                      "",
                       ""
                     ],
                     "type": "text/javascript"
@@ -15991,7 +15900,7 @@
                   "mode": "raw",
                   "raw": ""
                 },
-                "url": "{{base_url}}{{targets_postfix3}}{{split_deposit_target_id}}"
+                "url": "{{base_url}}{{targets_postfix3}}test"
               },
               "response": []
             }
@@ -16000,7 +15909,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "8d93cfc3-8c8b-42c1-8d01-71b448777378",
+                "id": "63dc3038-b599-4e56-b35f-52d562974cbb",
                 "type": "text/javascript",
                 "exec": [
                   ""
@@ -16010,7 +15919,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "5a33755b-181b-4d3c-94fe-37e66da9cc7e",
+                "id": "bcf30ce0-ca6c-424f-86a7-f109d862422e",
                 "type": "text/javascript",
                 "exec": [
                   ""
@@ -16021,715 +15930,731 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "e0a3f7ba-6501-4b17-b485-a19bf327851e",
-          "name": "Payments",
-          "description": "Folder containing the tests that find a payment target.",
+          "_postman_id": "f31feb19-1ce4-4bd2-a84e-7ba0aa3ec4c1",
+          "name": "Switches",
+          "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
           "item": [
             {
-              "_postman_id": "f48fdda7-c1bd-4c30-948e-09aba5dccdaf",
-              "name": "Target By Name",
-              "event": [
+              "_postman_id": "b8d781de-8308-43b9-b079-13f6e876c617",
+              "name": "Invalid indices and fields",
+              "description": "",
+              "item": [
                 {
-                  "listen": "test",
-                  "script": {
-                    "id": "47bd635b-41c3-4c34-9f84-4510d828b3c0",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has some items', function() {",
-                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
-                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    jsonData.data.items.forEach(i => {",
-                      "        pm.expect(i).to.have.property('targetId');",
-                      "        pm.expect(i).to.have.property('name');",
-                      "        pm.expect(i).to.have.property('type');",
-                      "        pm.expect(i.type).to.equal('payment');",
-                      "    });",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
-                      "});",
-                      "",
-                      "// Set an environment variable to test get target by id next.",
-                      "pm.environment.set(\"payment_target_id\", jsonData.data.items[0].targetId);"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{base_url}}{{targets_postfix2}}?type=payment&name={{payment_target_name}}&customer={{customer_key}}",
-                  "host": [
-                    "{{base_url}}{{targets_postfix2}}"
-                  ],
-                  "query": [
+                  "_postman_id": "4b6ab967-2a23-440a-acf9-6c60d36a3278",
+                  "name": "Invalid customer key",
+                  "event": [
                     {
-                      "key": "type",
-                      "value": "payment",
-                      "equals": true
-                    },
-                    {
-                      "key": "name",
-                      "value": "{{payment_target_name}}",
-                      "equals": true
-                    },
-                    {
-                      "key": "customer",
-                      "value": "{{customer_key}}",
-                      "equals": true
+                      "listen": "test",
+                      "script": {
+                        "id": "c3939a64-cc66-468b-b40c-636565c4076b",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Customer Not Found\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Customer Not Found\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
                     }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "d4c4cd8c-7815-4db2-b349-b1668d4feb59",
-              "name": "Target By Id",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "c32d0f62-0067-43d3-b4e7-3becab451b1a",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "    pm.expect(jsonData.data).to.have.property('item');",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
-                      "    pm.expect(jsonData.data.item).to.have.property('type');",
-                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
-                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type element', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal('payment'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct categories', function() {",
-                      "    var categories = {",
-                      "        \"key\": \"15\",",
-                      "        \"label\": \"Utility\"",
-                      "    };  ",
-                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct ux element', function() {",
-                      "    var uxAccounts = {",
-                      "        \"limit\": 1,",
-                      "        \"maxChecking\": 1,",
-                      "        \"maxSavings\": 1,",
-                      "        \"choices\": [],",
-                      "        \"fields\": []",
-                      "    };",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(uxAccounts); ",
-                      "    pm.expect(jsonData.data.item.ux.fields.length).to.be.greaterThan(2);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct final action', function() {",
-                      "   pm.expect(jsonData.data.item.finalAction).to.equal('submit'); ",
-                      "});",
-                      "",
-                      "",
-                      ""
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Api Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      }
                     ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}test{{switches_postfix}}",
+                    "description": "Should return empty list since no switches have been created yet."
+                  },
+                  "response": []
                 },
-                "url": "{{base_url}}{{targets_postfix3}}{{payment_target_id}}"
-              },
-              "response": []
-            }
-          ],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "e9500365-9511-4bf2-95b4-ea818babc929",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "id": "2e67aca5-900e-43bc-8111-59c6c7ae6ade",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "3f1fc713-ba84-4197-9e47-b557a370c0ed",
-          "name": "Payments Print Only",
-          "description": "Folder containing the tests that find a print only payment target.",
-          "item": [
-            {
-              "_postman_id": "f07e742f-d34d-47d0-96e2-420b7dcea195",
-              "name": "Target By Name",
-              "event": [
                 {
-                  "listen": "test",
-                  "script": {
-                    "id": "bda6b21d-4ac8-4bf0-84ca-5a5b57d7905b",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has some items', function() {",
-                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
-                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    jsonData.data.items.forEach(i => {",
-                      "        pm.expect(i).to.have.property('targetId');",
-                      "        pm.expect(i).to.have.property('name');",
-                      "        pm.expect(i).to.have.property('type');",
-                      "        pm.expect(i.type).to.equal('payment');",
-                      "    });",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
-                      "});",
-                      "",
-                      "// Set an environment variable to test get target by id next.",
-                      "pm.environment.set(\"payment_print_target_id\", jsonData.data.items[0].targetId);"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{base_url}}{{targets_postfix2}}?type=payment&name={{payment_print_only}}&customer={{customer_key}}",
-                  "host": [
-                    "{{base_url}}{{targets_postfix2}}"
-                  ],
-                  "query": [
+                  "_postman_id": "c8cbea40-5902-41b9-922a-33939301a56c",
+                  "name": "Create switch - invalid target id",
+                  "event": [
                     {
-                      "key": "type",
-                      "value": "payment",
-                      "equals": true
-                    },
-                    {
-                      "key": "name",
-                      "value": "{{payment_print_only}}",
-                      "equals": true
-                    },
-                    {
-                      "key": "customer",
-                      "value": "{{customer_key}}",
-                      "equals": true
+                      "listen": "test",
+                      "script": {
+                        "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 400\", function () {",
+                          "    pm.response.to.have.status(400);",
+                          "});",
+                          "",
+                          "// TODO: Fix this test",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "  var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 400,",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"reason\": \"TargetId\",",
+                          "                    \"message\": \"Invalid target id\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
                     }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "6ce9fcd9-433d-4d6c-b989-07e8b260ef93",
-              "name": "Target By Id",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "77525ab5-0ef7-4dae-b49e-71380f5a4f2a",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "    pm.expect(jsonData.data).to.have.property('item');",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
-                      "    pm.expect(jsonData.data.item).to.have.property('type');",
-                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
-                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type element', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal('payment'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct categories', function() {",
-                      "    var categories = {",
-                      "        \"key\": \"15\",",
-                      "        \"label\": \"Utility\"",
-                      "    };  ",
-                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct ux element', function() {",
-                      "    var uxAccounts = {",
-                      "        \"limit\": 1,",
-                      "        \"maxChecking\": 1,",
-                      "        \"maxSavings\": 1,",
-                      "        \"choices\": [],",
-                      "        \"fields\": []",
-                      "    };",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.ux.accounts).to.deep.include(uxAccounts); ",
-                      "    pm.expect(jsonData.data.item.ux.fields.length).to.be.greaterThan(2);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct final action', function() {",
-                      "   pm.expect(jsonData.data.item.finalAction).to.equal('print'); ",
-                      "});",
-                      "",
-                      "",
-                      ""
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Api-Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
                     ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"1234567890\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+                  },
+                  "response": []
                 },
-                "url": "{{base_url}}{{targets_postfix3}}{{payment_print_target_id}}"
-              },
-              "response": []
-            }
-          ],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "e8695ee9-2ce3-4b07-9c0f-18f591e4c942",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "id": "b40855f1-9802-40df-b929-318cfc0de191",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "2bab3536-540a-4d34-ae29-1b6a66c317b0",
-          "name": "Payments Online Only",
-          "description": "Folder containing the tests that find an online only payment target.",
-          "item": [
-            {
-              "_postman_id": "f33b2538-243c-4412-8650-ad513c01e237",
-              "name": "Target By Name",
-              "event": [
                 {
-                  "listen": "test",
-                  "script": {
-                    "id": "2e64aea4-1175-4ff1-ad86-1a0886f45ec0",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has some items', function() {",
-                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
-                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    jsonData.data.items.forEach(i => {",
-                      "        pm.expect(i).to.have.property('targetId');",
-                      "        pm.expect(i).to.have.property('name');",
-                      "        pm.expect(i).to.have.property('type');",
-                      "        pm.expect(i.type).to.equal('payment');",
-                      "    });",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('types#targets'); ",
-                      "});",
-                      "",
-                      "// Set an environment variable to test get target by id next.",
-                      "pm.environment.set(\"payments_online_target_id\", jsonData.data.items[0].targetId);"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{base_url}}{{targets_postfix2}}?type=payment&name={{payment_online_only}}&customer={{customer_key}}",
-                  "host": [
-                    "{{base_url}}{{targets_postfix2}}"
-                  ],
-                  "query": [
+                  "_postman_id": "b495d6a2-465b-4f20-b12d-547cad9cc07a",
+                  "name": "Create switch - invalid type",
+                  "event": [
                     {
-                      "key": "type",
-                      "value": "payment",
-                      "equals": true
-                    },
-                    {
-                      "key": "name",
-                      "value": "{{payment_online_only}}",
-                      "equals": true
-                    },
-                    {
-                      "key": "customer",
-                      "value": "{{customer_key}}",
-                      "equals": true
+                      "listen": "test",
+                      "script": {
+                        "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 400\", function () {",
+                          "    pm.response.to.have.status(400);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 400,",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"reason\": \"Type\",",
+                          "                    \"message\": \"Invalid type provided.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
                     }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "002d4ca6-f686-40c8-a035-d800b3f736b7",
-              "name": "Target By Id",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "76f0cfa0-2c33-4ebf-a49b-349cd95ff332",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "    pm.expect(jsonData.data).to.have.property('item');",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    pm.expect(jsonData.data.item).to.have.property('targetId');",
-                      "    pm.expect(jsonData.data.item).to.have.property('name');",
-                      "    pm.expect(jsonData.data.item).to.have.property('type');",
-                      "    pm.expect(jsonData.data.item).to.have.property('finalAction');",
-                      "    pm.expect(jsonData.data.item).to.have.property('ux');",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('target'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type element', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal('payment'); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct categories', function() {",
-                      "    var categories = {",
-                      "        \"key\": \"15\",",
-                      "        \"label\": \"Utility\"",
-                      "    };  ",
-                      "    pm.expect(jsonData.data.item.categories).to.deep.include(categories); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct type element', function() {",
-                      "    var ux = {",
-                      "        \"fields\": [",
-                      "            {",
-                      "                \"key\": \"instructions\",",
-                      "                \"label\": \"Instructions\",",
-                      "                \"type\": \"html\",",
-                      "                \"body\": \"This is a test Biller. These are Online Only instructions.\"",
-                      "            }",
-                      "        ]",
-                      "    };",
-                      "    ",
-                      "    pm.expect(jsonData.data.item.ux).to.deep.include(ux); ",
-                      "});",
-                      "",
-                      "pm.test('Has the correct final action', function() {",
-                      "   pm.expect(jsonData.data.item.finalAction).to.equal('complete'); ",
-                      "});",
-                      "",
-                      "",
-                      ""
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}",
-                    "description": "Api Key"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": "{{base_url}}{{targets_postfix3}}{{payments_online_target_id}}"
-              },
-              "response": []
-            }
-          ],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "e0f4761e-690b-4320-8652-aba30853e02e",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "id": "a2f4ff74-89c0-4623-bd15-833450903b61",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "_postman_id": "044e91a8-e1b4-484b-ab92-0cdf83e5e0e1",
-          "name": "Locations",
-          "description": "Folder containing the tests that find a target by location.",
-          "item": [
-            {
-              "_postman_id": "b69fae33-d475-4d76-ae6d-9f9e688c920c",
-              "name": "Target By Location",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "e307f46d-3641-4098-8537-155ae6a1d450",
-                    "type": "text/javascript",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has required elements', function() {",
-                      "    pm.expect(jsonData).to.have.property('data');",
-                      "    pm.expect(jsonData).to.have.property('apiVersion');",
-                      "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData.data).to.have.property('kind');",
-                      "    pm.expect(jsonData.data).to.have.property('lang');",
-                      "});",
-                      "",
-                      "pm.test('Has at least one item', function() {",
-                      "   pm.expect(jsonData.data.currentItemCount).to.be.above(0);",
-                      "   pm.expect(jsonData.data.items.length).to.be.above(0);",
-                      "});",
-                      "",
-                      "pm.test('Has required inner elements', function() {",
-                      "    jsonData.data.items.forEach(i => {",
-                      "       pm.expect(i).to.have.property('locationId');",
-                      "       pm.expect(i).to.have.property('name');",
-                      "       pm.expect(i).to.have.property('address');",
-                      "    });",
-                      "});",
-                      "",
-                      "pm.test('Has the correct kind attribute', function() {",
-                      "   pm.expect(jsonData.data.kind).to.equal('location'); ",
-                      "});",
-                      "",
-                      "pm.environment.set(\"location_id\", jsonData.data.items[0].locationId);"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{base_url}}{{locations_postfix}}?customer={{customer_key}}&name={{location_name}}",
-                  "host": [
-                    "{{base_url}}{{locations_postfix}}"
                   ],
-                  "query": [
-                    {
-                      "key": "customer",
-                      "value": "{{customer_key}}",
-                      "equals": true
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Api-Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"type\": \"\",\r\n  \"targetId\": \"1234567890\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
                     },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "9fc1a4ce-6f01-42b9-9aab-36391f519aab",
+                  "name": "Create switch - invalid accountHolderIndex",
+                  "event": [
                     {
-                      "key": "name",
-                      "value": "{{location_name}}",
-                      "equals": true
+                      "listen": "test",
+                      "script": {
+                        "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 400\", function () {",
+                          "    pm.response.to.have.status(400);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 400,",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"reason\": \"AccountHolderIndex\",",
+                          "                    \"message\": \"Invalid account holder index\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
                     }
-                  ]
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Api-Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 15\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "4465b765-63f8-4b22-9b56-711a3c19b8a5",
+                  "name": "Invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "0c8ad97b-fa49-42f4-a004-c4e2e9b39682",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Api Key",
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "32d22a5b-4efd-4e21-a260-4cbe88377073",
+                  "name": "Invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "c5e8e6ce-e8e7-459a-9f6c-abfd056f1128",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Net or Amount (in dollars)\": \"500\",\r\n      \"Custom_or Percentage of Pay (1 - 100)\": \"50\",\r\n      \"Custom_Last 4 of SSN\": \"1234\",\r\n      \"Custom_Employee ID\": \"123\",\r\n      \"Custom_Depositor's Full Mailing Address\": \"123 Main Street\"\r\n    }\r\n  }\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "74259015-6b3c-4871-bdda-cbea3ff4c0a4",
+                  "name": "Submit Switch - invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "bc9a5690-3ae7-4784-a80f-1de7b2c418db",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11/action"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "e2558914-0ba6-4693-88de-943ede1fca5a",
+                  "name": "Cancel Switch- invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11/action"
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "857ee693-b430-4aaa-97df-ffc3140811ff",
+                  "name": "Delete Switch - invalid switch index",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 404\", function () {",
+                          "    pm.response.to.have.status(404);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct error message', function() {",
+                          "   var response = {",
+                          "        \"error\": {",
+                          "            \"code\": 404,",
+                          "            \"message\": \"Switch with index 11 for customer  does not exist.\",",
+                          "            \"errors\": [",
+                          "                {",
+                          "                    \"message\": \"Switch with index 11 for customer  does not exist.\"",
+                          "                }",
+                          "            ]",
+                          "        },",
+                          "        \"apiVersion\": \"3.0.0\",",
+                          "        \"id\": \"\"",
+                          "    };",
+                          "    ",
+                          "    jsonData.id = \"\";",
+                          "    response.error.message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "    response.error.errors[0].message = \"Switch with index 11 for customer \" + pm.environment.get(\"customer_key\") + \" does not exist.\";",
+                          "                ",
+                          "    pm.expect(jsonData).to.eql(response);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}"
+                      }
+                    ],
+                    "body": {},
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/11",
+                    "description": "\t"
+                  },
+                  "response": []
                 }
-              },
-              "response": []
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "_postman_id": "86e400a3-f134-4f0d-8112-d9bb4ecdf757",
+              "name": "Large Field Values",
+              "description": "",
+              "item": [
+                {
+                  "_postman_id": "f2f23edd-3d3b-4eae-a021-ccfc22fb7db5",
+                  "name": "Create Switch - Huge value for field",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 200\", function () {",
+                          "    pm.response.to.have.status(200);",
+                          "});",
+                          "",
+                          "pm.test('Has required elements', function() {",
+                          "    pm.expect(jsonData).to.have.property('data');",
+                          "    pm.expect(jsonData).to.have.property('apiVersion');",
+                          "    pm.expect(jsonData).to.have.property('id');",
+                          "    pm.expect(jsonData.data).to.have.property('kind');",
+                          "    pm.expect(jsonData.data).to.have.property('lang');",
+                          "});",
+                          "",
+                          "pm.test('Has required 2nd level elements', function() {",
+                          "    pm.expect(jsonData.data.item).to.have.property('index');",
+                          "    pm.expect(jsonData.data.item).to.have.property('type');",
+                          "    pm.expect(jsonData.data.item).to.have.property('targetId');",
+                          "    pm.expect(jsonData.data.item).to.have.property('name');",
+                          "    pm.expect(jsonData.data.item).to.have.property('accountHolderIndex');",
+                          "    pm.expect(jsonData.data.item).to.have.property('values');",
+                          "    pm.expect(jsonData.data.item).to.have.property('ux');",
+                          "    pm.expect(jsonData.data.item).to.have.property('state');",
+                          "});",
+                          "",
+                          "pm.test('Has the correct values element', function() {",
+                          "   var values = {",
+                          "        \"accounts\": [",
+                          "            {",
+                          "                \"index\": 0,",
+                          "                \"fields\": {",
+                          "                    \"splitAmount\": null,",
+                          "                    \"splitType\": null",
+                          "                }",
+                          "            }",
+                          "        ],",
+                          "        \"fields\": {",
+                          "            \"Custom_Net or Amount (in dollars)\": null,",
+                          "            \"Custom_or Percentage of Pay (1 - 100)\": null,",
+                          "            \"Custom_Depositor's Full Mailing Address\": {",
+                          "                \"line1\": null,",
+                          "                \"line2\": null,",
+                          "                \"line3\": null,",
+                          "                \"city\": null,",
+                          "                \"state\": null,",
+                          "                \"zip\": null",
+                          "            },",
+                          "            \"Custom_Employee ID\": \"This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence a\",",
+                          "            \"Custom_Last 4 of SSN\": \"This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence a\"",
+                          "        }",
+                          "    };",
+                          "    ",
+                          "    pm.expect(jsonData.data.item.values).to.deep.include(values);",
+                          "});",
+                          "",
+                          "pm.test('Has matching values and ux.fields names', function() {",
+                          "   var values = jsonData.data.item.values.fields;",
+                          "   var ux = jsonData.data.item.ux.fields;",
+                          "   ",
+                          "   var getValueKeys = function(object, array) {",
+                          "       for (var k in object) {",
+                          "           if (typeof object[k] === 'object' && object[k] !== null) {",
+                          "               for (var i in object[k]) array.push(i);",
+                          "           } else {",
+                          "               array.push(k);",
+                          "           }",
+                          "       } ",
+                          "   };",
+                          "   ",
+                          "    var getUxKeys = function(object, array) {",
+                          "        for (var k in object) {",
+                          "           if (object[k].hasOwnProperty('fields')) {",
+                          "                for (var i in object[k].fields) {",
+                          "                   array.push(object[k].fields[i].key);",
+                          "                }",
+                          "           } else {",
+                          "              array.push(object[k].key);",
+                          "           }",
+                          "        } ",
+                          "    };",
+                          "   ",
+                          "    var valueKeys = [];",
+                          "    var uxKeys = [];",
+                          "    ",
+                          "    getValueKeys(values, valueKeys);",
+                          "    getUxKeys(ux, uxKeys);",
+                          "   ",
+                          "   valueKeys.sort();",
+                          "   uxKeys.sort();",
+                          "   ",
+                          "   pm.expect(valueKeys).to.eql(uxKeys);",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "api-key",
+                        "value": "{{api_key}}",
+                        "description": "Api-Key"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"index\": 1,\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n      \"Custom_Last 4 of SSN\": \"This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. \",\r\n      \"Custom_Employee ID\": \"This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. This is a really long sentence and I am curious about where it will get cut off at. \"\r\n    }\r\n  }\r\n}"
+                    },
+                    "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
+                  },
+                  "response": []
+                }
+              ],
+              "_postman_isSubFolder": true
             }
           ],
           "event": [
             {
               "listen": "prerequest",
               "script": {
-                "id": "987a0848-308e-432b-aa51-aab711ac353b",
+                "id": "1f165295-f989-4f43-91f0-c158d2f42c00",
                 "type": "text/javascript",
                 "exec": [
                   ""
@@ -16739,7 +16664,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "da4426ab-5a69-42b0-bd0d-3eee37b8cf51",
+                "id": "b0b0fd91-799a-4373-b796-a7ca5b53bee6",
                 "type": "text/javascript",
                 "exec": [
                   ""
@@ -16748,28 +16673,6 @@
             }
           ],
           "_postman_isSubFolder": true
-        }
-      ],
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "63dc3038-b599-4e56-b35f-52d562974cbb",
-            "type": "text/javascript",
-            "exec": [
-              ""
-            ]
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "id": "bcf30ce0-ca6c-424f-86a7-f109d862422e",
-            "type": "text/javascript",
-            "exec": [
-              ""
-            ]
-          }
         }
       ]
     }
