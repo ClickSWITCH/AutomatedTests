@@ -6312,147 +6312,6 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "51a3ebc8-1be7-42a5-869f-6334fc1dadd6",
-          "name": "Payment using TargetId Copy",
-          "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a payment target.",
-          "item": [
-            {
-              "_postman_id": "909409a0-a54f-4001-8d41-5ed11300bcca",
-              "name": "Cancel Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "const isCanada = pm.environment.get('isCanada') === 'true';",
-                      "",
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test('Has the correct state', function() {",
-                      "    var state;",
-                      "    if (!isCanada) {",
-                      "        state = {",
-                      "            \"status\": \"Canceled\",",
-                      "            \"actions\": [",
-                      "                \"Uncancel\",",
-                      "                \"HTTP-DELETE\"",
-                      "            ],",
-                      "            \"validation\": {",
-                      "                \"accounts\": [],",
-                      "                \"fields\": {},",
-                      "                \"overall\": []",
-                      "            }",
-                      "    };",
-                      "    } else {",
-                      "        state = {",
-                      "            \"status\": \"Canceled\",",
-                      "            \"actions\": [",
-                      "                \"Uncancel\",",
-                      "                \"HTTP-DELETE\"",
-                      "            ],",
-                      "            \"validation\": {",
-                      "                \"accounts\": [],",
-                      "                \"fields\": {",
-                      "                    \"state\": \"Must be a valid 2 character Province or Territory code\",",
-                      "                    \"zip\": \"Must be a valid postal code\"",
-                      "                },",
-                      "                \"overall\": []",
-                      "            }",
-                      "        };",
-                      "    }",
-                      "    ",
-                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
-                      "});"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
-                },
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
-              },
-              "response": []
-            },
-            {
-              "_postman_id": "c4f21218-5969-4f3c-9fe4-17b5782fff16",
-              "name": "Delete Switch",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
-                    "type": "text/javascript",
-                    "exec": [
-                      "pm.test(\"Status code is 200\", function () {",
-                      "    pm.response.to.have.status(200);",
-                      "});"
-                    ]
-                  }
-                }
-              ],
-              "request": {
-                "method": "DELETE",
-                "header": [
-                  {
-                    "key": "api-key",
-                    "value": "{{api_key}}"
-                  }
-                ],
-                "body": {},
-                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
-                "description": "\t"
-              },
-              "response": []
-            }
-          ],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "124087d6-e09d-423f-8de8-8bf6d7527b20",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "id": "3734194b-9f59-44f8-a3ae-791431a0e491",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
           "_postman_id": "657bc9df-97c7-4163-812b-db6f849feba8",
           "name": "Split Deposits",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete a split deposit target switch.",
@@ -6497,7 +6356,7 @@
                       "});",
                       "",
                       "pm.test('Has the correct type', function() {",
-                      "   pm.expect(jsonData.data.item.type).to.equal(\"Payment\");",
+                      "   pm.expect(jsonData.data.item.type).to.equal(\"Deposit\");",
                       "});",
                       "",
                       "pm.test('Has the correct targetId', function() {",
@@ -6696,7 +6555,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{split_deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}"
               },
@@ -6990,6 +6849,117 @@
                   "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "909409a0-a54f-4001-8d41-5ed11300bcca",
+              "name": "Cancel Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "9b4982a1-c3ae-4b11-9f97-6ccd09edb375",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "const isCanada = pm.environment.get('isCanada') === 'true';",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has the correct state', function() {",
+                      "    var state;",
+                      "    if (!isCanada) {",
+                      "        state = {",
+                      "            \"status\": \"Canceled\",",
+                      "            \"actions\": [",
+                      "                \"Uncancel\",",
+                      "                \"HTTP-DELETE\"",
+                      "            ],",
+                      "            \"validation\": {",
+                      "                \"accounts\": [],",
+                      "                \"fields\": {},",
+                      "                \"overall\": []",
+                      "            }",
+                      "    };",
+                      "    } else {",
+                      "        state = {",
+                      "            \"status\": \"Canceled\",",
+                      "            \"actions\": [",
+                      "                \"Uncancel\",",
+                      "                \"HTTP-DELETE\"",
+                      "            ],",
+                      "            \"validation\": {",
+                      "                \"accounts\": [],",
+                      "                \"fields\": {",
+                      "                    \"state\": \"Must be a valid 2 character Province or Territory code\",",
+                      "                    \"zip\": \"Must be a valid postal code\"",
+                      "                },",
+                      "                \"overall\": []",
+                      "            }",
+                      "        };",
+                      "    }",
+                      "    ",
+                      "   pm.expect(jsonData.data.item.state).to.deep.include(state);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Cancel\"\r\n}"
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action"
+              },
+              "response": []
+            },
+            {
+              "_postman_id": "c4f21218-5969-4f3c-9fe4-17b5782fff16",
+              "name": "Delete Switch",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}"
+                  }
+                ],
+                "body": {},
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
+                "description": "\t"
               },
               "response": []
             }
