@@ -6960,8 +6960,6 @@
                       "            \"validation\": {",
                       "                \"accounts\": [],",
                       "                \"fields\": {",
-                      "                    \"state\": \"Must be a valid 2 character Province or Territory code\",",
-                      "                    \"zip\": \"Must be a valid postal code\"",
                       "                },",
                       "                \"overall\": []",
                       "            }",
