@@ -6808,7 +6808,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ],\r\n    \"fields\": {\r\n    \t\"Custom_Employee/ID\": 1234,\r\n    \t\"Custom_Company/Dept\": \"Testing\"\r\n    }\r\n  }\r\n}"
+                  "raw": "{\r\n  \"type\": \"payment\",\r\n  \"targetId\": \"{{payment_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0,\r\n        \"fields\": {\r\n        \t\"splitAmount\": 0,\r\n        \t\"splitType\": \"Percentage\"\r\n        }\r\n      }\r\n    ],\r\n    \"fields\": {\r\n    \t\"Custom_Employee/ID\": 1234,\r\n    \t\"Custom_Company/Dept\": \"Testing\"\r\n    }\r\n  }\r\n}"
                 },
                 "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1"
               },
