@@ -6312,35 +6312,6 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "51a3ebc8-1be7-42a5-869f-6334fc1dadd6",
-          "name": "Payment using TargetId Copy",
-          "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a payment target.",
-          "item": [],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "124087d6-e09d-423f-8de8-8bf6d7527b20",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "id": "3734194b-9f59-44f8-a3ae-791431a0e491",
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
           "_postman_id": "657bc9df-97c7-4163-812b-db6f849feba8",
           "name": "Split Deposits",
           "description": "Folder containing the tests that create, update, submit, cancel, and delete a split deposit target switch.",
