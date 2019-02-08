@@ -15509,6 +15509,567 @@
           "_postman_isSubFolder": true
         },
         {
+          "_postman_id": "95aef071-d692-4e64-b99b-fe83a3a9383f",
+          "name": "Different Institution API Key Copy",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "1e5004a2-a587-4db0-b0d1-8c08dea678c2",
+              "name": "Customers",
+              "description": "Folder containing the tests for the PUT `/customers/{customerKey}` and GET `/customers/{customerKey}` routes.",
+              "item": [
+                {
+                  "_postman_id": "934a35e8-741d-4e74-9c4f-60aa61739f93",
+                  "name": "Single Customer Single Account",
+                  "description": "Folder containing the test that creates a customer with a single account holder and a single account.",
+                  "item": [
+                    {
+                      "_postman_id": "0ca8fdcd-5339-4248-84cb-4c5d3a01dbe6",
+                      "name": "Create Customer",
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "id": "fae585af-f112-4ea2-adda-5a5eb1d428a0",
+                            "exec": [
+                              "var timestamp = Date.now();",
+                              "",
+                              "var randomString = makeRandomString();",
+                              "",
+                              "// Set the timestamp to environment vars to create an unique",
+                              "// customer on each test run.",
+                              "pm.environment.set(\"customer_key\", timestamp);",
+                              "",
+                              "pm.environment.set(\"customer_name\", randomString);",
+                              "",
+                              "// Creates a random string of length 10.",
+                              "function makeRandomString() {",
+                              "  var text = \"\";",
+                              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                              "",
+                              "  for (var i = 0; i < 10; i++)",
+                              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+                              "",
+                              "  return text;",
+                              "}",
+                              ""
+                            ],
+                            "type": "text/javascript"
+                          }
+                        },
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "d026f72b-05ea-4b78-a9ac-5d086054de5e",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "api-key",
+                            "value": "{{wrong_api_key}}",
+                            "type": "text"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n\t\"customerKey\": \"{{customer_key}}\",\n    \"email\": \"{{customer_key}}@clickswitch.com\",\n    \"phoneNumber\": \"2185555555\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"{{customer_name}}\",\n        \"middleInitial\": \"J\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr.\",\n            \"city\": \"Duluth\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{context_param}}",
+                        "description": "Creates a customer with a single account holder and a single account."
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "bab9f974-75c8-4842-b62a-e2a76d1cdfdc",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "1d82a45a-23f0-4aa2-b48b-1361f377084e",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                },
+                {
+                  "_postman_id": "e6bbae95-d827-4eca-a2a0-fa2c19214777",
+                  "name": "Update Customer",
+                  "description": "Folder containing the tests that update the created customer by adding and removing account holders, accounts, and renaming customer fields.",
+                  "item": [
+                    {
+                      "_postman_id": "2e614b62-2e4b-4761-ba6c-654ded4eede9",
+                      "name": "Update Customer Rename Values",
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "id": "ec257296-6c1d-4c72-9790-2632324427bb",
+                            "exec": [
+                              ""
+                            ],
+                            "type": "text/javascript"
+                          }
+                        },
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "2d9c74b1-ba33-4165-a4a5-f11907b6773f",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "api-key",
+                            "value": "{{wrong_api_key}}",
+                            "type": "text"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n    \"email\": \"{{customer_key}}123@clickswitch.com\",\n    \"phoneNumber\": \"2185555123\",\n    \"accountHolders\" : [\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"j\",\n        \"lastName\": \"Test\"\n        },\n        {\n        \"firstName\": \"Test\",\n        \"middleInitial\": \"m\",\n        \"lastName\": \"Test\"\n        }\n    ],\n    \"accounts\": [\n        {\n        \"number\": \"{{customer_key}}00\",\n        \"type\": \"{{checking_type}}\",\n        \"name\": \"{{checking_name}}\",\n        \"routingNumber\": \"{{routing_number}}\"\n        },\n        {\n        \"number\": \"{{customer_key}}000\",\n        \"type\": \"{{savings_type}}\",\n        \"name\": \"{{savings_name}}\",\n        \"routingNumber\": \"{{routing_number_2}}\"\n        }\n    ],\n    \"addresses\": [\n        {\n            \"line1\": \"600 Canal Park Dr..\",\n            \"city\": \"Duluthh\",\n            \"zip\": \"{{zip}}\",\n            \"state\": \"{{state}}\",\n            \"country\": \"{{country}}\"\n        }\n    ]\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}",
+                        "description": "Test that renames some customer values, adds an account holder and an account to the customer."
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "3fd065c2-0ad1-4d2b-8970-8a0ea7d9ce59",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "fbbefbfa-fbcf-4c1e-b738-6ef601e65352",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                },
+                {
+                  "_postman_id": "476c8b91-3fd8-43f5-90b8-7939fb202c7b",
+                  "name": "Get Customer",
+                  "description": "Folder containing the test that GETs the customer to ensure the updates worked.",
+                  "item": [
+                    {
+                      "_postman_id": "ac64461d-780e-4d19-a5be-cd461d452644",
+                      "name": "Get Created Customer",
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "id": "ec257296-6c1d-4c72-9790-2632324427bb",
+                            "exec": [
+                              ""
+                            ],
+                            "type": "text/javascript"
+                          }
+                        },
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "7d0287dd-3363-4563-a7eb-51e9634da12d",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 404\", function() {",
+                              "    pm.response.to.have.status(404);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 404,",
+                              "        \"message\": \"Customer Not Found\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"Customer Not Found\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "api-key",
+                            "value": "{{wrong_api_key}}",
+                            "type": "text"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}"
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "e1c252ce-7bd2-4213-8a9e-a59a58aff7f1",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "3e94fea3-2e95-40bd-8425-0bd21a7455ab",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "449fb18f-56cc-434c-b8d2-105b2abfe4bb",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "54c1da51-b04e-49fa-b4fc-a0890d98309a",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "_postman_isSubFolder": true
+            },
+            {
+              "_postman_id": "b61379aa-bf8e-4089-84c4-2db64c017fc7",
+              "name": "Switches",
+              "description": "Folder containing the tests for the GET `/customers/{customerKey}/switches`, POST `/customers/{customerKey}/switches`, GET `/customers/{customerKey}/switches/{switchIndex}`, PUT `/customers/{customerKey}/switches/{switchIndex}`, DELETE `/customers/{customerKey}/switches/{switchIndex}`, and POST `/customers/{customerKey}/switches/{switchIndex}/action` routes.",
+              "item": [
+                {
+                  "_postman_id": "c9011434-3c52-4af6-b565-1e3a378b2bf9",
+                  "name": "Deposit Using TargetId",
+                  "description": "Folder containing the tests that create, update, submit, cancel, and delete a switch using a deposit target.",
+                  "item": [
+                    {
+                      "_postman_id": "23a14716-a94b-4130-80e2-c45d7a5f7314",
+                      "name": "Get Switches",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "c3939a64-cc66-468b-b40c-636565c4076b",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 404\", function() {",
+                              "    pm.response.to.have.status(404);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 404,",
+                              "        \"message\": \"Customer Not Found\",",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"message\": \"Customer Not Found\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "api-key",
+                            "value": "{{wrong_api_key}}",
+                            "type": "text"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": ""
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}",
+                        "description": "Should return empty list since no switches have been created yet."
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "ea949c05-782f-4b34-982b-4b428968dbbf",
+                      "name": "Create Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "1e78918a-5289-42d1-9bfe-158a7b64381e",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 400\", function() {",
+                              "    pm.response.to.have.status(400);",
+                              "});",
+                              "",
+                              "pm.test(\"Contains the correct error\", function() {",
+                              "    error = {",
+                              "        \"code\": 400,",
+                              "        \"errors\": [",
+                              "            {",
+                              "                \"reason\": \"ApiExternalId\",",
+                              "                \"message\": \"Invalid customer key\"",
+                              "            },",
+                              "            {",
+                              "                \"reason\": \"Values.Accounts[0]\",",
+                              "                \"message\": \"Account index 0 does not exist for this customer.\"",
+                              "            }",
+                              "        ]",
+                              "    };",
+                              "    ",
+                              "   pm.expect(jsonData.error).to.deep.include(error); ",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "api-key",
+                            "value": "{{wrong_api_key}}",
+                            "type": "text"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"type\": \"deposit\",\r\n  \"targetId\": \"{{deposit_target_id}}\",\r\n  \"accountholderIndex\": 0,\r\n  \"values\": {\r\n    \"accounts\": [\r\n      {\r\n        \"index\": 0\r\n      }\r\n    ]\r\n  }\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "2de6b57e-3790-4d13-be8b-4ae8f69da7fa",
+                      "name": "Submit Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "bc9a5690-3ae7-4784-a80f-1de7b2c418db",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 404\", function() {",
+                              "    pm.response.to.have.status(404);",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "api-key",
+                            "value": "{{wrong_api_key}}",
+                            "type": "text"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\r\n  \"index\": 1,\r\n  \"action\": \"Submit\"\r\n}"
+                        },
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1/action{{context_param}}"
+                      },
+                      "response": []
+                    },
+                    {
+                      "_postman_id": "8efd35e8-7fc9-4ad8-afb7-6ecb29f8fdd0",
+                      "name": "Delete Switch",
+                      "event": [
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "1be1b33e-16f0-4720-af7c-af5cad2f089b",
+                            "exec": [
+                              "const jsonData = pm.response.json();",
+                              "",
+                              "pm.test(\"Status code is 404\", function() {",
+                              "    pm.response.to.have.status(404);",
+                              "});"
+                            ],
+                            "type": "text/javascript"
+                          }
+                        }
+                      ],
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "api-key",
+                            "value": "{{wrong_api_key}}",
+                            "type": "text"
+                          }
+                        ],
+                        "body": {},
+                        "url": "{{base_url}}{{customers_postfix}}{{customer_key}}{{switches_postfix}}/1",
+                        "description": "\t"
+                      },
+                      "response": []
+                    }
+                  ],
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "537299b4-9cc6-4bc5-a8d6-70384fb437c7",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "20541407-4ed3-49ec-ae9c-66b5bd793f99",
+                        "type": "text/javascript",
+                        "exec": [
+                          ""
+                        ]
+                      }
+                    }
+                  ],
+                  "_postman_isSubFolder": true
+                }
+              ],
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "1f165295-f989-4f43-91f0-c158d2f42c00",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "b0b0fd91-799a-4373-b796-a7ca5b53bee6",
+                    "type": "text/javascript",
+                    "exec": [
+                      ""
+                    ]
+                  }
+                }
+              ],
+              "_postman_isSubFolder": true
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
           "_postman_id": "e6bbb4e7-f0ed-4978-be21-911830e438bb",
           "name": "Role Based API Key",
           "description": "",
