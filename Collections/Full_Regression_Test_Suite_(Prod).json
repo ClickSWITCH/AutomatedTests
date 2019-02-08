@@ -15490,13 +15490,6 @@
           "_postman_isSubFolder": true
         },
         {
-          "_postman_id": "3d7c7746-5857-4d9e-9910-39b29d45928a",
-          "name": "Different Institution API Key",
-          "description": "",
-          "item": [],
-          "_postman_isSubFolder": true
-        },
-        {
           "_postman_id": "d5fd09a5-e14b-431d-889c-59b1e2691923",
           "name": "Role Based API Key",
           "description": "",
