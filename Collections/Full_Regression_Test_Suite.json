@@ -456,7 +456,6 @@
                       "    pm.expect(jsonData).to.have.property('data');",
                       "    pm.expect(jsonData).to.have.property('apiVersion');",
                       "    pm.expect(jsonData).to.have.property('id');",
-                      "    pm.expect(jsonData).to.have.property('id');",
                       "});",
                       "",
                       "pm.test('Has the correct context', function() {",
@@ -850,12 +849,12 @@
                       "pm.test('Has the correct email', function() {",
                       "   var email = jsonData.data.item.email;",
                       "   var customerEmail = pm.environment.get(\"customer_key\");",
-                      "   pm.expect(email).to.equal(customerEmail + \"123\" + \"@clickswitch.com\")",
+                      "   pm.expect(email).to.equal(customerEmail + \"123\" + \"@clickswitch.com\");",
                       "});",
                       "",
                       "pm.test('Has the correct phoneNumber', function() {",
                       "   var phone = jsonData.data.item.phoneNumber;",
-                      "   pm.expect(phone).to.equal(\"2185555123\")",
+                      "   pm.expect(phone).to.equal(\"2185555123\");",
                       "});",
                       "",
                       "pm.test('Has the correct account holders', function() {",
@@ -2028,6 +2027,67 @@
                   ""
                 ]
               }
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "d8630074-ae05-430e-92ae-d617143c0f1f",
+          "name": "Customer Auth",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "c58a107e-7173-4499-8694-e634f3a3d2cf",
+              "name": "Auth",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "56fdbea3-e852-49e2-959c-e2f961c9b94a",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required 1st level elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "});",
+                      "",
+                      "pm.test('Has required 2nd level elements', function() {",
+                      "    pm.expect(jsonData.data).to.have.property('item');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has required URL', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('url');",
+                      "    pm.expect(jsonData.data.item.url).to.not.equal(\"\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}/auth"
+              },
+              "response": []
             }
           ],
           "_postman_isSubFolder": true
