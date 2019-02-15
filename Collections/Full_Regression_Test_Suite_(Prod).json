@@ -2030,6 +2030,67 @@
             }
           ],
           "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "7e9228cb-73e4-4a22-b6c8-60d329b34225",
+          "name": "Customer Auth Copy",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "e4451300-1044-444f-94a7-6db44aeea52e",
+              "name": "Auth",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "56fdbea3-e852-49e2-959c-e2f961c9b94a",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required 1st level elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "});",
+                      "",
+                      "pm.test('Has required 2nd level elements', function() {",
+                      "    pm.expect(jsonData.data).to.have.property('item');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has required URL', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('url');",
+                      "    pm.expect(jsonData.data.item.url).to.not.equal(\"\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}/auth"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
         }
       ],
       "event": [
@@ -14930,7 +14991,7 @@
         },
         {
           "_postman_id": "584cdfe1-066f-4312-a922-d0dbd1f5239c",
-          "name": "Different Institution API Key Copy",
+          "name": "Different Institution API Key",
           "description": "",
           "item": [
             {
