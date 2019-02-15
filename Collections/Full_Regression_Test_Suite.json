@@ -2091,6 +2091,67 @@
             }
           ],
           "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "65515b0b-5857-4dd2-9a0a-2dfc5a547017",
+          "name": "Customer Auth Copy",
+          "description": "",
+          "item": [
+            {
+              "_postman_id": "b06b39c0-685f-4c1f-ae78-f8f36755016c",
+              "name": "Auth",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "56fdbea3-e852-49e2-959c-e2f961c9b94a",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Has required 1st level elements', function() {",
+                      "    pm.expect(jsonData).to.have.property('data');",
+                      "    pm.expect(jsonData).to.have.property('apiVersion');",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "});",
+                      "",
+                      "pm.test('Has required 2nd level elements', function() {",
+                      "    pm.expect(jsonData.data).to.have.property('item');",
+                      "    pm.expect(jsonData.data).to.have.property('kind');",
+                      "    pm.expect(jsonData.data).to.have.property('lang');",
+                      "});",
+                      "",
+                      "pm.test('Has required URL', function() {",
+                      "    pm.expect(jsonData.data.item).to.have.property('url');",
+                      "    pm.expect(jsonData.data.item.url).to.not.equal(\"\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": "{{base_url}}{{customers_postfix}}{{customer_key}}/auth"
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
         }
       ],
       "event": [
