@@ -2091,6 +2091,13 @@
             }
           ],
           "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "4cf5838b-a9c5-42e9-a9aa-b612b4da8559",
+          "name": "customerKey Case Sensitivity",
+          "description": "The customerKey is a unique identifier for the customer and is determined by the calling\r\napplication. According to section 2.3 of http://www.ietf.org/rfc/rfc3986.txt, it may be string of 1 to 64 unreserved characters. Customer keys are **CASE SENSITIVE**. Thus, AAA and aaa when used as\r\ncustomer keys would represent two different customers.",
+          "item": [],
+          "_postman_isSubFolder": true
         }
       ],
       "event": [
