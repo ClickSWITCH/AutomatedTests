@@ -2091,6 +2091,13 @@
             }
           ],
           "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "c38cce19-37e9-46e4-9ecd-26749dddcdf0",
+          "name": "Customer key Case Sensitivity",
+          "description": "",
+          "item": [],
+          "_postman_isSubFolder": true
         }
       ],
       "event": [
