@@ -2100,18 +2100,43 @@
             {
               "_postman_id": "ededd695-6be6-437f-a30f-c3c29e110797",
               "name": "Create First Customer AAA",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "25c6712f-bf3f-4909-a3cb-05282132ee05",
+                    "exec": [
+                      "var timestamp = Date.now();",
+                      "var randomString = makeRandomString();",
+                      "",
+                      "// Creates a random string of length 10.",
+                      "function makeRandomString() {",
+                      "  var text = \"\";",
+                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                      "",
+                      "  for (var i = 0; i < 10; i++)",
+                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+                      "",
+                      "  return text;",
+                      "}",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
               "request": {
                 "method": "PUT",
                 "header": [
                   {
                     "key": "api-key",
-                    "value": "{{api_key}}",
-                    "type": "text"
+                    "type": "text",
+                    "value": "{{api_key}}"
                   },
                   {
                     "key": "Content-Type",
-                    "value": "application/json",
-                    "type": "text"
+                    "type": "text",
+                    "value": "application/json"
                   }
                 ],
                 "body": {
