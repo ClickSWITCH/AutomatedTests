@@ -2170,18 +2170,43 @@
             {
               "_postman_id": "f475bd49-2c49-45cc-b4df-d9ea3fa9413b",
               "name": "Create Second Customer aaa",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "42621e53-c88c-4346-ad67-6dc5b93108f5",
+                    "exec": [
+                      "var timestamp = Date.now();",
+                      "var randomString = makeRandomString();",
+                      "",
+                      "// Creates a random string of length 10.",
+                      "function makeRandomString() {",
+                      "  var text = \"\";",
+                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                      "",
+                      "  for (var i = 0; i < 10; i++)",
+                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+                      "",
+                      "  return text;",
+                      "}",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
               "request": {
                 "method": "PUT",
                 "header": [
                   {
                     "key": "api-key",
-                    "value": "{{api_key}}",
-                    "type": "text"
+                    "type": "text",
+                    "value": "{{api_key}}"
                   },
                   {
                     "key": "Content-Type",
-                    "value": "application/json",
-                    "type": "text"
+                    "type": "text",
+                    "value": "application/json"
                   }
                 ],
                 "body": {
