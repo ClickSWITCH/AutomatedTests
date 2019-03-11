@@ -2142,7 +2142,7 @@
                   "raw": ""
                 },
                 "url": {
-                  "raw": "https://cs-us-test-apiv3-north.azurewebsites.net/v3/customers/1234567890AAA?context=testing_context",
+                  "raw": "https://cs-us-test-apiv3-north.azurewebsites.net/v3/customers/1234567890aaa?context=testing_context",
                   "protocol": "https",
                   "host": [
                     "cs-us-test-apiv3-north",
@@ -2152,7 +2152,7 @@
                   "path": [
                     "v3",
                     "customers",
-                    "1234567890AAA"
+                    "1234567890aaa"
                   ],
                   "query": [
                     {
