@@ -2102,7 +2102,13 @@
               "name": "https://cs-us-test-apiv3-north.azurewebsites.net/v3/customers/1234567890AAA?context=testing_context",
               "request": {
                 "method": "PUT",
-                "header": [],
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{api_key}}",
+                    "type": "text"
+                  }
+                ],
                 "body": {
                   "mode": "raw",
                   "raw": ""
