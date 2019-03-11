@@ -2144,7 +2144,7 @@
             },
             {
               "_postman_id": "f475bd49-2c49-45cc-b4df-d9ea3fa9413b",
-              "name": "https://cs-us-test-apiv3-north.azurewebsites.net/v3/customers/1234567890AAA?context=testing_context",
+              "name": "Create Second Customer aaa",
               "request": {
                 "method": "PUT",
                 "header": [
