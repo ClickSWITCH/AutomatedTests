@@ -2130,6 +2130,40 @@
                 }
               },
               "response": []
+            },
+            {
+              "_postman_id": "f475bd49-2c49-45cc-b4df-d9ea3fa9413b",
+              "name": "https://cs-us-test-apiv3-north.azurewebsites.net/v3/customers/1234567890AAA?context=testing_context",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "https://cs-us-test-apiv3-north.azurewebsites.net/v3/customers/1234567890AAA?context=testing_context",
+                  "protocol": "https",
+                  "host": [
+                    "cs-us-test-apiv3-north",
+                    "azurewebsites",
+                    "net"
+                  ],
+                  "path": [
+                    "v3",
+                    "customers",
+                    "1234567890AAA"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "testing_context",
+                      "equals": true
+                    }
+                  ]
+                }
+              },
+              "response": []
             }
           ],
           "_postman_isSubFolder": true
