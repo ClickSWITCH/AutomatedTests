@@ -1,2 +1,3 @@
-# AutomatedTests
-Postman Automated Tests
+# PostmanApiTests
+
+ClickSWITCH Postman API Tests
