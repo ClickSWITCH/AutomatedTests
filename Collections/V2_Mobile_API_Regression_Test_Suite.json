@@ -82,7 +82,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
                 },
                 "url": {
                   "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
@@ -95,7 +95,8 @@
                   "query": [
                     {
                       "key": "apiUserKey",
-                      "value": "{{apiUserKey}}"
+                      "value": "{{apiUserKey}}",
+                      "equals": true
                     }
                   ]
                 }
@@ -169,7 +170,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"MinData{{userName}}\"\r\n}"
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
                 },
                 "url": {
                   "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
@@ -182,7 +183,8 @@
                   "query": [
                     {
                       "key": "apiUserKey",
-                      "value": "{{apiUserKey}}"
+                      "value": "{{apiUserKey}}",
+                      "equals": true
                     }
                   ]
                 }
@@ -256,7 +258,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{savings}}\",\r\n      \"ExternalBranchId\": 123\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"MinData{{userName}}\"\r\n}"
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{accountName2}}\",\r\n      \"ExternalBranchId\": 123\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
                 },
                 "url": {
                   "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
@@ -269,7 +271,8 @@
                   "query": [
                     {
                       "key": "apiUserKey",
-                      "value": "{{apiUserKey}}"
+                      "value": "{{apiUserKey}}",
+                      "equals": true
                     }
                   ]
                 }
@@ -343,7 +346,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"MinData{{userName}}\"\r\n}"
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
                 },
                 "url": {
                   "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
@@ -356,7 +359,8 @@
                   "query": [
                     {
                       "key": "apiUserKey",
-                      "value": "{{apiUserKey}}"
+                      "value": "{{apiUserKey}}",
+                      "equals": true
                     }
                   ]
                 }
@@ -433,7 +437,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    },\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}0\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{savings}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": false,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\": \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"SecondaryContact\": {\r\n\t\"FirstName\": \"{{userName}}\",\r\n\t\"MiddleInitial\": \"T\",\r\n\t\"LastName\": \"Test Second\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    },\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}0\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{accountName2}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": false,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\": \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"SecondaryContact\": {\r\n\t\"FirstName\": \"{{userName}}\",\r\n\t\"MiddleInitial\": \"T\",\r\n\t\"LastName\": \"Test Second\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
                 },
                 "url": {
                   "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
@@ -446,7 +450,8 @@
                   "query": [
                     {
                       "key": "apiUserKey",
-                      "value": "{{apiUserKey}}"
+                      "value": "{{apiUserKey}}",
+                      "equals": true
                     }
                   ]
                 }
@@ -665,7 +670,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    },\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}0\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{checking}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\": \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"SecondaryContact\": {\r\n\t\"FirstName\": \"{{userName}}\",\r\n\t\"MiddleInitial\": \"T\",\r\n\t\"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    },\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}0\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{accountName2}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\": \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"SecondaryContact\": {\r\n\t\"FirstName\": \"{{userName}}\",\r\n\t\"MiddleInitial\": \"T\",\r\n\t\"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
                 },
                 "url": {
                   "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
@@ -678,7 +683,8 @@
                   "query": [
                     {
                       "key": "apiUserKey",
-                      "value": "{{apiUserKey}}"
+                      "value": "{{apiUserKey}}",
+                      "equals": true
                     }
                   ]
                 }
@@ -1440,9 +1446,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -1492,7 +1498,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -1540,9 +1547,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -1591,7 +1598,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -1639,9 +1647,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -1690,7 +1698,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -1934,9 +1943,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -1986,7 +1995,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -2174,9 +2184,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -2227,7 +2237,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -2275,9 +2286,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -2328,7 +2339,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -2376,9 +2388,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -2427,7 +2439,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -2671,9 +2684,9 @@
                           "        \"SplitUnitType\": \"Currency\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -2724,7 +2737,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -2772,9 +2786,9 @@
                           "        \"SplitUnitType\": \"Currency\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -2825,7 +2839,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -2873,9 +2888,9 @@
                           "        \"SplitUnitType\": \"Currency\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -2924,7 +2939,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -3105,9 +3121,9 @@
                           "        \"SplitUnitType\": \"Remainder\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -3158,7 +3174,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -3206,9 +3223,9 @@
                           "        \"SplitUnitType\": \"Remainder\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -3259,7 +3276,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -3307,9 +3325,9 @@
                           "        \"SplitUnitType\": \"Remainder\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -3358,7 +3376,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -3602,9 +3621,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -3650,7 +3669,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -3698,9 +3718,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -3747,7 +3767,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -3926,9 +3947,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -3978,7 +3999,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -4026,9 +4048,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -4077,7 +4099,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "{{apiUserKey}}"
+                          "value": "{{apiUserKey}}",
+                          "equals": true
                         }
                       ]
                     }
@@ -4779,7 +4802,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    },\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}0\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{savings}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": false,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\": \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"SecondaryContact\": {\r\n\t\"FirstName\": \"{{userName}}\",\r\n\t\"MiddleInitial\": \"T\",\r\n\t\"LastName\": \"Test Second\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    },\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}0\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{accountName2}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": false,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\": \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"SecondaryContact\": {\r\n\t\"FirstName\": \"{{userName}}\",\r\n\t\"MiddleInitial\": \"T\",\r\n\t\"LastName\": \"Test Second\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
                 },
                 "url": "{{baseUrl}}/customers"
               },
@@ -4982,7 +5005,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    },\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}0\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{checking}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\": \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"SecondaryContact\": {\r\n\t\"FirstName\": \"{{userName}}\",\r\n\t\"MiddleInitial\": \"T\",\r\n\t\"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    },\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}0\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{accountName2}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\": \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"SecondaryContact\": {\r\n\t\"FirstName\": \"{{userName}}\",\r\n\t\"MiddleInitial\": \"T\",\r\n\t\"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
                 },
                 "url": "{{baseUrl}}/customers"
               },
@@ -5675,9 +5698,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -5766,9 +5789,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -5855,9 +5878,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -6111,9 +6134,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -6335,9 +6358,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -6427,9 +6450,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -6518,9 +6541,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -6774,9 +6797,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -6861,9 +6884,9 @@
                           "        \"SplitUnitType\": \"Percentage\"",
                           "    };",
                           "        ",
-                          "    accounts.AccountName = pm.environment.get('checking');",
+                          "    accounts.AccountName = pm.environment.get('accountName');",
                           "    accounts.AccountNumber = pm.environment.get('accountNumber').toString();",
-                          "    accounts.AccountType = pm.environment.get('checking');",
+                          "    accounts.AccountType = pm.environment.get('accountTypeChecking');",
                           "    accounts.RoutingNumber = pm.environment.get('routingNumber');",
                           "    ",
                           "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
@@ -7735,7 +7758,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
+                      "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
                     },
                     "url": {
                       "raw": "{{baseUrl}}/customers?apiUserKey=aaaaa",
@@ -7748,7 +7771,8 @@
                       "query": [
                         {
                           "key": "apiUserKey",
-                          "value": "aaaaa"
+                          "value": "aaaaa",
+                          "equals": true
                         }
                       ]
                     }
@@ -8848,7 +8872,7 @@
                     ],
                     "body": {
                       "mode": "raw",
-                      "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{checking}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
+                      "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
                     },
                     "url": "{{baseUrl}}/customers"
                   },
@@ -9707,7 +9731,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{$timestamp}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"Checking\",\r\n      \"BranchId\": \"{{branchId2}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"InstitutionId\":  \"{{institutionId2}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"ShouldntExist\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{$guid}}\"\r\n}"
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{$timestamp}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"BranchId\": \"{{branchId2}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"InstitutionId\":  \"{{institutionId2}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"ShouldntExist\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{$guid}}\"\r\n}"
                 },
                 "url": {
                   "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
@@ -9794,7 +9818,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"Checking\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"ConsentToEsign\": true,\r\n  \"InstitutionId\": \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"ConsentToEsign\": true,\r\n  \"InstitutionId\": \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
                 },
                 "url": {
                   "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
