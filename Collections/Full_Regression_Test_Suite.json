@@ -101,7 +101,7 @@
         },
         {
           "_postman_id": "06a2de1b-1eaf-45d7-a0c7-d720117ddc40",
-          "name": "Statuses Copy",
+          "name": "Statuses",
           "event": [
             {
               "listen": "test",
