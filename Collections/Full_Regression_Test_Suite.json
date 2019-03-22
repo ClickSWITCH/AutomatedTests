@@ -107,7 +107,6 @@
               "listen": "test",
               "script": {
                 "id": "9c63fdee-f7cb-40c1-aefb-7a3c2bb161fc",
-                "type": "text/javascript",
                 "exec": [
                   "const jsonData = pm.response.json();",
                   "",
@@ -207,7 +206,8 @@
                   "    };",
                   "    pm.expect(jsonData.data.items).to.deep.include(deleted);",
                   "});"
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -224,7 +224,24 @@
               "mode": "raw",
               "raw": ""
             },
-            "url": "{{base_url}}{{statuses_postfix}}{{context_param}}",
+            "url": {
+              "raw": "{{baseUrl}}/types/switch/statuses?context={{context}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "types",
+                "switch",
+                "statuses"
+              ],
+              "query": [
+                {
+                  "key": "context",
+                  "value": "{{context}}",
+                  "equals": true
+                }
+              ]
+            },
             "description": "Asserts that the GET `/types/switch/statuses` endpoint is returning the correct values."
           },
           "response": []
