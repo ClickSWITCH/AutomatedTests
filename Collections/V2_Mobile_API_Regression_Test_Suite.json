@@ -258,7 +258,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{accountName2}}\",\r\n      \"ExternalBranchId\": 123\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"MinData{{userName}}\"\r\n}"
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 2,\r\n      \"AccountName\": \"{{accountName2}}\",\r\n      \"ExternalBranchId\": 123\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
                 },
                 "url": {
                   "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
