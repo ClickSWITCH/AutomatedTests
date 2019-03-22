@@ -1,0 +1,249 @@
+{
+	"id": "d7e3b97a-755c-4057-80a9-54d60ff203b6",
+	"name": "V2 Mobile API Regression Test Suite Environment Template",
+	"values": [
+		{
+			"key": "ocpApimSubscriptionKey",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "apiUserKey",
+			"value": "yourApiUserKey",
+			"enabled": true
+		},
+		{
+			"key": "apiUserKey2",
+			"value": "clickSWITCHInternalTesting",
+			"enabled": true
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://your.domain",
+			"enabled": true
+		},
+		{
+			"key": "institutionId",
+			"value": "yourInstitutionId",
+			"enabled": true
+		},
+		{
+			"key": "institutionId2",
+			"value": "clickSWITCHInternalTesting",
+			"enabled": true
+		},
+		{
+			"key": "branchId",
+			"value": "yourBranchId",
+			"enabled": true
+		},
+		{
+			"key": "branchId2",
+			"value": "clickSWITCHInternalTesting",
+			"enabled": true
+		},
+		{
+			"key": "userName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "accountNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "routingNumber",
+			"value": "yourRoutingNumber",
+			"enabled": true
+		},
+		{
+			"key": "routingNumber2",
+			"value": "clickSWITCHInternalTesting",
+			"enabled": true
+		},
+		{
+			"key": "accountTypeChecking",
+			"value": "Checking",
+			"enabled": true
+		},
+		{
+			"key": "accountTypeSavings",
+			"value": "Savings",
+			"enabled": true
+		},
+		{
+			"key": "accountName",
+			"value": "yourAccountName",
+			"enabled": true
+		},
+		{
+			"key": "accountName2",
+			"value": "yourAccountName",
+			"enabled": true
+		},
+		{
+			"key": "esignConsentDate",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "customerId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "primaryContactId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "secondaryContactId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "latitude",
+			"value": "-92",
+			"enabled": true
+		},
+		{
+			"key": "longitude",
+			"value": "47",
+			"enabled": true
+		},
+		{
+			"key": "depositorNameUnknown",
+			"value": "Test Unknown Depositor",
+			"enabled": true
+		},
+		{
+			"key": "depositorIdUnknown",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchProfileIdUnknown",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchIdUnknown",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "depositorNamePlace",
+			"value": "Dairy Queen",
+			"enabled": true
+		},
+		{
+			"key": "placeId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "depositorIdPlace",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchIdPlace",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchProfileIdPlace",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "depositorNameVerified",
+			"value": "1p1",
+			"enabled": true
+		},
+		{
+			"key": "depositorIdVerified",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchProfileId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchProfileGuid",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "depositorNameOnlineOnly",
+			"value": "1p3",
+			"enabled": true
+		},
+		{
+			"key": "depositorIdOnlineOnly",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchProfileIdOnlineOnly",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchIdOnlineOnly",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "depositorNamePrintOnly",
+			"value": "1p2",
+			"enabled": true
+		},
+		{
+			"key": "depositorIdPrintOnly",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchProfileIdPrintOnly",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchIdPrintOnly",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchIdDelete",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "payrollProviderId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "imageHash",
+			"value": "00B8729D20B2610ED6080E1E77BF57A997259FDC0714BC32D740AA87DC14AD3F",
+			"enabled": true
+		},
+		{
+			"key": "widthHeight",
+			"value": "24",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2019-03-22T17:59:09.657Z",
+	"_postman_exported_using": "Postman/6.7.4"
+}
