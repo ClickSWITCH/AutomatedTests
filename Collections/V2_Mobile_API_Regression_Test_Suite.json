@@ -10114,20 +10114,32 @@
                       "raw": ""
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/switches/{{switchId}}?apiUserKey=aaaaa",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey=aaaaa",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "switches",
-                        "{{switchId}}"
+                        ":switchId"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "aaaaa"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "switchId",
+                          "value": "{{switchId}}",
+                          "type": "string"
                         }
                       ]
                     }
