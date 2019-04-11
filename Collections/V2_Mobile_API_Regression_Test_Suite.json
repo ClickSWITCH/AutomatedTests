@@ -10640,12 +10640,12 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/{{customerId}}/depositors?searchName={{depositorNameUnknown}}&latitude={{latitude}}&longitude={{longitude}}",
+                          "raw": "{{baseUrl}}/:customerId/depositors?searchName={{depositorNameUnknown}}&latitude={{latitude}}&longitude={{longitude}}",
                           "host": [
                             "{{baseUrl}}"
                           ],
                           "path": [
-                            "{{customerId}}",
+                            ":customerId",
                             "depositors"
                           ],
                           "query": [
@@ -10660,6 +10660,13 @@
                             {
                               "key": "longitude",
                               "value": "{{longitude}}"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "customerId",
+                              "value": "{{customerId}}",
+                              "type": "string"
                             }
                           ]
                         }
@@ -10812,12 +10819,12 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/{{customerId}}/depositors?searchName={{depositorNameVerified}}&latitude={{latitude}}&longitude={{longitude}}",
+                      "raw": "{{baseUrl}}/:customerId/depositors?searchName={{depositorNameVerified}}&latitude={{latitude}}&longitude={{longitude}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
-                        "{{customerId}}",
+                        ":customerId",
                         "depositors"
                       ],
                       "query": [
@@ -10832,6 +10839,13 @@
                         {
                           "key": "longitude",
                           "value": "{{longitude}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
                         }
                       ]
                     }
