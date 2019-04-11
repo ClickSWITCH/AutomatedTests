@@ -9557,18 +9557,25 @@
                           "raw": "{\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55555\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"Name\": \"Test Depositor2\",\r\n  \"Notes\": \"Test\",\r\n  \"PlaceId\": \"{{placeId}}\",\r\n  \"PhoneNumber\": \"2185555555\"\r\n}"
                         },
                         "url": {
-                          "raw": "{{baseUrl}}/{{customerId}}/depositors?apiUserKey=aaaaa",
+                          "raw": "{{baseUrl}}/:customerId/depositors?apiUserKey=aaaaa",
                           "host": [
                             "{{baseUrl}}"
                           ],
                           "path": [
-                            "{{customerId}}",
+                            ":customerId",
                             "depositors"
                           ],
                           "query": [
                             {
                               "key": "apiUserKey",
                               "value": "aaaaa"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "customerId",
+                              "value": "{{customerId}}",
+                              "type": "string"
                             }
                           ]
                         }
@@ -9613,12 +9620,12 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/{{customerId}}/depositors?apiUserKey=aaa&searchName={{depositorNameVerified}}&latitude={{latitude}}&longitude={{longitude}}",
+                      "raw": "{{baseUrl}}/:customerId/depositors?apiUserKey=aaa&searchName={{depositorNameVerified}}&latitude={{latitude}}&longitude={{longitude}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
-                        "{{customerId}}",
+                        ":customerId",
                         "depositors"
                       ],
                       "query": [
@@ -9637,6 +9644,13 @@
                         {
                           "key": "longitude",
                           "value": "{{longitude}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
                         }
                       ]
                     }
