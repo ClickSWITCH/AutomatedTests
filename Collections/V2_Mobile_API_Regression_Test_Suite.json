@@ -7990,7 +7990,24 @@
                         "type": "text"
                       }
                     ],
-                    "url": "{{baseUrl}}/customers/{{customerId}}/switches"
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
                   },
                   "response": []
                 },
