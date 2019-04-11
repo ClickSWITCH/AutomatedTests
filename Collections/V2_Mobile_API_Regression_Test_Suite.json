@@ -5112,14 +5112,14 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/:customerId/depositors/:switchId?apiUserKey={{apiUserKey}}",
+                  "raw": "{{baseUrl}}/:customerId/depositors/:switchProfileGuid?apiUserKey={{apiUserKey}}",
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "path": [
                     ":customerId",
                     "depositors",
-                    ":switchId"
+                    ":switchProfileGuid"
                   ],
                   "query": [
                     {
@@ -5134,7 +5134,7 @@
                       "type": "string"
                     },
                     {
-                      "key": "switchId",
+                      "key": "switchProfileGuid",
                       "value": "{{switchProfileGuid}}",
                       "type": "string"
                     }
