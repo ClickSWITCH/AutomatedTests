@@ -1684,7 +1684,7 @@
                       "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"SplitUnitType\": \"Percentage\",\r\n      \"SplitAmount\": 100\r\n    }\r\n  ],\r\n  \"CustomerCreatedDepositorId\": \"{{depositorIdUnknown}}\",\r\n  \"FormFields\": [   \r\n  \t{\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"1234\",\r\n      \"VariableName\": \"Custom_SSN4\"\r\n    },\r\n    {\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"Test Building\",\r\n      \"VariableName\": \"Custom_Employee/ID\"\r\n    }\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{primaryContactId}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{primaryContactId}}\",\r\n  \"SwitchProfileId\": \"{{switchProfileIdUnknown}}\"\r\n}"
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/customers/:customerId/switches/{{switchIdUnknown}}?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -1692,7 +1692,7 @@
                         "customers",
                         ":customerId",
                         "switches",
-                        "{{switchIdUnknown}}"
+                        ":switchId"
                       ],
                       "query": [
                         {
@@ -1704,6 +1704,11 @@
                         {
                           "key": "customerId",
                           "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "switchId",
+                          "value": "{{switchIdUnknown}}",
                           "type": "string"
                         }
                       ]
@@ -1789,7 +1794,7 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/customers/:customerId/switches/{{switchIdUnknown}}?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -1797,7 +1802,7 @@
                         "customers",
                         ":customerId",
                         "switches",
-                        "{{switchIdUnknown}}"
+                        ":switchId"
                       ],
                       "query": [
                         {
@@ -1809,6 +1814,11 @@
                         {
                           "key": "customerId",
                           "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "switchId",
+                          "value": "{{switchIdUnknown}}",
                           "type": "string"
                         }
                       ]
