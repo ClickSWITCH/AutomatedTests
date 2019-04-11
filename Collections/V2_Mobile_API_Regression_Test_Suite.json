@@ -623,7 +623,7 @@
                     },
                     {
                       "key": "contactId",
-                      "value": "",
+                      "value": "{{primaryContactId}}",
                       "type": "string"
                     }
                   ]
@@ -12632,19 +12632,31 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/{{customerId}}/depositors/{{switchProfileGuid}}?apiUserKey={{apiUserKey}}",
+                  "raw": "{{baseUrl}}/:customerId/depositors/:switchId?apiUserKey={{apiUserKey}}",
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "path": [
-                    "{{customerId}}",
+                    ":customerId",
                     "depositors",
-                    "{{switchProfileGuid}}"
+                    ":switchId"
                   ],
                   "query": [
                     {
                       "key": "apiUserKey",
                       "value": "{{apiUserKey}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "customerId",
+                      "value": "{{customerId}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "switchId",
+                      "value": "{{switchProfileGuid}}",
+                      "type": "string"
                     }
                   ]
                 }
@@ -12681,19 +12693,31 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/{{customerId}}/depositors/{{switchProfileGuid}}?apiUserKey={{apiUserKey2}}",
+                  "raw": "{{baseUrl}}/:customerId/depositors/:switchProfileGuid?apiUserKey={{apiUserKey2}}",
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "path": [
-                    "{{customerId}}",
+                    ":customerId",
                     "depositors",
-                    "{{switchProfileGuid}}"
+                    ":switchProfileGuid"
                   ],
                   "query": [
                     {
                       "key": "apiUserKey",
                       "value": "{{apiUserKey2}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "customerId",
+                      "value": "{{customerId}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "switchProfileGuid",
+                      "value": "{{switchProfileGuid}}",
+                      "type": "string"
                     }
                   ]
                 }
