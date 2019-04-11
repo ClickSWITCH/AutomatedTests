@@ -8063,7 +8063,30 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{baseUrl}}/customers/{{customerId}}/switches/{{switchIdOnlineOnly}}"
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches",
+                        ":switchId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "switchId",
+                          "value": "{{switchIdOnlineOnly}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
                   },
                   "response": []
                 }
