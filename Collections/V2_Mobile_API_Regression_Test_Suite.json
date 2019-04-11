@@ -11828,18 +11828,25 @@
                   "raw": "{\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55555\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"Name\": \"Test Create Depositor Shouldn't Exist\",\r\n  \"Notes\": \"Test creating a depositor with the minimum data.\"\r\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/{{customerId}}/depositors?apiUserKey={{apiUserKey2}}",
+                  "raw": "{{baseUrl}}/:customerId/depositors?apiUserKey={{apiUserKey2}}",
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "path": [
-                    "{{customerId}}",
+                    ":customerId",
                     "depositors"
                   ],
                   "query": [
                     {
                       "key": "apiUserKey",
                       "value": "{{apiUserKey2}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "customerId",
+                      "value": "{{customerId}}",
+                      "type": "string"
                     }
                   ]
                 }
@@ -11889,18 +11896,25 @@
                   "raw": "{\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55555\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"Name\": \"{{depositorNameUnknown}}\",\r\n  \"Notes\": \"Test cross-tenant attack\"\r\n}\r\n"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/{{customerId}}/depositors?apiUserKey={{apiUserKey}}",
+                  "raw": "{{baseUrl}}/:customerId/depositors?apiUserKey={{apiUserKey}}",
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "path": [
-                    "{{customerId}}",
+                    ":customerId",
                     "depositors"
                   ],
                   "query": [
                     {
                       "key": "apiUserKey",
                       "value": "{{apiUserKey}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "customerId",
+                      "value": "{{customerId}}",
+                      "type": "string"
                     }
                   ]
                 }
