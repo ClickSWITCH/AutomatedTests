@@ -9687,19 +9687,31 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/{{customerId}}/depositors/{{switchProfileGuid}}?apiUserKey=aaaa",
+                      "raw": "{{baseUrl}}/:customerId/depositors/:switchProfileGuid?apiUserKey=aaaa",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
-                        "{{customerId}}",
+                        ":customerId",
                         "depositors",
-                        "{{switchProfileGuid}}"
+                        ":switchProfileGuid"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "aaaa"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "switchProfileGuid",
+                          "value": "{{switchProfileGuid}}",
+                          "type": "string"
                         }
                       ]
                     }
