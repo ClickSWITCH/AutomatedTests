@@ -5393,7 +5393,31 @@
                   "mode": "raw",
                   "raw": ""
                 },
-                "url": "{{baseUrl}}/customers/{{customerId}}/contacts/{{primaryContactId}}/esignConsent"
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customerId/contacts/:contactId/esignConsent",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customerId",
+                    "contacts",
+                    ":contactId",
+                    "esignConsent"
+                  ],
+                  "variable": [
+                    {
+                      "key": "customerId",
+                      "value": "{{customerId}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "contactId",
+                      "value": "{{primaryContactId}}",
+                      "type": "string"
+                    }
+                  ]
+                }
               },
               "response": []
             },
@@ -5453,7 +5477,31 @@
                     "type": "text"
                   }
                 ],
-                "url": "{{baseUrl}}/customers/{{customerId}}/contacts/{{primaryContactId}}/esignConsent"
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customerId/contacts/:contactId/esignConsent",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customerId",
+                    "contacts",
+                    ":contactId",
+                    "esignConsent"
+                  ],
+                  "variable": [
+                    {
+                      "key": "customerId",
+                      "value": "{{customerId}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "contactId",
+                      "value": "{{primaryContactId}}",
+                      "type": "string"
+                    }
+                  ]
+                }
               },
               "response": []
             },
