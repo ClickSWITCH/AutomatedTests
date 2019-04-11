@@ -4411,19 +4411,26 @@
                       "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"SplitUnitType\": \"Percentage\",\r\n      \"SplitAmount\": 100\r\n    }\r\n  ],\r\n  \"DepositorId\": \"{{depositorIdPrintOnly}}\",\r\n  \"FormFields\": [\r\n\t{\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"1234\",\r\n      \"VariableName\": \"Custom_SSN4\"\r\n    },\r\n    {\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"Test Building\",\r\n      \"VariableName\": \"Custom_Employee/ID\"\r\n    },\r\n    {\r\n      \"Type\": \"address\",\r\n      \"AddressValue\": {\r\n            \"AddressLine1\": \"123 Test St.\",\r\n            \"AddressLine2\": null,\r\n            \"AddressLine3\": null,\r\n            \"City\": \"Test\",\r\n            \"CountryCode\": \"US\",\r\n            \"PostalCode\": \"55555\",\r\n            \"StateProvinceCode\": \"MN\"\r\n\t\t},\r\n      \"VariableName\": \"Custom_Company/MailingAddress\"\r\n    }\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{primaryContactId}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{primaryContactId}}\",\r\n  \"SwitchProfileId\": \"{{switchProfileIdPrintOnly}}\"\r\n}"
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/switches?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "switches"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
                         }
                       ]
                     }
@@ -4508,20 +4515,32 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/switches/{{switchIdPrintOnly}}?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "switches",
-                        "{{switchIdPrintOnly}}"
+                        ":switchId"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "switchId",
+                          "value": "{{switchIdPrintOnly}}",
+                          "type": "string"
                         }
                       ]
                     }
@@ -4568,19 +4587,26 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/switches?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "switches"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
                         }
                       ]
                     }
@@ -4633,13 +4659,13 @@
                       "raw": ""
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/switches/{{switchIdPrintOnly}}?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/{{switchIdPrintOnly}}?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "switches",
                         "{{switchIdPrintOnly}}"
                       ],
@@ -4647,6 +4673,13 @@
                         {
                           "key": "apiUserKey",
                           "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
                         }
                       ]
                     }
