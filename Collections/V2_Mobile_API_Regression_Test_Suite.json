@@ -515,7 +515,7 @@
                   "raw": ""
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/customers/:customerId/contacts/:primaryContactId/esignConsent?apiUserKey={{apiUserKey}}",
+                  "raw": "{{baseUrl}}/customers/:customerId/contacts/:contactId/esignConsent?apiUserKey={{apiUserKey}}",
                   "host": [
                     "{{baseUrl}}"
                   ],
@@ -523,7 +523,7 @@
                     "customers",
                     ":customerId",
                     "contacts",
-                    ":primaryContactId",
+                    ":contactId",
                     "esignConsent"
                   ],
                   "query": [
@@ -539,7 +539,7 @@
                       "type": "string"
                     },
                     {
-                      "key": "primaryContactId",
+                      "key": "contactId",
                       "value": "{{primaryContactId}}",
                       "type": "string"
                     }
