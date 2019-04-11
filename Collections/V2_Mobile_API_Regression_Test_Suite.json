@@ -10586,7 +10586,23 @@
                           "mode": "raw",
                           "raw": "{\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55555\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"Name\": \"{{depositorNameUnknown}}\",\r\n  \"Notes\": \"Test\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"WebsiteUrl\" : \"https://www.clickswitch.com\"\r\n}"
                         },
-                        "url": "{{baseUrl}}/{{customerId}}/depositors"
+                        "url": {
+                          "raw": "{{baseUrl}}/:customerId/depositors",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":customerId",
+                            "depositors"
+                          ],
+                          "variable": [
+                            {
+                              "key": "customerId",
+                              "value": "{{customerId}}",
+                              "type": "string"
+                            }
+                          ]
+                        }
                       },
                       "response": []
                     },
