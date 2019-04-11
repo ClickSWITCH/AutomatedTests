@@ -1866,19 +1866,26 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/switches?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "switches"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
                         }
                       ]
                     }
