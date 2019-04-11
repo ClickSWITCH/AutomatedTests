@@ -10974,7 +10974,24 @@
                       "mode": "raw",
                       "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"SplitUnitType\": \"Remainder\",\r\n      \"SplitAmount\": 0\r\n    }\r\n  ],\r\n  \"DepositorId\": \"{{depositorIdVerified}}\",\r\n  \"FormFields\": [\r\n\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{primaryContactId}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{primaryContactId}}\",\r\n  \"SwitchProfileId\": \"{{switchProfileId}}\"\r\n}"
                     },
-                    "url": "{{baseUrl}}/customers/{{customerId}}/switches"
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
                   },
                   "response": []
                 },
