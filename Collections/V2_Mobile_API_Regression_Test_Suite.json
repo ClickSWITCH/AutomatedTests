@@ -10714,12 +10714,12 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/{{customerId}}/depositors?searchName={{depositorNamePlace}}&latitude={{latitude}}&longitude={{longitude}}",
+                          "raw": "{{baseUrl}}/:customerId/depositors?searchName={{depositorNamePlace}}&latitude={{latitude}}&longitude={{longitude}}",
                           "host": [
                             "{{baseUrl}}"
                           ],
                           "path": [
-                            "{{customerId}}",
+                            ":customerId",
                             "depositors"
                           ],
                           "query": [
@@ -10734,6 +10734,13 @@
                             {
                               "key": "longitude",
                               "value": "{{longitude}}"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "customerId",
+                              "value": "{{customerId}}",
+                              "type": "string"
                             }
                           ]
                         }
@@ -10881,7 +10888,29 @@
                         "value": "{{ocpApimSubscriptionKey}}"
                       }
                     ],
-                    "url": "{{baseUrl}}/{{customerId}}/depositors/{{switchProfileGuid}}"
+                    "url": {
+                      "raw": "{{baseUrl}}/:customerId/depositors/:switchProfileGuid",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":customerId",
+                        "depositors",
+                        ":switchProfileGuid"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "switchProfileGuid",
+                          "value": "{{switchProfileGuid}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
                   },
                   "response": []
                 }
