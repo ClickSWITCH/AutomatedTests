@@ -11092,7 +11092,30 @@
                         "value": "{{ocpApimSubscriptionKey}}"
                       }
                     ],
-                    "url": "{{baseUrl}}/customers/{{customerId}}/switches/{{switchId}}"
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches",
+                        ":switchId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "switchId",
+                          "value": "{{switchId}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
                   },
                   "response": []
                 },
