@@ -11955,12 +11955,12 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/{{customerId}}/depositors?apiUserKey={{apiUserKey2}}&searchName={{depositorNameUnknown}}&latitude=-92&longitude=47",
+                  "raw": "{{baseUrl}}/:customerId/depositors?apiUserKey={{apiUserKey2}}&searchName={{depositorNameUnknown}}&latitude=-92&longitude=47",
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "path": [
-                    "{{customerId}}",
+                    ":customerId",
                     "depositors"
                   ],
                   "query": [
@@ -11979,6 +11979,13 @@
                     {
                       "key": "longitude",
                       "value": "47"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "customerId",
+                      "value": "{{customerId}}",
+                      "type": "string"
                     }
                   ]
                 }
