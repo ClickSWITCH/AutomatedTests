@@ -3771,19 +3771,26 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/switches?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "switches"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
                         }
                       ]
                     }
@@ -3838,13 +3845,13 @@
                       "raw": "{\r\n  \"PrimaryContactSignature\": {\r\n    \"ContactId\": \"{{primaryContactId}}\",\r\n    \"Signature\": \"Test Signature\"\r\n  }\r\n}"
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/switches/{{switchId}}?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/{{switchId}}?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "switches",
                         "{{switchId}}"
                       ],
@@ -3852,6 +3859,13 @@
                         {
                           "key": "apiUserKey",
                           "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
                         }
                       ]
                     }
