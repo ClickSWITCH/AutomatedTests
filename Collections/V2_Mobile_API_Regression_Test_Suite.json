@@ -11757,21 +11757,33 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/customers/{{customerId}}/contacts/{{primaryContactId}}/esignConsent?apiUserKey={{apiUserKey2}}",
+                  "raw": "{{baseUrl}}/customers/:customerId/contacts/:contactId/esignConsent?apiUserKey={{apiUserKey2}}",
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "path": [
                     "customers",
-                    "{{customerId}}",
+                    ":customerId",
                     "contacts",
-                    "{{primaryContactId}}",
+                    ":contactId",
                     "esignConsent"
                   ],
                   "query": [
                     {
                       "key": "apiUserKey",
                       "value": "{{apiUserKey2}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "customerId",
+                      "value": "{{customerId}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "contactId",
+                      "value": "{{primaryContactId}}",
+                      "type": "string"
                     }
                   ]
                 }
