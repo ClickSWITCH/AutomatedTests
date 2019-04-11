@@ -872,18 +872,25 @@
                       "raw": "{\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55555\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"Name\": \"Test Create Depositor\",\r\n  \"Notes\": \"Test creating a depositor with the minimum data.\"\r\n}"
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/{{customerId}}/depositors?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/:customerId/depositors?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
-                        "{{customerId}}",
+                        ":customerId",
                         "depositors"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
                         }
                       ]
                     }
@@ -948,18 +955,25 @@
                       "raw": "{\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55555\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"Name\": \"{{depositorNameUnknown}}\",\r\n  \"Notes\": \"Test\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"WebsiteUrl\" : \"https://www.clickswitch.com\"\r\n}"
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/{{customerId}}/depositors?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/:customerId/depositors?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
-                        "{{customerId}}",
+                        ":customerId",
                         "depositors"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
                         }
                       ]
                     }
@@ -1018,12 +1032,12 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/{{customerId}}/depositors?apiUserKey={{apiUserKey}}&searchName={{depositorNameUnknown}}&latitude={{latitude}}&longitude={{longitude}}",
+                      "raw": "{{baseUrl}}/:customerId/depositors?apiUserKey={{apiUserKey}}&searchName={{depositorNameUnknown}}&latitude={{latitude}}&longitude={{longitude}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
-                        "{{customerId}}",
+                        ":customerId",
                         "depositors"
                       ],
                       "query": [
@@ -1042,6 +1056,13 @@
                         {
                           "key": "longitude",
                           "value": "{{longitude}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
                         }
                       ]
                     }
