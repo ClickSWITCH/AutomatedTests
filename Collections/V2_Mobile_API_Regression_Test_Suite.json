@@ -4216,19 +4216,26 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/switches?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "switches"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
                         }
                       ]
                     }
@@ -4281,20 +4288,32 @@
                       "raw": ""
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/switches/{{switchIdOnlineOnly}}?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "switches",
-                        "{{switchIdOnlineOnly}}"
+                        ":switchId"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "switchId",
+                          "value": "{{switchIdOnlineOnly}}",
+                          "type": "string"
                         }
                       ]
                     }
