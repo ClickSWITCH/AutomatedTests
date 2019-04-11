@@ -8365,7 +8365,24 @@
                         "type": "text"
                       }
                     ],
-                    "url": "{{baseUrl}}/customers/{{customerId}}/switches"
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
                   },
                   "response": []
                 },
@@ -8421,7 +8438,25 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{baseUrl}}/customers/{{customerId}}/switches/{{switchIdPrintOnly}}"
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/{{switchIdPrintOnly}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches",
+                        "{{switchIdPrintOnly}}"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
                   },
                   "response": []
                 },
