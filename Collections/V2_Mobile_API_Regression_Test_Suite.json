@@ -4735,15 +4735,15 @@
                       "raw": ""
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/switches/{{switchIdPrintOnly}}/pdf/print?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId/pdf/print?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "switches",
-                        "{{switchIdPrintOnly}}",
+                        ":switchId",
                         "pdf",
                         "print"
                       ],
@@ -4751,6 +4751,18 @@
                         {
                           "key": "apiUserKey",
                           "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "switchId",
+                          "value": "{{switchIdPrintOnly}}",
+                          "type": "string"
                         }
                       ]
                     }
