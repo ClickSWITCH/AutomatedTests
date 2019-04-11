@@ -8735,7 +8735,30 @@
                         "type": "text"
                       }
                     ],
-                    "url": "{{baseUrl}}/customers/{{customerId}}/switches/{{switchIdDelete}}"
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches",
+                        ":switchId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "switchId",
+                          "value": "{{switchIdDelete}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
                   },
                   "response": []
                 },
@@ -8785,7 +8808,24 @@
                         "type": "text"
                       }
                     ],
-                    "url": "{{baseUrl}}/customers/{{customerId}}/switches"
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
                   },
                   "response": []
                 }
@@ -8856,7 +8896,29 @@
                     "type": "text"
                   }
                 ],
-                "url": "{{baseUrl}}/{{customerId}}/depositors/{{switchProfileGuid}}"
+                "url": {
+                  "raw": "{{baseUrl}}/:customerId/depositors/:switchProfileGuid",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":customerId",
+                    "depositors",
+                    ":switchProfileGuid"
+                  ],
+                  "variable": [
+                    {
+                      "key": "customerId",
+                      "value": "{{customerId}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "switchProfileGuid",
+                      "value": "{{switchProfileGuid}}",
+                      "type": "string"
+                    }
+                  ]
+                }
               },
               "response": []
             }
@@ -9034,21 +9096,33 @@
                       "raw": ""
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/contacts/{{primaryContactId}}/esignConsent?apiUserKey=aaaaa",
+                      "raw": "{{baseUrl}}/customers/:customerId/contacts/:contactId/esignConsent?apiUserKey=aaaaa",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "contacts",
-                        "{{primaryContactId}}",
+                        ":contactId",
                         "esignConsent"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "aaaaa"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "contactId",
+                          "value": "{{primaryContactId}}",
+                          "type": "string"
                         }
                       ]
                     }
@@ -9099,21 +9173,33 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/customers/{{customerId}}/contacts/{{primaryContactId}}/esignConsent?apiUserKey=aaaaa",
+                      "raw": "{{baseUrl}}/customers/:customerId/contacts/:contactId/esignConsent?apiUserKey=aaaaa",
                       "host": [
                         "{{baseUrl}}"
                       ],
                       "path": [
                         "customers",
-                        "{{customerId}}",
+                        ":customerId",
                         "contacts",
-                        "{{primaryContactId}}",
+                        ":contactId",
                         "esignConsent"
                       ],
                       "query": [
                         {
                           "key": "apiUserKey",
                           "value": "aaaaa"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "contactId",
+                          "value": "{{primaryContactId}}",
+                          "type": "string"
                         }
                       ]
                     }
@@ -9260,18 +9346,25 @@
                           "raw": "{\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55555\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"Name\": \"Test Depositor\",\r\n  \"Notes\": \"Test\",\r\n  \"PhoneNumber\": \"2185555555\"\r\n}"
                         },
                         "url": {
-                          "raw": "{{baseUrl}}/{{customerId}}/depositors?apiUserKey=aaaaa",
+                          "raw": "{{baseUrl}}/:customerId/depositors?apiUserKey=aaaaa",
                           "host": [
                             "{{baseUrl}}"
                           ],
                           "path": [
-                            "{{customerId}}",
+                            ":customerId",
                             "depositors"
                           ],
                           "query": [
                             {
                               "key": "apiUserKey",
                               "value": "aaaaa"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "customerId",
+                              "value": "{{customerId}}",
+                              "type": "string"
                             }
                           ]
                         }
@@ -12126,7 +12219,29 @@
             "type": "text"
           }
         ],
-        "url": "{{baseUrl}}/payroll-providers/{{payrollProviderId}}/{{imageHash}}"
+        "url": {
+          "raw": "{{baseUrl}}/payroll-providers/:payrollProviderId/:imageHash",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "payroll-providers",
+            ":payrollProviderId",
+            ":imageHash"
+          ],
+          "variable": [
+            {
+              "key": "payrollProviderId",
+              "value": "{{payrollProviderId}}",
+              "type": "string"
+            },
+            {
+              "key": "imageHash",
+              "value": "{{imageHash}}",
+              "type": "string"
+            }
+          ]
+        }
       },
       "response": []
     },
@@ -12169,14 +12284,14 @@
           }
         ],
         "url": {
-          "raw": "{{baseUrl}}/payroll-providers/{{payrollProviderId}}/{{imageHash}}?width={{widthHeight}}&height={{widthHeight}}",
+          "raw": "{{baseUrl}}/payroll-providers/:payrollProviderId/:imageHash?width={{widthHeight}}&height={{widthHeight}}",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
             "payroll-providers",
-            "{{payrollProviderId}}",
-            "{{imageHash}}"
+            ":payrollProviderId",
+            ":imageHash"
           ],
           "query": [
             {
@@ -12186,6 +12301,18 @@
             {
               "key": "height",
               "value": "{{widthHeight}}"
+            }
+          ],
+          "variable": [
+            {
+              "key": "payrollProviderId",
+              "value": "{{payrollProviderId}}",
+              "type": "string"
+            },
+            {
+              "key": "imageHash",
+              "value": "{{imageHash}}",
+              "type": "string"
             }
           ]
         }
