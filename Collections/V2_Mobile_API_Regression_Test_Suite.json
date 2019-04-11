@@ -4659,7 +4659,7 @@
                       "raw": ""
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/customers/:customerId/switches/{{switchIdPrintOnly}}?apiUserKey={{apiUserKey}}",
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey={{apiUserKey}}",
                       "host": [
                         "{{baseUrl}}"
                       ],
@@ -4667,7 +4667,7 @@
                         "customers",
                         ":customerId",
                         "switches",
-                        "{{switchIdPrintOnly}}"
+                        ":switchId"
                       ],
                       "query": [
                         {
@@ -4679,6 +4679,11 @@
                         {
                           "key": "customerId",
                           "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "switchId",
+                          "value": "{{switchIdPrintOnly}}",
                           "type": "string"
                         }
                       ]
