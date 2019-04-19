@@ -1,6 +1,6 @@
 {
 	"id": "d7e3b97a-755c-4057-80a9-54d60ff203b6",
-	"name": "V2 Mobile API Regression Test Suite Environment Template",
+	"name": "API v2 Regression Test Suite Environment Template",
 	"values": [
 		{
 			"key": "ocpApimSubscriptionKey",
