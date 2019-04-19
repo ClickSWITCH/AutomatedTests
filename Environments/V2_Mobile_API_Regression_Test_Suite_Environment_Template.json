@@ -23,6 +23,12 @@
 			"enabled": true
 		},
 		{
+			"key": "institutionName",
+			"value": "yourInstitutionName",
+			"description": "",
+			"enabled": true
+		},
+		{
 			"key": "institutionId",
 			"value": "yourInstitutionId",
 			"enabled": true
@@ -65,11 +71,13 @@
 		{
 			"key": "accountTypeChecking",
 			"value": "Checking",
+			"description": "",
 			"enabled": true
 		},
 		{
 			"key": "accountTypeSavings",
 			"value": "Savings",
+			"description": "",
 			"enabled": true
 		},
 		{
@@ -185,6 +193,10 @@
 		{
 			"key": "depositorNameOnlineOnly",
 			"value": "1p3",
+			"description": {
+				"content": "",
+				"type": "text/plain"
+			},
 			"enabled": true
 		},
 		{
@@ -244,6 +256,6 @@
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2019-03-22T17:59:09.657Z",
+	"_postman_exported_at": "2019-04-19T16:35:41.168Z",
 	"_postman_exported_using": "Postman/6.7.4"
 }
