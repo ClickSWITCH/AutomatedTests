@@ -6076,6 +6076,89 @@
                   "response": []
                 },
                 {
+                  "name": "Find PlaceId (Dependency) Copy",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "6e7770e3-231f-4c08-8901-770715598451",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 200\", function() {",
+                          "    pm.response.to.have.status(200);",
+                          "});",
+                          "",
+                          "pm.test(\"Contains at least one result\", function() {",
+                          "    pm.expect(jsonData.length).to.be.at.least(1);",
+                          "});",
+                          "",
+                          "pm.environment.set('placeId', jsonData[jsonData.length-1].PlaceId);",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "_postman_id": "3d67e921-22d1-41b9-a3e9-65b2932bf5d4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      },
+                      {
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "{{ocpApimSubscriptionKey}}",
+                        "type": "text"
+                      },
+                      {
+                        "key": "apiUserKey",
+                        "value": "{{apiUserKey}}",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:customerId/depositors?searchName={{depositorNamePlace}}&latitude={{latitude}}&longitude={{longitude}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":customerId",
+                        "depositors"
+                      ],
+                      "query": [
+                        {
+                          "key": "searchName",
+                          "value": "{{depositorNamePlace}}"
+                        },
+                        {
+                          "key": "latitude",
+                          "value": "{{latitude}}"
+                        },
+                        {
+                          "key": "longitude",
+                          "value": "{{longitude}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "2c8252a7-0732-400c-84cc-c9eadd13949e",
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
                   "name": "Create PlaceId (Dependency)",
                   "event": [
                     {
@@ -6151,89 +6234,6 @@
                       "variable": [
                         {
                           "id": "75663f1f-ca3d-4412-b323-378cfa82377d",
-                          "key": "customerId",
-                          "value": "{{customerId}}",
-                          "type": "string"
-                        }
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Find PlaceId (Dependency) Copy",
-                  "event": [
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "6e7770e3-231f-4c08-8901-770715598451",
-                        "exec": [
-                          "const jsonData = pm.response.json();",
-                          "",
-                          "pm.test(\"Status code is 200\", function() {",
-                          "    pm.response.to.have.status(200);",
-                          "});",
-                          "",
-                          "pm.test(\"Contains at least one result\", function() {",
-                          "    pm.expect(jsonData.length).to.be.at.least(1);",
-                          "});",
-                          "",
-                          "pm.environment.set('placeId', jsonData[jsonData.length-1].PlaceId);",
-                          ""
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "_postman_id": "3d67e921-22d1-41b9-a3e9-65b2932bf5d4",
-                  "protocolProfileBehavior": {
-                    "disableBodyPruning": true
-                  },
-                  "request": {
-                    "method": "GET",
-                    "header": [
-                      {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "type": "text"
-                      },
-                      {
-                        "key": "Ocp-Apim-Subscription-Key",
-                        "value": "{{ocpApimSubscriptionKey}}",
-                        "type": "text"
-                      },
-                      {
-                        "key": "apiUserKey",
-                        "value": "{{apiUserKey}}",
-                        "type": "text"
-                      }
-                    ],
-                    "url": {
-                      "raw": "{{baseUrl}}/:customerId/depositors?searchName={{depositorNamePlace}}&latitude={{latitude}}&longitude={{longitude}}",
-                      "host": [
-                        "{{baseUrl}}"
-                      ],
-                      "path": [
-                        ":customerId",
-                        "depositors"
-                      ],
-                      "query": [
-                        {
-                          "key": "searchName",
-                          "value": "{{depositorNamePlace}}"
-                        },
-                        {
-                          "key": "latitude",
-                          "value": "{{latitude}}"
-                        },
-                        {
-                          "key": "longitude",
-                          "value": "{{longitude}}"
-                        }
-                      ],
-                      "variable": [
-                        {
-                          "id": "2c8252a7-0732-400c-84cc-c9eadd13949e",
                           "key": "customerId",
                           "value": "{{customerId}}",
                           "type": "string"
