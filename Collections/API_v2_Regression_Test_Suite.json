@@ -1114,7 +1114,7 @@
                           "            pm.expect(result).to.have.property(\"PhoneNumber\");",
                           "            pm.expect(result).to.have.property(\"PlaceId\");",
                           "            pm.expect(result).to.have.property(\"SwitchTemplate\");",
-                          "            pm.expect(Object.keys(result).length).to.equal(6);",
+                          "            pm.expect(Object.keys(result).length).to.equal(7);",
                           "            foundGoogle = true;",
                           "        }",
                           "    });",
