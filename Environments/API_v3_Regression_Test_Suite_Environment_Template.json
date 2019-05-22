@@ -1,0 +1,204 @@
+{
+	"id": "c68e2445-3f47-46ee-a0d9-048d19e71117",
+	"name": "API v3 Regression Test Suite Environment Template",
+	"values": [
+		{
+			"key": "apiKey",
+			"value": "yourApiKey",
+			"enabled": true
+		},
+		{
+			"key": "apiKey2",
+			"value": "ClickSWITCHInternalTesting",
+			"enabled": true
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://your.apiv3.domain",
+			"enabled": true
+		},
+		{
+			"key": "customerKey",
+			"value": "yourCustomerKey",
+			"enabled": true
+		},
+		{
+			"key": "customerKeyUpper",
+			"value": "YOURCUSTOMERKEY",
+			"enabled": true
+		},
+		{
+			"key": "customerKeyLower",
+			"value": "yourcustomerkey",
+			"enabled": true
+		},
+		{
+			"key": "firstName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "accountName",
+			"value": "yourAccountName",
+			"enabled": true
+		},
+		{
+			"key": "accountName2",
+			"value": "yourAccountName",
+			"enabled": true
+		},
+		{
+			"key": "accountTypeChecking",
+			"value": "Checking",
+			"enabled": true
+		},
+		{
+			"key": "accountTypeSavings",
+			"value": "Savings",
+			"enabled": true
+		},
+		{
+			"key": "routingNumber",
+			"value": "yourRoutingNumber",
+			"enabled": true
+		},
+		{
+			"key": "routingNumber2",
+			"value": "yourRoutingNumber",
+			"enabled": true
+		},
+		{
+			"key": "metadata",
+			"value": "{\"metadata\":\"metadata\",\"metadata2\":\"metadata2\",\"metadata3\":\"metadata3\",\"metadata4\":\"metadata4\",\"metadata5\":\"metadata5\",\"metadata6\":\"metadata6\",\"metadata7\":\"metadata7\",\"metadata8\":\"metadata8\",\"metadata9\":\"metadata9\",\"metadata10\":\"metadata10\",\"metadata11\":\"metadata11\",\"metadata12\":\"metadata12\",\"metadata13\":\"metadata13\",\"metadata14\":\"metadata14\",\"metadata15\":\"metadata15\",\"metadata16\":\"metadata16\",\"metadata17\":\"metadata17\",\"metadata18\":\"metadata18\",\"metadata19\":\"metadata19\",\"metadata20\":\"metadata20\"}",
+			"enabled": true
+		},
+		{
+			"key": "accountsMetadata",
+			"value": "{\"accountsMetadata\":\"accountsMetadata\",\"accountsMetadata2\":\"accountsMetadata2\",\"accountsMetadata3\":\"accountsMetadata3\",\"accountsMetadata4\":\"accountsMetadata4\",\"accountsMetadata5\":\"accountsMetadata5\",\"accountsMetadata6\":\"accountsMetadata6\",\"accountsMetadata7\":\"accountsMetadata7\",\"accountsMetadata8\":\"accountsMetadata8\",\"accountsMetadata9\":\"accountsMetadata9\",\"accountsMetadata10\":\"accountsMetadata10\",\"accountsMetadata11\":\"accountsMetadata11\",\"accountsMetadata12\":\"accountsMetadata12\",\"accountsMetadata13\":\"accountsMetadata13\",\"accountsMetadata14\":\"accountsMetadata14\",\"accountsMetadata15\":\"accountsMetadata15\",\"accountsMetadata16\":\"accountsMetadata16\",\"accountsMetadata17\":\"accountsMetadata17\",\"accountsMetadata18\":\"accountsMetadata18\",\"accountsMetadata19\":\"accountsMetadata19\",\"accountsMetadata20\":\"accountsMetadata20\"}",
+			"enabled": true
+		},
+		{
+			"key": "baseAuthorizationUrl",
+			"value": "https://yoursubdomain.clickswitch.com/Account/LoginFromToken?token=",
+			"enabled": true
+		},
+		{
+			"key": "targetNameDeposit",
+			"value": "1p11",
+			"enabled": true
+		},
+		{
+			"key": "targetIdDeposit",
+			"value": 155,
+			"enabled": true
+		},
+		{
+			"key": "targetNameDepositPrint",
+			"value": "1p12",
+			"enabled": true
+		},
+		{
+			"key": "targetIdDepositPrint",
+			"value": 156,
+			"enabled": true
+		},
+		{
+			"key": "targetNameDepositOnline",
+			"value": "1p3",
+			"enabled": true
+		},
+		{
+			"key": "targetIdDepositOnline",
+			"value": 96,
+			"enabled": true
+		},
+		{
+			"key": "targetNameDepositSplit",
+			"value": "1p7",
+			"enabled": true
+		},
+		{
+			"key": "targetIdDepositSplit",
+			"value": 100,
+			"enabled": true
+		},
+		{
+			"key": "targetNamePayment",
+			"value": "1p4",
+			"enabled": true
+		},
+		{
+			"key": "targetIdPayment",
+			"value": 97,
+			"enabled": true
+		},
+		{
+			"key": "targetNamePaymentPrint",
+			"value": "1p5",
+			"enabled": true
+		},
+		{
+			"key": "targetIdPaymentPrint",
+			"value": 98,
+			"enabled": true
+		},
+		{
+			"key": "targetNamePaymentOnline",
+			"value": "1p6",
+			"enabled": true
+		},
+		{
+			"key": "targetIdPaymentOnline",
+			"value": 99,
+			"enabled": true
+		},
+		{
+			"key": "targetNameLocationSearch",
+			"value": "Dairy Queen",
+			"enabled": true
+		},
+		{
+			"key": "targetNameLocation",
+			"value": "Dairy Queen Grill & Chill",
+			"enabled": true
+		},
+		{
+			"key": "locationId",
+			"value": "ChIJQ2h96o5Js1IRLnJN7h_LqXE",
+			"enabled": true
+		},
+		{
+			"key": "state",
+			"value": "MN",
+			"enabled": true
+		},
+		{
+			"key": "zip",
+			"value": "55401",
+			"enabled": true
+		},
+		{
+			"key": "country",
+			"value": "US",
+			"enabled": true
+		},
+		{
+			"key": "lang",
+			"value": "en-US",
+			"enabled": true
+		},
+		{
+			"key": "context",
+			"value": "testing",
+			"enabled": true
+		},
+		{
+			"key": "requestFields",
+			"value": "{\"name\":\"Test\",\"phoneNumber\":\"1234567890\",\"website\":\"www.test.com\",\"mailingAddress\":{\"line1\":\"244 N 1st Ave\",\"line2\":null,\"line3\":\"Test\",\"city\":\"Minneapolis\",\"state\":\"{{state}}\",\"zip\":\"{{zip}}\"},\"category\":1,\"Custom_SSN4\":\"1234\",\"Custom_Employee/ID\":\"1234\"}",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2019-05-21T21:38:48.739Z",
+	"_postman_exported_using": "Postman/6.7.4"
+}
