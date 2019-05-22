@@ -30940,6 +30940,113 @@
           "response": []
         },
         {
+          "name": "Register Minimum Data Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2db08541-5600-4a67-b202-98e516f8b548",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Has the required properties\", function () {",
+                  "    pm.expect(jsonData).to.have.property(\"data\");",
+                  "    pm.expect(jsonData).to.have.property(\"apiVersion\");",
+                  "    pm.expect(jsonData).to.have.property(\"context\");",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "    pm.expect(Object.keys(jsonData).length).to.equal(4);",
+                  "});",
+                  "",
+                  "pm.test(\"Has the required data properties\", function () {",
+                  "    pm.expect(jsonData.data).to.have.property(\"item\");",
+                  "    pm.expect(jsonData.data).to.have.property(\"kind\");",
+                  "    pm.expect(jsonData.data).to.have.property(\"lang\");",
+                  "    pm.expect(Object.keys(jsonData.data).length).to.equal(3);",
+                  "});",
+                  "",
+                  "pm.test(\"Has the required item properties\", function () {",
+                  "    pm.expect(jsonData.data.item).to.have.property(\"id\");",
+                  "    pm.expect(jsonData.data.item).to.have.property(\"webhookUrl\");",
+                  "    pm.expect(jsonData.data.item).to.have.property(\"eventTypes\");",
+                  "    pm.expect(jsonData.data.item).to.have.property(\"sources\");",
+                  "    pm.expect(Object.keys(jsonData.data.item).length).to.equal(4);",
+                  "});",
+                  "",
+                  "pm.test(\"Has the correct webhookUrl\", function () {",
+                  "    pm.expect(jsonData.data.item.webhookUrl).to.match(/https:\\/\\/clickswitchwebhooks\\.clickswitchqa\\.com\\/(.*)/);",
+                  "});",
+                  "",
+                  "pm.test(\"Has the correct eventTypes\", function () {",
+                  "    pm.expect(jsonData.data.item.eventTypes).to.deep.equal([\"switch.state\"]);",
+                  "});",
+                  "",
+                  "pm.test(\"Has the correct sources\", function () {",
+                  "    pm.expect(jsonData.data.item.sources).to.deep.equal([\"internal\"]);    ",
+                  "});",
+                  "",
+                  "pm.test(\"Has the correct kind\", function () {",
+                  "   pm.expect(jsonData.data.kind).to.equal(\"webhook\"); ",
+                  "});",
+                  "",
+                  "pm.test(\"Has the correct lang\", function () {",
+                  "    pm.expect(jsonData.data.lang).to.equal(pm.environment.get(\"lang\")); ",
+                  "});",
+                  "",
+                  "pm.test(\"Has the correct context\", function () {",
+                  "    pm.expect(jsonData.context).to.equal(pm.environment.get(\"context\"));",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "0e76b16b-5eb2-4925-9ee0-a4d80d458760",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "api-key",
+                "type": "text",
+                "value": "{{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"webhookUrl\": \"https://clickswitchwebhooks.clickswitchqa.com/{{$guid}}\",\r\n\t\"eventTypes\": [\r\n\t\t\"switch.state\"\r\n\t],\r\n\t\"sources\": [\"internal\"]\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhooks?context={{context}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhooks"
+              ],
+              "query": [
+                {
+                  "key": "context",
+                  "value": "{{context}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Register",
           "event": [
             {
