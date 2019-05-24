@@ -30899,7 +30899,6 @@
                   "",
                   "pm.test(\"Has a matching id\", function() {",
                   "    pm.expect(jsonData.id).to.have.length(32);",
-                  "    pm.expect(jsonData.id).to.match(/(.*)/);",
                   "});",
                   ""
                 ],
