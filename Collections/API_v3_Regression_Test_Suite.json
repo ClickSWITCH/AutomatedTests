@@ -30805,7 +30805,7 @@
           "_postman_isSubFolder": true
         },
         {
-          "name": "Get Switches Copy",
+          "name": "Get Switches",
           "event": [
             {
               "listen": "test",
