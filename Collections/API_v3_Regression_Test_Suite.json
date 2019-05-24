@@ -5821,6 +5821,106 @@
               "response": []
             },
             {
+              "name": "Get Switches Copy",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "c3939a64-cc66-468b-b40c-636565c4076b",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Has the required properties\", function () {",
+                      "    pm.expect(jsonData).to.have.property(\"data\");",
+                      "    pm.expect(jsonData).to.have.property(\"apiVersion\");",
+                      "    pm.expect(jsonData).to.have.property(\"context\");",
+                      "    pm.expect(jsonData).to.have.property(\"id\");",
+                      "    pm.expect(Object.keys(jsonData).length).to.equal(4);",
+                      "});",
+                      "",
+                      "pm.test(\"Has the required data properties\", function () {",
+                      "    pm.expect(jsonData.data).to.have.property(\"currentItemCount\");",
+                      "    pm.expect(jsonData.data).to.have.property(\"items\");",
+                      "    pm.expect(jsonData.data).to.have.property(\"kind\");",
+                      "    pm.expect(jsonData.data).to.have.property(\"lang\");",
+                      "    pm.expect(Object.keys(jsonData.data).length).to.equal(4);",
+                      "});",
+                      "",
+                      "pm.test(\"Has the correct currentItemCount\", function () {",
+                      "    pm.expect(jsonData.data.currentItemCount).to.equal(0);",
+                      "});",
+                      "",
+                      "pm.test(\"Has empty array of switches\", function() {",
+                      "   pm.expect(jsonData.data.items).to.be.empty;",
+                      "});",
+                      "",
+                      "pm.test(\"Has the correct kind\", function () {",
+                      "   pm.expect(jsonData.data.kind).to.equal(\"switch\"); ",
+                      "});",
+                      "",
+                      "pm.test(\"Has the correct lang\", function () {",
+                      "    pm.expect(jsonData.data.lang).to.equal(pm.environment.get(\"lang\")); ",
+                      "});",
+                      "",
+                      "pm.test(\"Has the correct context\", function () {",
+                      "    pm.expect(jsonData.context).to.equal(pm.environment.get(\"context\"));",
+                      "});",
+                      "",
+                      "pm.test(\"Has a matching id\", function() {",
+                      "    pm.expect(jsonData.id).to.have.length(32);",
+                      "    pm.expect(jsonData.id).to.match(/(.*)/);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "15e84896-53ed-4cb1-8a4b-996b63ff3b29",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "api-key",
+                    "value": "{{apiKey}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customerKey/switches?context={{context}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customerKey",
+                    "switches"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "{{context}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "2df237d6-bd02-4447-9c5f-9014e6206052",
+                      "key": "customerKey",
+                      "value": "{{customerKey}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
               "name": "Create Switch",
               "event": [
                 {
