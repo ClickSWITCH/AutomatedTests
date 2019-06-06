@@ -1,0 +1,3376 @@
+{
+  "info": {
+    "_postman_id": "5494d8eb-53cd-48d5-9d90-9f96fa0c457b",
+    "name": "API v1 Regression Test Suite TLD",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Cross-Tenant Attack",
+      "item": [
+        {
+          "name": "EnrollCustomer (Dependency)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+                "exec": [
+                  "// Set accountNumber env var to timestamp to create a unique customer each run.",
+                  "var timestamp = Date.now();",
+                  "var randomString = makeRandomString();",
+                  "pm.environment.set(\"accountNumber\", timestamp);",
+                  "pm.environment.set(\"userName\", randomString);",
+                  "",
+                  "// Creates a random string of length 10.",
+                  "function makeRandomString() {",
+                  "  var text = \"\";",
+                  "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                  "  ",
+                  "  for (var i = 0; i < 10; i++) {",
+                  "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+                  "  }",
+                  "  ",
+                  "  return text;",
+                  "}",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// Results described in FUS-4052.",
+                  "pm.test(\"Has the correct response\", function () {",
+                  "    if (pm.environment.get(\"domain\") === \"clickswitch.ca\") {",
+                  "        pm.expect(pm.response.json()).to.deep.equal({",
+                  "            \"IsSuccess\": false,",
+                  "            \"SwitchTrackCode\": null,",
+                  "            \"Errors\": [",
+                  "                `This institution does not have a Routing/Transit Number of '${pm.environment.get(\"routingNumber\")}'.`,",
+                  "                `This institution does not have an external branch id of '${pm.environment.get(\"externalBranchId\")}'.`,",
+                  "                `This insitution does not have a branch id of '${pm.environment.get(\"branchId\")}'.`,",
+                  "                `Invalid branch id '${pm.environment.get(\"branchId\")}'`,",
+                  "                `Invalid branch id '${pm.environment.get(\"branchId\")}'`,",
+                  "                `Invalid external branch id '${pm.environment.get(\"externalBranchId\")}'`,",
+                  "                `Invalid external branch id '${pm.environment.get(\"externalBranchId\")}'`,",
+                  "                `Invalid routing/transit number '${pm.environment.get(\"routingNumber\")}'`,",
+                  "                `Invalid routing/transit number '${pm.environment.get(\"routingNumber2\")}'`,",
+                  "                `Invalid account name '${pm.environment.get(\"accountName2\")}'`,",
+                  "                \"This API user is not authorized to access this institution.\"",
+                  "            ]",
+                  "        });",
+                  "    } else if (pm.environment.get(\"domain\").includes(\".ca\")) {",
+                  "        pm.expect(pm.response.json()).to.deep.equal({",
+                  "            \"IsSuccess\": false,",
+                  "            \"SwitchTrackCode\": null,",
+                  "            \"Errors\": [",
+                  "                `This institution does not have a Routing/Transit Number of '${pm.environment.get(\"routingNumber\")}'.`,",
+                  "                `This institution does not have an external branch id of '${pm.environment.get(\"externalBranchId\")}'.`,",
+                  "                `This insitution does not have a branch id of '${pm.environment.get(\"branchId\")}'.`,",
+                  "                `Invalid account name '${pm.environment.get(\"accountName\")}'`,",
+                  "                `Invalid account name '${pm.environment.get(\"accountName2\")}'`,",
+                  "                `Invalid branch id '${pm.environment.get(\"branchId\")}'`,",
+                  "                `Invalid branch id '${pm.environment.get(\"branchId\")}'`,",
+                  "                `Invalid external branch id '${pm.environment.get(\"externalBranchId\")}'`,",
+                  "                `Invalid external branch id '${pm.environment.get(\"externalBranchId\")}'`,",
+                  "                `Invalid routing/transit number '${pm.environment.get(\"routingNumber\")}'`,",
+                  "                `Invalid routing/transit number '${pm.environment.get(\"routingNumber2\")}'`,",
+                  "                \"This API user is not authorized to access this institution.\"",
+                  "            ]",
+                  "        });",
+                  "    } else {",
+                  "        pm.expect(pm.response.json()).to.deep.equal({",
+                  "            \"IsSuccess\": false,",
+                  "            \"SwitchTrackCode\": null,",
+                  "            \"Errors\": [",
+                  "                `This institution does not have a Routing/Transit Number of '${pm.environment.get(\"routingNumber\")}'.`,",
+                  "                `This insitution does not have a branch id of '${pm.environment.get(\"branchId\")}'.`,",
+                  "                `Invalid branch id '${pm.environment.get(\"branchId\")}'`,",
+                  "                `Invalid branch id '${pm.environment.get(\"branchId\")}'`,",
+                  "                `Invalid routing/transit number '${pm.environment.get(\"routingNumber\")}'`,",
+                  "                `Invalid routing/transit number '${pm.environment.get(\"routingNumber2\")}'`,",
+                  "                `Invalid account name '${pm.environment.get(\"accountName2\")}'`,",
+                  "                \"This API user is not authorized to access this institution.\"",
+                  "            ]",
+                  "        });",
+                  "    }",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "259a8b8a-e75a-4a0c-aa13-118f71ad2e2d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "type": "text",
+                "value": "{{ocpApimSubscriptionKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"EnrollingUserExternalId\": null,\r\n  \"EnrollingUserId\": null,\r\n  \"Accounts\": [\r\n  \t{\r\n      \"BranchId\": \"{{branchId}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"ExternalBranchId\": \"{{externalBranchId}}\",\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"AccountTypeId\": \"1\",\r\n      \"AccountNumber\": \"{{accountNumber}}\"\r\n    },\r\n    {\r\n      \"BranchId\": \"{{branchId}}\",\r\n      \"RoutingNumber\": \"{{routingNumber2}}\",\r\n      \"ExternalBranchId\": \"{{externalBranchId}}\",\r\n      \"AccountName\": \"{{accountName2}}\",\r\n      \"AccountTypeId\": \"2\",\r\n      \"AccountNumber\": \"{{accountNumber}}0\"\r\n    }\r\n  ],\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"BusinessName\": \"Business Name\",\r\n  \"PhoneNumber\": \"6125555555\",\r\n  \"InstitutionId\": \"{{institutionId2}}\",\r\n  \"Address\": {\r\n    \"StateProvinceCode\": \"MN\",\r\n    \"PostalCode\": \"55401\",\r\n    \"CountryCode\": \"US\",\r\n    \"City\": \"Minneapolis\",\r\n    \"AddressLine3\": \"ATTN Test\",\r\n    \"AddressLine2\": \"#100\",\r\n    \"AddressLine1\": \"244 1st Ave. N\"\r\n  },\r\n  \"PrimaryContact\": {\r\n    \"LastName\": \"Test\",\r\n    \"MiddleInitial\": \"J\",\r\n    \"FirstName\": \"{{userName}}\"\r\n  },\r\n  \"UserName\": \"{{userName}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"ApiUserKey\": \"{{apiUserKey}}\"\r\n}"
+            },
+            "url": "{{baseUrl}}/EnrollCustomer"
+          },
+          "response": []
+        },
+        {
+          "name": "AddAccountXml",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "b263edaf-7714-4001-b3bb-b982f3697fd3",
+                "exec": [
+                  "pm.test(\"Status code is 500\", function () {",
+                  "    pm.response.to.have.status(500);",
+                  "});",
+                  "",
+                  "pm.test(\"Has the correct response\", function () {",
+                  "    pm.expect(pm.response.text()).to.equal(`<ArrayOfstring xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/Arrays\"><string>Not authorized to add accounts to InstitutionId:${pm.environment.get(\"institutionId2\")}</string></ArrayOfstring>`);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "c3fdb661-78c6-4c9e-a90c-dfd727a13a92",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "type": "text",
+                "value": "{{ocpApimSubscriptionKey}}"
+              },
+              {
+                "key": "Accept",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/xml"
+              },
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \t\"AddressLine1\": \"244 1st Ave. N\",\r\n \t\"AddressLine2\": \"#100\",\r\n \t\"AddressLine3\": \"ATTN Test\",\r\n \t\"ApiUserKey\": \"{{apiUserKey}}\",\r\n \t\"City\": \"Minneapolis\",\r\n \t\"CountryCode\": \"US\",\r\n \t\"Email\": \"{{accountNumber}}@clickswitch.com\",\r\n \t\"UserName\": \"{{userName}}\",\r\n \t\"InstitutionId\": \"{{institutionId2}}\",\r\n \t\"IsJointAccount\": true,\r\n \t\"NewAccounts\": [\r\n \t\t{\r\n\t \t\t\"AccountTypeId\": \"1\",\r\n\t \t\t\"AccountNumber\": \"{{accountNumber}}\",\r\n\t \t\t\"AccountName\": \"{{accountName}}\"\r\n \t\t},\r\n \t\t{\r\n\t \t\t\"AccountTypeId\": \"2\",\r\n\t \t\t\"AccountNumber\": \"{{accountNumber}}0\",\r\n\t \t\t\"AccountName\": \"{{accountName2}}\"\r\n \t\t}\r\n \t],\r\n \t\"PhoneNumber\": \"6125555555\",\r\n \t\"PostalCode\": \"55401\",\r\n \t\"PrimaryFirst\": \"{{userName}}\",\r\n \t\"PrimaryLast\": \"Test\",\r\n \t\"PrimaryMiddle\": \"J\",\r\n \t\"SecondaryFirst\": \"A{{userName}}\",\r\n \t\"SecondaryLast\": \"Tester\",\r\n \t\"SecondaryMiddle\": \"S\",\r\n \t\"StateProvinceCode\": \"MN\",\r\n \t\"UserId\": \"\",\r\n \t\"BranchId\": \"{{branchId}}\",\r\n \t\"ExternalUserId\": \"\",\r\n \t\"ExternalBranchId\": \"\",\r\n \t\"RoutingNumber\": \"{{routingNumber}}\"\r\n }"
+            },
+            "url": "{{baseUrl}}/AddAccountXml"
+          },
+          "response": []
+        },
+        {
+          "name": "AddAccount",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+                "exec": [
+                  "pm.test(\"Status code is 500\", function () {",
+                  "    pm.response.to.have.status(500);",
+                  "});",
+                  "",
+                  "pm.test(\"Has the correct response\", function () {",
+                  "    pm.expect(pm.response.text()).to.equal(`\"[\\\\\"Not authorized to add accounts to InstitutionId:${pm.environment.get(\"institutionId2\")}\\\\\"]\"`);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "b1a785f6-31c7-463c-9b1e-efb01e7d0a19",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "type": "text",
+                "value": "{{ocpApimSubscriptionKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \t\"AddressLine1\": \"244 1st Ave. N\",\r\n \t\"AddressLine2\": \"#100\",\r\n \t\"AddressLine3\": \"ATTN Test\",\r\n \t\"ApiUserKey\": \"{{apiUserKey}}\",\r\n \t\"City\": \"Minneapolis\",\r\n \t\"CountryCode\": \"US\",\r\n \t\"Email\": \"{{accountNumber}}@clickswitch.com\",\r\n \t\"UserName\": \"{{userName}}\",\r\n \t\"InstitutionId\": \"{{institutionId2}}\",\r\n \t\"IsJointAccount\": true,\r\n \t\"NewAccounts\": [\r\n \t\t{\r\n\t \t\t\"AccountTypeId\": \"1\",\r\n\t \t\t\"AccountNumber\": \"{{accountNumber}}\",\r\n\t \t\t\"AccountName\": \"{{accountName}}\"\r\n \t\t},\r\n \t\t{\r\n\t \t\t\"AccountTypeId\": \"2\",\r\n\t \t\t\"AccountNumber\": \"{{accountNumber}}0\",\r\n\t \t\t\"AccountName\": \"{{accountName2}}\"\r\n \t\t}\r\n \t],\r\n \t\"PhoneNumber\": \"6125555555\",\r\n \t\"PostalCode\": \"55401\",\r\n \t\"PrimaryFirst\": \"{{userName}}\",\r\n \t\"PrimaryLast\": \"Test\",\r\n \t\"PrimaryMiddle\": \"J\",\r\n \t\"SecondaryFirst\": \"A{{userName}}\",\r\n \t\"SecondaryLast\": \"Tester\",\r\n \t\"SecondaryMiddle\": \"S\",\r\n \t\"StateProvinceCode\": \"MN\",\r\n \t\"UserId\": \"\",\r\n \t\"BranchId\": \"{{branchId}}\",\r\n \t\"ExternalUserId\": \"\",\r\n \t\"ExternalBranchId\": \"\",\r\n \t\"RoutingNumber\": \"{{routingNumber}}\"\r\n }"
+            },
+            "url": "{{baseUrl}}/AddAccount"
+          },
+          "response": []
+        },
+        {
+          "name": "CreateInstitutionUserNonceSignInUrl",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"Has the correct response\", function () {",
+                  "    pm.expect(pm.response.json()).to.deep.equal(",
+                  "        {",
+                  "            \"Message\": \"The request is invalid.\",",
+                  "            \"ModelState\": {",
+                  "                \"ApiUserKey\": [",
+                  "                    \"This API user is not authorized to access this institution.\"",
+                  "                ]",
+                  "            }",
+                  "        }",
+                  "    );",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "224e57c0-2556-48b0-9469-25b0581bf2c2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "type": "text",
+                "value": "{{ocpApimSubscriptionKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"ApiUserKey\": \"{{apiUserKey}}\",\n    \"UserName\": \"{{userName}}INST\",\n    \"EmailAddress\": \"{{accountNumber}}INST@clickswitch.com\",\n    \"FirstName\": \"{{userName}}INST\",\n    \"LastName\": \"Test\",\n    \"InstitutionId\": \"{{institutionId2}}\",\n    \"CustomerUserName\": \"{{userName}}\",\n    \"ExternalUserId\": \"{{accountNumber}}\",\n    \"InstitutionBranchId\": \"{{branchId}}\",\n    \"ExternalBranchId\": null,\n    \"SwitchTrackCode\": \"{{switchTrackCode}}\"\n}"
+            },
+            "url": "{{baseUrl}}/CreateInstitutionUserNonceSignInUrl"
+          },
+          "response": []
+        },
+        {
+          "name": "GenerateSignInNonceUrl SwitchTrackCode",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"Has the correct response\", function() {",
+                  "    pm.expect(pm.response.json()).to.deep.equal(",
+                  "        [",
+                  "            \"You are not set up as a registered user in ClickSWITCH. Please contact your ClickSWITCH Administrator for assistance.\",",
+                  "            \"This API user is not authorized to access this institution.\"",
+                  "        ]",
+                  "    );",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "0d9d7d46-3d51-456d-a2d7-9049a28f0ac6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "type": "text",
+                "value": "{{ocpApimSubscriptionKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"APIUserKey\": \"{{apiUserKey}}\",\n    \"ExternalUserId\": \"{{accountNumber}}\",\n    \"InstitutionId\": \"{{institutionId2}}\",\n    \"SwitchTrackCode\": \"{{switchTrackCode}}\"\n}"
+            },
+            "url": "{{baseUrl}}/GenerateSignInNonceUrl"
+          },
+          "response": []
+        },
+        {
+          "name": "GenerateSignInNonceUrl CustomerUserName",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"Has the correct response\", function() {",
+                  "    pm.expect(pm.response.json()).to.deep.equal(",
+                  "        [",
+                  "            \"You are not set up as a registered user in ClickSWITCH. Please contact your ClickSWITCH Administrator for assistance.\",",
+                  "            \"This API user is not authorized to access this institution.\"",
+                  "        ]",
+                  "    );",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "7ca824d4-f138-49c7-bd7e-01236ef7264d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "type": "text",
+                "value": "{{ocpApimSubscriptionKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"APIUserKey\": \"{{apiUserKey}}\",\n    \"ExternalUserId\": \"{{accountNumber}}\",\n    \"InstitutionId\": \"{{institutionId2}}\",\n    \"CustomerUserName\": \"{{userName}}\"\n}"
+            },
+            "url": "{{baseUrl}}/GenerateSignInNonceUrl"
+          },
+          "response": []
+        },
+        {
+          "name": "MeridianEnrollCustomer",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "// Results described in FUS-4052.",
+                  "pm.test(\"Has the correct response\", function () {",
+                  "    if (pm.environment.get(\"domain\") === \"clickswitch.ca\") {",
+                  "        pm.expect(pm.response.text()).to.equal(`<ApiEnrollCustomerResult xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/ClickSwitch.Domain.Models.CustomerEnrollment.DataContracts\"><Errors xmlns:d2p1=\"http://schemas.microsoft.com/2003/10/Serialization/Arrays\"><d2p1:string>This API user is not authorized to access this institution.</d2p1:string><d2p1:string>This institution does not have an external branch id of '${pm.environment.get(\"externalBranchId\")}'.</d2p1:string></Errors><IsSuccess>false</IsSuccess><SwitchTrackCode i:nil=\"true\" /></ApiEnrollCustomerResult>`);",
+                  "    } else if (pm.environment.get(\"domain\").includes(\".ca\")) {",
+                  "        pm.expect(pm.response.text()).to.equal(`<ApiEnrollCustomerResult xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/ClickSwitch.Domain.Models.CustomerEnrollment.DataContracts\"><Errors xmlns:d2p1=\"http://schemas.microsoft.com/2003/10/Serialization/Arrays\"><d2p1:string>This API user is not authorized to access this institution.</d2p1:string><d2p1:string>This institution does not have an external branch id of '${pm.environment.get(\"externalBranchId\")}'.</d2p1:string><d2p1:string>Invalid account name '${pm.environment.get(\"accountName\")}'</d2p1:string></Errors><IsSuccess>false</IsSuccess><SwitchTrackCode i:nil=\"true\" /></ApiEnrollCustomerResult>`);",
+                  "    } else {",
+                  "        pm.expect(pm.response.text()).to.equal('<ApiEnrollCustomerResult xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/ClickSwitch.Domain.Models.CustomerEnrollment.DataContracts\"><Errors xmlns:d2p1=\"http://schemas.microsoft.com/2003/10/Serialization/Arrays\"><d2p1:string>This API user is not authorized to access this institution.</d2p1:string></Errors><IsSuccess>false</IsSuccess><SwitchTrackCode i:nil=\"true\" /></ApiEnrollCustomerResult>');",
+                  "    }",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "12405e23-4d02-480c-8a2e-75c36aa02859",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "type": "text",
+                "value": "{{ocpApimSubscriptionKey}}"
+              },
+              {
+                "key": "Accept",
+                "type": "text",
+                "value": "application/xml"
+              },
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<XPRESS_LOAN xmlns=\"http://www.meridianlink.com/CLF\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \nxsi:schemaLocation=\"http://www.meridianlink.com/CLF xpress_loan.xsd\" xmlns:iu=\"http://www.meridianlink.com/InternalUse\" version=\"5.141\">\n  <APPLICANTS>\n    <APPLICANT cell_phone=\"(612) 555-5555\" home_phone=\"(612) 554-5555\" is_passed_id_verification=\"N\" joint_account_option=\"ALL\" is_credit_union_advocate=\"N\" number_in_household=\"0\" is_declined=\"N\" first_name=\"{{userName}}\" last_name=\"TEST\" middle_name=\"J\" dob=\"1953-01-01\" email=\"{{accountNumber}}@MERIDIANLINK.COM\" ssn=\"999999990\" gender=\"MALE\"  credit_score=\"0\" custom_score=\"0\" borrower_id=\"0\" citizenship=\"USCITIZEN\" preferred_contact_method=\"CELL\" work_phone=\"(612) 553-5555\" security_code=\"String\" allow_direct_mail=\"Y\" allow_email_solicit=\"Y\" allow_telemarket=\"N\" role_type=\"\" >\n      <CURRENT_ADDRESS occupancy_status=\"OWN\" occupancy_duration=\"0\" />\n      <MAILING_ADDRESS is_current=\"N\" city=\"MINNEAPOLIS\" state=\"MN\" zip=\"55401\" county=\"HENNEPIN\" street_address_1=\"244 1ST AVE N\" country=\"USA\" />\n      <FINANCIAL_INFO monthly_rent=\"0\" monthly_income_base_salary=\"0\" employment_status=\"EM\" employed_months=\"0\" />\n\t\t\t<ID_CARD card_type=\"OTHER\" card_number=\"99999\" state=\"MN\" country=\"USA\" exp_date=\"2005-01-01\" date_issued=\"2005-01-01\" />\n\t\t\t<APPROVAL_DENIAL_REASON>Denial Reason</APPROVAL_DENIAL_REASON>\n\t\t\t<ATM_CARD_LIST>\n        <ATM_CARD account_number=\"1234123412341234\" card_type=\"ATM\" expire_date=\"0120\">\n          <ATM_CARD_LINK_LIST>\n            <ATM_CARD_LINK reference_type=\"I\" reference_id=\"1\" is_linked=\"Y\" date_linked=\"1967-08-13\" />\n          </ATM_CARD_LINK_LIST>\n        </ATM_CARD>\n      </ATM_CARD_LIST>\n      <SPOUSE is_declined=\"N\" first_name=\"A{{userName}}\" last_name=\"TESTER\" dob=\"1979-08-26\" ssn=\"198234347\" gender=\"FEMALE\"  credit_score=\"0\" custom_score=\"0\" security_code=\"String\" borrower_id=\"1\">\n        <CURRENT_ADDRESS />\n        <MAILING_ADDRESS />\n        <FINANCIAL_INFO monthly_rent=\"0\" monthly_income_base_salary=\"0\" employment_status=\"EM\" employed_months=\"0\" />\n\t\t\t\t<ID_CARD card_type=\"DRIVERS_LICENSE\" card_number=\"334734387\" state=\"MN\" country=\"USA\" exp_date=\"2008-01-01\" date_issued=\"1998-01-01\" />\n\t\t\t\t<APPROVAL_DENIAL_REASON>Spouse Denial Reason</APPROVAL_DENIAL_REASON>\n\t\t\t</SPOUSE>\n    </APPLICANT>\n  </APPLICANTS>\n  <COMMENTS>\n    <DECISION_COMMENTS />\n    <EXTERNAL_COMMENTS />\n    <INTERNAL_COMMENTS />\n    <FRAUD_WARNINGS />\n  </COMMENTS>\n  <LOAN_INFO qualifying_requirement=\"Lives, works (or regularly conducts business in), worships, attends school, or volunteers within a 12-mile radius of the Mesquite, Nevada post office.\" status=\"NEW\" create_date=\"2013-08-16T08:08:08\" account_position=\"1\" entity_type=\"P\"  first_funding_date=\"2007-08-13\"  is_minor=\"N\" approval_date=\"2010-01-01T11:18:00-08:00\" declined_date=\"2010-01-01T11:18:00-08:00\" />\n\n\n\n\n  <SYSTEM type=\"LPQ\" external_source=\"\" source=\"CONSUMER\" loan_number=\"230\" iu:loan_id=\"6dda1676fcce4735813362aeae0f6643\" origination_ip=\"\">\n    <LOAN_OFFICER />\n    <BRANCH reference_id=\"{{externalBranchId}}\" />\n\t\t<LENDER name=\"MERIDIANLINK FI\" reference_id=\"UnitTestReference\" phone=\"(612) 552-5555\" fax=\"(612) 551-5555\" email=\"{{accountNumber}}0@meridianlink.com\"/>\n\t\t<ORGANIZATION reference_id=\"UnitTestOrgReference\" name=\"TestOrg1\" phone=\"612-550-5555\" fax=\"612-540-5555\"/>\n\n  </SYSTEM>\n  \n  \n  <APPROVED_ACCOUNTS>\n    <ACCOUNT_TYPE id=\"00000000-0000-0000-0000-000000000001\" clf_approved_account_type_id=\"1\" clf_internal_transfer_id=\"0\" funding_date=\"2007-08-13\" account_name=\"{{accountName}}\" account_type=\"CD\" account_number=\"{{accountNumber}}\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"\" service_type=\"ATM\" />\n      </SERVICES>\n      <ACCOUNT_TYPE_RELATIONS>\n        <RELATION benefactor_type=\"C\" ssn=\"198234347\" beneficiary_priority=\"C\" beneficiary_percent_share=\"100\" />\n      </ACCOUNT_TYPE_RELATIONS>\n    </ACCOUNT_TYPE>\n  </APPROVED_ACCOUNTS>\n  <INTERESTED_ACCOUNTS>\n    <ACCOUNT_TYPE account_name=\"string\" amount_deposit=\"0\" account_type=\"CD\" is_require_confirmation=\"N\" underwrite_result=\"\" >\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"ATM\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"INTERNAL\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n    <ACCOUNT_TYPE account_name=\"\" amount_deposit=\"0\" account_type=\"CD\" is_require_confirmation=\"N\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"INTERNAL\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"ATM\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n  </INTERESTED_ACCOUNTS>\n  <FUTURE_ACCOUNTS>\n    <ACCOUNT_TYPE account_name=\"String\" account_type=\"CD\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n  </FUTURE_ACCOUNTS>\n  <BENEFICIARIES>\n    <BENEFICIARY ssn=\"123121234\" is_trust=\"N\" address=\"1124 BRISTOL ST\" city=\"COSTA MESA\" state=\"CA\" dob=\"1980-08-02\" email=\"ben@meridianlink.com\" first_name=\"BEN\" last_name=\"CHIEF\" phone=\"714-708-6950\" zip=\"92626\" relationship=\"GOD FATHER\" address_verification_date=\"2010-05-11\" />\n  </BENEFICIARIES>\n  <ADDITIONAL_SERVICES>\n    <INTERNAL_TRANSFER amount=\"50.00\" frequency=\"MONTHLY\" start_date=\"2008-01-01\" end_date=\"2009-01-01\" scheduled_day=\"1\" transfer_from_id=\"1111\" transfer_from_id_type=\"E\" transfer_to_account_type=\"IRA\" transfer_to_id=\"2222\" transfer_to_id_type=\"E\" />\n    <INTERNAL_TRANSFER amount=\"100.00\" frequency=\"MONTHLY\" start_date=\"2008-01-01\" end_date=\"2009-01-01\" scheduled_day=\"1\" transfer_from_id=\"0\" transfer_from_id_type=\"I\" transfer_to_account_type=\"IRA\" transfer_to_id=\"2222\" transfer_to_id_type=\"E\" />\n  </ADDITIONAL_SERVICES>\n</XPRESS_LOAN>"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/MeridianEnrollCustomer?institutionId={{institutionId2}}&apiUserKey={{apiUserKey}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "MeridianEnrollCustomer"
+              ],
+              "query": [
+                {
+                  "key": "institutionId",
+                  "value": "{{institutionId2}}"
+                },
+                {
+                  "key": "apiUserKey",
+                  "value": "{{apiUserKey}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "2df40da7-333e-4a8c-bab7-274bd1a41860"
+    },
+    {
+      "name": "AccountTypes",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "947896cf-47e6-47c8-9b00-f1bd4ddbf006",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Contains the correct account types\", function() {",
+              "    pm.expect(pm.response.json()).to.equal(\"\\\"[{\\\\\\\"AccountTypeId\\\\\\\":1,\\\\\\\"Description\\\\\\\":\\\\\\\"ACCOUNT_TYPE_CHECKING\\\\\\\"},{\\\\\\\"AccountTypeId\\\\\\\":2,\\\\\\\"Description\\\\\\\":\\\\\\\"ACCOUNT_TYPE_SAVING\\\\\\\"}]\\\"\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "838f6473-42f3-4e0b-89d6-7254a4b0c727",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "{{ocpApimSubscriptionKey}}",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": "{{baseUrl}}/AccountTypes"
+      },
+      "response": []
+    },
+    {
+      "name": "AccountTypesXml",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "ed21504f-d0db-4c15-b957-5b2bad7d26fc",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Contains the correct account types\", function() {",
+              "    pm.expect(pm.response.text()).to.equal(`<ArrayOfAccountType xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/ClickSwitch.API.Models.DataContracts\"><AccountType><AccountTypeId>1</AccountTypeId><Description>ACCOUNT_TYPE_CHECKING</Description></AccountType><AccountType><AccountTypeId>2</AccountTypeId><Description>ACCOUNT_TYPE_SAVING</Description></AccountType></ArrayOfAccountType>`);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "c8c4b278-0026-46b2-a709-8c4aac500ad1",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/xml",
+            "type": "text"
+          }
+        ],
+        "url": "{{baseUrl}}/AccountTypesXml"
+      },
+      "response": []
+    },
+    {
+      "name": "EnrollCustomer (Dependency)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              "// Set accountNumber env var to timestamp to create a unique customer each run.",
+              "var timestamp = Date.now();",
+              "var randomString = makeRandomString();",
+              "pm.environment.set(\"accountNumber\", timestamp);",
+              "pm.environment.set(\"userName\", randomString);",
+              "",
+              "// Creates a random string of length 10.",
+              "function makeRandomString() {",
+              "  var text = \"\";",
+              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+              "  ",
+              "  for (var i = 0; i < 10; i++) {",
+              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+              "  }",
+              "  ",
+              "  return text;",
+              "}",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "const jsonData = pm.response.json();",
+              "",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the required properties\", function () {",
+              "   pm.expect(jsonData).to.have.property(\"IsSuccess\"); ",
+              "   pm.expect(jsonData).to.have.property(\"SwitchTrackCode\"); ",
+              "   pm.expect(jsonData).to.have.property(\"Errors\"); ",
+              "   pm.expect(Object.keys(jsonData).length).to.equal(3);",
+              "});",
+              "",
+              "pm.test(\"Has the expected values\", function () {",
+              "   pm.expect(jsonData.IsSuccess).to.be.true;",
+              "   pm.expect(jsonData.SwitchTrackCode).to.match(/.{8}/);",
+              "   pm.expect(jsonData.Errors).to.deep.equal([]);",
+              "});",
+              "",
+              "pm.environment.set(\"switchTrackCode\", jsonData.SwitchTrackCode);",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "7c5b98e8-f61f-4980-834f-a9bd06c74b45",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"EnrollingUserExternalId\": null,\r\n  \"EnrollingUserId\": null,\r\n  \"Accounts\": [\r\n  \t{\r\n      \"BranchId\": \"{{branchId}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"AccountTypeId\": \"1\",\r\n      \"AccountNumber\": \"{{accountNumber}}\"\r\n    },\r\n    {\r\n      \"BranchId\": \"{{branchId}}\",\r\n      \"RoutingNumber\": \"{{routingNumber2}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"AccountName\": \"{{accountName2}}\",\r\n      \"AccountTypeId\": \"2\",\r\n      \"AccountNumber\": \"{{accountNumber}}0\"\r\n    }\r\n  ],\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"BusinessName\": \"Business Name\",\r\n  \"PhoneNumber\": \"6125555555\",\r\n  \"InstitutionId\": \"{{institutionId}}\",\r\n  \"Address\": {\r\n    \"StateProvinceCode\": \"MN\",\r\n    \"PostalCode\": \"55401\",\r\n    \"CountryCode\": \"US\",\r\n    \"City\": \"Minneapolis\",\r\n    \"AddressLine3\": \"ATTN Test\",\r\n    \"AddressLine2\": \"#100\",\r\n    \"AddressLine1\": \"244 1st Ave. N\"\r\n  },\r\n  \"PrimaryContact\": {\r\n    \"LastName\": \"Test\",\r\n    \"MiddleInitial\": \"J\",\r\n    \"FirstName\": \"{{userName}}\"\r\n  },\r\n  \"UserName\": \"{{userName}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"ApiUserKey\": \"{{apiUserKey}}\"\r\n}"
+        },
+        "url": "{{baseUrl}}/EnrollCustomer"
+      },
+      "response": []
+    },
+    {
+      "name": "EnrollCustomerSample",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "   pm.expect(pm.response.json()).to.deep.equal(",
+              "       {",
+              "            \"Accounts\": [",
+              "                {",
+              "                    \"AccountNumber\": \"111222333\",",
+              "                    \"AccountTypeId\": null,",
+              "                    \"AccountName\": \"Gold Checking\",",
+              "                    \"ExternalBranchId\": null,",
+              "                    \"RoutingNumber\": \"999988999\",",
+              "                    \"BranchId\": null",
+              "                },",
+              "                {",
+              "                    \"AccountNumber\": \"999988887777\",",
+              "                    \"AccountTypeId\": 1,",
+              "                    \"AccountName\": null,",
+              "                    \"ExternalBranchId\": \"Main Branch\",",
+              "                    \"RoutingNumber\": null,",
+              "                    \"BranchId\": null",
+              "                }",
+              "            ],",
+              "            \"Address\": {",
+              "                \"AddressLine1\": \"123 Fake St.\",",
+              "                \"AddressLine2\": \"Apt 1\",",
+              "                \"AddressLine3\": null,",
+              "                \"City\": \"Anytown\",",
+              "                \"CountryCode\": \"US\",",
+              "                \"PostalCode\": \"44321\",",
+              "                \"StateProvinceCode\": \"MN\"",
+              "            },",
+              "            \"BusinessName\": null,",
+              "            \"ConsentToEsign\": false,",
+              "            \"DefaultBranchId\": null,",
+              "            \"DefaultExternalBranchId\": null,",
+              "            \"DefaultRoutingNumber\": null,",
+              "            \"EmailAddress\": \"johnCDoe@test.com\",",
+              "            \"EnrollingUserExternalId\": null,",
+              "            \"EnrollingUserId\": null,",
+              "            \"InstitutionId\": null,",
+              "            \"PhoneNumber\": \"612-888-9911\",",
+              "            \"PrimaryContact\": {",
+              "                \"FirstName\": \"John\",",
+              "                \"MiddleInitial\": null,",
+              "                \"LastName\": \"Doe\"",
+              "            },",
+              "            \"SecondaryContact\": null,",
+              "            \"UserName\": \"johnCDoe@test.com\"",
+              "        }",
+              "    ); ",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "5caa8ec6-20a2-4209-80f8-f9f7d904fadf",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{baseUrl}}/EnrollCustomerSample"
+      },
+      "response": []
+    },
+    {
+      "name": "AddAccountXml",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              "// Set accountNumber env var to timestamp to create a unique customer each run.",
+              "var timestamp = Date.now();",
+              "var randomString = makeRandomString();",
+              "pm.environment.set(\"accountNumber\", timestamp);",
+              "pm.environment.set(\"userName\", randomString);",
+              "",
+              "// Creates a random string of length 10.",
+              "function makeRandomString() {",
+              "  var text = \"\";",
+              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+              "  ",
+              "  for (var i = 0; i < 10; i++) {",
+              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+              "  }",
+              "  ",
+              "  return text;",
+              "}",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "b263edaf-7714-4001-b3bb-b982f3697fd3",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(pm.response.text()).to.match(/<string xmlns=\"http:\\/\\/schemas\\.microsoft\\.com\\/2003\\/10\\/Serialization\\/\">.{8}<\\/string>/);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "a812655c-b4eb-4683-a108-4000302d9041",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Accept",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/xml"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n \t\"AddressLine1\": \"244 1st Ave. N\",\r\n \t\"AddressLine2\": \"#100\",\r\n \t\"AddressLine3\": \"ATTN Test\",\r\n \t\"ApiUserKey\": \"{{apiUserKey}}\",\r\n \t\"City\": \"Minneapolis\",\r\n \t\"CountryCode\": \"US\",\r\n \t\"Email\": \"{{accountNumber}}@clickswitch.com\",\r\n \t\"UserName\": \"{{userName}}\",\r\n \t\"InstitutionId\": \"{{institutionId}}\",\r\n \t\"IsJointAccount\": true,\r\n \t\"NewAccounts\": [\r\n \t\t{\r\n\t \t\t\"AccountTypeId\": \"1\",\r\n\t \t\t\"AccountNumber\": \"{{accountNumber}}\",\r\n\t \t\t\"AccountName\": \"{{accountName}}\"\r\n \t\t},\r\n \t\t{\r\n\t \t\t\"AccountTypeId\": \"2\",\r\n\t \t\t\"AccountNumber\": \"{{accountNumber}}0\",\r\n\t \t\t\"AccountName\": \"{{accountName2}}\"\r\n \t\t}\r\n \t],\r\n \t\"PhoneNumber\": \"6125555555\",\r\n \t\"PostalCode\": \"55401\",\r\n \t\"PrimaryFirst\": \"{{userName}}\",\r\n \t\"PrimaryLast\": \"Test\",\r\n \t\"PrimaryMiddle\": \"J\",\r\n \t\"SecondaryFirst\": \"A{{userName}}\",\r\n \t\"SecondaryLast\": \"Tester\",\r\n \t\"SecondaryMiddle\": \"S\",\r\n \t\"StateProvinceCode\": \"MN\",\r\n \t\"UserId\": \"\",\r\n \t\"BranchId\": \"{{branchId}}\",\r\n \t\"ExternalUserId\": \"\",\r\n \t\"ExternalBranchId\": \"\",\r\n \t\"RoutingNumber\": \"{{routingNumber}}\"\r\n }"
+        },
+        "url": "{{baseUrl}}/AddAccountXml"
+      },
+      "response": []
+    },
+    {
+      "name": "AddAccount (Dependency)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              "// Set accountNumber env var to timestamp to create a unique customer each run.",
+              "var timestamp = Date.now();",
+              "var randomString = makeRandomString();",
+              "pm.environment.set(\"accountNumber\", timestamp);",
+              "pm.environment.set(\"userName\", randomString);",
+              "",
+              "// Creates a random string of length 10.",
+              "function makeRandomString() {",
+              "  var text = \"\";",
+              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+              "  ",
+              "  for (var i = 0; i < 10; i++) {",
+              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+              "  }",
+              "  ",
+              "  return text;",
+              "}",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "const jsonData = JSON.parse(pm.response.json());",
+              "",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the required properties\", function () {",
+              "    pm.expect(jsonData).to.have.property(\"SwitchTrackCode\");",
+              "    pm.expect(Object.keys(jsonData).length).to.equal(1);",
+              "});",
+              "",
+              "pm.environment.set(\"switchTrackCode\", jsonData.SwitchTrackCode);",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "23e3d85e-c45a-44de-b22e-d33abe0654cf",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n \t\"AddressLine1\": \"244 1st Ave. N\",\r\n \t\"AddressLine2\": \"#100\",\r\n \t\"AddressLine3\": \"ATTN Test\",\r\n \t\"ApiUserKey\": \"{{apiUserKey}}\",\r\n \t\"City\": \"Minneapolis\",\r\n \t\"CountryCode\": \"US\",\r\n \t\"Email\": \"{{accountNumber}}@clickswitch.com\",\r\n \t\"UserName\": \"{{userName}}\",\r\n \t\"InstitutionId\": \"{{institutionId}}\",\r\n \t\"IsJointAccount\": true,\r\n \t\"NewAccounts\": [\r\n \t\t{\r\n\t \t\t\"AccountTypeId\": \"1\",\r\n\t \t\t\"AccountNumber\": \"{{accountNumber}}\",\r\n\t \t\t\"AccountName\": \"{{accountName}}\"\r\n \t\t},\r\n \t\t{\r\n\t \t\t\"AccountTypeId\": \"2\",\r\n\t \t\t\"AccountNumber\": \"{{accountNumber}}0\",\r\n\t \t\t\"AccountName\": \"{{accountName2}}\"\r\n \t\t}\r\n \t],\r\n \t\"PhoneNumber\": \"6125555555\",\r\n \t\"PostalCode\": \"55401\",\r\n \t\"PrimaryFirst\": \"{{userName}}\",\r\n \t\"PrimaryLast\": \"Test\",\r\n \t\"PrimaryMiddle\": \"J\",\r\n \t\"SecondaryFirst\": \"A{{userName}}\",\r\n \t\"SecondaryLast\": \"Tester\",\r\n \t\"SecondaryMiddle\": \"S\",\r\n \t\"StateProvinceCode\": \"MN\",\r\n \t\"UserId\": \"\",\r\n \t\"BranchId\": \"{{branchId}}\",\r\n \t\"ExternalUserId\": \"\",\r\n \t\"ExternalBranchId\": \"\",\r\n \t\"RoutingNumber\": \"{{routingNumber}}\"\r\n }"
+        },
+        "url": "{{baseUrl}}/AddAccount"
+      },
+      "response": []
+    },
+    {
+      "name": "AddressTypes",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "1a39c3df-cb7a-43cb-80d7-5cee79340d53",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Contains the correct address types\", function() {",
+              "    pm.expect(pm.response.json()).to.equal(\"\\\"[{\\\\\\\"AddressTypeId\\\\\\\":1,\\\\\\\"Description\\\\\\\":\\\\\\\"Home\\\\\\\"},{\\\\\\\"AddressTypeId\\\\\\\":2,\\\\\\\"Description\\\\\\\":\\\\\\\"Work\\\\\\\"},{\\\\\\\"AddressTypeId\\\\\\\":3,\\\\\\\"Description\\\\\\\":\\\\\\\"Business\\\\\\\"},{\\\\\\\"AddressTypeId\\\\\\\":4,\\\\\\\"Description\\\\\\\":\\\\\\\"Other\\\\\\\"},{\\\\\\\"AddressTypeId\\\\\\\":5,\\\\\\\"Description\\\\\\\":\\\\\\\"Location\\\\\\\"},{\\\\\\\"AddressTypeId\\\\\\\":6,\\\\\\\"Description\\\\\\\":\\\\\\\"Mailing\\\\\\\"}]\\\"\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "d5719bd5-0a9a-43bd-9f2a-6a43938eafb0",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          }
+        ],
+        "url": "{{baseUrl}}/AddressTypes"
+      },
+      "response": []
+    },
+    {
+      "name": "AddressTypesXml",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "750d27c6-fe8c-4bf6-80a7-53ae0a2e494f",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Contains the correct address types\", function() {",
+              "    pm.expect(pm.response.text()).to.equal(`<ArrayOfAddressType xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/ClickSwitch.API.Models.DataContracts\"><AddressType><AddressTypeId>1</AddressTypeId><Description>Home</Description></AddressType><AddressType><AddressTypeId>2</AddressTypeId><Description>Work</Description></AddressType><AddressType><AddressTypeId>3</AddressTypeId><Description>Business</Description></AddressType><AddressType><AddressTypeId>4</AddressTypeId><Description>Other</Description></AddressType><AddressType><AddressTypeId>5</AddressTypeId><Description>Location</Description></AddressType><AddressType><AddressTypeId>6</AddressTypeId><Description>Mailing</Description></AddressType></ArrayOfAddressType>`);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "2c58adcf-3371-41ea-a39e-821ccf899eb6",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/xml",
+            "type": "text"
+          }
+        ],
+        "url": "{{baseUrl}}/AddressTypesXml"
+      },
+      "response": []
+    },
+    {
+      "name": "CreateInstitutionUserNonceSignInUrl New Institution User (Dependency)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the expected URL\", function() {",
+              "    var response = pm.response.text();",
+              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}&apiUserKey=.*/);",
+              "    pm.expect(response).to.include(`https://${pm.environment.get(\"subdomain\")}.${pm.environment.get(\"domain\")}/Account/NonceLogin?nonce=`);",
+              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}&apiUserKey=${pm.environment.get(\"apiUserKey\")}`);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "da7b1f8e-d3e6-4160-a4ba-d26714f88a11",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"ApiUserKey\": \"{{apiUserKey}}\",\n    \"UserName\": \"{{userName}}INST\",\n    \"EmailAddress\": \"{{accountNumber}}INST@clickswitch.com\",\n    \"FirstName\": \"{{userName}}INST\",\n    \"LastName\": \"Test\",\n    \"InstitutionId\": \"{{institutionId}}\",\n    \"CustomerUserName\": \"{{userName}}\",\n    \"ExternalUserId\": \"{{accountNumber}}\",\n    \"InstitutionBranchId\": \"{{branchId}}\",\n    \"ExternalBranchId\": null,\n    \"SwitchTrackCode\": \"{{switchTrackCode}}\"\n}"
+        },
+        "url": "{{baseUrl}}/CreateInstitutionUserNonceSignInUrl"
+      },
+      "response": []
+    },
+    {
+      "name": "CreateInstitutionUserNonceSignInUrl Existing Institution User",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the expected URL\", function() {",
+              "    var response = pm.response.text();",
+              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}&apiUserKey=.*/);",
+              "    pm.expect(response).to.include(`https://${pm.environment.get(\"subdomain\")}.${pm.environment.get(\"domain\")}/Account/NonceLogin?nonce=`);",
+              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}&apiUserKey=${pm.environment.get(\"apiUserKey\")}`);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "507ef9b6-8ca3-40aa-807d-029a3e8f84e8",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"ApiUserKey\": \"{{apiUserKey}}\",\n    \"UserName\": \"{{userName}}INST\",\n    \"EmailAddress\": \"{{accountNumber}}INST@clickswitch.com\",\n    \"FirstName\": \"{{userName}}INST\",\n    \"LastName\": \"Test\",\n    \"InstitutionId\": \"{{institutionId}}\",\n    \"CustomerUserName\": \"{{userName}}\",\n    \"ExternalUserId\": \"{{accountNumber}}\",\n    \"InstitutionBranchId\": \"{{branchId}}\",\n    \"ExternalBranchId\": null,\n    \"SwitchTrackCode\": \"{{switchTrackCode}}\"\n}\n"
+        },
+        "url": "{{baseUrl}}/CreateInstitutionUserNonceSignInUrl"
+      },
+      "response": []
+    },
+    {
+      "name": "GenerateSignInNonceUrl SwitchTrackCode",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the expected URL\", function() {",
+              "    var response = pm.response.text();",
+              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}&apiUserKey=.*/);",
+              "    pm.expect(response).to.include(`https://${pm.environment.get(\"subdomain\")}.${pm.environment.get(\"domain\")}/Account/NonceLogin?nonce=`);",
+              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}&apiUserKey=${pm.environment.get(\"apiUserKey\")}`);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "72cb80bd-e7ac-4b9e-86eb-d33792459c21",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"APIUserKey\": \"{{apiUserKey}}\",\n    \"ExternalUserId\": \"{{accountNumber}}\",\n    \"InstitutionId\": \"{{institutionId}}\",\n    \"SwitchTrackCode\": \"{{switchTrackCode}}\"\n}"
+        },
+        "url": "{{baseUrl}}/GenerateSignInNonceUrl"
+      },
+      "response": []
+    },
+    {
+      "name": "GenerateSignInNonceUrl CustomerUserName",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the expected URL\", function() {",
+              "    var response = pm.response.text();",
+              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}&apiUserKey=.*/);",
+              "    pm.expect(response).to.include(`https://${pm.environment.get(\"subdomain\")}.${pm.environment.get(\"domain\")}/Account/NonceLogin?nonce=`);",
+              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}&apiUserKey=${pm.environment.get(\"apiUserKey\")}`);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "bf6a8f70-a819-434b-8329-70071560762e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"APIUserKey\": \"{{apiUserKey}}\",\n    \"ExternalUserId\": \"{{accountNumber}}\",\n    \"InstitutionId\": \"{{institutionId}}\",\n    \"CustomerUserName\": \"{{userName}}\"\n}"
+        },
+        "url": "{{baseUrl}}/GenerateSignInNonceUrl"
+      },
+      "response": []
+    },
+    {
+      "name": "GenerateSignInNonceUrl SwitchTrackCode Preference",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the expected URL\", function() {",
+              "    var response = pm.response.text();",
+              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}&apiUserKey=.*/);",
+              "    pm.expect(response).to.include(`https://${pm.environment.get(\"subdomain\")}.${pm.environment.get(\"domain\")}/Account/NonceLogin?nonce=`);",
+              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}&apiUserKey=${pm.environment.get(\"apiUserKey\")}`);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "fccfbae3-4dd8-4a41-9248-9610f65ae57c",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"APIUserKey\": \"{{apiUserKey}}\",\n    \"ExternalUserId\": \"{{accountNumber}}\",\n    \"InstitutionId\": \"{{institutionId}}\",\n    \"CustomerUserName\": \"INVALID{{userName}}WONTBEUSED\",\n    \"SwitchTrackCode\": \"{{switchTrackCode}}\"\n}"
+        },
+        "url": "{{baseUrl}}/GenerateSignInNonceUrl"
+      },
+      "response": []
+    },
+    {
+      "name": "UserId (Dependency)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the expected response\", function() {",
+              "    pm.expect(pm.response.text()).to.match(/\\\"\\\\\".{36}\\\\\\\"\\\"/);",
+              "});",
+              "",
+              "pm.environment.set(\"userId\", pm.response.text().substr(3, 36));",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "2ba53acd-3c18-427e-bbca-0490efe821c3",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/GetUserId?userName={{userName}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "GetUserId"
+          ],
+          "query": [
+            {
+              "key": "userName",
+              "value": "{{userName}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UserIdXml",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(pm.response.text()).to.equal(`<string xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">${pm.environment.get(\"userId\")}</string>`);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "9ec59905-ae6a-4e99-b951-5b482e84281a",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/xml"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/GetUserIdXml?userName={{userName}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "GetUserIdXml"
+          ],
+          "query": [
+            {
+              "key": "userName",
+              "value": "{{userName}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "InstitutionBranches",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function() {",
+              "    pm.expect(pm.response.json()).to.deep.equal(`\\\"[{\\\\\\\"InstitutionBranchId\\\\\\\":${pm.environment.get(\"branchId\")},\\\\\\\"Name\\\\\\\":\\\\\\\"Minneapolis\\\\\\\"},{\\\\\\\"InstitutionBranchId\\\\\\\":${pm.environment.get(\"branchId2\")},\\\\\\\"Name\\\\\\\":\\\\\\\"Baxter\\\\\\\"}]\\\"`);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "04733cc7-48be-4759-b853-aedb0d1acf91",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/InstitutionBranches?institutionId={{institutionId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "InstitutionBranches"
+          ],
+          "query": [
+            {
+              "key": "institutionId",
+              "value": "{{institutionId}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "InstitutionBranchesXml",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function() {",
+              "    pm.expect(pm.response.text()).to.equal(`<ArrayOfInstitutionBranch xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/ClickSwitch.API.Models.DataContracts\"><InstitutionBranch><InstitutionBranchId>${pm.environment.get(\"branchId\")}</InstitutionBranchId><Name>Minneapolis</Name></InstitutionBranch><InstitutionBranch><InstitutionBranchId>${pm.environment.get(\"branchId2\")}</InstitutionBranchId><Name>Baxter</Name></InstitutionBranch></ArrayOfInstitutionBranch>`);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "39a9c0bb-79a7-4ac6-9fa8-1785267ed185",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/xml"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/InstitutionBranchesXml?institutionId={{institutionId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "InstitutionBranchesXml"
+          ],
+          "query": [
+            {
+              "key": "institutionId",
+              "value": "{{institutionId}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Institutions",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Contains the expected response\", function() {",
+              "    var jsonData = pm.response.json();",
+              "    var looped = false;",
+              "    for (var i = 0; i < 20; i++) {",
+              "        looped = true;",
+              "        pm.expect(jsonData[i]).to.have.property(\"InstitutionId\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"DaysUntilPasswordChange\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"EmailFromAddress\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"EmailLinkExpirationDays\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"InstitutionIpAddressFilter\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"InstitutionNumber\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"InstitutionTypeId\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"IsClient\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"IsDisabled\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"Name\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"SsoIpAddressFilter\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"Subdomain\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"SupportEmail\");",
+              "        pm.expect(Object.keys(jsonData[i]).length).to.equal(13);",
+              "    }",
+              "    ",
+              "    pm.expect(looped).to.be.true;",
+              "    pm.expect(jsonData.length).to.be.greaterThan(20);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "26d17f6b-3bb8-4a63-95bd-ab0b3eb4d8a8",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{baseUrl}}/Institutions"
+      },
+      "response": []
+    },
+    {
+      "name": "Institutions By Name",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Filtering by name not supported for the JSON path.",
+              "// Test will need to be rewritten to expect the following:",
+              "/*",
+              "[    ",
+              "    {",
+              "        \"InstitutionId\": {{institutionId}},",
+              "        \"DaysUntilPasswordChange\": 60,",
+              "        \"EmailFromAddress\": null,",
+              "        \"EmailLinkExpirationDays\": null,",
+              "        \"InstitutionIpAddressFilter\": null,",
+              "        \"InstitutionNumber\": null,",
+              "        \"InstitutionTypeId\": 1,",
+              "        \"IsClient\": true,",
+              "        \"IsDisabled\": false,",
+              "        \"Name\": \"{{institutionName}}\",",
+              "        \"SsoIpAddressFilter\": null,",
+              "        \"Subdomain\": \"{{subdomain}}\",",
+              "        \"SupportEmail\": null",
+              "    }",
+              "]",
+              "*/",
+              "pm.test(\"Contains the expected response\", function() {",
+              "    var jsonData = pm.response.json();",
+              "    var looped = false;",
+              "    for (var i = 0; i < 20; i++) {",
+              "        looped = true;",
+              "        pm.expect(jsonData[i]).to.have.property(\"InstitutionId\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"DaysUntilPasswordChange\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"EmailFromAddress\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"EmailLinkExpirationDays\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"InstitutionIpAddressFilter\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"InstitutionNumber\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"InstitutionTypeId\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"IsClient\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"IsDisabled\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"Name\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"SsoIpAddressFilter\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"Subdomain\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"SupportEmail\");",
+              "        pm.expect(Object.keys(jsonData[i]).length).to.equal(13);",
+              "    }",
+              "    ",
+              "    pm.expect(looped).to.be.true;",
+              "    pm.expect(jsonData.length).to.be.greaterThan(20);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "340cf8e9-3457-4fc4-afd0-e0cf5e811c85",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/Institutions?name={{institutionName}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Institutions"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "{{institutionName}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "InstitutionsXml",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "// These tests are written to capture the current behavior.",
+              "// I expect these to break when fixed such that the status code is 200",
+              "// and the results resemple the following format:",
+              "/*",
+              "<ArrayOfInstitution xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/ClickSwitch.API.Models.DataContracts\">",
+              "    <Institution>",
+              "        <InstitutionId{{institutionId}}InstitutionId>",
+              "        <Name>{{institutionName}}</Name>",
+              "    </Institution>",
+              "</ArrayOfInstitution>",
+              "*/",
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Has the expected response\", function () {",
+              "   pm.expect(pm.response.text()).to.include(\"<Error><Message>No HTTP resource was found that matches the request URI\"); ",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "467f2e1f-d3a5-4f9a-89b3-a90f7194b992",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/xml",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{baseUrl}}/InstitutionsXml"
+      },
+      "response": []
+    },
+    {
+      "name": "InstitutionsXml By Name",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(pm.response.text()).to.equal(`<ArrayOfInstitution xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/ClickSwitch.API.Models.DataContracts\"><Institution><InstitutionId>${pm.environment.get(\"institutionId\")}</InstitutionId><Name>${pm.environment.get(\"institutionName\")}</Name></Institution></ArrayOfInstitution>`);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "874d0d78-8fb4-46e6-a1b0-a294d86e4591",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/xml"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/InstitutionsXml?name={{institutionName}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "InstitutionsXml"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "{{institutionName}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "SampleJson",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(pm.response.json()).to.deep.equal(\"{\\\"AddressLine1\\\":\\\"1234 Test St\\\",\\\"AddressLine2\\\":\\\"Test Second Line\\\",\\\"AddressLine3\\\":\\\"Test Third Line\\\",\\\"ApiUserKey\\\":\\\"XXXXXXX-XXXX-XXXX-XXX-XXXXXXXXX\\\",\\\"City\\\":\\\"TestCity\\\",\\\"CountryCode\\\":\\\"US\\\",\\\"Email\\\":\\\"test@here.com\\\",\\\"UserName\\\":null,\\\"InstitutionId\\\":9999,\\\"IsJointAccount\\\":true,\\\"PhoneNumber\\\":\\\"9999999999\\\",\\\"PostalCode\\\":\\\"99999\\\",\\\"PrimaryFirst\\\":\\\"TestFirstName\\\",\\\"PrimaryLast\\\":\\\"TestLastName\\\",\\\"PrimaryMiddle\\\":\\\"TestMiddleName\\\",\\\"SecondaryFirst\\\":\\\"TestFirstName\\\",\\\"SecondaryLast\\\":\\\"TestLastName\\\",\\\"SecondaryMiddle\\\":\\\"TestMiddleName\\\",\\\"StateProvinceCode\\\":\\\"AZ\\\",\\\"UserId\\\":\\\"XXX-XXXX-XXXXXX\\\",\\\"BranchId\\\":999,\\\"ExternalUserId\\\":null,\\\"ExternalBranchId\\\":null,\\\"NewAccounts\\\":[{\\\"AccountTypeId\\\":1,\\\"AccountNumber\\\":\\\"12345\\\",\\\"AccountName\\\":null},{\\\"AccountTypeId\\\":2,\\\"AccountNumber\\\":\\\"67890\\\",\\\"AccountName\\\":null}],\\\"RoutingNumber\\\":null}\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "aa2b0719-0780-450d-b9d8-fdeee9497488",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{baseUrl}}/SampleJson"
+      },
+      "response": []
+    },
+    {
+      "name": "SampleXml",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "// Several endpoints are unique to some environments.",
+              "pm.test(\"Has the correct status code\", function () {",
+              "    if (pm.environment.get(\"domain\") === \"clickswitchdemo.ca\" || pm.environment.get(\"domain\") === \"clickswitch.ca\") {",
+              "        pm.response.to.have.status(404);",
+              "    } else {",
+              "        pm.response.to.have.status(200);",
+              "    }",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    if (pm.environment.get(\"domain\") === \"clickswitchdemo.ca\" || pm.environment.get(\"domain\") === \"clickswitch.ca\") {",
+              "        pm.expect(pm.response.json()).to.deep.equal({",
+              "            \"statusCode\": 404,",
+              "            \"message\": \"Resource not found\"",
+              "        });",
+              "    } else {",
+              "        pm.expect(pm.response.text()).to.equal('<EnrollCustomerModel xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/ClickSwitch.API.Models.DataContracts\"><AddressLine1>1234 Test St</AddressLine1><AddressLine2>Test Second Line</AddressLine2><AddressLine3>Test Third Line</AddressLine3><ApiUserKey>XXXXXXX-XXXX-XXXX-XXX-XXXXXXXXX</ApiUserKey><BranchId>999</BranchId><City>TestCity</City><CountryCode>US</CountryCode><Email>test@here.com</Email><ExternalBranchId i:nil=\"true\" /><ExternalUserId i:nil=\"true\" /><InstitutionId>9999</InstitutionId><IsJointAccount>true</IsJointAccount><NewAccounts><EnrollCustomerAccountModel><AccountName i:nil=\"true\" /><AccountNumber>12345</AccountNumber><AccountTypeId>1</AccountTypeId></EnrollCustomerAccountModel><EnrollCustomerAccountModel><AccountName i:nil=\"true\" /><AccountNumber>67890</AccountNumber><AccountTypeId>2</AccountTypeId></EnrollCustomerAccountModel></NewAccounts><PhoneNumber>9999999999</PhoneNumber><PostalCode>99999</PostalCode><PrimaryFirst>TestFirstName</PrimaryFirst><PrimaryLast>TestLastName</PrimaryLast><PrimaryMiddle>TestMiddleName</PrimaryMiddle><RoutingNumber i:nil=\"true\" /><SecondaryFirst>TestFirstName</SecondaryFirst><SecondaryLast>TestLastName</SecondaryLast><SecondaryMiddle>TestMiddleName</SecondaryMiddle><StateProvinceCode>AZ</StateProvinceCode><UserId>XXX-XXXX-XXXXXX</UserId><UserName i:nil=\"true\" /></EnrollCustomerModel>');",
+              "    }",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "42084b2c-de8b-4f8a-b4c6-2d2b24852a1b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/xml",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{baseUrl}}/SampleXml"
+      },
+      "response": []
+    },
+    {
+      "name": "ServiceAlive",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "// Several endpoints are unique to some environments.",
+              "pm.test(\"Has the correct status code\", function () {",
+              "    if (pm.environment.get(\"domain\") === \"clickswitchdemo.ca\" || pm.environment.get(\"domain\") === \"clickswitch.ca\") {",
+              "        pm.response.to.have.status(404);",
+              "    } else {",
+              "        pm.response.to.have.status(200);",
+              "    }",
+              "});",
+              "",
+              "pm.test(\"Has the expected response\", function () {",
+              "    if (pm.environment.get(\"domain\") === \"clickswitchdemo.ca\" || pm.environment.get(\"domain\") === \"clickswitch.ca\") {",
+              "        pm.expect(pm.response.json()).to.deep.equal({",
+              "            \"statusCode\": 404,",
+              "            \"message\": \"Resource not found\"",
+              "        });",
+              "    } else {",
+              "        pm.expect(pm.response.json()).to.equal(true);",
+              "    }",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "ee19bdc7-5cd2-44ec-b209-114134ece8f4",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{baseUrl}}/ServiceAlive"
+      },
+      "response": []
+    },
+    {
+      "name": "ServiceAliveXml",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the expected response\", function () {",
+              "    pm.expect(pm.response.text()).to.equal('<boolean xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">true</boolean>');",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "a441a377-23da-4d83-8691-e326a8536603",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/xml",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{baseUrl}}/ServiceAliveXML"
+      },
+      "response": []
+    },
+    {
+      "name": "UserNameAvailable False",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "const jsonData = pm.response.json();",
+              "",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(jsonData).to.equal(false);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "37564b40-c2ac-456b-9845-9afdd517d21a",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/UserNameAvailable?userName={{userName}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "UserNameAvailable"
+          ],
+          "query": [
+            {
+              "key": "userName",
+              "value": "{{userName}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UserNameAvailable True",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "const jsonData = pm.response.json();",
+              "",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(jsonData).to.equal(true);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "bf7b0aa4-90d8-40bb-80ed-4ed2994a740d",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/UserNameAvailable?userName={{userName}}ABC",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "UserNameAvailable"
+          ],
+          "query": [
+            {
+              "key": "userName",
+              "value": "{{userName}}ABC"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UserNameAvailableXml False",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(pm.response.text()).to.equal('<boolean xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">false</boolean>');",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "7fcf49cb-a911-4184-ab3c-721e51c1625e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/xml"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/UserNameAvailableXml?userName={{userName}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "UserNameAvailableXml"
+          ],
+          "query": [
+            {
+              "key": "userName",
+              "value": "{{userName}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UserNameAvailableXml True",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(pm.response.text()).to.equal('<boolean xmlns=\"http://schemas.microsoft.com/2003/10/Serialization/\">true</boolean>');",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "0bbb4f00-2065-4dfd-bca3-0eaca7d331cf",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/xml"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/UserNameAvailableXml?userName={{userName}}ABC",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "UserNameAvailableXml"
+          ],
+          "query": [
+            {
+              "key": "userName",
+              "value": "{{userName}}ABC"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Version",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the expected response\", function() {",
+              "    pm.expect(pm.response.text()).to.match(/\"API Version: '2\\.\\d{2}\\.\\d\\.\\d' \"/);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "c296daa1-df4c-4e1f-b310-0b6a60a973d2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{baseUrl}}/Version"
+      },
+      "response": []
+    },
+    {
+      "name": "VersionXml",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the expected response\", function() {",
+              "    pm.expect(pm.response.text()).to.match(/<string xmlns=\"http:\\/\\/schemas\\.microsoft\\.com\\/2003\\/10\\/Serialization\\/\">API Version: '2\\.\\d{2}\\.\\d\\.\\d' <\\/string>/);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "6f26b6ec-eac2-4629-89a5-5b471152fae2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/xml",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{baseUrl}}/VersionXml"
+      },
+      "response": []
+    },
+    {
+      "name": "GetEnrollmentReportRecords Invalid apiUserKey",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              "var moment = require('moment');",
+              "",
+              "pm.environment.set(\"fromDate\", moment().subtract(1, \"days\").format(\"MM/DD/YYYY\"));",
+              "pm.environment.set(\"toDate\", moment(new Date()).format(\"MM/DD/YYYY\"));",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 500\", function () {",
+              "    pm.response.to.have.status(500);",
+              "});",
+              "",
+              "pm.test(\"Contains the expected response\", function () {",
+              "    pm.expect(pm.response.json()).to.deep.equal(",
+              "        {",
+              "            \"Message\": \"An error has occurred.\"",
+              "        }",
+              "    );",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "dad36c49-4d99-4941-8ced-f1b76603caeb",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/GetEnrollmentReportRecords?fromDate={{fromDate}}&toDate={{toDate}}&apiUserKey=testInvalid",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "GetEnrollmentReportRecords"
+          ],
+          "query": [
+            {
+              "key": "fromDate",
+              "value": "{{fromDate}}"
+            },
+            {
+              "key": "toDate",
+              "value": "{{toDate}}"
+            },
+            {
+              "key": "apiUserKey",
+              "value": "testInvalid"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetEnrollmentReportRecords (Dependency)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              "var moment = require('moment');",
+              "",
+              "pm.environment.set(\"fromDate\", moment().subtract(1, \"days\").format(\"MM/DD/YYYY\"));",
+              "pm.environment.set(\"toDate\", moment(new Date()).add(1, \"days\").format(\"MM/DD/YYYY\"));",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Contains the expected response\", function() {",
+              "    var jsonData = pm.response.json();",
+              "    var looped = false;",
+              "    for (var i = 0; i < jsonData.length; i++) {",
+              "        looped = true;",
+              "        pm.expect(jsonData[i]).to.have.property(\"InstitutionName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"BranchName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"UserName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CustomerEmail\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"PrimaryCustomerFirstName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"SecondaryCustomerFirstName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"PrimaryCustomerLastName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"SecondaryCustomerLastName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"AddressLine1\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"AddressLine2\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"AddressLine3\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"City\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"StateProvinceCode\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"PostalCode\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"PhoneNumber\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"EnrolledDate\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CreatedByUserName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CreatedByFirstName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CreatedByLastName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CustomerActivated\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"SwitchesCreated\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"AccountNumber\");",
+              "        ",
+              "        // Can change if API insitution users also changes.",
+              "        pm.expect(jsonData[i].InstitutionName).to.be.oneOf([pm.environment.get(\"institutionName\"), pm.environment.get(\"institutionName2\")]);",
+              "        pm.expect(Object.keys(jsonData[i]).length).to.equal(22);",
+              "    }",
+              "    ",
+              "    pm.expect(looped).to.be.true;",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "0e04b7b2-203d-4277-858e-27759fab8e5c",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/GetEnrollmentReportRecords?fromDate={{fromDate}}&toDate={{toDate}}&apiUserKey={{apiUserKey}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "GetEnrollmentReportRecords"
+          ],
+          "query": [
+            {
+              "key": "fromDate",
+              "value": "{{fromDate}}"
+            },
+            {
+              "key": "toDate",
+              "value": "{{toDate}}"
+            },
+            {
+              "key": "apiUserKey",
+              "value": "{{apiUserKey}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetSwitchReportRecords Invalid apiUserKey",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 500\", function () {",
+              "    pm.response.to.have.status(500);",
+              "});",
+              "",
+              "pm.test(\"Contains the expected response\", function () {",
+              "    pm.expect(pm.response.json()).to.deep.equal(",
+              "        {",
+              "            \"Message\": \"An error has occurred.\"",
+              "        }",
+              "    );",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "7918e30b-f24d-4742-967d-04b04c4dfc21",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/GetSwitchReportRecords?fromDate={{fromDate}}&toDate={{toDate}}&apiUserKey=testInvalid",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "GetSwitchReportRecords"
+          ],
+          "query": [
+            {
+              "key": "fromDate",
+              "value": "{{fromDate}}"
+            },
+            {
+              "key": "toDate",
+              "value": "{{toDate}}"
+            },
+            {
+              "key": "apiUserKey",
+              "value": "testInvalid"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetSwitchReportRecords",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Contains the expected response\", function() {",
+              "    var jsonData = pm.response.json();",
+              "    var looped = false;",
+              "    for (var i = 0; i < jsonData.length; i++) {",
+              "        looped = true;",
+              "        pm.expect(jsonData[i]).to.have.property(\"InstitutionName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"BranchName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CreatedDate\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"SubmittedDate\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"LastStatusDate\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"Target\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CustomerUserName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CustomerFirstName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CustomerLastName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CustomerAddressLine1\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CustomerAddressLine2\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CustomerAddressLine3\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CustomerCity\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CustomerStateProvinceCode\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CustomerPostalCode\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"ToCustomerAccountName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"ToCustomerAccountNumber\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"SwitchId\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"BillTrackCode\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CreatedThroughConcierge\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CreatedByUserName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CreatedByFirstName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"CreatedByLastName\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"Type\");",
+              "        pm.expect(jsonData[i]).to.have.property(\"Status\");",
+              "        ",
+              "        // Can change if API insitution users also changes.",
+              "        pm.expect(jsonData[i].InstitutionName).to.be.oneOf([pm.environment.get(\"institutionName\"), pm.environment.get(\"institutionName2\")]);",
+              "        pm.expect(Object.keys(jsonData[i]).length).to.equal(25);",
+              "    }",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "e11ef4e3-c5cb-49b9-9a21-b635d2c2de60",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{baseUrl}}/GetSwitchReportRecords/?fromDate={{fromDate}}&toDate={{toDate}}&apiUserKey={{apiUserKey}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "GetSwitchReportRecords",
+            ""
+          ],
+          "query": [
+            {
+              "key": "fromDate",
+              "value": "{{fromDate}}"
+            },
+            {
+              "key": "toDate",
+              "value": "{{toDate}}"
+            },
+            {
+              "key": "apiUserKey",
+              "value": "{{apiUserKey}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "MeridianEnrollCustomer",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              "// Set accountNumber env var to timestamp to create a unique customer each run.",
+              "var timestamp = Date.now();",
+              "var randomString = makeRandomString();",
+              "pm.environment.set(\"accountNumber\", timestamp);",
+              "pm.environment.set(\"userName\", randomString);",
+              "",
+              "// Creates a random string of length 10.",
+              "function makeRandomString() {",
+              "  var text = \"\";",
+              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+              "  ",
+              "  for (var i = 0; i < 10; i++) {",
+              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+              "  }",
+              "  ",
+              "  return text;",
+              "}",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(pm.response.text()).to.match(/<ApiEnrollCustomerResult xmlns:i=\"http:\\/\\/www\\.w3\\.org\\/2001\\/XMLSchema-instance\" xmlns=\"http:\\/\\/schemas\\.datacontract\\.org\\/2004\\/07\\/ClickSwitch\\.Domain\\.Models\\.CustomerEnrollment\\.DataContracts\"><Errors xmlns:d2p1=\"http:\\/\\/schemas\\.microsoft\\.com\\/2003\\/10\\/Serialization\\/Arrays\" \\/><IsSuccess>true<\\/IsSuccess><SwitchTrackCode>.{8}<\\/SwitchTrackCode><\\/ApiEnrollCustomerResult>/);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "275a5583-766d-423d-8b47-53d338e82a83",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/xml"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/xml",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<XPRESS_LOAN xmlns=\"http://www.meridianlink.com/CLF\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \nxsi:schemaLocation=\"http://www.meridianlink.com/CLF xpress_loan.xsd\" xmlns:iu=\"http://www.meridianlink.com/InternalUse\" version=\"5.141\">\n  <APPLICANTS>\n    <APPLICANT cell_phone=\"(612) 555-5555\" home_phone=\"(612) 554-5555\" is_passed_id_verification=\"N\" joint_account_option=\"ALL\" is_credit_union_advocate=\"N\" number_in_household=\"0\" is_declined=\"N\" first_name=\"{{userName}}\" last_name=\"TEST\" middle_name=\"J\" dob=\"1953-01-01\" email=\"{{accountNumber}}@MERIDIANLINK.COM\" ssn=\"999999990\" gender=\"MALE\"  credit_score=\"0\" custom_score=\"0\" borrower_id=\"0\" citizenship=\"USCITIZEN\" preferred_contact_method=\"CELL\" work_phone=\"(612) 553-5555\" security_code=\"String\" allow_direct_mail=\"Y\" allow_email_solicit=\"Y\" allow_telemarket=\"N\" role_type=\"\" >\n      <CURRENT_ADDRESS occupancy_status=\"OWN\" occupancy_duration=\"0\" />\n      <MAILING_ADDRESS is_current=\"N\" city=\"MINNEAPOLIS\" state=\"MN\" zip=\"55401\" county=\"HENNEPIN\" street_address_1=\"244 1ST AVE N\" country=\"USA\" />\n      <FINANCIAL_INFO monthly_rent=\"0\" monthly_income_base_salary=\"0\" employment_status=\"EM\" employed_months=\"0\" />\n\t\t\t<ID_CARD card_type=\"OTHER\" card_number=\"99999\" state=\"MN\" country=\"USA\" exp_date=\"2005-01-01\" date_issued=\"2005-01-01\" />\n\t\t\t<APPROVAL_DENIAL_REASON>Denial Reason</APPROVAL_DENIAL_REASON>\n\t\t\t<ATM_CARD_LIST>\n        <ATM_CARD account_number=\"1234123412341234\" card_type=\"ATM\" expire_date=\"0120\">\n          <ATM_CARD_LINK_LIST>\n            <ATM_CARD_LINK reference_type=\"I\" reference_id=\"1\" is_linked=\"Y\" date_linked=\"1967-08-13\" />\n          </ATM_CARD_LINK_LIST>\n        </ATM_CARD>\n      </ATM_CARD_LIST>\n      <SPOUSE is_declined=\"N\" first_name=\"A{{userName}}\" last_name=\"TESTER\" dob=\"1979-08-26\" ssn=\"198234347\" gender=\"FEMALE\"  credit_score=\"0\" custom_score=\"0\" security_code=\"String\" borrower_id=\"1\">\n        <CURRENT_ADDRESS />\n        <MAILING_ADDRESS />\n        <FINANCIAL_INFO monthly_rent=\"0\" monthly_income_base_salary=\"0\" employment_status=\"EM\" employed_months=\"0\" />\n\t\t\t\t<ID_CARD card_type=\"DRIVERS_LICENSE\" card_number=\"334734387\" state=\"MN\" country=\"USA\" exp_date=\"2008-01-01\" date_issued=\"1998-01-01\" />\n\t\t\t\t<APPROVAL_DENIAL_REASON>Spouse Denial Reason</APPROVAL_DENIAL_REASON>\n\t\t\t</SPOUSE>\n    </APPLICANT>\n  </APPLICANTS>\n  <COMMENTS>\n    <DECISION_COMMENTS />\n    <EXTERNAL_COMMENTS />\n    <INTERNAL_COMMENTS />\n    <FRAUD_WARNINGS />\n  </COMMENTS>\n  <LOAN_INFO qualifying_requirement=\"Lives, works (or regularly conducts business in), worships, attends school, or volunteers within a 12-mile radius of the Mesquite, Nevada post office.\" status=\"NEW\" create_date=\"2013-08-16T08:08:08\" account_position=\"1\" entity_type=\"P\"  first_funding_date=\"2007-08-13\"  is_minor=\"N\" approval_date=\"2010-01-01T11:18:00-08:00\" declined_date=\"2010-01-01T11:18:00-08:00\" />\n\n\n\n\n  <SYSTEM type=\"LPQ\" external_source=\"\" source=\"CONSUMER\" loan_number=\"230\" iu:loan_id=\"6dda1676fcce4735813362aeae0f6643\" origination_ip=\"\">\n    <LOAN_OFFICER />\n    <BRANCH reference_id=\"{{externalBranchId}}\" />\n\t\t<LENDER name=\"MERIDIANLINK FI\" reference_id=\"UnitTestReference\" phone=\"(612) 552-5555\" fax=\"(612) 551-5555\" email=\"{{accountNumber}}0@meridianlink.com\"/>\n\t\t<ORGANIZATION reference_id=\"UnitTestOrgReference\" name=\"TestOrg1\" phone=\"612-550-5555\" fax=\"612-540-5555\"/>\n\n  </SYSTEM>\n  \n  \n  <APPROVED_ACCOUNTS>\n    <ACCOUNT_TYPE id=\"00000000-0000-0000-0000-000000000001\" clf_approved_account_type_id=\"1\" clf_internal_transfer_id=\"0\" funding_date=\"2007-08-13\" account_name=\"{{accountName}}\" account_type=\"CD\" account_number=\"{{accountNumber}}\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"\" service_type=\"ATM\" />\n      </SERVICES>\n      <ACCOUNT_TYPE_RELATIONS>\n        <RELATION benefactor_type=\"C\" ssn=\"198234347\" beneficiary_priority=\"C\" beneficiary_percent_share=\"100\" />\n      </ACCOUNT_TYPE_RELATIONS>\n    </ACCOUNT_TYPE>\n  </APPROVED_ACCOUNTS>\n  <INTERESTED_ACCOUNTS>\n    <ACCOUNT_TYPE account_name=\"string\" amount_deposit=\"0\" account_type=\"CD\" is_require_confirmation=\"N\" underwrite_result=\"\" >\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"ATM\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"INTERNAL\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n    <ACCOUNT_TYPE account_name=\"\" amount_deposit=\"0\" account_type=\"CD\" is_require_confirmation=\"N\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"INTERNAL\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"ATM\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n  </INTERESTED_ACCOUNTS>\n  <FUTURE_ACCOUNTS>\n    <ACCOUNT_TYPE account_name=\"String\" account_type=\"CD\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n  </FUTURE_ACCOUNTS>\n  <BENEFICIARIES>\n    <BENEFICIARY ssn=\"123121234\" is_trust=\"N\" address=\"1124 BRISTOL ST\" city=\"COSTA MESA\" state=\"CA\" dob=\"1980-08-02\" email=\"ben@meridianlink.com\" first_name=\"BEN\" last_name=\"CHIEF\" phone=\"714-708-6950\" zip=\"92626\" relationship=\"GOD FATHER\" address_verification_date=\"2010-05-11\" />\n  </BENEFICIARIES>\n  <ADDITIONAL_SERVICES>\n    <INTERNAL_TRANSFER amount=\"50.00\" frequency=\"MONTHLY\" start_date=\"2008-01-01\" end_date=\"2009-01-01\" scheduled_day=\"1\" transfer_from_id=\"1111\" transfer_from_id_type=\"E\" transfer_to_account_type=\"IRA\" transfer_to_id=\"2222\" transfer_to_id_type=\"E\" />\n    <INTERNAL_TRANSFER amount=\"100.00\" frequency=\"MONTHLY\" start_date=\"2008-01-01\" end_date=\"2009-01-01\" scheduled_day=\"1\" transfer_from_id=\"0\" transfer_from_id_type=\"I\" transfer_to_account_type=\"IRA\" transfer_to_id=\"2222\" transfer_to_id_type=\"E\" />\n  </ADDITIONAL_SERVICES>\n</XPRESS_LOAN>"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/MeridianEnrollCustomer?institutionId={{institutionId}}&apiUserKey={{apiUserKey}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "MeridianEnrollCustomer"
+          ],
+          "query": [
+            {
+              "key": "institutionId",
+              "value": "{{institutionId}}"
+            },
+            {
+              "key": "apiUserKey",
+              "value": "{{apiUserKey}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "MeridianEnrollCustomer Invalid branchId and accountName",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              "// Set accountNumber env var to timestamp to create a unique customer each run.",
+              "var timestamp = Date.now();",
+              "var randomString = makeRandomString();",
+              "pm.environment.set(\"accountNumber\", timestamp);",
+              "pm.environment.set(\"userName\", randomString);",
+              "",
+              "// Creates a random string of length 10.",
+              "function makeRandomString() {",
+              "  var text = \"\";",
+              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+              "  ",
+              "  for (var i = 0; i < 10; i++) {",
+              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+              "  }",
+              "  ",
+              "  return text;",
+              "}",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(pm.response.text()).to.equal(`<ApiEnrollCustomerResult xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/ClickSwitch.Domain.Models.CustomerEnrollment.DataContracts\"><Errors xmlns:d2p1=\"http://schemas.microsoft.com/2003/10/Serialization/Arrays\"><d2p1:string>This institution does not have an external branch id of '66'.</d2p1:string><d2p1:string>Invalid account name 'CHECKING FOR KIDS'</d2p1:string></Errors><IsSuccess>false</IsSuccess><SwitchTrackCode i:nil=\"true\" /></ApiEnrollCustomerResult>`);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "c40d2515-cc65-488b-a3bb-7050b7f1bdbf",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/xml"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/xml",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<XPRESS_LOAN xmlns=\"http://www.meridianlink.com/CLF\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \nxsi:schemaLocation=\"http://www.meridianlink.com/CLF xpress_loan.xsd\" xmlns:iu=\"http://www.meridianlink.com/InternalUse\" version=\"5.141\">\n  <APPLICANTS>\n    <APPLICANT cell_phone=\"(612) 555-5555\" home_phone=\"(612) 554-5555\" is_passed_id_verification=\"N\" joint_account_option=\"ALL\" is_credit_union_advocate=\"N\" number_in_household=\"0\" is_declined=\"N\" first_name=\"{{userName}}\" last_name=\"TEST\" middle_name=\"J\" dob=\"1953-01-01\" email=\"{{accountNumber}}@MERIDIANLINK.COM\" ssn=\"999999990\" gender=\"MALE\"  credit_score=\"0\" custom_score=\"0\" borrower_id=\"0\" citizenship=\"USCITIZEN\" preferred_contact_method=\"CELL\" work_phone=\"(612) 553-5555\" security_code=\"String\" allow_direct_mail=\"Y\" allow_email_solicit=\"Y\" allow_telemarket=\"N\" role_type=\"\" >\n      <CURRENT_ADDRESS occupancy_status=\"OWN\" occupancy_duration=\"0\" />\n      <MAILING_ADDRESS is_current=\"N\" city=\"MINNEAPOLIS\" state=\"MN\" zip=\"55401\" county=\"HENNEPIN\" street_address_1=\"244 1ST AVE N\" country=\"USA\" />\n      <FINANCIAL_INFO monthly_rent=\"0\" monthly_income_base_salary=\"0\" employment_status=\"EM\" employed_months=\"0\" />\n\t\t\t<ID_CARD card_type=\"OTHER\" card_number=\"99999\" state=\"MN\" country=\"USA\" exp_date=\"2005-01-01\" date_issued=\"2005-01-01\" />\n\t\t\t<APPROVAL_DENIAL_REASON>Denial Reason</APPROVAL_DENIAL_REASON>\n\t\t\t<ATM_CARD_LIST>\n        <ATM_CARD account_number=\"1234123412341234\" card_type=\"ATM\" expire_date=\"0120\">\n          <ATM_CARD_LINK_LIST>\n            <ATM_CARD_LINK reference_type=\"I\" reference_id=\"1\" is_linked=\"Y\" date_linked=\"1967-08-13\" />\n          </ATM_CARD_LINK_LIST>\n        </ATM_CARD>\n      </ATM_CARD_LIST>\n      <SPOUSE is_declined=\"N\" first_name=\"A{{userName}}\" last_name=\"TESTER\" dob=\"1979-08-26\" ssn=\"198234347\" gender=\"FEMALE\"  credit_score=\"0\" custom_score=\"0\" security_code=\"String\" borrower_id=\"1\">\n        <CURRENT_ADDRESS />\n        <MAILING_ADDRESS />\n        <FINANCIAL_INFO monthly_rent=\"0\" monthly_income_base_salary=\"0\" employment_status=\"EM\" employed_months=\"0\" />\n\t\t\t\t<ID_CARD card_type=\"DRIVERS_LICENSE\" card_number=\"334734387\" state=\"MN\" country=\"USA\" exp_date=\"2008-01-01\" date_issued=\"1998-01-01\" />\n\t\t\t\t<APPROVAL_DENIAL_REASON>Spouse Denial Reason</APPROVAL_DENIAL_REASON>\n\t\t\t</SPOUSE>\n    </APPLICANT>\n  </APPLICANTS>\n  <COMMENTS>\n    <DECISION_COMMENTS />\n    <EXTERNAL_COMMENTS />\n    <INTERNAL_COMMENTS />\n    <FRAUD_WARNINGS />\n  </COMMENTS>\n  <LOAN_INFO qualifying_requirement=\"Lives, works (or regularly conducts business in), worships, attends school, or volunteers within a 12-mile radius of the Mesquite, Nevada post office.\" status=\"NEW\" create_date=\"2013-08-16T08:08:08\" account_position=\"1\" entity_type=\"P\"  first_funding_date=\"2007-08-13\"  is_minor=\"N\" approval_date=\"2010-01-01T11:18:00-08:00\" declined_date=\"2010-01-01T11:18:00-08:00\" />\n\n\n\n\n  <SYSTEM type=\"LPQ\" external_source=\"\" source=\"CONSUMER\" loan_number=\"230\" iu:loan_id=\"6dda1676fcce4735813362aeae0f6643\" origination_ip=\"\">\n    <LOAN_OFFICER />\n    <BRANCH reference_id=\"66\" />\n\t\t<LENDER name=\"MERIDIANLINK FI\" reference_id=\"UnitTestReference\" phone=\"(612) 552-5555\" fax=\"(612) 551-5555\" email=\"{{accountNumber}}0@meridianlink.com\"/>\n\t\t<ORGANIZATION reference_id=\"UnitTestOrgReference\" name=\"TestOrg1\" phone=\"612-550-5555\" fax=\"612-540-5555\"/>\n\n  </SYSTEM>\n  \n  \n  <APPROVED_ACCOUNTS>\n    <ACCOUNT_TYPE id=\"00000000-0000-0000-0000-000000000001\" clf_approved_account_type_id=\"1\" clf_internal_transfer_id=\"0\" funding_date=\"2007-08-13\" account_name=\"CHECKING FOR KIDS\" account_type=\"CD\" account_number=\"{{accountNumber}}\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"\" service_type=\"ATM\" />\n      </SERVICES>\n      <ACCOUNT_TYPE_RELATIONS>\n        <RELATION benefactor_type=\"C\" ssn=\"198234347\" beneficiary_priority=\"C\" beneficiary_percent_share=\"100\" />\n      </ACCOUNT_TYPE_RELATIONS>\n    </ACCOUNT_TYPE>\n  </APPROVED_ACCOUNTS>\n  <INTERESTED_ACCOUNTS>\n    <ACCOUNT_TYPE account_name=\"string\" amount_deposit=\"0\" account_type=\"CD\" is_require_confirmation=\"N\" underwrite_result=\"\" >\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"ATM\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"INTERNAL\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n    <ACCOUNT_TYPE account_name=\"\" amount_deposit=\"0\" account_type=\"CD\" is_require_confirmation=\"N\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"INTERNAL\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"ATM\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n  </INTERESTED_ACCOUNTS>\n  <FUTURE_ACCOUNTS>\n    <ACCOUNT_TYPE account_name=\"String\" account_type=\"CD\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n  </FUTURE_ACCOUNTS>\n  <BENEFICIARIES>\n    <BENEFICIARY ssn=\"123121234\" is_trust=\"N\" address=\"1124 BRISTOL ST\" city=\"COSTA MESA\" state=\"CA\" dob=\"1980-08-02\" email=\"ben@meridianlink.com\" first_name=\"BEN\" last_name=\"CHIEF\" phone=\"714-708-6950\" zip=\"92626\" relationship=\"GOD FATHER\" address_verification_date=\"2010-05-11\" />\n  </BENEFICIARIES>\n  <ADDITIONAL_SERVICES>\n    <INTERNAL_TRANSFER amount=\"50.00\" frequency=\"MONTHLY\" start_date=\"2008-01-01\" end_date=\"2009-01-01\" scheduled_day=\"1\" transfer_from_id=\"1111\" transfer_from_id_type=\"E\" transfer_to_account_type=\"IRA\" transfer_to_id=\"2222\" transfer_to_id_type=\"E\" />\n    <INTERNAL_TRANSFER amount=\"100.00\" frequency=\"MONTHLY\" start_date=\"2008-01-01\" end_date=\"2009-01-01\" scheduled_day=\"1\" transfer_from_id=\"0\" transfer_from_id_type=\"I\" transfer_to_account_type=\"IRA\" transfer_to_id=\"2222\" transfer_to_id_type=\"E\" />\n  </ADDITIONAL_SERVICES>\n</XPRESS_LOAN>"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/MeridianEnrollCustomer?institutionId={{institutionId}}&apiUserKey={{apiUserKey}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "MeridianEnrollCustomer"
+          ],
+          "query": [
+            {
+              "key": "institutionId",
+              "value": "{{institutionId}}"
+            },
+            {
+              "key": "apiUserKey",
+              "value": "{{apiUserKey}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
