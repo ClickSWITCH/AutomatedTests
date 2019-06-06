@@ -1959,8 +1959,7 @@
             "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
             "exec": [
               "// These tests are written to capture the current behavior.",
-              "// I expect these to break when fixed such that the status code is 200",
-              "// and the results resemple the following format:",
+              "// Results should resemble the following format:",
               "/*",
               "<ArrayOfInstitution xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://schemas.datacontract.org/2004/07/ClickSwitch.API.Models.DataContracts\">",
               "    <Institution>",
