@@ -1,0 +1,119 @@
+{
+	"id": "1518ef77-386d-445c-90ff-9b3d7ca070e2",
+	"name": "API v1 Regression Test Suite Environment Template",
+	"values": [
+		{
+			"key": "ocpApimSubscriptionKey",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "apiUserKey",
+			"value": "yourApiUserKey",
+			"enabled": true
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://your.domain",
+			"enabled": true
+		},
+		{
+			"key": "domain",
+			"value": "clickswitch",
+			"enabled": true
+		},
+		{
+			"key": "subdomain",
+			"value": "yourInstitutionSubdomain",
+			"enabled": true
+		},
+		{
+			"key": "institutionId",
+			"value": "yourInstitutionId",
+			"enabled": true
+		},
+		{
+			"key": "institutionId2",
+			"value": "clickSWITCHInternalTesting",
+			"enabled": true
+		},
+		{
+			"key": "institutionName",
+			"value": "yourInstitutionName",
+			"enabled": true
+		},
+		{
+			"key": "institutionName2",
+			"value": "clickSWITCHInternalTesting",
+			"enabled": true
+		},
+		{
+			"key": "branchId",
+			"value": "yourBranchId",
+			"enabled": true
+		},
+		{
+			"key": "branchId2",
+			"value": "yourBranchId",
+			"enabled": true
+		},
+		{
+			"key": "externalBranchId",
+			"value": "yourExternalBranchId",
+			"enabled": true
+		},
+		{
+			"key": "userName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "switchTrackCode",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "userId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "accountNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "routingNumber",
+			"value": "yourRoutingNumber",
+			"enabled": true
+		},
+		{
+			"key": "routingNumber2",
+			"value": "yourRoutingNumber",
+			"enabled": true
+		},
+		{
+			"key": "accountName",
+			"value": "yourAccountName",
+			"enabled": true
+		},
+		{
+			"key": "accountName2",
+			"value": "yourAccountName",
+			"enabled": true
+		},
+		{
+			"key": "fromDate",
+			"value": "06/03/2019",
+			"enabled": true
+		},
+		{
+			"key": "toDate",
+			"value": "06/05/2019",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2019-06-06T13:27:21.665Z",
+	"_postman_exported_using": "Postman/6.7.4"
+}
