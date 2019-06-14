@@ -3270,88 +3270,6 @@
       "response": []
     },
     {
-      "name": "Find Joint Account Two Accounts Copy",
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "2b72de1d-03b9-4154-aa65-2c1e72a79e65",
-            "exec": [
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "id": "46f51bab-ffea-443b-8ec8-3245d2066255",
-            "exec": [
-              "const jsonData = pm.response.json();",
-              "",
-              "pm.test(\"Status code is 200\", function() {",
-              "    pm.response.to.have.status(200);",
-              "});",
-              "",
-              "pm.test(\"Has the correct ids\", function() {",
-              "    pm.expect(jsonData.CustomerId).to.be.a('number');",
-              "    pm.expect(jsonData.PrimaryContactId).to.be.a('number');",
-              "    pm.expect(jsonData.SecondaryContactId).to.be.a('number');",
-              "    ",
-              "    pm.expect(jsonData.CustomerId).to.equal(pm.environment.get('customerId'));",
-              "    pm.expect(jsonData.PrimaryContactId).to.equal(pm.environment.get('primaryContactId'));",
-              "    pm.expect(jsonData.SecondaryContactId).to.equal(pm.environment.get('secondaryContactId'));",
-              "});",
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "_postman_id": "041b5dcc-b3af-4170-a58d-11ebc3b435b5",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "Ocp-Apim-Subscription-Key",
-            "value": "{{ocpApimSubscriptionKey}}"
-          }
-        ],
-        "url": {
-          "raw": "{{baseUrl}}/customers/search?apiUserKey={{apiUserKey}}&searchUserName={{userName}}&institutionId={{institutionId}}",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "customers",
-            "search"
-          ],
-          "query": [
-            {
-              "key": "apiUserKey",
-              "value": "{{apiUserKey}}"
-            },
-            {
-              "key": "searchUserName",
-              "value": "{{userName}}"
-            },
-            {
-              "key": "institutionId",
-              "value": "{{institutionId}}"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
       "name": "MeridianEnrollCustomer accountName Validated First Copy",
       "event": [
         {
@@ -3835,6 +3753,88 @@
             {
               "key": "apiUserKey",
               "value": "{{apiUserKey}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Find Joint Account Two Accounts Copy",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "2b72de1d-03b9-4154-aa65-2c1e72a79e65",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "46f51bab-ffea-443b-8ec8-3245d2066255",
+            "exec": [
+              "const jsonData = pm.response.json();",
+              "",
+              "pm.test(\"Status code is 200\", function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct ids\", function() {",
+              "    pm.expect(jsonData.CustomerId).to.be.a('number');",
+              "    pm.expect(jsonData.PrimaryContactId).to.be.a('number');",
+              "    pm.expect(jsonData.SecondaryContactId).to.be.a('number');",
+              "    ",
+              "    pm.expect(jsonData.CustomerId).to.equal(pm.environment.get('customerId'));",
+              "    pm.expect(jsonData.PrimaryContactId).to.equal(pm.environment.get('primaryContactId'));",
+              "    pm.expect(jsonData.SecondaryContactId).to.equal(pm.environment.get('secondaryContactId'));",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "041b5dcc-b3af-4170-a58d-11ebc3b435b5",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "{{ocpApimSubscriptionKey}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/customers/search?apiUserKey={{apiUserKey}}&searchUserName={{userName}}&institutionId={{institutionId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "customers",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "apiUserKey",
+              "value": "{{apiUserKey}}"
+            },
+            {
+              "key": "searchUserName",
+              "value": "{{userName}}"
+            },
+            {
+              "key": "institutionId",
+              "value": "{{institutionId}}"
             }
           ]
         }
