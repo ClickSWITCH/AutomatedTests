@@ -3363,7 +3363,8 @@
               "value": "{{apiUserKey}}"
             }
           ]
-        }
+        },
+        "description": "The Account Name for the account created for the customer should match the value provided in the account\\_name attribute, even though the account\\_type is also valid."
       },
       "response": []
     },
