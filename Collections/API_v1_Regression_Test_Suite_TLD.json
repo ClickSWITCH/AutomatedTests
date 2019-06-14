@@ -3466,7 +3466,7 @@
       "response": []
     },
     {
-      "name": "MeridianEnrollCustomer Invalid branchId, accountName",
+      "name": "MeridianEnrollCustomer Invalid reference_id, accountName",
       "event": [
         {
           "listen": "prerequest",
