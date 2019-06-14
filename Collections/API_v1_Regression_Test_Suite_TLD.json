@@ -3369,7 +3369,7 @@
       "response": []
     },
     {
-      "name": "MeridianEnrollCustomer Invalid accountType and accountName",
+      "name": "MeridianEnrollCustomer Invalid accountType and accountName Copy",
       "event": [
         {
           "listen": "prerequest",
@@ -3416,7 +3416,7 @@
           }
         }
       ],
-      "_postman_id": "4d27e4d6-98d9-433a-868b-6a812b63a362",
+      "_postman_id": "12398463-d3c8-43fe-8ff4-57d4d2779cd6",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -3467,7 +3467,7 @@
       "response": []
     },
     {
-      "name": "MeridianEnrollCustomer Invalid accountType and accountName Copy",
+      "name": "MeridianEnrollCustomer Invalid accountType and accountName",
       "event": [
         {
           "listen": "prerequest",
@@ -3514,7 +3514,7 @@
           }
         }
       ],
-      "_postman_id": "12398463-d3c8-43fe-8ff4-57d4d2779cd6",
+      "_postman_id": "4d27e4d6-98d9-433a-868b-6a812b63a362",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
