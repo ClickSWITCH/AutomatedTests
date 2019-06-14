@@ -3172,7 +3172,7 @@
       "response": []
     },
     {
-      "name": "MeridianEnrollCustomer Valid accountName and Invalid accountType",
+      "name": "MeridianEnrollCustomer accountName Validated First",
       "event": [
         {
           "listen": "prerequest",
@@ -3219,7 +3219,7 @@
           }
         }
       ],
-      "_postman_id": "275a5583-766d-423d-8b47-53d338e82a83",
+      "_postman_id": "aded64ab-6e4b-40ba-9aad-aefde56eae4e",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
@@ -3270,7 +3270,7 @@
       "response": []
     },
     {
-      "name": "MeridianEnrollCustomer",
+      "name": "MeridianEnrollCustomer Valid accountName and Invalid accountType",
       "event": [
         {
           "listen": "prerequest",
@@ -3317,7 +3317,7 @@
           }
         }
       ],
-      "_postman_id": "aded64ab-6e4b-40ba-9aad-aefde56eae4e",
+      "_postman_id": "275a5583-766d-423d-8b47-53d338e82a83",
       "protocolProfileBehavior": {
         "disableBodyPruning": true
       },
