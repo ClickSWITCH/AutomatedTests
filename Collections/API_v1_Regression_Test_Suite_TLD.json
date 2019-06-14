@@ -3270,7 +3270,7 @@
       "response": []
     },
     {
-      "name": "MeridianEnrollCustomer Valid accountName and Invalid accountType Copy",
+      "name": "MeridianEnrollCustomer Mismatch accountName and accountType",
       "event": [
         {
           "listen": "prerequest",
