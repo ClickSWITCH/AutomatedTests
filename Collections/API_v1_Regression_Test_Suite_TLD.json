@@ -3172,104 +3172,6 @@
       "response": []
     },
     {
-      "name": "MeridianEnrollCustomer accountName Validated First",
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
-            "exec": [
-              "// Set accountNumber env var to timestamp to create a unique customer each run.",
-              "var timestamp = Date.now();",
-              "var randomString = makeRandomString();",
-              "pm.environment.set(\"accountNumber\", timestamp);",
-              "pm.environment.set(\"userName\", randomString);",
-              "",
-              "// Creates a random string of length 10.",
-              "function makeRandomString() {",
-              "  var text = \"\";",
-              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-              "  ",
-              "  for (var i = 0; i < 10; i++) {",
-              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
-              "  }",
-              "  ",
-              "  return text;",
-              "}",
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
-            "exec": [
-              "pm.test(\"Status code is 200\", function () {",
-              "    pm.response.to.have.status(200);",
-              "});",
-              "",
-              "pm.test(\"Has the correct response\", function () {",
-              "    pm.expect(pm.response.text()).to.match(/<ApiEnrollCustomerResult xmlns:i=\"http:\\/\\/www\\.w3\\.org\\/2001\\/XMLSchema-instance\" xmlns=\"http:\\/\\/schemas\\.datacontract\\.org\\/2004\\/07\\/ClickSwitch\\.Domain\\.Models\\.CustomerEnrollment\\.DataContracts\"><Errors xmlns:d2p1=\"http:\\/\\/schemas\\.microsoft\\.com\\/2003\\/10\\/Serialization\\/Arrays\" \\/><IsSuccess>true<\\/IsSuccess><SwitchTrackCode>.{8}<\\/SwitchTrackCode><\\/ApiEnrollCustomerResult>/);",
-              "});",
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "_postman_id": "aded64ab-6e4b-40ba-9aad-aefde56eae4e",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Ocp-Apim-Subscription-Key",
-            "type": "text",
-            "value": "{{ocpApimSubscriptionKey}}"
-          },
-          {
-            "key": "Accept",
-            "type": "text",
-            "value": "application/xml"
-          },
-          {
-            "key": "Content-Type",
-            "name": "Content-Type",
-            "value": "application/xml",
-            "type": "text"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "<XPRESS_LOAN xmlns=\"http://www.meridianlink.com/CLF\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \nxsi:schemaLocation=\"http://www.meridianlink.com/CLF xpress_loan.xsd\" xmlns:iu=\"http://www.meridianlink.com/InternalUse\" version=\"5.141\">\n  <APPLICANTS>\n    <APPLICANT cell_phone=\"(612) 555-5555\" home_phone=\"(612) 554-5555\" is_passed_id_verification=\"N\" joint_account_option=\"ALL\" is_credit_union_advocate=\"N\" number_in_household=\"0\" is_declined=\"N\" first_name=\"{{userName}}\" last_name=\"TEST\" middle_name=\"J\" dob=\"1953-01-01\" email=\"{{accountNumber}}@MERIDIANLINK.COM\" ssn=\"999999990\" gender=\"MALE\"  credit_score=\"0\" custom_score=\"0\" borrower_id=\"0\" citizenship=\"USCITIZEN\" preferred_contact_method=\"CELL\" work_phone=\"(612) 553-5555\" security_code=\"String\" allow_direct_mail=\"Y\" allow_email_solicit=\"Y\" allow_telemarket=\"N\" role_type=\"\" >\n      <CURRENT_ADDRESS occupancy_status=\"OWN\" occupancy_duration=\"0\" />\n      <MAILING_ADDRESS is_current=\"N\" city=\"MINNEAPOLIS\" state=\"MN\" zip=\"55401\" county=\"HENNEPIN\" street_address_1=\"244 1ST AVE N\" country=\"USA\" />\n      <FINANCIAL_INFO monthly_rent=\"0\" monthly_income_base_salary=\"0\" employment_status=\"EM\" employed_months=\"0\" />\n\t\t\t<ID_CARD card_type=\"OTHER\" card_number=\"99999\" state=\"MN\" country=\"USA\" exp_date=\"2005-01-01\" date_issued=\"2005-01-01\" />\n\t\t\t<APPROVAL_DENIAL_REASON>Denial Reason</APPROVAL_DENIAL_REASON>\n\t\t\t<ATM_CARD_LIST>\n        <ATM_CARD account_number=\"1234123412341234\" card_type=\"ATM\" expire_date=\"0120\">\n          <ATM_CARD_LINK_LIST>\n            <ATM_CARD_LINK reference_type=\"I\" reference_id=\"1\" is_linked=\"Y\" date_linked=\"1967-08-13\" />\n          </ATM_CARD_LINK_LIST>\n        </ATM_CARD>\n      </ATM_CARD_LIST>\n      <SPOUSE is_declined=\"N\" first_name=\"A{{userName}}\" last_name=\"TESTER\" dob=\"1979-08-26\" ssn=\"198234347\" gender=\"FEMALE\"  credit_score=\"0\" custom_score=\"0\" security_code=\"String\" borrower_id=\"1\">\n        <CURRENT_ADDRESS />\n        <MAILING_ADDRESS />\n        <FINANCIAL_INFO monthly_rent=\"0\" monthly_income_base_salary=\"0\" employment_status=\"EM\" employed_months=\"0\" />\n\t\t\t\t<ID_CARD card_type=\"DRIVERS_LICENSE\" card_number=\"334734387\" state=\"MN\" country=\"USA\" exp_date=\"2008-01-01\" date_issued=\"1998-01-01\" />\n\t\t\t\t<APPROVAL_DENIAL_REASON>Spouse Denial Reason</APPROVAL_DENIAL_REASON>\n\t\t\t</SPOUSE>\n    </APPLICANT>\n  </APPLICANTS>\n  <COMMENTS>\n    <DECISION_COMMENTS />\n    <EXTERNAL_COMMENTS />\n    <INTERNAL_COMMENTS />\n    <FRAUD_WARNINGS />\n  </COMMENTS>\n  <LOAN_INFO qualifying_requirement=\"Lives, works (or regularly conducts business in), worships, attends school, or volunteers within a 12-mile radius of the Mesquite, Nevada post office.\" status=\"NEW\" create_date=\"2013-08-16T08:08:08\" account_position=\"1\" entity_type=\"P\"  first_funding_date=\"2007-08-13\"  is_minor=\"N\" approval_date=\"2010-01-01T11:18:00-08:00\" declined_date=\"2010-01-01T11:18:00-08:00\" />\n\n\n\n\n  <SYSTEM type=\"LPQ\" external_source=\"\" source=\"CONSUMER\" loan_number=\"230\" iu:loan_id=\"6dda1676fcce4735813362aeae0f6643\" origination_ip=\"\">\n    <LOAN_OFFICER />\n    <BRANCH reference_id=\"{{externalBranchId}}\" />\n\t\t<LENDER name=\"MERIDIANLINK FI\" reference_id=\"UnitTestReference\" phone=\"(612) 552-5555\" fax=\"(612) 551-5555\" email=\"{{accountNumber}}0@meridianlink.com\"/>\n\t\t<ORGANIZATION reference_id=\"UnitTestOrgReference\" name=\"TestOrg1\" phone=\"612-550-5555\" fax=\"612-540-5555\"/>\n\n  </SYSTEM>\n  \n  \n  <APPROVED_ACCOUNTS>\n    <ACCOUNT_TYPE id=\"00000000-0000-0000-0000-000000000001\" clf_approved_account_type_id=\"1\" clf_internal_transfer_id=\"0\" funding_date=\"2007-08-13\" account_name=\"{{accountName}}\" account_type=\"CD\" account_number=\"{{accountNumber}}\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"\" service_type=\"ATM\" />\n      </SERVICES>\n      <ACCOUNT_TYPE_RELATIONS>\n        <RELATION benefactor_type=\"C\" ssn=\"198234347\" beneficiary_priority=\"C\" beneficiary_percent_share=\"100\" />\n      </ACCOUNT_TYPE_RELATIONS>\n    </ACCOUNT_TYPE>\n  </APPROVED_ACCOUNTS>\n  <INTERESTED_ACCOUNTS>\n    <ACCOUNT_TYPE account_name=\"string\" amount_deposit=\"0\" account_type=\"CD\" is_require_confirmation=\"N\" underwrite_result=\"\" >\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"ATM\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"INTERNAL\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n    <ACCOUNT_TYPE account_name=\"\" amount_deposit=\"0\" account_type=\"CD\" is_require_confirmation=\"N\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"INTERNAL\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"ATM\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n  </INTERESTED_ACCOUNTS>\n  <FUTURE_ACCOUNTS>\n    <ACCOUNT_TYPE account_name=\"String\" account_type=\"CD\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n  </FUTURE_ACCOUNTS>\n  <BENEFICIARIES>\n    <BENEFICIARY ssn=\"123121234\" is_trust=\"N\" address=\"1124 BRISTOL ST\" city=\"COSTA MESA\" state=\"CA\" dob=\"1980-08-02\" email=\"ben@meridianlink.com\" first_name=\"BEN\" last_name=\"CHIEF\" phone=\"714-708-6950\" zip=\"92626\" relationship=\"GOD FATHER\" address_verification_date=\"2010-05-11\" />\n  </BENEFICIARIES>\n  <ADDITIONAL_SERVICES>\n    <INTERNAL_TRANSFER amount=\"50.00\" frequency=\"MONTHLY\" start_date=\"2008-01-01\" end_date=\"2009-01-01\" scheduled_day=\"1\" transfer_from_id=\"1111\" transfer_from_id_type=\"E\" transfer_to_account_type=\"IRA\" transfer_to_id=\"2222\" transfer_to_id_type=\"E\" />\n    <INTERNAL_TRANSFER amount=\"100.00\" frequency=\"MONTHLY\" start_date=\"2008-01-01\" end_date=\"2009-01-01\" scheduled_day=\"1\" transfer_from_id=\"0\" transfer_from_id_type=\"I\" transfer_to_account_type=\"IRA\" transfer_to_id=\"2222\" transfer_to_id_type=\"E\" />\n  </ADDITIONAL_SERVICES>\n</XPRESS_LOAN>"
-        },
-        "url": {
-          "raw": "{{baseUrl}}/MeridianEnrollCustomer?institutionId={{institutionId}}&apiUserKey={{apiUserKey}}",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "MeridianEnrollCustomer"
-          ],
-          "query": [
-            {
-              "key": "institutionId",
-              "value": "{{institutionId}}"
-            },
-            {
-              "key": "apiUserKey",
-              "value": "{{apiUserKey}}"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
       "name": "MeridianEnrollCustomer Valid accountName and Invalid accountType",
       "event": [
         {
@@ -3638,6 +3540,104 @@
         "body": {
           "mode": "raw",
           "raw": "<XPRESS_LOAN xmlns=\"http://www.meridianlink.com/CLF\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \nxsi:schemaLocation=\"http://www.meridianlink.com/CLF xpress_loan.xsd\" xmlns:iu=\"http://www.meridianlink.com/InternalUse\" version=\"5.141\">\n  <APPLICANTS>\n    <APPLICANT cell_phone=\"(612) 555-5555\" home_phone=\"(612) 554-5555\" is_passed_id_verification=\"N\" joint_account_option=\"ALL\" is_credit_union_advocate=\"N\" number_in_household=\"0\" is_declined=\"N\" first_name=\"{{userName}}\" last_name=\"TEST\" middle_name=\"J\" dob=\"1953-01-01\" email=\"{{accountNumber}}@MERIDIANLINK.COM\" ssn=\"999999990\" gender=\"MALE\"  credit_score=\"0\" custom_score=\"0\" borrower_id=\"0\" citizenship=\"USCITIZEN\" preferred_contact_method=\"CELL\" work_phone=\"(612) 553-5555\" security_code=\"String\" allow_direct_mail=\"Y\" allow_email_solicit=\"Y\" allow_telemarket=\"N\" role_type=\"\" >\n      <CURRENT_ADDRESS occupancy_status=\"OWN\" occupancy_duration=\"0\" />\n      <MAILING_ADDRESS is_current=\"N\" city=\"MINNEAPOLIS\" state=\"MN\" zip=\"55401\" county=\"HENNEPIN\" street_address_1=\"244 1ST AVE N\" country=\"USA\" />\n      <FINANCIAL_INFO monthly_rent=\"0\" monthly_income_base_salary=\"0\" employment_status=\"EM\" employed_months=\"0\" />\n\t\t\t<ID_CARD card_type=\"OTHER\" card_number=\"99999\" state=\"MN\" country=\"USA\" exp_date=\"2005-01-01\" date_issued=\"2005-01-01\" />\n\t\t\t<APPROVAL_DENIAL_REASON>Denial Reason</APPROVAL_DENIAL_REASON>\n\t\t\t<ATM_CARD_LIST>\n        <ATM_CARD account_number=\"1234123412341234\" card_type=\"ATM\" expire_date=\"0120\">\n          <ATM_CARD_LINK_LIST>\n            <ATM_CARD_LINK reference_type=\"I\" reference_id=\"1\" is_linked=\"Y\" date_linked=\"1967-08-13\" />\n          </ATM_CARD_LINK_LIST>\n        </ATM_CARD>\n      </ATM_CARD_LIST>\n      <SPOUSE is_declined=\"N\" first_name=\"A{{userName}}\" last_name=\"TESTER\" dob=\"1979-08-26\" ssn=\"198234347\" gender=\"FEMALE\"  credit_score=\"0\" custom_score=\"0\" security_code=\"String\" borrower_id=\"1\">\n        <CURRENT_ADDRESS />\n        <MAILING_ADDRESS />\n        <FINANCIAL_INFO monthly_rent=\"0\" monthly_income_base_salary=\"0\" employment_status=\"EM\" employed_months=\"0\" />\n\t\t\t\t<ID_CARD card_type=\"DRIVERS_LICENSE\" card_number=\"334734387\" state=\"MN\" country=\"USA\" exp_date=\"2008-01-01\" date_issued=\"1998-01-01\" />\n\t\t\t\t<APPROVAL_DENIAL_REASON>Spouse Denial Reason</APPROVAL_DENIAL_REASON>\n\t\t\t</SPOUSE>\n    </APPLICANT>\n  </APPLICANTS>\n  <COMMENTS>\n    <DECISION_COMMENTS />\n    <EXTERNAL_COMMENTS />\n    <INTERNAL_COMMENTS />\n    <FRAUD_WARNINGS />\n  </COMMENTS>\n  <LOAN_INFO qualifying_requirement=\"Lives, works (or regularly conducts business in), worships, attends school, or volunteers within a 12-mile radius of the Mesquite, Nevada post office.\" status=\"NEW\" create_date=\"2013-08-16T08:08:08\" account_position=\"1\" entity_type=\"P\"  first_funding_date=\"2007-08-13\"  is_minor=\"N\" approval_date=\"2010-01-01T11:18:00-08:00\" declined_date=\"2010-01-01T11:18:00-08:00\" />\n\n\n\n\n  <SYSTEM type=\"LPQ\" external_source=\"\" source=\"CONSUMER\" loan_number=\"230\" iu:loan_id=\"6dda1676fcce4735813362aeae0f6643\" origination_ip=\"\">\n    <LOAN_OFFICER />\n    <BRANCH reference_id=\"66\" />\n\t\t<LENDER name=\"MERIDIANLINK FI\" reference_id=\"UnitTestReference\" phone=\"(612) 552-5555\" fax=\"(612) 551-5555\" email=\"{{accountNumber}}0@meridianlink.com\"/>\n\t\t<ORGANIZATION reference_id=\"UnitTestOrgReference\" name=\"TestOrg1\" phone=\"612-550-5555\" fax=\"612-540-5555\"/>\n\n  </SYSTEM>\n  \n  \n  <APPROVED_ACCOUNTS>\n    <ACCOUNT_TYPE id=\"00000000-0000-0000-0000-000000000001\" clf_approved_account_type_id=\"1\" clf_internal_transfer_id=\"0\" funding_date=\"2007-08-13\" account_name=\"CHECKING FOR KIDS 1ABC\" account_type=\"CD\" account_number=\"{{accountNumber}}\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"\" service_type=\"ATM\" />\n      </SERVICES>\n      <ACCOUNT_TYPE_RELATIONS>\n        <RELATION benefactor_type=\"C\" ssn=\"198234347\" beneficiary_priority=\"C\" beneficiary_percent_share=\"100\" />\n      </ACCOUNT_TYPE_RELATIONS>\n    </ACCOUNT_TYPE>\n  </APPROVED_ACCOUNTS>\n  <INTERESTED_ACCOUNTS>\n    <ACCOUNT_TYPE account_name=\"string\" amount_deposit=\"0\" account_type=\"CD\" is_require_confirmation=\"N\" underwrite_result=\"\" >\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"ATM\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"INTERNAL\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n    <ACCOUNT_TYPE account_name=\"\" amount_deposit=\"0\" account_type=\"CD\" is_require_confirmation=\"N\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"INTERNAL\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"ATM\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n  </INTERESTED_ACCOUNTS>\n  <FUTURE_ACCOUNTS>\n    <ACCOUNT_TYPE account_name=\"String\" account_type=\"CD\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n  </FUTURE_ACCOUNTS>\n  <BENEFICIARIES>\n    <BENEFICIARY ssn=\"123121234\" is_trust=\"N\" address=\"1124 BRISTOL ST\" city=\"COSTA MESA\" state=\"CA\" dob=\"1980-08-02\" email=\"ben@meridianlink.com\" first_name=\"BEN\" last_name=\"CHIEF\" phone=\"714-708-6950\" zip=\"92626\" relationship=\"GOD FATHER\" address_verification_date=\"2010-05-11\" />\n  </BENEFICIARIES>\n  <ADDITIONAL_SERVICES>\n    <INTERNAL_TRANSFER amount=\"50.00\" frequency=\"MONTHLY\" start_date=\"2008-01-01\" end_date=\"2009-01-01\" scheduled_day=\"1\" transfer_from_id=\"1111\" transfer_from_id_type=\"E\" transfer_to_account_type=\"IRA\" transfer_to_id=\"2222\" transfer_to_id_type=\"E\" />\n    <INTERNAL_TRANSFER amount=\"100.00\" frequency=\"MONTHLY\" start_date=\"2008-01-01\" end_date=\"2009-01-01\" scheduled_day=\"1\" transfer_from_id=\"0\" transfer_from_id_type=\"I\" transfer_to_account_type=\"IRA\" transfer_to_id=\"2222\" transfer_to_id_type=\"E\" />\n  </ADDITIONAL_SERVICES>\n</XPRESS_LOAN>"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/MeridianEnrollCustomer?institutionId={{institutionId}}&apiUserKey={{apiUserKey}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "MeridianEnrollCustomer"
+          ],
+          "query": [
+            {
+              "key": "institutionId",
+              "value": "{{institutionId}}"
+            },
+            {
+              "key": "apiUserKey",
+              "value": "{{apiUserKey}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "MeridianEnrollCustomer Valid accountName and Invalid accountType Copy",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              "// Set accountNumber env var to timestamp to create a unique customer each run.",
+              "var timestamp = Date.now();",
+              "var randomString = makeRandomString();",
+              "pm.environment.set(\"accountNumber\", timestamp);",
+              "pm.environment.set(\"userName\", randomString);",
+              "",
+              "// Creates a random string of length 10.",
+              "function makeRandomString() {",
+              "  var text = \"\";",
+              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+              "  ",
+              "  for (var i = 0; i < 10; i++) {",
+              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+              "  }",
+              "  ",
+              "  return text;",
+              "}",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(pm.response.text()).to.match(/<ApiEnrollCustomerResult xmlns:i=\"http:\\/\\/www\\.w3\\.org\\/2001\\/XMLSchema-instance\" xmlns=\"http:\\/\\/schemas\\.datacontract\\.org\\/2004\\/07\\/ClickSwitch\\.Domain\\.Models\\.CustomerEnrollment\\.DataContracts\"><Errors xmlns:d2p1=\"http:\\/\\/schemas\\.microsoft\\.com\\/2003\\/10\\/Serialization\\/Arrays\" \\/><IsSuccess>true<\\/IsSuccess><SwitchTrackCode>.{8}<\\/SwitchTrackCode><\\/ApiEnrollCustomerResult>/);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "75bbd268-4494-4a98-bc29-e009d05af3de",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/xml"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/xml",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<XPRESS_LOAN xmlns=\"http://www.meridianlink.com/CLF\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \nxsi:schemaLocation=\"http://www.meridianlink.com/CLF xpress_loan.xsd\" xmlns:iu=\"http://www.meridianlink.com/InternalUse\" version=\"5.141\">\n  <APPLICANTS>\n    <APPLICANT cell_phone=\"(612) 555-5555\" home_phone=\"(612) 554-5555\" is_passed_id_verification=\"N\" joint_account_option=\"ALL\" is_credit_union_advocate=\"N\" number_in_household=\"0\" is_declined=\"N\" first_name=\"{{userName}}\" last_name=\"TEST\" middle_name=\"J\" dob=\"1953-01-01\" email=\"{{accountNumber}}@MERIDIANLINK.COM\" ssn=\"999999990\" gender=\"MALE\"  credit_score=\"0\" custom_score=\"0\" borrower_id=\"0\" citizenship=\"USCITIZEN\" preferred_contact_method=\"CELL\" work_phone=\"(612) 553-5555\" security_code=\"String\" allow_direct_mail=\"Y\" allow_email_solicit=\"Y\" allow_telemarket=\"N\" role_type=\"\" >\n      <CURRENT_ADDRESS occupancy_status=\"OWN\" occupancy_duration=\"0\" />\n      <MAILING_ADDRESS is_current=\"N\" city=\"MINNEAPOLIS\" state=\"MN\" zip=\"55401\" county=\"HENNEPIN\" street_address_1=\"244 1ST AVE N\" country=\"USA\" />\n      <FINANCIAL_INFO monthly_rent=\"0\" monthly_income_base_salary=\"0\" employment_status=\"EM\" employed_months=\"0\" />\n\t\t\t<ID_CARD card_type=\"OTHER\" card_number=\"99999\" state=\"MN\" country=\"USA\" exp_date=\"2005-01-01\" date_issued=\"2005-01-01\" />\n\t\t\t<APPROVAL_DENIAL_REASON>Denial Reason</APPROVAL_DENIAL_REASON>\n\t\t\t<ATM_CARD_LIST>\n        <ATM_CARD account_number=\"1234123412341234\" card_type=\"ATM\" expire_date=\"0120\">\n          <ATM_CARD_LINK_LIST>\n            <ATM_CARD_LINK reference_type=\"I\" reference_id=\"1\" is_linked=\"Y\" date_linked=\"1967-08-13\" />\n          </ATM_CARD_LINK_LIST>\n        </ATM_CARD>\n      </ATM_CARD_LIST>\n      <SPOUSE is_declined=\"N\" first_name=\"A{{userName}}\" last_name=\"TESTER\" dob=\"1979-08-26\" ssn=\"198234347\" gender=\"FEMALE\"  credit_score=\"0\" custom_score=\"0\" security_code=\"String\" borrower_id=\"1\">\n        <CURRENT_ADDRESS />\n        <MAILING_ADDRESS />\n        <FINANCIAL_INFO monthly_rent=\"0\" monthly_income_base_salary=\"0\" employment_status=\"EM\" employed_months=\"0\" />\n\t\t\t\t<ID_CARD card_type=\"DRIVERS_LICENSE\" card_number=\"334734387\" state=\"MN\" country=\"USA\" exp_date=\"2008-01-01\" date_issued=\"1998-01-01\" />\n\t\t\t\t<APPROVAL_DENIAL_REASON>Spouse Denial Reason</APPROVAL_DENIAL_REASON>\n\t\t\t</SPOUSE>\n    </APPLICANT>\n  </APPLICANTS>\n  <COMMENTS>\n    <DECISION_COMMENTS />\n    <EXTERNAL_COMMENTS />\n    <INTERNAL_COMMENTS />\n    <FRAUD_WARNINGS />\n  </COMMENTS>\n  <LOAN_INFO qualifying_requirement=\"Lives, works (or regularly conducts business in), worships, attends school, or volunteers within a 12-mile radius of the Mesquite, Nevada post office.\" status=\"NEW\" create_date=\"2013-08-16T08:08:08\" account_position=\"1\" entity_type=\"P\"  first_funding_date=\"2007-08-13\"  is_minor=\"N\" approval_date=\"2010-01-01T11:18:00-08:00\" declined_date=\"2010-01-01T11:18:00-08:00\" />\n\n\n\n\n  <SYSTEM type=\"LPQ\" external_source=\"\" source=\"CONSUMER\" loan_number=\"230\" iu:loan_id=\"6dda1676fcce4735813362aeae0f6643\" origination_ip=\"\">\n    <LOAN_OFFICER />\n    <BRANCH reference_id=\"{{externalBranchId}}\" />\n\t\t<LENDER name=\"MERIDIANLINK FI\" reference_id=\"UnitTestReference\" phone=\"(612) 552-5555\" fax=\"(612) 551-5555\" email=\"{{accountNumber}}0@meridianlink.com\"/>\n\t\t<ORGANIZATION reference_id=\"UnitTestOrgReference\" name=\"TestOrg1\" phone=\"612-550-5555\" fax=\"612-540-5555\"/>\n\n  </SYSTEM>\n  \n  \n  <APPROVED_ACCOUNTS>\n    <ACCOUNT_TYPE id=\"00000000-0000-0000-0000-000000000001\" clf_approved_account_type_id=\"1\" clf_internal_transfer_id=\"0\" funding_date=\"2007-08-13\" account_name=\"{{accountName}}\" account_type=\"CD\" account_number=\"{{accountNumber}}\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"\" service_type=\"ATM\" />\n      </SERVICES>\n      <ACCOUNT_TYPE_RELATIONS>\n        <RELATION benefactor_type=\"C\" ssn=\"198234347\" beneficiary_priority=\"C\" beneficiary_percent_share=\"100\" />\n      </ACCOUNT_TYPE_RELATIONS>\n    </ACCOUNT_TYPE>\n  </APPROVED_ACCOUNTS>\n  <INTERESTED_ACCOUNTS>\n    <ACCOUNT_TYPE account_name=\"string\" amount_deposit=\"0\" account_type=\"CD\" is_require_confirmation=\"N\" underwrite_result=\"\" >\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"ATM\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"INTERNAL\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n    <ACCOUNT_TYPE account_name=\"\" amount_deposit=\"0\" account_type=\"CD\" is_require_confirmation=\"N\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"INTERNAL\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"ATM\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n  </INTERESTED_ACCOUNTS>\n  <FUTURE_ACCOUNTS>\n    <ACCOUNT_TYPE account_name=\"String\" account_type=\"CD\" bundle_code=\"\" underwrite_result=\"\">\n      <SERVICES>\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n        <SERVICE description=\"String\" service_type=\"DIR_DEP\" />\n      </SERVICES>\n    </ACCOUNT_TYPE>\n  </FUTURE_ACCOUNTS>\n  <BENEFICIARIES>\n    <BENEFICIARY ssn=\"123121234\" is_trust=\"N\" address=\"1124 BRISTOL ST\" city=\"COSTA MESA\" state=\"CA\" dob=\"1980-08-02\" email=\"ben@meridianlink.com\" first_name=\"BEN\" last_name=\"CHIEF\" phone=\"714-708-6950\" zip=\"92626\" relationship=\"GOD FATHER\" address_verification_date=\"2010-05-11\" />\n  </BENEFICIARIES>\n  <ADDITIONAL_SERVICES>\n    <INTERNAL_TRANSFER amount=\"50.00\" frequency=\"MONTHLY\" start_date=\"2008-01-01\" end_date=\"2009-01-01\" scheduled_day=\"1\" transfer_from_id=\"1111\" transfer_from_id_type=\"E\" transfer_to_account_type=\"IRA\" transfer_to_id=\"2222\" transfer_to_id_type=\"E\" />\n    <INTERNAL_TRANSFER amount=\"100.00\" frequency=\"MONTHLY\" start_date=\"2008-01-01\" end_date=\"2009-01-01\" scheduled_day=\"1\" transfer_from_id=\"0\" transfer_from_id_type=\"I\" transfer_to_account_type=\"IRA\" transfer_to_id=\"2222\" transfer_to_id_type=\"E\" />\n  </ADDITIONAL_SERVICES>\n</XPRESS_LOAN>"
         },
         "url": {
           "raw": "{{baseUrl}}/MeridianEnrollCustomer?institutionId={{institutionId}}&apiUserKey={{apiUserKey}}",
