@@ -2,6 +2,7 @@
   "info": {
     "_postman_id": "5494d8eb-53cd-48d5-9d90-9f96fa0c457b",
     "name": "API v1 Regression Test Suite TLD",
+    "description": "Test",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
@@ -3759,6 +3760,28 @@
         }
       },
       "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "936d01d7-4bcf-4e2c-ab8a-b22221961608",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "c4dd700f-5864-488d-9f17-b4c8131a4fbe",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
     }
   ]
 }
