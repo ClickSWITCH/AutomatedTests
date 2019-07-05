@@ -2342,7 +2342,7 @@
           "mode": "raw",
           "raw": ""
         },
-        "url": "{{baseUrl}}/ServiceAliveXML"
+        "url": "{{baseUrl}}/ServiceAliveXml"
       },
       "response": []
     },
