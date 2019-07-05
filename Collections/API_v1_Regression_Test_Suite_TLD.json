@@ -2,7 +2,6 @@
   "info": {
     "_postman_id": "5494d8eb-53cd-48d5-9d90-9f96fa0c457b",
     "name": "API v1 Regression Test Suite TLD",
-    "description": "Test",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
