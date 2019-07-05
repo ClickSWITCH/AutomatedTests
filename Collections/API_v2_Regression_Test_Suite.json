@@ -2,6 +2,7 @@
   "info": {
     "_postman_id": "82023879-8fc3-4b0b-8b3f-04ad5804c9f2",
     "name": "API v2 Regression Test Suite",
+    "description": "Test",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
