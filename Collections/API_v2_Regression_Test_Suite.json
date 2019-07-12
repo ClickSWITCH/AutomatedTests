@@ -903,7 +903,6 @@
             }
           ],
           "_postman_id": "891b0de3-c4c6-4411-a748-91eece4549f6",
-          "description": "Test",
           "event": [
             {
               "listen": "prerequest",
