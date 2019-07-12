@@ -102,6 +102,96 @@
               "response": []
             },
             {
+              "name": "Enroll One Account Copy",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fdc852cd-24c2-430b-97b7-02f7cd1aa25e",
+                    "exec": [
+                      "// Set accountNumber env var to timestamp to create a unique customer each run.",
+                      "var timestamp = Date.now();",
+                      "var randomString = makeRandomString();",
+                      "pm.environment.set(\"accountNumber\", timestamp);",
+                      "pm.environment.set(\"userName\", randomString);",
+                      "",
+                      "// Creates a random string of length 10.",
+                      "function makeRandomString() {",
+                      "  var text = \"\";",
+                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                      "  ",
+                      "  for (var i = 0; i < 10; i++) {",
+                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+                      "  }",
+                      "  ",
+                      "  return text;",
+                      "}",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "80b84949-f0a1-45b9-a38e-b255c5fbbe3f",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Has the correct ids\", function() {",
+                      "    pm.expect(jsonData.CustomerId).to.be.a('number');",
+                      "    pm.expect(jsonData.PrimaryContactId).to.be.a('number');",
+                      "    pm.expect(jsonData.SecondaryContactId).to.equal(null);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "5d87b6b0-e413-4b5d-aed6-30ee04210fea",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{ocpApimSubscriptionKey}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiUserKey",
+                      "value": "{{apiUserKey}}"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
               "name": "Enroll Minimum Data BranchId",
               "event": [
                 {
@@ -810,99 +900,32 @@
                 }
               },
               "response": []
-            },
-            {
-              "name": "Enroll One Account Copy",
-              "event": [
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "id": "fdc852cd-24c2-430b-97b7-02f7cd1aa25e",
-                    "exec": [
-                      "// Set accountNumber env var to timestamp to create a unique customer each run.",
-                      "var timestamp = Date.now();",
-                      "var randomString = makeRandomString();",
-                      "pm.environment.set(\"accountNumber\", timestamp);",
-                      "pm.environment.set(\"userName\", randomString);",
-                      "",
-                      "// Creates a random string of length 10.",
-                      "function makeRandomString() {",
-                      "  var text = \"\";",
-                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
-                      "  ",
-                      "  for (var i = 0; i < 10; i++) {",
-                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
-                      "  }",
-                      "  ",
-                      "  return text;",
-                      "}",
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                },
-                {
-                  "listen": "test",
-                  "script": {
-                    "id": "80b84949-f0a1-45b9-a38e-b255c5fbbe3f",
-                    "exec": [
-                      "const jsonData = pm.response.json();",
-                      "",
-                      "pm.test(\"Status code is 200\", function() {",
-                      "    pm.response.to.have.status(200);",
-                      "});",
-                      "",
-                      "pm.test(\"Has the correct ids\", function() {",
-                      "    pm.expect(jsonData.CustomerId).to.be.a('number');",
-                      "    pm.expect(jsonData.PrimaryContactId).to.be.a('number');",
-                      "    pm.expect(jsonData.SecondaryContactId).to.equal(null);",
-                      "});",
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "_postman_id": "5d87b6b0-e413-4b5d-aed6-30ee04210fea",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  },
-                  {
-                    "key": "Ocp-Apim-Subscription-Key",
-                    "value": "{{ocpApimSubscriptionKey}}"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "customers"
-                  ],
-                  "query": [
-                    {
-                      "key": "apiUserKey",
-                      "value": "{{apiUserKey}}"
-                    }
-                  ]
-                }
-              },
-              "response": []
             }
           ],
           "_postman_id": "891b0de3-c4c6-4411-a748-91eece4549f6",
+          "description": "Test",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "2ce49242-731e-4c56-a4e5-458a2365b479",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "a16e8d4a-69ad-464f-a8a3-4eb2b8657a45",
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
           "_postman_isSubFolder": true
         },
         {
