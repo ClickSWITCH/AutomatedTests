@@ -102,6 +102,186 @@
               "response": []
             },
             {
+              "name": "Enroll One Account Valid Name Missing Type",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fdc852cd-24c2-430b-97b7-02f7cd1aa25e",
+                    "exec": [
+                      "// Set accountNumber env var to timestamp to create a unique customer each run.",
+                      "var timestamp = Date.now();",
+                      "var randomString = makeRandomString();",
+                      "pm.environment.set(\"accountNumber\", timestamp);",
+                      "pm.environment.set(\"userName\", randomString);",
+                      "",
+                      "// Creates a random string of length 10.",
+                      "function makeRandomString() {",
+                      "  var text = \"\";",
+                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                      "  ",
+                      "  for (var i = 0; i < 10; i++) {",
+                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+                      "  }",
+                      "  ",
+                      "  return text;",
+                      "}",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "80b84949-f0a1-45b9-a38e-b255c5fbbe3f",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Has the correct ids\", function() {",
+                      "    pm.expect(jsonData.CustomerId).to.be.a('number');",
+                      "    pm.expect(jsonData.PrimaryContactId).to.be.a('number');",
+                      "    pm.expect(jsonData.SecondaryContactId).to.equal(null);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "5ff5bd60-c9c9-410d-8c14-f6fa99d8b9ad",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{ocpApimSubscriptionKey}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiUserKey",
+                      "value": "{{apiUserKey}}"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Enroll One Account Valid Type Missing Name",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "fdc852cd-24c2-430b-97b7-02f7cd1aa25e",
+                    "exec": [
+                      "// Set accountNumber env var to timestamp to create a unique customer each run.",
+                      "var timestamp = Date.now();",
+                      "var randomString = makeRandomString();",
+                      "pm.environment.set(\"accountNumber\", timestamp);",
+                      "pm.environment.set(\"userName\", randomString);",
+                      "",
+                      "// Creates a random string of length 10.",
+                      "function makeRandomString() {",
+                      "  var text = \"\";",
+                      "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                      "  ",
+                      "  for (var i = 0; i < 10; i++) {",
+                      "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+                      "  }",
+                      "  ",
+                      "  return text;",
+                      "}",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "80b84949-f0a1-45b9-a38e-b255c5fbbe3f",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function() {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Has the correct ids\", function() {",
+                      "    pm.expect(jsonData.CustomerId).to.be.a('number');",
+                      "    pm.expect(jsonData.PrimaryContactId).to.be.a('number');",
+                      "    pm.expect(jsonData.SecondaryContactId).to.equal(null);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "e63430af-7283-445d-95c7-a12be6abf511",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{ocpApimSubscriptionKey}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiUserKey",
+                      "value": "{{apiUserKey}}"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
               "name": "Enroll Minimum Data BranchId",
               "event": [
                 {
@@ -1354,6 +1534,104 @@
                     {
                       "key": "searchName",
                       "value": "{{depositorNameVerified}}"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "{{latitude}}"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "{{longitude}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "9537c602-a652-4c63-910f-6d7a66898891",
+                      "key": "customerId",
+                      "value": "{{customerId}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Find ENR Depositor (Dependency)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "7804db2f-0c0d-400b-b2c8-471ad05fc0fe",
+                    "exec": [
+                      "const jsonData = pm.response.json();",
+                      "",
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Contains at least one result\", function () {",
+                      "    pm.expect(jsonData.length).to.be.at.least(1);",
+                      "});",
+                      "",
+                      "pm.test(\"Results names do not contain #ENR#\", function () {",
+                      "    var looped = false;",
+                      "    for (var i = 0; i < jsonData.length; i++) {",
+                      "        looped = true;",
+                      "        pm.expect(jsonData[i].Name).to.not.include(\"#ENR#\");",
+                      "    }",
+                      "    pm.expect(looped).to.be.true;",
+                      "});",
+                      "",
+                      "pm.environment.set(\"depositorIdEnr\", jsonData[0].DepositorId);",
+                      "",
+                      "pm.test(\"Set the expected depositorIdEnr\", function () {",
+                      "    pm.expect(pm.environment.get(\"depositorIdEnr\")).to.equal(14003);",
+                      "});",
+                      "",
+                      "pm.environment.set(\"switchProfileIdEnr\", jsonData[0].SwitchTemplate.ProfileId);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "629135b4-541f-4a12-94ff-edc9682d5c95",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{ocpApimSubscriptionKey}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:customerId/depositors?apiUserKey={{apiUserKey}}&searchName={{depositorNameEnr}}&latitude={{latitude}}&longitude={{longitude}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":customerId",
+                    "depositors"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiUserKey",
+                      "value": "{{apiUserKey}}"
+                    },
+                    {
+                      "key": "searchName",
+                      "value": "{{depositorNameEnr}}"
                     },
                     {
                       "key": "latitude",
@@ -4904,6 +5182,488 @@
               "_postman_isSubFolder": true
             },
             {
+              "name": "ENR",
+              "item": [
+                {
+                  "name": "Save (Dependency)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "57f57fce-2c73-476e-8674-38c04bbb9af7",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 201\", function () {",
+                          "    pm.response.to.have.status(201);",
+                          "});",
+                          "",
+                          "pm.test('Has required elements', function () {",
+                          "    pm.expect(jsonData).to.have.property('Accounts');",
+                          "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                          "    pm.expect(jsonData).to.have.property('DepositorId');",
+                          "    pm.expect(jsonData).to.have.property('DepositorName');",
+                          "    pm.expect(jsonData).to.have.property('FormFields');",
+                          "    pm.expect(jsonData).to.have.property('Id');",
+                          "    pm.expect(jsonData).to.have.property('Status');",
+                          "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                          "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                          "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                          "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                          "});",
+                          "",
+                          "pm.test('Has the correct accounts element', function () {",
+                          "   var accounts =",
+                          "        {",
+                          "            AccountName: pm.environment.get('accountName'),",
+                          "            AccountNumber: pm.environment.get('accountNumber').toString(),",
+                          "            AccountType: pm.environment.get('accountTypeChecking'),",
+                          "            InstitutionName: pm.environment.get('institutionName'),",
+                          "            RoutingNumber: pm.environment.get('routingNumber'),",
+                          "            SplitAmount: null,",
+                          "            SplitUnitType: \"Remainder\"",
+                          "        };",
+                          "    ",
+                          "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct status', function () {",
+                          "   pm.expect(jsonData.Status).to.equal('Initial') ;",
+                          "});",
+                          "",
+                          "pm.test(\"Has the correct number of form fields\", function () {",
+                          "    pm.expect(jsonData.FormFields).to.have.length(5);",
+                          "});",
+                          "",
+                          "pm.environment.set(\"switchIdEnr\", jsonData.Id);",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "_postman_id": "c576b255-afb0-49af-839c-8cf7fd446207",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "{{ocpApimSubscriptionKey}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"SplitUnitType\": \"Remainder\"\r\n    }\r\n  ],\r\n  \"DepositorId\": \"{{depositorIdEnr}}\",\r\n  \"FormFields\": [\r\n\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{primaryContactId}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{primaryContactId}}\",\r\n  \"SwitchProfileId\": \"{{switchProfileIdEnr}}\"\r\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches?apiUserKey={{apiUserKey}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches"
+                      ],
+                      "query": [
+                        {
+                          "key": "apiUserKey",
+                          "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "448916d3-aabf-4ae8-9488-a7914145debc",
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Update (Dependency)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "309a7c0f-56d7-49f8-b480-a20412612fa6",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 200\", function() {",
+                          "    pm.response.to.have.status(200);",
+                          "});",
+                          "",
+                          "pm.test('Has required elements', function() {",
+                          "    pm.expect(jsonData).to.have.property('Accounts');",
+                          "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                          "    pm.expect(jsonData).to.have.property('DepositorId');",
+                          "    pm.expect(jsonData).to.have.property('DepositorName');",
+                          "    pm.expect(jsonData).to.have.property('FormFields');",
+                          "    pm.expect(jsonData).to.have.property('Id');",
+                          "    pm.expect(jsonData).to.have.property('Status');",
+                          "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                          "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                          "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                          "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                          "});",
+                          "",
+                          "pm.test('Has the correct accounts element', function () {",
+                          "   var accounts =",
+                          "        {",
+                          "            AccountName: pm.environment.get('accountName'),",
+                          "            AccountNumber: pm.environment.get('accountNumber').toString(),",
+                          "            AccountType: pm.environment.get('accountTypeChecking'),",
+                          "            InstitutionName: pm.environment.get('institutionName'),",
+                          "            RoutingNumber: pm.environment.get('routingNumber'),",
+                          "            SplitAmount: null,",
+                          "            SplitUnitType: \"Remainder\"",
+                          "        };",
+                          "    ",
+                          "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct status', function() {",
+                          "   pm.expect(jsonData.Status).to.equal('Initial') ;",
+                          "});",
+                          "",
+                          "pm.test(\"Has the correct number of form fields\", function () {",
+                          "    pm.expect(jsonData.FormFields).to.have.length(5);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "_postman_id": "11846604-ed00-48b6-81b3-71a784aa0057",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "{{ocpApimSubscriptionKey}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"SplitUnitType\": \"Remainder\"\r\n    }\r\n  ],\r\n  \"DepositorId\": \"{{depositorIdEnr}}\",\r\n  \"FormFields\": [   \r\n  \t{\r\n      \"Type\": \"TextBox\",\r\n      \"Value\": \"123456789\",\r\n      \"VariableName\": \"ENR_SSN\"\r\n    },\r\n    {\r\n      \"Type\": \"CheckBox\",\r\n      \"Value\": \"True\",\r\n      \"VariableName\": \"ENR_RepPayeePresent\"\r\n    },\r\n    {\r\n      \"Type\": \"TextBox\",\r\n      \"Value\": \"Rep Payee Name\",\r\n      \"VariableName\": \"ENR_RepPayeeName\"\r\n    },\r\n    {\r\n      \"Type\": \"TextBox\",\r\n      \"Value\": \"FirstName\",\r\n      \"VariableName\": \"ENR_CustomerFirstName\"\r\n    },\r\n    {\r\n      \"Type\": \"TextBox\",\r\n      \"Value\": \"LastName\",\r\n      \"VariableName\": \"ENR_CustomerLastName\"\r\n    }\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{primaryContactId}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{primaryContactId}}\",\r\n  \"SwitchProfileId\": \"{{switchProfileIdEnr}}\"\r\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey={{apiUserKey}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches",
+                        ":switchId"
+                      ],
+                      "query": [
+                        {
+                          "key": "apiUserKey",
+                          "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "a98d78db-ecff-4771-b64e-422587a57602",
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "id": "d51420a8-142b-48b2-aa7a-2eb90ade56ff",
+                          "key": "switchId",
+                          "value": "{{switchIdEnr}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Get",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "dd6f8bba-d6b2-4a0a-be19-604329dbf5bd",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 200\", function() {",
+                          "    pm.response.to.have.status(200);",
+                          "});",
+                          "",
+                          "pm.test('Has required elements', function() {",
+                          "    pm.expect(jsonData).to.have.property('Accounts');",
+                          "    pm.expect(jsonData).to.have.property('CustomerCreatedDepositorId');",
+                          "    pm.expect(jsonData).to.have.property('DepositorId');",
+                          "    pm.expect(jsonData).to.have.property('DepositorName');",
+                          "    pm.expect(jsonData).to.have.property('FormFields');",
+                          "    pm.expect(jsonData).to.have.property('Id');",
+                          "    pm.expect(jsonData).to.have.property('Status');",
+                          "    pm.expect(jsonData).to.have.property('IsPrintable');",
+                          "    pm.expect(jsonData).to.have.property('SwitchAccountHolderId');",
+                          "    pm.expect(jsonData).to.have.property('SwitchProfileId');",
+                          "    pm.expect(jsonData).to.have.property('SwitchProfileGuid');",
+                          "});",
+                          "",
+                          "pm.test('Has the correct accounts element', function () {",
+                          "   var accounts =",
+                          "        {",
+                          "            AccountName: pm.environment.get('accountName'),",
+                          "            AccountNumber: pm.environment.get('accountNumber').toString(),",
+                          "            AccountType: pm.environment.get('accountTypeChecking'),",
+                          "            InstitutionName: pm.environment.get('institutionName'),",
+                          "            RoutingNumber: pm.environment.get('routingNumber'),",
+                          "            SplitAmount: null,",
+                          "            SplitUnitType: \"Remainder\"",
+                          "        };",
+                          "    ",
+                          "    pm.expect(jsonData.Accounts).to.deep.include(accounts);",
+                          "});",
+                          "",
+                          "pm.test('Has the correct status', function() {",
+                          "   pm.expect(jsonData.Status).to.equal('Initial') ;",
+                          "});",
+                          "",
+                          "pm.test(\"Has the correct number of form fields\", function () {",
+                          "    pm.expect(jsonData.FormFields).to.have.length(5);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "_postman_id": "9ef20509-28e1-41be-bdc2-4a4813643811",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "{{ocpApimSubscriptionKey}}"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey={{apiUserKey}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches",
+                        ":switchId"
+                      ],
+                      "query": [
+                        {
+                          "key": "apiUserKey",
+                          "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "b2c13873-eef4-48f4-a654-f383cc7045f3",
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "id": "64a67b5b-b1cc-4ccd-9c6a-32c3788ef8a6",
+                          "key": "switchId",
+                          "value": "{{switchIdEnr}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Get All",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "f5a09f18-a9d4-4943-91a7-f9a759d05f02",
+                        "exec": [
+                          "const jsonData = pm.response.json();",
+                          "",
+                          "pm.test(\"Status code is 200\", function() {",
+                          "    pm.response.to.have.status(200);",
+                          "});",
+                          "",
+                          "pm.test(\"Contains the correct number of switches\", function() {",
+                          "   pm.expect(jsonData.length).to.equal(8); ",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "_postman_id": "b81a98bf-6d82-4136-bb37-79cbbd0dc93d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "{{ocpApimSubscriptionKey}}"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches?apiUserKey={{apiUserKey}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches"
+                      ],
+                      "query": [
+                        {
+                          "key": "apiUserKey",
+                          "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "e37a758d-6e3e-44ee-a001-45d18fce8e2f",
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Submit",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "11a2b909-dbf1-403a-a771-67741218b1e4",
+                        "exec": [
+                          "pm.test(\"Status code is 200\", function() {",
+                          "    pm.response.to.have.status(200);",
+                          "});",
+                          "",
+                          "pm.test(\"Has the correct response\", function () {",
+                          "    pm.expect(pm.response.json()).to.deep.equal(",
+                          "        {",
+                          "            SwitchId: pm.environment.get(\"switchIdEnr\"),",
+                          "            EffectiveDate: null,",
+                          "            Status: \"OpenRequest\",",
+                          "            PayrollProvider: null,",
+                          "            IsPrintable: false",
+                          "        }",
+                          "    );",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "_postman_id": "834a5183-dfbc-4404-bfd3-f3292b6b3b95",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "{{ocpApimSubscriptionKey}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"PrimaryContactSignature\": {\r\n    \"ContactId\": \"{{primaryContactId}}\",\r\n    \"Signature\": \"Test\"\r\n  }\r\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey={{apiUserKey}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "switches",
+                        ":switchId"
+                      ],
+                      "query": [
+                        {
+                          "key": "apiUserKey",
+                          "value": "{{apiUserKey}}"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "cb497a6f-9913-4936-88e1-a827155f591a",
+                          "key": "customerId",
+                          "value": "{{customerId}}",
+                          "type": "string"
+                        },
+                        {
+                          "id": "9186bd7b-90c7-46a2-b895-36ed300280f2",
+                          "key": "switchId",
+                          "value": "{{switchIdEnr}}",
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ],
+              "_postman_id": "b2f058ff-cf15-4a30-add8-b7d3ac803dbc",
+              "_postman_isSubFolder": true
+            },
+            {
               "name": "Save And Delete",
               "item": [
                 {
@@ -5134,7 +5894,7 @@
                           "});",
                           "",
                           "pm.test(\"Contains the correct number of switches\", function() {",
-                          "   pm.expect(jsonData.length).to.equal(7); ",
+                          "   pm.expect(jsonData.length).to.equal(8); ",
                           "});",
                           ""
                         ],
@@ -13009,6 +13769,112 @@
         }
       ],
       "_postman_id": "a6848e14-23b4-4949-a929-fd7aecc0e73f"
+    },
+    {
+      "name": "Validation",
+      "item": [
+        {
+          "name": "Enroll Missing AccountName and AccountTypeId",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fdc852cd-24c2-430b-97b7-02f7cd1aa25e",
+                "exec": [
+                  "// Set accountNumber env var to timestamp to create a unique customer each run.",
+                  "var timestamp = Date.now();",
+                  "var randomString = makeRandomString();",
+                  "pm.environment.set(\"accountNumber\", timestamp);",
+                  "pm.environment.set(\"userName\", randomString);",
+                  "",
+                  "// Creates a random string of length 10.",
+                  "function makeRandomString() {",
+                  "  var text = \"\";",
+                  "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+                  "  ",
+                  "  for (var i = 0; i < 10; i++) {",
+                  "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+                  "  }",
+                  "  ",
+                  "  return text;",
+                  "}",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "80b84949-f0a1-45b9-a38e-b255c5fbbe3f",
+                "exec": [
+                  "const jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"Has the correct response\", function () {",
+                  "pm.expect(pm.response.json()).to.deep.equal(",
+                  "    {",
+                  "        \"Message\": \"The request is invalid.\",",
+                  "        \"ModelState\":",
+                  "            {",
+                  "                \"newCustomer.Accounts[0].AccountTypeId\": [",
+                  "                \"One of AccountName, AccountTypeId must be set\"",
+                  "                ],",
+                  "                \"newCustomer.Accounts[0].AccountName\": [",
+                  "                \"One of AccountTypeId, AccountName must be set\"",
+                  "                ]",
+                  "            }",
+                  "    });",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "f16f7585-e88d-4147-a471-b88e2b160e56",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{ocpApimSubscriptionKey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers?apiUserKey={{apiUserKey}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers"
+              ],
+              "query": [
+                {
+                  "key": "apiUserKey",
+                  "value": "{{apiUserKey}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "8a40a920-63c2-412d-a4f5-64ec1a379ce2"
     },
     {
       "name": "Get  Payroll Provider Logo",
