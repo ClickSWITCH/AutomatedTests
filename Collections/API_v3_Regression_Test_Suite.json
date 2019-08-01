@@ -6,7 +6,7 @@
   },
   "item": [
     {
-      "name": "HealthCheck Copy",
+      "name": "HealthCheck",
       "item": [
         {
           "name": "IsAlive (Repeated)",
