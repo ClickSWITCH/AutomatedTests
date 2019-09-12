@@ -649,6 +649,97 @@
       "response": []
     },
     {
+      "name": "EnrollCustomer hashedApiUserKey",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              "// Set accountNumber env var to timestamp to create a unique customer each run.",
+              "var timestamp = Date.now();",
+              "var randomString = makeRandomString();",
+              "pm.environment.set(\"accountNumber\", timestamp);",
+              "pm.environment.set(\"userName\", randomString);",
+              "",
+              "// Creates a random string of length 10.",
+              "function makeRandomString() {",
+              "  var text = \"\";",
+              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+              "  ",
+              "  for (var i = 0; i < 10; i++) {",
+              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+              "  }",
+              "  ",
+              "  return text;",
+              "}",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "const jsonData = pm.response.json();",
+              "",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the required properties\", function () {",
+              "   pm.expect(jsonData).to.have.property(\"IsSuccess\"); ",
+              "   pm.expect(jsonData).to.have.property(\"SwitchTrackCode\"); ",
+              "   pm.expect(jsonData).to.have.property(\"Errors\"); ",
+              "   pm.expect(Object.keys(jsonData).length).to.equal(3);",
+              "});",
+              "",
+              "pm.test(\"Enrollment was not successful\", function () {",
+              "   pm.expect(jsonData.IsSuccess).to.be.false;",
+              "   pm.expect(jsonData.SwitchTrackCode).to.be.null;",
+              "   pm.expect(jsonData.Errors).to.include(\"This API user is not authorized to access this institution.\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "3f406a16-e66b-4805-a61b-b424ec2e708c",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"EnrollingUserExternalId\": null,\r\n  \"EnrollingUserId\": null,\r\n  \"Accounts\": [\r\n  \t{\r\n      \"BranchId\": \"{{branchId}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"AccountName\": \"{{accountName}}\",\r\n      \"AccountTypeId\": \"1\",\r\n      \"AccountNumber\": \"{{accountNumber}}\"\r\n    },\r\n    {\r\n      \"BranchId\": \"{{branchId}}\",\r\n      \"RoutingNumber\": \"{{routingNumber2}}\",\r\n      \"ExternalBranchId\": 123,\r\n      \"AccountName\": \"{{accountName2}}\",\r\n      \"AccountTypeId\": \"2\",\r\n      \"AccountNumber\": \"{{accountNumber}}0\"\r\n    }\r\n  ],\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"BusinessName\": \"Business Name\",\r\n  \"PhoneNumber\": \"6125555555\",\r\n  \"InstitutionId\": \"{{institutionId}}\",\r\n  \"Address\": {\r\n    \"StateProvinceCode\": \"MN\",\r\n    \"PostalCode\": \"55401\",\r\n    \"CountryCode\": \"US\",\r\n    \"City\": \"Minneapolis\",\r\n    \"AddressLine3\": \"ATTN Test\",\r\n    \"AddressLine2\": \"#100\",\r\n    \"AddressLine1\": \"244 1st Ave. N\"\r\n  },\r\n  \"PrimaryContact\": {\r\n    \"LastName\": \"Test\",\r\n    \"MiddleInitial\": \"J\",\r\n    \"FirstName\": \"{{userName}}\"\r\n  },\r\n  \"UserName\": \"{{userName}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"ApiUserKey\": \"{{hashedApiUserKey}}\"\r\n}"
+        },
+        "url": "{{baseUrl}}/EnrollCustomer"
+      },
+      "response": []
+    },
+    {
       "name": "EnrollCustomer (Dependency)",
       "event": [
         {
