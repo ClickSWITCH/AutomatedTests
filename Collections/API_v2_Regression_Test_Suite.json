@@ -10246,6 +10246,71 @@
                     }
                   },
                   "response": []
+                },
+                {
+                  "name": "Hashed ApiUserKey Does Not Authenticate",
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "fdc852cd-24c2-430b-97b7-02f7cd1aa25e",
+                        "exec": [
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "80b84949-f0a1-45b9-a38e-b255c5fbbe3f",
+                        "exec": [
+                          "pm.test(\"Status code is 401\", function() {",
+                          "    pm.response.to.have.status(401);",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "_postman_id": "98ef4880-a809-4a70-8d3d-9136e7eb820d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Ocp-Apim-Subscription-Key",
+                        "value": "{{ocpApimSubscriptionKey}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"AccountTypeId\": 1,\r\n      \"ExternalBranchId\": 123,\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"BranchId\": \"{{branchId}}\"\r\n    }\r\n  ],\r\n  \"Address\": {\r\n    \"AddressLine1\": \"600 Canal Park Dr.\",\r\n    \"AddressLine2\": \"Apt. 1\",\r\n    \"AddressLine3\": \"Attn: Test\",\r\n    \"City\": \"Duluth\",\r\n    \"CountryCode\": \"US\",\r\n    \"PostalCode\": \"55803\",\r\n    \"StateProvinceCode\": \"MN\"\r\n  },\r\n  \"BusinessName\": \"Test\",\r\n  \"ConsentToEsign\": true,\r\n  \"DefaultBranchId\": \"{{branchId}}\",\r\n  \"DefaultExternalBranchId\": 123,\r\n  \"DefaultRoutingNumber\": \"{{routingNumber}}\",\r\n  \"EmailAddress\": \"{{accountNumber}}@clickswitch.com\",\r\n  \"InstitutionId\":  \"{{institutionId}}\",\r\n  \"PhoneNumber\": \"2185555555\",\r\n  \"PrimaryContact\": {\r\n    \"FirstName\": \"{{userName}}an\",\r\n    \"MiddleInitial\": \"T\",\r\n    \"LastName\": \"Test\"\r\n  },\r\n  \"UserName\": \"{{userName}}an\"\r\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers?apiUserKey={{hashedApiUserKey}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers"
+                      ],
+                      "query": [
+                        {
+                          "key": "apiUserKey",
+                          "value": "{{hashedApiUserKey}}"
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
                 }
               ],
               "_postman_id": "6e267331-6f00-4502-94a3-463eeb0888ea",
