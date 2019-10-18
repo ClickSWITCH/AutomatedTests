@@ -560,7 +560,29 @@
           "response": []
         }
       ],
-      "_postman_id": "2df40da7-333e-4a8c-bab7-274bd1a41860"
+      "_postman_id": "2df40da7-333e-4a8c-bab7-274bd1a41860",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "ea183e29-ca8f-4d03-90d1-4d9acf234207",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "d23e26fa-86e5-49d9-b00c-b0a32b12c057",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "AccountTypes",
