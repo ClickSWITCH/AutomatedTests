@@ -1235,9 +1235,9 @@
               "",
               "pm.test(\"Has the expected URL\", function() {",
               "    var response = pm.response.text();",
-              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}&apiUserKey=.*/);",
+              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}/);",
               "    pm.expect(response).to.include(`https://${pm.environment.get(\"subdomain\")}.${pm.environment.get(\"domain\")}/Account/NonceLogin?nonce=`);",
-              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}&apiUserKey=${pm.environment.get(\"apiUserKey\")}`);",
+              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}`);",
               "});",
               ""
             ],
@@ -1301,10 +1301,12 @@
               "",
               "pm.test(\"Has the expected URL\", function() {",
               "    var response = pm.response.text();",
-              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}&apiUserKey=.*/);",
+              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}/);",
               "    pm.expect(response).to.include(`https://${pm.environment.get(\"subdomain\")}.${pm.environment.get(\"domain\")}/Account/NonceLogin?nonce=`);",
-              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}&apiUserKey=${pm.environment.get(\"apiUserKey\")}`);",
+              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}`);",
               "});",
+              "",
+              "pm.environment.set(\"nonce\", pm.response.text().slice(1,-1));",
               ""
             ],
             "type": "text/javascript"
@@ -1344,6 +1346,60 @@
       "response": []
     },
     {
+      "name": "NonceLogin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "3ae61885-cc76-48d1-bbdc-c507b675fe59",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "f70d6d3d-bf9c-451d-b04f-521d21415404",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{nonce}}"
+      },
+      "response": []
+    },
+    {
+      "name": "NonceLogin Second Use",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e71ed298-0a11-4b5f-9e87-484971a5225a",
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "12afba26-079c-42d1-8df1-28f8d7b7cabb",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{nonce}}"
+      },
+      "response": []
+    },
+    {
       "name": "GenerateSignInNonceUrl SwitchTrackCode",
       "event": [
         {
@@ -1367,9 +1423,9 @@
               "",
               "pm.test(\"Has the expected URL\", function() {",
               "    var response = pm.response.text();",
-              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}&apiUserKey=.*/);",
+              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}/);",
               "    pm.expect(response).to.include(`https://${pm.environment.get(\"subdomain\")}.${pm.environment.get(\"domain\")}/Account/NonceLogin?nonce=`);",
-              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}&apiUserKey=${pm.environment.get(\"apiUserKey\")}`);",
+              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}`);",
               "});",
               ""
             ],
@@ -1433,9 +1489,9 @@
               "",
               "pm.test(\"Has the expected URL\", function() {",
               "    var response = pm.response.text();",
-              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}&apiUserKey=.*/);",
+              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}/);",
               "    pm.expect(response).to.include(`https://${pm.environment.get(\"subdomain\")}.${pm.environment.get(\"domain\")}/Account/NonceLogin?nonce=`);",
-              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}&apiUserKey=${pm.environment.get(\"apiUserKey\")}`);",
+              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}`);",
               "});",
               ""
             ],
@@ -1499,11 +1555,12 @@
               "",
               "pm.test(\"Has the expected URL\", function() {",
               "    var response = pm.response.text();",
-              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}&apiUserKey=.*/);",
+              "    pm.expect(response).to.match(/\"https:\\/\\/.*\\..*\\/Account\\/NonceLogin\\?nonce=.*&switchTrackCode=.{8}/);",
               "    pm.expect(response).to.include(`https://${pm.environment.get(\"subdomain\")}.${pm.environment.get(\"domain\")}/Account/NonceLogin?nonce=`);",
-              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}&apiUserKey=${pm.environment.get(\"apiUserKey\")}`);",
+              "    pm.expect(response).to.include(`&switchTrackCode=${pm.environment.get(\"switchTrackCode\")}`);",
               "});",
-              ""
+              "",
+              "pm.environment.set(\"nonce\", pm.response.text().slice(1,-1));"
             ],
             "type": "text/javascript"
           }
@@ -1538,6 +1595,60 @@
           "raw": "{\n    \"APIUserKey\": \"{{apiUserKey}}\",\n    \"ExternalUserId\": \"{{accountNumber}}\",\n    \"InstitutionId\": \"{{institutionId}}\",\n    \"CustomerUserName\": \"INVALID{{userName}}WONTBEUSED\",\n    \"SwitchTrackCode\": \"{{switchTrackCode}}\"\n}"
         },
         "url": "{{baseUrl}}/GenerateSignInNonceUrl"
+      },
+      "response": []
+    },
+    {
+      "name": "NonceLogin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "3ae61885-cc76-48d1-bbdc-c507b675fe59",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "d9349b81-c515-4f2d-8884-8cb366039395",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{nonce}}"
+      },
+      "response": []
+    },
+    {
+      "name": "NonceLogin Second Use",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e71ed298-0a11-4b5f-9e87-484971a5225a",
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "849ac4fe-83fb-424d-a102-dca1f40ae3d9",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{nonce}}"
       },
       "response": []
     },
@@ -3870,6 +3981,252 @@
             }
           ]
         }
+      },
+      "response": []
+    },
+    {
+      "name": "MeridianEnrollAndCreateLoginUrl (Dependency)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              "// Set accountNumber env var to timestamp to create a unique customer each run.",
+              "var timestamp = Date.now();",
+              "var randomString = makeRandomString();",
+              "pm.environment.set(\"accountNumber\", timestamp);",
+              "pm.environment.set(\"userName\", randomString);",
+              "",
+              "// Creates a random string of length 10.",
+              "function makeRandomString() {",
+              "  var text = \"\";",
+              "  var possible = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+              "  ",
+              "  for (var i = 0; i < 10; i++) {",
+              "    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+              "  }",
+              "  ",
+              "  return text;",
+              "}",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(pm.response.text()).to.match(/<\\?xml version=\"1\\.0\"\\?>\\s*<RESPONSE xmlns:xsd=\"http:\\/\\/www\\.w3\\.org\\/2001\\/XMLSchema\" xmlns:xsi=\"http:\\/\\/www\\.w3\\.org\\/2001\\/XMLSchema-instance\" lpq_transaction_id=\".*\" version=\"1\\.0\">\\s*<RESULT status=\"COMPLETE\">\\s*<RETURN_URL>https:\\/\\/.*\\/account\\/tokenlogin\\?token=.*&amp;customerCode=.{8}<\\/RETURN_URL>\\s*<\\/RESULT>\\s*<WARNINGS \\/>\\s*<\\/RESPONSE>/);",
+              "});",
+              "",
+              "pm.environment.set(\"switchTrackCode\", pm.response.text().split(\"customerCode=\")[1].slice(0, 8));",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "16f70aee-5a63-413f-b382-4e607af3923d",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/xml"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/xml"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<REQUEST lpq_transaction_id=\"bea2edf1-c455-4851-a383-561f07946793\">\r\n    <LOGIN lender_code=\"TestOrg4\">\r\n        <API_TOKEN>98770d3d7safdsafsdfasdf234f384ed59f28845a9d10b1c9</API_TOKEN>\r\n    </LOGIN>\r\n    <CURRENT_USER>\r\n        <USERLOGIN>{{userName}}USER@MERIDIANLINK.COM</USERLOGIN>\r\n        <NAME>Support, ML</NAME>\r\n    </CURRENT_USER>\r\n    <ACTION service_type=\"CLICKSWITCH\">\r\n        <NEW_TRANSACTION>\r\n            <APP_DATA>\r\n                <CLF_DATA encoding=\"\"><![CDATA[\r\n<XPRESS_LOAN xmlns=\"http://www.meridianlink.com/CLF\" version=\"5.225\">\r\n    <APPLICANTS>\r\n        <APPLICANT is_debit_bureau_required=\"N\" joint_account_option=\"\" \r\n        is_credit_union_advocate=\"N\" number_in_household=\"0\" preferred_contact_method=\"EMAIL\" \r\n        cell_phone=\"(612) 556-5556\" cell_phone_country=\"US\" home_phone=\"(612) 557-5557\" \r\n        home_phone_country=\"US\" work_phone=\"(612) 558-5558\" work_phone_extension=\"321\" work_phone_country=\"US\" \r\n        bankruptcy_score=\"0\" marital_status=\"\" citizenship=\"USCITIZEN\" is_declined=\"N\" \r\n        first_name=\"{{userName}}CUSTOMER\" last_name=\"Test\" mother_maiden_name=\"\" m_initial=\"J\" middle_name=\"T\" \r\n        dob=\"1988-12-24\" email=\"{{accountNumber}}@MERIDIANLINK.COM\" ssn=\"000000001\" member_number=\"{{accountNumber}}\" \r\n        d3p1:xa_internal_applicant_type=\"P\" allow_direct_mail=\"Y\" allow_email_solicit=\"Y\" \r\n        allow_telemarket=\"Y\" allow_share_info=\"Y\" is_ofac_id_ver=\"N\" \r\n        id_authentication_result=\"INCOMPLETE\" credit_score=\"0\" custom_score=\"0\" \r\n        id_ver_result=\"INCOMPLETE\" is_ssn_tax_id=\"N\" pre_score_failure_code=\"0\" is_ofac_debit=\"N\" \r\n        is_high_risk_consumer=\"N\" d3p1:internal_borrower_id=\"b9c01719085e4ea6af85b4b65366528d\" \r\n        is_fraud_credit=\"N\" is_ofac_credit=\"N\" combined_unsecured_aggregate_amount_with_lender=\"0.00\" \r\n        combined_secured_aggregate_amount_with_lender_no_mortgage=\"0.00\" borrower_id=\"0\" \r\n            xmlns:d3p1=\"http://www.meridianlink.com/InternalUse\">\r\n            <CURRENT_ADDRESS occupancy_status=\"BUYING\" occupancy_duration=\"28\" \r\n            other_occupancy_description=\"\">\r\n                <LOOSE_ADDRESS street_address_1=\"244 1ST AVE N\" street_address_2=\"\" city=\"MINNEAPOLIS\" \r\n                state=\"MN\" zip=\"55401\" county=\"USA\" />\r\n            </CURRENT_ADDRESS>\r\n            <PREVIOUS_ADDRESS occupancy_status=\"\" occupancy_duration=\"0\" other_occupancy_description=\"\" \r\n            city=\"\" state=\"\" county=\"\" street_address_1=\"\" street_address_2=\"\" country=\"USA\" />\r\n            <MAILING_ADDRESS city=\"LAdddKEWAY\" state=\"TX\" zip=\"78734\" county=\"\" street_address_1=\"2208 \r\n            SAILO22RS RUN\" street_address_2=\"\" country=\"USA\" is_current=\"Y\" />\r\n            <FINANCIAL_INFO monthly_liability=\"0\" monthly_rent=\"0\" temp_monthly_housing_cost=\"0\" \r\n            is_monthly_income_base_salary_manual=\"Y\" is_bah_included=\"N\" \r\n            monthly_income_base_salary=\"2772\" employment_status=\"EM\" employed_months=\"65\" employer=\"KJLJ\" \r\n            employee_of_lender_type=\"NONE\" occupation=\"EMPLOYED\" profession_months=\"65\" \r\n            employment_weekly_hours=\"0\" />\r\n            <ID_CARD card_type=\"AUTO_INSURANCE\" card_number=\"DFSDFDS\" state=\"\" country=\"\" />\r\n            <ID_CARD2 card_type=\"\" card_number=\"\" state=\"\" country=\"\" />\r\n            <REFERENCE first_name=\"\" last_name=\"\" address=\"\" city=\"\" state=\"\" phone=\"\" relationship=\"\" \r\n            email=\"\" />\r\n            <ATM_CARD_LIST />\r\n            <DEBIT_BUREAU_INFO />\r\n        </APPLICANT>\r\n    </APPLICANTS>\r\n    <COMMENTS>\r\n        <DECISION_COMMENTS></DECISION_COMMENTS>\r\n        <EXTERNAL_COMMENTS></EXTERNAL_COMMENTS>\r\n        <INTERNAL_COMMENTS>IM_ADMINCO_OPJV / SYSTEM (7/24/2019 5:47:24 PM PDT): SKIPPING DUPE AND FAS \r\n        CHECKS FOR CHAITANYA REGULLA BECAUSE S/HE IS A TEST APPLICANT</INTERNAL_COMMENTS>\r\n    </COMMENTS>\r\n    <LOAN_INFO is_new_customer=\"Y\" incomplete_path=\"\" status=\"APPROVED\" \r\n        create_date=\"2019-07-24T17:45:28-07:00\" account_position=\"1\" entity_type=\"P\" \r\n        last_modified=\"2019-07-26T16:03:39-07:00\" is_claimed=\"N\" is_locked=\"N\" is_minor=\"N\" \r\n        is_lender_disclosure_checked=\"N\" is_possible_dupe=\"N\" approval_date=\"2019-07-24T17:48:03-07:00\" \r\n        is_high_risk_consumer=\"N\" />\r\n    <CUSTOM_QUESTIONS />\r\n    <SYSTEM type=\"LPQ\" source=\"LENDER\" origination_ip=\"Internal IP\" loan_number=\"3\" \r\n        d2p1:loan_id=\"ee06cb2f37ed4654a9c29432d2bad7d8\" \r\n        xmlns:d2p1=\"http://www.meridianlink.com/InternalUse\">\r\n        <PROCESSOR d2p1:internal_id=\"f3780195a6164c18b94846dfc8145fa8\" name=\"ML Support\" \r\n            phone=\"(714) 708-6950\" code=\"JOE_496\" teller_number=\"1234\" \r\n            email=\"lpqsupport@meridianlink.com\" />\r\n        <APPROVAL_OFFICER d2p1:internal_id=\"f3780195a6164c18b94846dfc8145fa8\" name=\"ML Support\" \r\n            phone=\"(714) 708-6950\" code=\"JOE_496\" teller_number=\"1234\" \r\n            email=\"lpqsupport@meridianlink.com\" />\r\n        <DECIDING_OFFICER d2p1:internal_id=\"f3780195a6164c18b94846dfc8145fa8\" name=\"ML Support\" \r\n            phone=\"(714) 708-6950\" code=\"JOE_496\" teller_number=\"1234\" \r\n            email=\"lpqsupport@meridianlink.com\" />\r\n        <ORIGINATOR d2p1:internal_id=\"f3780195a6164c18b94846dfc8145fa8\" name=\"ML Support\" \r\n            phone=\"(714) 708-6950\" code=\"JOE_496\" teller_number=\"1234\"  \r\n            email=\"lpqsupport@meridianlink.com\" type=\"L\" />\r\n        <BRANCH d2p1:internal_id=\"e52a659ede4b400ebf817488c1b13254\" name=\"Test Branch\" \r\n            reference_id=\"123\" code=\"TESTBRANCH_902\" phone=\"714-714-7147\" fax=\"7147147147\" email=\"\">\r\n            <ADDRESS street_address_1=\"1600 Sunflower\" city=\"Costa Mesa\" state=\"CA\" zip=\"92626\" />\r\n        </BRANCH>\r\n        <LENDER d2p1:internal_id=\"374bcd7453684bc8a8c9ed041ed07e6f\" name=\"TestOrg4\"     \r\n            reference_id=\"LenRefID998!\" code=\"TestOrg4\" phone=\"123-123-1235\" \r\n            fax=\"123-123-1245\" email=\"test@testorg4.com\">\r\n            <ADDRESS street_address_1=\"123\" city=\"Santa Barbra\" state=\"CA\" zip=\"91234\" />\r\n        </LENDER>\r\n        <ORGANIZATION d2p1:internal_id=\"bc0864159a6d42acb062cd7e2618917e\" name=\"TestOrg4\" \r\n            reference_id=\"OrgRefID12!@\" code=\"TestOrg4\" phone=\"(714) 708-6950\" \r\n            fax=\"(714) 708-6950\" />\r\n    </SYSTEM>\r\n    <APPROVED_ACCOUNTS>\r\n        <ACCOUNT_TYPE \r\n            account_name=\"{{accountName}}\" amount_deposit=\"0\" account_number=\"{{accountNumber}}\"  rate=\"1.000\" \r\n            apy=\"-999999.000\" account_type=\"CHECKING\" suffix=\"2222\" is_created=\"\" is_rate_override=\"N\" \r\n            d3p1:approved_account_type_id=\"10e3e01d-5dd3-43ac-90f7-c114cd0f8917\" \r\n            clf_approved_account_type_id=\"\" interest_rate_type=\"\" cd_additions_permitted=\"\" \r\n            cd_renewability=\"\" issue_date=\"2019-07-24\" check_routing_number=\"322079353\" term_type=\"M\" \r\n            term=\"0\" maturity_date=\"2019-07-24\" product_code=\"TEST\" \r\n            xmlns:d3p1=\"http://www.meridianlink.com/InternalUse\">\r\n            <PRODUCT_CUSTOM_QUESTIONS_APPROVED />\r\n        </ACCOUNT_TYPE>\r\n    </APPROVED_ACCOUNTS>\r\n    <INTERESTED_ACCOUNTS>\r\n        <ACCOUNT_TYPE account_name=\"{{accountName2}}\" amount_deposit=\"0\" account_number=\"{{accountNumber}}12\" rate=\"1.000\" \r\n            apy=\"-999999.000\" account_type=\"SAVINGS\" interest_rate_type=\"\" \r\n            cd_additions_permitted=\" \" cd_renewability=\"\" rate_code=\"\" term_type=\"M\" \r\n            min_deposit=\"0\" max_deposit=\"0\" is_require_confirmation=\"N\" d3p1:internal_account_type_id=\"ede59eeb-9e89-42e2-ae46-205ee53946b8\" \r\n            bundle_code=\"\" underwrite_result=\"\" term=\"0\" product_code=\"TEST\" \r\n            xmlns:d3p1=\"http://www.meridianlink.com/InternalUse\">\r\n            <PRODUCT_CUSTOM_QUESTIONS_INTERESTED />\r\n        </ACCOUNT_TYPE>\r\n    </INTERESTED_ACCOUNTS>\r\n    <FUTURE_ACCOUNTS />\r\n    <TASK_LIST />\r\n    <FUNDING_SOURCES>\r\n        <FUNDING_SOURCE clf_funding_source_id=\"2\" funding_type=\"NOT_FUNDING\" />\r\n        <FUNDING_SOURCE clf_funding_source_id=\"1\" funding_type=\"MAIL\" />\r\n        <FUNDING_SOURCE clf_funding_source_id=\"0\" funding_type=\"CASH\" />\r\n    </FUNDING_SOURCES>\r\n    <DEDUCTIONS />\r\n</XPRESS_LOAN>\r\n]]></CLF_DATA>\r\n                <DICTIONARY>\r\n                    <FIELD key=\"employee.email\" value=\"{{accountNumber}}@meridianlink.com\" />\r\n                    <FIELD key=\"employee.branch\" value=\"123\" />\r\n                    <FIELD key=\"employee.name\" value=\"A{{userName}} U TESTER\" />\r\n                </DICTIONARY>\r\n            </APP_DATA>\r\n        </NEW_TRANSACTION>\r\n    </ACTION>\r\n</REQUEST>"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/MeridianEnrollAndCreateLoginUrl?institutionId={{institutionId}}&apiUserKey={{apiUserKey}}&sendNewAccountEmail=false",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "MeridianEnrollAndCreateLoginUrl"
+          ],
+          "query": [
+            {
+              "key": "institutionId",
+              "value": "{{institutionId}}"
+            },
+            {
+              "key": "apiUserKey",
+              "value": "{{apiUserKey}}"
+            },
+            {
+              "key": "sendNewAccountEmail",
+              "value": "false"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "MeridianEnrollAndCreateLoginUrl Existing Customer",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "a9b63259-2105-46fb-9da5-00ee08b35501",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "4e3dbf7a-f935-47a6-b5d5-29fbd2ae1216",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Has the correct response\", function () {",
+              "    pm.expect(pm.response.text()).to.match(/<\\?xml version=\"1\\.0\"\\?>\\s*<RESPONSE xmlns:xsd=\"http:\\/\\/www\\.w3\\.org\\/2001\\/XMLSchema\" xmlns:xsi=\"http:\\/\\/www\\.w3\\.org\\/2001\\/XMLSchema-instance\" lpq_transaction_id=\".*\" version=\"1\\.0\">\\s*<RESULT status=\"COMPLETE\">\\s*<RETURN_URL>https:\\/\\/.*\\/account\\/tokenlogin\\?token=.*&amp;customerCode=.{8}<\\/RETURN_URL>\\s*<\\/RESULT>\\s*<WARNINGS \\/>\\s*<\\/RESPONSE>/);",
+              "    pm.expect(pm.response.text().split(\"customerCode=\")[1].slice(0, 8)).to.equal(pm.environment.get(\"switchTrackCode\"));",
+              "});",
+              "",
+              "pm.environment.set(\"nonce\", cheerio(pm.response.text()).find(\"RETURN_URL\").text());",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "92e094bb-9825-4ebe-8f97-a2b2bb77507b",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "type": "text",
+            "value": "{{ocpApimSubscriptionKey}}"
+          },
+          {
+            "key": "Accept",
+            "type": "text",
+            "value": "application/xml"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "type": "text",
+            "value": "application/xml"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<REQUEST lpq_transaction_id=\"bea2edf1-c455-4851-a383-561f07946793\">\r\n    <LOGIN lender_code=\"TestOrg4\">\r\n        <API_TOKEN>98770d3d7safdsafsdfasdf234f384ed59f28845a9d10b1c9</API_TOKEN>\r\n    </LOGIN>\r\n    <CURRENT_USER>\r\n        <USERLOGIN>{{userName}}USER2@MERIDIANLINK.COM</USERLOGIN>\r\n        <NAME>Support, ML</NAME>\r\n    </CURRENT_USER>\r\n    <ACTION service_type=\"CLICKSWITCH\">\r\n        <NEW_TRANSACTION>\r\n            <APP_DATA>\r\n                <CLF_DATA encoding=\"\"><![CDATA[\r\n<XPRESS_LOAN xmlns=\"http://www.meridianlink.com/CLF\" version=\"5.225\">\r\n    <APPLICANTS>\r\n        <APPLICANT is_debit_bureau_required=\"N\" joint_account_option=\"\" \r\n        is_credit_union_advocate=\"N\" number_in_household=\"0\" preferred_contact_method=\"EMAIL\" \r\n        cell_phone=\"(612) 556-5556\" cell_phone_country=\"US\" home_phone=\"(612) 557-5557\" \r\n        home_phone_country=\"US\" work_phone=\"(612) 558-5558\" work_phone_extension=\"321\" work_phone_country=\"US\" \r\n        bankruptcy_score=\"0\" marital_status=\"\" citizenship=\"USCITIZEN\" is_declined=\"N\" \r\n        first_name=\"{{userName}}CUSTOMER\" last_name=\"Test\" mother_maiden_name=\"\" m_initial=\"J\" middle_name=\"T\" \r\n        dob=\"1988-12-24\" email=\"{{accountNumber}}@MERIDIANLINK.COM\" ssn=\"000000001\" member_number=\"{{accountNumber}}\" \r\n        d3p1:xa_internal_applicant_type=\"P\" allow_direct_mail=\"Y\" allow_email_solicit=\"Y\" \r\n        allow_telemarket=\"Y\" allow_share_info=\"Y\" is_ofac_id_ver=\"N\" \r\n        id_authentication_result=\"INCOMPLETE\" credit_score=\"0\" custom_score=\"0\" \r\n        id_ver_result=\"INCOMPLETE\" is_ssn_tax_id=\"N\" pre_score_failure_code=\"0\" is_ofac_debit=\"N\" \r\n        is_high_risk_consumer=\"N\" d3p1:internal_borrower_id=\"b9c01719085e4ea6af85b4b65366528d\" \r\n        is_fraud_credit=\"N\" is_ofac_credit=\"N\" combined_unsecured_aggregate_amount_with_lender=\"0.00\" \r\n        combined_secured_aggregate_amount_with_lender_no_mortgage=\"0.00\" borrower_id=\"0\" \r\n            xmlns:d3p1=\"http://www.meridianlink.com/InternalUse\">\r\n            <CURRENT_ADDRESS occupancy_status=\"BUYING\" occupancy_duration=\"28\" \r\n            other_occupancy_description=\"\">\r\n                <LOOSE_ADDRESS street_address_1=\"244 1ST AVE N\" street_address_2=\"\" city=\"MINNEAPOLIS\" \r\n                state=\"MN\" zip=\"55401\" county=\"USA\" />\r\n            </CURRENT_ADDRESS>\r\n            <PREVIOUS_ADDRESS occupancy_status=\"\" occupancy_duration=\"0\" other_occupancy_description=\"\" \r\n            city=\"\" state=\"\" county=\"\" street_address_1=\"\" street_address_2=\"\" country=\"USA\" />\r\n            <MAILING_ADDRESS city=\"LAdddKEWAY\" state=\"TX\" zip=\"78734\" county=\"\" street_address_1=\"2208 \r\n            SAILO22RS RUN\" street_address_2=\"\" country=\"USA\" is_current=\"Y\" />\r\n            <FINANCIAL_INFO monthly_liability=\"0\" monthly_rent=\"0\" temp_monthly_housing_cost=\"0\" \r\n            is_monthly_income_base_salary_manual=\"Y\" is_bah_included=\"N\" \r\n            monthly_income_base_salary=\"2772\" employment_status=\"EM\" employed_months=\"65\" employer=\"KJLJ\" \r\n            employee_of_lender_type=\"NONE\" occupation=\"EMPLOYED\" profession_months=\"65\" \r\n            employment_weekly_hours=\"0\" />\r\n            <ID_CARD card_type=\"AUTO_INSURANCE\" card_number=\"DFSDFDS\" state=\"\" country=\"\" />\r\n            <ID_CARD2 card_type=\"\" card_number=\"\" state=\"\" country=\"\" />\r\n            <REFERENCE first_name=\"\" last_name=\"\" address=\"\" city=\"\" state=\"\" phone=\"\" relationship=\"\" \r\n            email=\"\" />\r\n            <ATM_CARD_LIST />\r\n            <DEBIT_BUREAU_INFO />\r\n        </APPLICANT>\r\n    </APPLICANTS>\r\n    <COMMENTS>\r\n        <DECISION_COMMENTS></DECISION_COMMENTS>\r\n        <EXTERNAL_COMMENTS></EXTERNAL_COMMENTS>\r\n        <INTERNAL_COMMENTS>IM_ADMINCO_OPJV / SYSTEM (7/24/2019 5:47:24 PM PDT): SKIPPING DUPE AND FAS \r\n        CHECKS FOR CHAITANYA REGULLA BECAUSE S/HE IS A TEST APPLICANT</INTERNAL_COMMENTS>\r\n    </COMMENTS>\r\n    <LOAN_INFO is_new_customer=\"Y\" incomplete_path=\"\" status=\"APPROVED\" \r\n        create_date=\"2019-07-24T17:45:28-07:00\" account_position=\"1\" entity_type=\"P\" \r\n        last_modified=\"2019-07-26T16:03:39-07:00\" is_claimed=\"N\" is_locked=\"N\" is_minor=\"N\" \r\n        is_lender_disclosure_checked=\"N\" is_possible_dupe=\"N\" approval_date=\"2019-07-24T17:48:03-07:00\" \r\n        is_high_risk_consumer=\"N\" />\r\n    <CUSTOM_QUESTIONS />\r\n    <SYSTEM type=\"LPQ\" source=\"LENDER\" origination_ip=\"Internal IP\" loan_number=\"3\" \r\n        d2p1:loan_id=\"ee06cb2f37ed4654a9c29432d2bad7d8\" \r\n        xmlns:d2p1=\"http://www.meridianlink.com/InternalUse\">\r\n        <PROCESSOR d2p1:internal_id=\"f3780195a6164c18b94846dfc8145fa8\" name=\"ML Support\" \r\n            phone=\"(714) 708-6950\" code=\"JOE_496\" teller_number=\"1234\" \r\n            email=\"lpqsupport@meridianlink.com\" />\r\n        <APPROVAL_OFFICER d2p1:internal_id=\"f3780195a6164c18b94846dfc8145fa8\" name=\"ML Support\" \r\n            phone=\"(714) 708-6950\" code=\"JOE_496\" teller_number=\"1234\" \r\n            email=\"lpqsupport@meridianlink.com\" />\r\n        <DECIDING_OFFICER d2p1:internal_id=\"f3780195a6164c18b94846dfc8145fa8\" name=\"ML Support\" \r\n            phone=\"(714) 708-6950\" code=\"JOE_496\" teller_number=\"1234\" \r\n            email=\"lpqsupport@meridianlink.com\" />\r\n        <ORIGINATOR d2p1:internal_id=\"f3780195a6164c18b94846dfc8145fa8\" name=\"ML Support\" \r\n            phone=\"(714) 708-6950\" code=\"JOE_496\" teller_number=\"1234\"  \r\n            email=\"lpqsupport@meridianlink.com\" type=\"L\" />\r\n        <BRANCH d2p1:internal_id=\"e52a659ede4b400ebf817488c1b13254\" name=\"Test Branch\" \r\n            reference_id=\"123\" code=\"TESTBRANCH_902\" phone=\"714-714-7147\" fax=\"7147147147\" email=\"\">\r\n            <ADDRESS street_address_1=\"1600 Sunflower\" city=\"Costa Mesa\" state=\"CA\" zip=\"92626\" />\r\n        </BRANCH>\r\n        <LENDER d2p1:internal_id=\"374bcd7453684bc8a8c9ed041ed07e6f\" name=\"TestOrg4\"     \r\n            reference_id=\"LenRefID998!\" code=\"TestOrg4\" phone=\"123-123-1235\" \r\n            fax=\"123-123-1245\" email=\"test@testorg4.com\">\r\n            <ADDRESS street_address_1=\"123\" city=\"Santa Barbra\" state=\"CA\" zip=\"91234\" />\r\n        </LENDER>\r\n        <ORGANIZATION d2p1:internal_id=\"bc0864159a6d42acb062cd7e2618917e\" name=\"TestOrg4\" \r\n            reference_id=\"OrgRefID12!@\" code=\"TestOrg4\" phone=\"(714) 708-6950\" \r\n            fax=\"(714) 708-6950\" />\r\n    </SYSTEM>\r\n    <APPROVED_ACCOUNTS>\r\n        <ACCOUNT_TYPE \r\n            account_name=\"{{accountName}}\" amount_deposit=\"0\" account_number=\"{{accountNumber}}\"  rate=\"1.000\" \r\n            apy=\"-999999.000\" account_type=\"CHECKING\" suffix=\"2222\" is_created=\"\" is_rate_override=\"N\" \r\n            d3p1:approved_account_type_id=\"10e3e01d-5dd3-43ac-90f7-c114cd0f8917\" \r\n            clf_approved_account_type_id=\"\" interest_rate_type=\"\" cd_additions_permitted=\"\" \r\n            cd_renewability=\"\" issue_date=\"2019-07-24\" check_routing_number=\"322079353\" term_type=\"M\" \r\n            term=\"0\" maturity_date=\"2019-07-24\" product_code=\"TEST\" \r\n            xmlns:d3p1=\"http://www.meridianlink.com/InternalUse\">\r\n            <PRODUCT_CUSTOM_QUESTIONS_APPROVED />\r\n        </ACCOUNT_TYPE>\r\n    </APPROVED_ACCOUNTS>\r\n    <INTERESTED_ACCOUNTS>\r\n        <ACCOUNT_TYPE account_name=\"{{accountName2}}\" amount_deposit=\"0\" account_number=\"{{accountNumber}}12\" rate=\"1.000\" \r\n            apy=\"-999999.000\" account_type=\"SAVINGS\" interest_rate_type=\"\" \r\n            cd_additions_permitted=\" \" cd_renewability=\"\" rate_code=\"\" term_type=\"M\" \r\n            min_deposit=\"0\" max_deposit=\"0\" is_require_confirmation=\"N\" d3p1:internal_account_type_id=\"ede59eeb-9e89-42e2-ae46-205ee53946b8\" \r\n            bundle_code=\"\" underwrite_result=\"\" term=\"0\" product_code=\"TEST\" \r\n            xmlns:d3p1=\"http://www.meridianlink.com/InternalUse\">\r\n            <PRODUCT_CUSTOM_QUESTIONS_INTERESTED />\r\n        </ACCOUNT_TYPE>\r\n    </INTERESTED_ACCOUNTS>\r\n    <FUTURE_ACCOUNTS />\r\n    <TASK_LIST />\r\n    <FUNDING_SOURCES>\r\n        <FUNDING_SOURCE clf_funding_source_id=\"2\" funding_type=\"NOT_FUNDING\" />\r\n        <FUNDING_SOURCE clf_funding_source_id=\"1\" funding_type=\"MAIL\" />\r\n        <FUNDING_SOURCE clf_funding_source_id=\"0\" funding_type=\"CASH\" />\r\n    </FUNDING_SOURCES>\r\n    <DEDUCTIONS />\r\n</XPRESS_LOAN>\r\n]]></CLF_DATA>\r\n                <DICTIONARY>\r\n                    <FIELD key=\"employee.email\" value=\"{{accountNumber}}@meridianlink.com\" />\r\n                    <FIELD key=\"employee.branch\" value=\"123\" />\r\n                    <FIELD key=\"employee.name\" value=\"A{{userName}} U TESTER\" />\r\n                </DICTIONARY>\r\n            </APP_DATA>\r\n        </NEW_TRANSACTION>\r\n    </ACTION>\r\n</REQUEST>"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/MeridianEnrollAndCreateLoginUrl?institutionId={{institutionId}}&apiUserKey={{apiUserKey}}&sendNewAccountEmail=false",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "MeridianEnrollAndCreateLoginUrl"
+          ],
+          "query": [
+            {
+              "key": "institutionId",
+              "value": "{{institutionId}}"
+            },
+            {
+              "key": "apiUserKey",
+              "value": "{{apiUserKey}}"
+            },
+            {
+              "key": "sendNewAccountEmail",
+              "value": "false"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "NonceLogin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "3ae61885-cc76-48d1-bbdc-c507b675fe59",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "1d2701ba-38cf-4ac0-91f3-846aa6a3dc24",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{nonce}}"
+      },
+      "response": []
+    },
+    {
+      "name": "NonceLogin Second Use",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e71ed298-0a11-4b5f-9e87-484971a5225a",
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "e180e36d-c66b-45aa-85e0-4db5645a13e6",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{nonce}}"
       },
       "response": []
     }
