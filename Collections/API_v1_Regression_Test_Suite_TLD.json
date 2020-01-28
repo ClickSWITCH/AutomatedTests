@@ -2895,7 +2895,7 @@
               "});",
               "",
               "pm.test(\"Has the expected response\", function() {",
-              "    pm.expect(pm.response.text()).to.match(/\"API Version: '2\\.\\d{2}\\.\\d\\.\\d' \"/);",
+              "    pm.expect(pm.response.text()).to.match(/\"API Version: '3\\.\\d\\.\\d\\.\\d' \"/);",
               "});",
               ""
             ],
