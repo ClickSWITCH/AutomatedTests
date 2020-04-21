@@ -13839,6 +13839,576 @@
       "name": "Validation",
       "item": [
         {
+          "name": "Switches",
+          "item": [
+            {
+              "name": "Save Non-existent customerId",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "628931bc-540b-450d-a63e-d0bcad4c179d",
+                    "exec": [
+                      "// Adding to capture existing behavior. This should probably be a 404.",
+                      "pm.test(\"Status code is 401\", function() {",
+                      "    pm.response.to.have.status(401);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "7f4946e5-1964-4f37-8bb7-1e7a75a760cc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{ocpApimSubscriptionKey}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"SplitUnitType\": \"Percentage\",\r\n      \"SplitAmount\": 100\r\n    }\r\n  ],\r\n  \"CustomerCreatedDepositorId\": \"{{depositorIdUnknown}}\",\r\n  \"FormFields\": [\r\n\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{primaryContactId}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{primaryContactId}}\",\r\n  \"SwitchProfileId\": \"{{switchProfileIdUnknown}}\"\r\n}",
+                  "options": {}
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customerId/switches?apiUserKey={{apiUserKey}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customerId",
+                    "switches"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiUserKey",
+                      "value": "{{apiUserKey}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "03b26514-789d-4dcc-bd15-0cc28df7dfa5",
+                      "key": "customerId",
+                      "value": "{{customerId}}99",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Non-existent customerId",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "fb96ad79-d6d2-4563-8dd5-6a6c9fec1ef5",
+                    "exec": [
+                      "// Adding to capture existing behavior. This should probably be a 404.",
+                      "pm.test(\"Status code is 401\", function() {",
+                      "    pm.response.to.have.status(401);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "fff1637b-bb98-4948-90a9-2e07d80305c7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{ocpApimSubscriptionKey}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"Accounts\": [\r\n    {\r\n      \"AccountNumber\": \"{{accountNumber}}\",\r\n      \"RoutingNumber\": \"{{routingNumber}}\",\r\n      \"SplitUnitType\": \"Percentage\",\r\n      \"SplitAmount\": 100\r\n    }\r\n  ],\r\n  \"CustomerCreatedDepositorId\": \"{{depositorIdUnknown}}\",\r\n  \"FormFields\": [   \r\n  \t{\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"1234\",\r\n      \"VariableName\": \"Custom_SSN4\"\r\n    },\r\n    {\r\n      \"Type\": \"textbox\",\r\n      \"Value\": \"Test Building\",\r\n      \"VariableName\": \"Custom_Employee/ID\"\r\n    }\r\n  ],\r\n  \"Signatures\": {\r\n    \"PrimaryContactSignature\": {\r\n      \"ContactId\": \"{{primaryContactId}}\",\r\n      \"Signature\": \"Test\"\r\n    }\r\n  },\r\n  \"SwitchAccountHolderId\": \"{{primaryContactId}}\",\r\n  \"SwitchProfileId\": \"{{switchProfileIdUnknown}}\"\r\n}",
+                  "options": {}
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey={{apiUserKey}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customerId",
+                    "switches",
+                    ":switchId"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiUserKey",
+                      "value": "{{apiUserKey}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "6274a650-8279-4f30-99a1-e69c72b713a3",
+                      "key": "customerId",
+                      "value": "{{customerId}}99",
+                      "type": "string"
+                    },
+                    {
+                      "id": "b7eef9e7-b643-4846-a353-8b56f4ef5df4",
+                      "key": "switchId",
+                      "value": "{{switchIdUnknown}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Non-existent customerId",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "26731505-88d0-4e29-93db-3b88d51d5da3",
+                    "exec": [
+                      "// Adding to capture existing behavior. This should probably be a 404.",
+                      "pm.test(\"Status code is 401\", function() {",
+                      "    pm.response.to.have.status(401);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "bed69718-9bef-4953-ba59-873262f7e760",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{ocpApimSubscriptionKey}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey={{apiUserKey}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customerId",
+                    "switches",
+                    ":switchId"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiUserKey",
+                      "value": "{{apiUserKey}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "517e2511-48b8-4b69-a79d-ab05d406e5b4",
+                      "key": "customerId",
+                      "value": "{{customerId}}99",
+                      "type": "string"
+                    },
+                    {
+                      "id": "a0f57be5-723b-4360-be80-8063ea498a2a",
+                      "key": "switchId",
+                      "value": "{{switchIdUnknown}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get All Non-existent customerId",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "31156932-59df-474a-a2cc-76b5c9c8f591",
+                    "exec": [
+                      "// Adding to capture existing behavior. This should probably be a 404.",
+                      "pm.test(\"Status code is 401\", function() {",
+                      "    pm.response.to.have.status(401);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "652b5da1-570e-42b0-9239-33f372cd6ba3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{ocpApimSubscriptionKey}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customerId/switches?apiUserKey={{apiUserKey}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customerId",
+                    "switches"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiUserKey",
+                      "value": "{{apiUserKey}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "aed914e7-7281-4a26-b4db-34d520de589d",
+                      "key": "customerId",
+                      "value": "{{customerId}}99",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Submit Non-existent customerId",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "02fce7ab-1df3-46c7-bfe9-e769d6fc2443",
+                    "exec": [
+                      "// Adding to capture existing behavior. This should probably be a 404.",
+                      "pm.test(\"Status code is 401\", function() {",
+                      "    pm.response.to.have.status(401);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "95483dc6-452b-45bd-a49f-f46048cbd298",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{ocpApimSubscriptionKey}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {}
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey={{apiUserKey}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customerId",
+                    "switches",
+                    ":switchId"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiUserKey",
+                      "value": "{{apiUserKey}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "4d2ecc5a-2aab-4a4b-9b69-f3ef4f0eac4e",
+                      "key": "customerId",
+                      "value": "{{customerId}}99",
+                      "type": "string"
+                    },
+                    {
+                      "id": "c4cad79c-21a1-4db7-a9a2-ed5be8911da7",
+                      "key": "switchId",
+                      "value": "{{switchIdUnknown}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Non-existent customerId",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "d831da88-de3c-49f2-91a5-89f5450de2b2",
+                    "exec": [
+                      "// Adding to capture existing behavior. This should probably be a 404.",
+                      "pm.test(\"Status code is 401\", function() {",
+                      "    pm.response.to.have.status(401);",
+                      "});",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "_postman_id": "a57b7b2c-9e2b-41b3-8695-359dae247e7b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Ocp-Apim-Subscription-Key",
+                    "value": "{{ocpApimSubscriptionKey}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {}
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customerId/switches/:switchId?apiUserKey={{apiUserKey}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customerId",
+                    "switches",
+                    ":switchId"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiUserKey",
+                      "value": "{{apiUserKey}}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "399e0cf6-59a1-4608-92b9-02664c176aed",
+                      "key": "customerId",
+                      "value": "{{customerId}}99",
+                      "type": "string"
+                    },
+                    {
+                      "id": "a886ab06-ded1-4a86-9d49-ada4bebaf6bf",
+                      "key": "switchId",
+                      "value": "{{switchIdUnknown}}",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "_postman_id": "5e58386c-b3ce-4c93-9d22-43bca5bb71dc",
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Find Customer Non-existent UserName",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "2b72de1d-03b9-4154-aa65-2c1e72a79e65",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "46f51bab-ffea-443b-8ec8-3245d2066255",
+                "exec": [
+                  "pm.test(\"Status code is 404\", function() {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "1f522880-13a5-4b60-8b56-daa80d6e538a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{ocpApimSubscriptionKey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/customers/search?apiUserKey={{apiUserKey}}&searchUserName={{userName}}DOESNOTEXIST&institutionId={{institutionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "apiUserKey",
+                  "value": "{{apiUserKey}}"
+                },
+                {
+                  "key": "searchUserName",
+                  "value": "{{userName}}DOESNOTEXIST"
+                },
+                {
+                  "key": "institutionId",
+                  "value": "{{institutionId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find Depositor Non-existent customerId",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7804db2f-0c0d-400b-b2c8-471ad05fc0fe",
+                "exec": [
+                  "// Adding to capture existing behavior. This should probably be a 404.",
+                  "pm.test(\"Status code is 401\", function() {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "f7c03608-45f0-4081-925d-3e1cfb6cc9e2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Ocp-Apim-Subscription-Key",
+                "value": "{{ocpApimSubscriptionKey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:customerId/depositors?apiUserKey={{apiUserKey}}&searchName={{depositorNameVerified}}&latitude={{latitude}}&longitude={{longitude}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":customerId",
+                "depositors"
+              ],
+              "query": [
+                {
+                  "key": "apiUserKey",
+                  "value": "{{apiUserKey}}"
+                },
+                {
+                  "key": "searchName",
+                  "value": "{{depositorNameVerified}}"
+                },
+                {
+                  "key": "latitude",
+                  "value": "{{latitude}}"
+                },
+                {
+                  "key": "longitude",
+                  "value": "{{longitude}}"
+                }
+              ],
+              "variable": [
+                {
+                  "id": "7e3836ea-600b-4f5e-82f3-291fe1b8e4c9",
+                  "key": "customerId",
+                  "value": "{{customerId}}99",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Enroll Missing AccountName and AccountTypeId",
           "event": [
             {
